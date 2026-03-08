@@ -15,13 +15,33 @@ MANIFEST_PATH = ROOT / ".voiceatc" / "runway_configs_manifest.json"
 REPO_NAME = "lainoa-software/voiceatc-simulator-community"
 BRANCH_NAME = "main"
 SCHEMA_VERSION = 1
+RUNWAY_CONFIG_FILENAME = "runway_configs.json"
+LEGACY_RUNWAY_CONFIG_FILENAME = "runway_config.json"
 
 
-def runway_files() -> list[Path]:
+def _tracked_runway_files(root: Path, filename: str) -> list[Path]:
     return sorted(
-        path for path in ROOT.rglob("runway_config.json")
+        path for path in root.rglob(filename)
         if ".git" not in path.parts and ".voiceatc" not in path.parts
     )
+
+
+def legacy_runway_files(root: Path = ROOT) -> list[Path]:
+    return _tracked_runway_files(root, LEGACY_RUNWAY_CONFIG_FILENAME)
+
+
+def runway_files(root: Path = ROOT) -> list[Path]:
+    legacy_files = legacy_runway_files(root)
+    if legacy_files:
+        listed = ", ".join(path.relative_to(root).as_posix() for path in legacy_files[:5])
+        remaining = len(legacy_files) - 5
+        if remaining > 0:
+            listed += f", +{remaining} more"
+        raise ValueError(
+            f"legacy runway filename '{LEGACY_RUNWAY_CONFIG_FILENAME}' is not allowed; "
+            f"use '{RUNWAY_CONFIG_FILENAME}': {listed}"
+        )
+    return _tracked_runway_files(root, RUNWAY_CONFIG_FILENAME)
 
 
 def ensure_text_field(value: object, label: str, path: Path) -> str:
@@ -33,7 +53,7 @@ def ensure_text_field(value: object, label: str, path: Path) -> str:
     return text
 
 
-def validate_runway_file(path: Path) -> dict[str, object]:
+def validate_runway_file(path: Path, root: Path = ROOT) -> dict[str, object]:
     raw_bytes = path.read_bytes()
     try:
         payload = json.loads(raw_bytes.decode("utf-8"))
@@ -72,24 +92,24 @@ def validate_runway_file(path: Path) -> dict[str, object]:
 
     return {
         "airport": airport,
-        "repo_path": path.relative_to(ROOT).as_posix(),
+        "repo_path": path.relative_to(root).as_posix(),
         "sha256": hashlib.sha256(raw_bytes).hexdigest(),
         "size_bytes": len(raw_bytes),
     }
 
 
-def current_commit_sha() -> str:
+def current_commit_sha(root: Path = ROOT) -> str:
     return subprocess.check_output(
         ["git", "rev-parse", "HEAD"],
-        cwd=ROOT,
+        cwd=root,
         text=True,
     ).strip()
 
 
-def build_manifest() -> dict[str, object]:
+def build_manifest(root: Path = ROOT, commit_sha: str | None = None) -> dict[str, object]:
     airports: dict[str, dict[str, object]] = {}
-    for path in runway_files():
-        entry = validate_runway_file(path)
+    for path in runway_files(root):
+        entry = validate_runway_file(path, root)
         airport = str(entry["airport"])
         if airport in airports:
             raise ValueError(f"duplicate airport '{airport}' across runway config files")
@@ -104,13 +124,13 @@ def build_manifest() -> dict[str, object]:
         "repo": REPO_NAME,
         "branch": BRANCH_NAME,
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "commit_sha": current_commit_sha(),
+        "commit_sha": commit_sha if commit_sha is not None else current_commit_sha(root),
         "airports": dict(sorted(airports.items())),
     }
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Validate runway_config.json files and generate the community runway-configs manifest.")
+    parser = argparse.ArgumentParser(description="Validate runway_configs.json files and generate the community runway-configs manifest.")
     parser.add_argument("--write", action="store_true", help="Write .voiceatc/runway_configs_manifest.json")
     parser.add_argument("--validate-only", action="store_true", help="Validate only, without writing the manifest")
     args = parser.parse_args()
