@@ -1,0 +1,39 @@
+{
+  "airports": {
+    "EHAM": {
+      "repo_path": "E/EH/EHAA/AMSTERDAM_TMA/mva.json",
+      "sha256": "74263c0ea69adf171bc63833deb38478ce78f706f4cf7be30ce39a3cb9d981d6",
+      "size_bytes": 15569
+    },
+    "LEBB": {
+      "repo_path": "L/LE/LECM/LECM_R1/BILBAO_TMA/mva.json",
+      "sha256": "5916550e0cf52ee4de6a440fdb13d30c060ad14d5d46ab7933f321978a0ad6d6",
+      "size_bytes": 56181
+    },
+    "LEBL": {
+      "repo_path": "L/LE/LECB/LECB_W/BARCELONA_TMA/mva.json",
+      "sha256": "fed5c3631d803713b3f336dc32c56652f694a183a8b58577f58ef663e504b337",
+      "size_bytes": 70116
+    },
+    "LEMD": {
+      "repo_path": "L/LE/LECM/LECM_R2/MADRID_TMA/mva.json",
+      "sha256": "eb5ba46b082bbf677a9f12bd86900a2eaf0e7bf2a581eae6b54d049bfe1bfbde",
+      "size_bytes": 30194
+    },
+    "LEMG": {
+      "repo_path": "L/LE/LECM/LECS/MALAGA_TMA/mva.json",
+      "sha256": "9bfce5b04b694e6a3795876122a76c2f2d00ef32c91c7dd267692cb538738488",
+      "size_bytes": 31395
+    },
+    "LEPA": {
+      "repo_path": "L/LE/LECB/LECB_E/PALMA_TMA/mva.json",
+      "sha256": "4bacfff61875b2482f4162f632f13de70db46b26fd2a5fb31546a08ee1cadc3a",
+      "size_bytes": 44617
+    }
+  },
+  "branch": "main",
+  "commit_sha": "60627a23d2e3306838a994ae43e15a94661a1c19",
+  "generated_at": "2026-03-09T12:40:41Z",
+  "repo": "lainoa-software/voiceatc-simulator-community",
+  "schema_version": 1
+}
