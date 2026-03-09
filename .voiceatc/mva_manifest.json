@@ -2,38 +2,38 @@
   "airports": {
     "EHAM": {
       "repo_path": "E/EH/EHAA/AMSTERDAM_TMA/mva.json",
-      "sha256": "1ba700e3fc182324b9ecf1bfa0a357e48148db33e39bef5bb9e24c4bd3a0c055",
-      "size_bytes": 8550
+      "sha256": "920983800fe40cc08f1dea8dd059199a43c0766a9b6e3018645464f118d4a7f4",
+      "size_bytes": 14586
     },
     "LEBB": {
       "repo_path": "L/LE/LECM/LECM_R1/BILBAO_TMA/mva.json",
-      "sha256": "6d1eae850080a8ccbf4b3d724298b8e1bd2cad95c043eeabb6d887f6508a9a63",
-      "size_bytes": 30573
+      "sha256": "a2044fb688c9f93ead271ac4bf0ccdf421f34d26cb5740f1c056ac4f27b36aea",
+      "size_bytes": 53013
     },
     "LEBL": {
       "repo_path": "L/LE/LECB/LECB_W/BARCELONA_TMA/mva.json",
-      "sha256": "0d313dd6fcec0951e56bf66b96a10093e269ecae57bb900121eb6e5b4a8235f0",
-      "size_bytes": 38184
+      "sha256": "cb1d740cc6be9d175b008ea2d8846c383e0816f6dfe1e3e2ee64040542826526",
+      "size_bytes": 66114
     },
     "LEMD": {
       "repo_path": "L/LE/LECM/LECM_R2/MADRID_TMA/mva.json",
-      "sha256": "75990c986bd169ba01949043a0548ec475173fd7695056ee97539fb7af30262e",
-      "size_bytes": 17472
+      "sha256": "2037353e84aa3b90d5dd42e04e691c6431f1181edb063ea6427027215caa066b",
+      "size_bytes": 28434
     },
     "LEMG": {
       "repo_path": "L/LE/LECM/LECS/MALAGA_TMA/mva.json",
-      "sha256": "fb791ea1a9e1761f52de471233c3d12e584930577f2777528f66da1978aa98ff",
-      "size_bytes": 18773
+      "sha256": "9576b9ab0408df21b69f15126dd0a3ce7f34daa8e44a62374a21c1609054aa90",
+      "size_bytes": 29603
     },
     "LEPA": {
       "repo_path": "L/LE/LECB/LECB_E/PALMA_TMA/mva.json",
-      "sha256": "25174c055716049c05627039abdd3c779234a959f0ab2b607a24256099002dff",
-      "size_bytes": 24372
+      "sha256": "79ace5d6c1bcd834691a294f6351ab6fb9413ee7fb266148d6c82f2810d1a4e8",
+      "size_bytes": 24349
     }
   },
   "branch": "main",
-  "commit_sha": "77b295f2d9120a2d53dc7b1fd065e5b497ebf0d4",
-  "generated_at": "2026-03-09T13:30:03Z",
+  "commit_sha": "b9840df53f5a59ca27b4cbe40cbc85de8f1868ab",
+  "generated_at": "2026-03-09T13:43:53Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
