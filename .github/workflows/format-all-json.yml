@@ -1,0 +1,31 @@
+name: Format All JSON
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run format:json
+      - name: Commit formatted JSON
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- ':(glob)**/*.json')" ]; then
+            echo "No JSON formatting changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- ':(glob)**/*.json'
+          git commit -m "chore: format JSON"
+          git push
