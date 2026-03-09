@@ -1,0 +1,11 @@
+{
+  "name": "voiceatc-simulator-community",
+  "private": true,
+  "scripts": {
+    "format:json": "prettier --write \"**/*.json\"",
+    "format:json:check": "prettier --check \"**/*.json\""
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0"
+  }
+}

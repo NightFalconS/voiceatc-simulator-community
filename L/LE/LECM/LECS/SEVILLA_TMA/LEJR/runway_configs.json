@@ -1,17 +1,17 @@
 {
-    "airport": "LEJR",
-    "runway_configs": [
-        {
-            "id": "SOUTH",
-            "name": "PREFERENTIAL",
-            "arr": "20",
-            "dep": "20"
-        },
-        {
-            "id": "NORTH",
-            "name": "NON PREFERENTIAL",
-            "arr": "02",
-            "dep": "02"
-        }
-    ]
+  "airport": "LEJR",
+  "runway_configs": [
+    {
+      "id": "SOUTH",
+      "name": "PREFERENTIAL",
+      "arr": "20",
+      "dep": "20"
+    },
+    {
+      "id": "NORTH",
+      "name": "NON PREFERENTIAL",
+      "arr": "02",
+      "dep": "02"
+    }
+  ]
 }

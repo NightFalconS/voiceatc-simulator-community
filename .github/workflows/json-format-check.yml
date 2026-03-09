@@ -1,0 +1,24 @@
+name: JSON Format Check
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "**/*.json"
+      - "package.json"
+      - "package-lock.json"
+      - ".prettierrc.json"
+      - ".github/workflows/json-format-check.yml"
+
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run format:json:check
