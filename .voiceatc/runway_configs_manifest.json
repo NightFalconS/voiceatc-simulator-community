@@ -1,5 +1,10 @@
 {
   "airports": {
+    "EHAM": {
+      "repo_path": "E/EH/EHAA/AMSTERDAM_TMA/EHAM/runway_configs.json",
+      "sha256": "06a0dc4115dc1f22116e1dcc910645ab0158c9457f32c98e351bd82aeb8b10ae",
+      "size_bytes": 513
+    },
     "ESGG": {
       "repo_path": "E/ES/ESMM/ESMM_23W45/ESGG_TMA/ESGG/runway_configs.json",
       "sha256": "40c1f67afdb5bd096bc6aa1f35982a4802d7bcf7eb3c3fe1c5398e6e77bd3b31",
@@ -137,8 +142,8 @@
     }
   },
   "branch": "main",
-  "commit_sha": "60627a23d2e3306838a994ae43e15a94661a1c19",
-  "generated_at": "2026-03-08T21:04:42Z",
+  "commit_sha": "4cd9e1f0f15118a8aa3e8c5cf1fa1499d7193950",
+  "generated_at": "2026-03-09T12:49:08Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
