@@ -1,9 +1,20 @@
 {
-  "assets": {},
-  "commit_sha": "",
-  "published_at": "",
-  "release_tag": "",
-  "release_title": "",
+  "assets": {
+    "routes_tsv": {
+      "airac": "2402",
+      "asset_name": "routes-2402.tsv",
+      "content_type": "text/tab-separated-values; charset=utf-8",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-15/routes-2402.tsv",
+      "repo_path": "ROUTES/routes.tsv",
+      "route_count": 57445,
+      "sha256": "4b5a3512ec00336a3fcefc5a60c1e09d9d4723b78a42183a9fd7b4ddda0768a0",
+      "size_bytes": 4936306
+    }
+  },
+  "commit_sha": "5e5260725ce3f20540bfe325c1f44788db352a30",
+  "published_at": "2026-03-15T15:36:30Z",
+  "release_tag": "daily-2026-03-15",
+  "release_title": "Daily Community Cache - Sunday 2026-03-15",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
