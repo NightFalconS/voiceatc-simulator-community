@@ -1,0 +1,179 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import subprocess
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parent.parent
+ROUTES_PATH = ROOT / "routes" / "routes.tsv"
+ROUTES_MANIFEST_PATH = ROOT / ".voiceatc" / "routes_manifest.json"
+RELEASE_MANIFEST_PATH = ROOT / ".voiceatc" / "release_manifest.json"
+REPO_NAME = "lainoa-software/voiceatc-simulator-community"
+SCHEMA_VERSION = 1
+
+
+def current_commit_sha(root: Path = ROOT) -> str:
+    return subprocess.check_output(
+        ["git", "rev-parse", "HEAD"],
+        cwd=root,
+        text=True,
+    ).strip()
+
+
+def parse_routes_file(root: Path = ROOT) -> dict[str, object]:
+    raw_bytes = ROUTES_PATH.read_bytes() if root == ROOT else (root / "routes" / "routes.tsv").read_bytes()
+    route_path = ROUTES_PATH if root == ROOT else (root / "routes" / "routes.tsv")
+    text = raw_bytes.decode("utf-8-sig")
+    lines = text.splitlines()
+    if not lines:
+        raise ValueError(f"{route_path}: file is empty")
+
+    header = lines[0].strip()
+    if not header.lower().startswith("airac "):
+        raise ValueError(f"{route_path}: first line must be 'airac <cycle>'")
+
+    airac = header[6:].strip()
+    if not airac.isdigit() or len(airac) != 4:
+        raise ValueError(f"{route_path}: invalid AIRAC cycle '{airac}'")
+
+    route_count = 0
+    for line_number, raw_line in enumerate(lines[1:], start=2):
+        line = raw_line.rstrip("\r\n")
+        if not line.strip():
+            continue
+        parts = line.split("\t", 2)
+        if len(parts) != 3:
+            raise ValueError(f"{route_path}:{line_number}: expected 3 tab-separated columns")
+        origin = parts[0].strip().upper()
+        dest = parts[1].strip().upper()
+        full_route = parts[2].strip().upper()
+        if not origin or not dest or not full_route:
+            raise ValueError(f"{route_path}:{line_number}: origin, dest, and route must be non-empty")
+        route_count += 1
+
+    if route_count <= 0:
+        raise ValueError(f"{route_path}: no route rows found")
+
+    return {
+        "airac": airac,
+        "route_count": route_count,
+        "sha256": hashlib.sha256(raw_bytes).hexdigest(),
+        "size_bytes": len(raw_bytes),
+    }
+
+
+def build_routes_manifest(
+    *,
+    release_tag: str,
+    asset_name: str,
+    download_url: str,
+    published_at: str,
+    commit_sha: str,
+    root: Path = ROOT,
+) -> dict[str, object]:
+    if not release_tag.strip():
+        raise ValueError("release_tag must not be empty")
+    if not asset_name.strip():
+        raise ValueError("asset_name must not be empty")
+    if not download_url.strip():
+        raise ValueError("download_url must not be empty")
+    if not commit_sha.strip():
+        raise ValueError("commit_sha must not be empty")
+
+    routes = parse_routes_file(root)
+    return {
+        "schema_version": SCHEMA_VERSION,
+        "repo": REPO_NAME,
+        "release_tag": release_tag.strip(),
+        "commit_sha": commit_sha.strip(),
+        "airac": str(routes["airac"]),
+        "asset_name": asset_name.strip(),
+        "download_url": download_url.strip(),
+        "sha256": str(routes["sha256"]),
+        "size_bytes": int(routes["size_bytes"]),
+        "route_count": int(routes["route_count"]),
+        "published_at": published_at.strip(),
+    }
+
+
+def build_release_manifest(routes_manifest: dict[str, object], published_at: str) -> dict[str, object]:
+    release_tag = str(routes_manifest.get("release_tag", "")).strip()
+    published = published_at.strip()
+    try:
+        title_date = datetime.strptime(release_tag.removeprefix("daily-"), "%Y-%m-%d")
+        weekday = title_date.strftime("%A")
+    except ValueError as exc:
+        raise ValueError(f"release_tag must match 'daily-YYYY-MM-DD': {release_tag}") from exc
+
+    return {
+        "schema_version": SCHEMA_VERSION,
+        "repo": REPO_NAME,
+        "release_tag": release_tag,
+        "release_title": f"Daily Community Cache - {weekday} {release_tag.removeprefix('daily-')}",
+        "commit_sha": str(routes_manifest.get("commit_sha", "")).strip(),
+        "published_at": published,
+        "assets": {
+            "routes_tsv": {
+                "repo_path": "routes/routes.tsv",
+                "airac": str(routes_manifest.get("airac", "")).strip(),
+                "asset_name": str(routes_manifest.get("asset_name", "")).strip(),
+                "download_url": str(routes_manifest.get("download_url", "")).strip(),
+                "sha256": str(routes_manifest.get("sha256", "")).strip(),
+                "size_bytes": int(routes_manifest.get("size_bytes", 0)),
+                "route_count": int(routes_manifest.get("route_count", 0)),
+                "content_type": "text/tab-separated-values; charset=utf-8",
+            }
+        },
+    }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Validate routes.tsv and write GitHub-release-backed community manifests.")
+    parser.add_argument("--write", action="store_true", help="Write .voiceatc/routes_manifest.json and .voiceatc/release_manifest.json")
+    parser.add_argument("--validate-only", action="store_true", help="Validate routes/routes.tsv without writing manifests")
+    parser.add_argument("--release-tag", default="", help="Release tag, for example daily-2026-03-15")
+    parser.add_argument("--asset-name", default="", help="Release asset name, for example routes-2602.tsv")
+    parser.add_argument("--download-url", default="", help="Full release asset download URL")
+    parser.add_argument("--published-at", default=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
+    parser.add_argument("--commit-sha", default="", help="Source commit SHA for the published release")
+    args = parser.parse_args()
+
+    try:
+        routes = parse_routes_file()
+        if args.validate_only and not args.write:
+            print(f"Validated routes.tsv: AIRAC {routes['airac']} with {routes['route_count']} rows.")
+            return 0
+
+        commit_sha = args.commit_sha.strip() or current_commit_sha()
+        routes_manifest = build_routes_manifest(
+            release_tag=args.release_tag,
+            asset_name=args.asset_name,
+            download_url=args.download_url,
+            published_at=args.published_at,
+            commit_sha=commit_sha,
+        )
+        release_manifest = build_release_manifest(routes_manifest, args.published_at)
+    except Exception as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+
+    if args.write:
+        ROUTES_MANIFEST_PATH.parent.mkdir(parents=True, exist_ok=True)
+        ROUTES_MANIFEST_PATH.write_text(json.dumps(routes_manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        RELEASE_MANIFEST_PATH.write_text(json.dumps(release_manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        print(f"Wrote {ROUTES_MANIFEST_PATH.relative_to(ROOT).as_posix()}")
+        print(f"Wrote {RELEASE_MANIFEST_PATH.relative_to(ROOT).as_posix()}")
+        return 0
+
+    print(json.dumps({"routes_manifest": routes_manifest, "release_manifest": release_manifest}, indent=2, sort_keys=True))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

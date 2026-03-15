@@ -1,0 +1,130 @@
+name: Daily Community Release
+
+on:
+  schedule:
+    - cron: "15 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO_NAME: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run tests
+        run: python -m unittest discover -s tests -p "test_*.py"
+      - name: Validate routes file
+        run: python tools/routes_release_manifest.py --validate-only
+      - name: Compute release metadata
+        id: meta
+        shell: bash
+        run: |
+          set -euo pipefail
+          AIRAC="$(python - <<'PY'
+from pathlib import Path
+header = Path("routes/routes.tsv").read_text(encoding="utf-8-sig").splitlines()[0].strip()
+print(header.split(None, 1)[1].strip())
+PY
+)"
+          SHA256="$(python - <<'PY'
+import hashlib
+from pathlib import Path
+print(hashlib.sha256(Path("routes/routes.tsv").read_bytes()).hexdigest())
+PY
+)"
+          SIZE_BYTES="$(python - <<'PY'
+from pathlib import Path
+print(len(Path("routes/routes.tsv").read_bytes()))
+PY
+)"
+          TAG="daily-$(date -u +%F)"
+          TITLE_DATE="$(date -u +%F)"
+          WEEKDAY="$(date -u +%A)"
+          TITLE="Daily Community Cache - ${WEEKDAY} ${TITLE_DATE}"
+          ASSET_NAME="routes-${AIRAC}.tsv"
+          PUBLISHED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          SOURCE_SHA="$(git rev-parse HEAD)"
+          PREVIOUS_SHA="$(python - <<'PY'
+import json
+from pathlib import Path
+path = Path(".voiceatc/routes_manifest.json")
+if not path.exists():
+    print("")
+else:
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        payload = {}
+    print(str(payload.get("sha256", "")).strip())
+PY
+)"
+          if [[ -n "${PREVIOUS_SHA}" && "${PREVIOUS_SHA}" == "${SHA256}" ]]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "airac=${AIRAC}" >> "$GITHUB_OUTPUT"
+          echo "sha256=${SHA256}" >> "$GITHUB_OUTPUT"
+          echo "size_bytes=${SIZE_BYTES}" >> "$GITHUB_OUTPUT"
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "title=${TITLE}" >> "$GITHUB_OUTPUT"
+          echo "asset_name=${ASSET_NAME}" >> "$GITHUB_OUTPUT"
+          echo "published_at=${PUBLISHED_AT}" >> "$GITHUB_OUTPUT"
+          echo "source_sha=${SOURCE_SHA}" >> "$GITHUB_OUTPUT"
+      - name: Stop when nothing changed
+        if: steps.meta.outputs.changed != 'true'
+        run: echo "No release-managed community artifacts changed."
+      - name: Prepare release asset
+        if: steps.meta.outputs.changed == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp routes/routes.tsv "/tmp/${{ steps.meta.outputs.asset_name }}"
+      - name: Create or update daily release
+        if: steps.meta.outputs.changed == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="${{ steps.meta.outputs.tag }}"
+          TITLE="${{ steps.meta.outputs.title }}"
+          TARGET="${{ steps.meta.outputs.source_sha }}"
+          ASSET_PATH="/tmp/${{ steps.meta.outputs.asset_name }}"
+          if gh release view "${TAG}" >/dev/null 2>&1; then
+            gh release edit "${TAG}" --title "${TITLE}"
+            gh release upload "${TAG}" "${ASSET_PATH}#${{ steps.meta.outputs.asset_name }}" --clobber
+          else
+            gh release create "${TAG}" "${ASSET_PATH}#${{ steps.meta.outputs.asset_name }}" --target "${TARGET}" --title "${TITLE}" --notes "Automated daily community cache release."
+          fi
+      - name: Write manifests
+        if: steps.meta.outputs.changed == 'true'
+        run: |
+          python tools/routes_release_manifest.py \
+            --write \
+            --release-tag "${{ steps.meta.outputs.tag }}" \
+            --asset-name "${{ steps.meta.outputs.asset_name }}" \
+            --download-url "https://github.com/${{ github.repository }}/releases/download/${{ steps.meta.outputs.tag }}/${{ steps.meta.outputs.asset_name }}" \
+            --published-at "${{ steps.meta.outputs.published_at }}" \
+            --commit-sha "${{ steps.meta.outputs.source_sha }}"
+      - name: Commit manifests
+        if: steps.meta.outputs.changed == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- .voiceatc/routes_manifest.json .voiceatc/release_manifest.json; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .voiceatc/routes_manifest.json .voiceatc/release_manifest.json
+          git commit -m "chore: refresh daily community release manifests"
+          git push
