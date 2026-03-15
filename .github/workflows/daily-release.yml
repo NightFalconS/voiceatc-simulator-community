@@ -14,6 +14,7 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
       REPO_NAME: ${{ github.repository }}
+      ROUTES_PATH: ROUTES/routes.tsv
     steps:
       - uses: actions/checkout@v4
         with:
@@ -30,23 +31,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          AIRAC="$(python - <<'PY'
-from pathlib import Path
-header = Path("routes/routes.tsv").read_text(encoding="utf-8-sig").splitlines()[0].strip()
-print(header.split(None, 1)[1].strip())
-PY
-)"
-          SHA256="$(python - <<'PY'
-import hashlib
-from pathlib import Path
-print(hashlib.sha256(Path("routes/routes.tsv").read_bytes()).hexdigest())
-PY
-)"
-          SIZE_BYTES="$(python - <<'PY'
-from pathlib import Path
-print(len(Path("routes/routes.tsv").read_bytes()))
-PY
-)"
+          AIRAC="$(python -c "from pathlib import Path; header = Path(r\"${ROUTES_PATH}\").read_text(encoding='utf-8-sig').splitlines()[0].strip(); print(header.split(None, 1)[1].strip())")"
+          SHA256="$(python -c "import hashlib; from pathlib import Path; print(hashlib.sha256(Path(r\"${ROUTES_PATH}\").read_bytes()).hexdigest())")"
+          SIZE_BYTES="$(python -c "from pathlib import Path; print(len(Path(r\"${ROUTES_PATH}\").read_bytes()))")"
           TAG="daily-$(date -u +%F)"
           TITLE_DATE="$(date -u +%F)"
           WEEKDAY="$(date -u +%A)"
@@ -89,7 +76,7 @@ PY
         shell: bash
         run: |
           set -euo pipefail
-          cp routes/routes.tsv "/tmp/${{ steps.meta.outputs.asset_name }}"
+          cp "${ROUTES_PATH}" "/tmp/${{ steps.meta.outputs.asset_name }}"
       - name: Create or update daily release
         if: steps.meta.outputs.changed == 'true'
         shell: bash

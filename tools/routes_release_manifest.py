@@ -11,7 +11,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent.parent
-ROUTES_PATH = ROOT / "routes" / "routes.tsv"
+ROUTES_PATH = ROOT / "ROUTES" / "routes.tsv"
 ROUTES_MANIFEST_PATH = ROOT / ".voiceatc" / "routes_manifest.json"
 RELEASE_MANIFEST_PATH = ROOT / ".voiceatc" / "release_manifest.json"
 REPO_NAME = "lainoa-software/voiceatc-simulator-community"
@@ -27,8 +27,8 @@ def current_commit_sha(root: Path = ROOT) -> str:
 
 
 def parse_routes_file(root: Path = ROOT) -> dict[str, object]:
-    raw_bytes = ROUTES_PATH.read_bytes() if root == ROOT else (root / "routes" / "routes.tsv").read_bytes()
-    route_path = ROUTES_PATH if root == ROOT else (root / "routes" / "routes.tsv")
+    raw_bytes = ROUTES_PATH.read_bytes() if root == ROOT else (root / "ROUTES" / "routes.tsv").read_bytes()
+    route_path = ROUTES_PATH if root == ROOT else (root / "ROUTES" / "routes.tsv")
     text = raw_bytes.decode("utf-8-sig")
     lines = text.splitlines()
     if not lines:
@@ -53,8 +53,10 @@ def parse_routes_file(root: Path = ROOT) -> dict[str, object]:
         origin = parts[0].strip().upper()
         dest = parts[1].strip().upper()
         full_route = parts[2].strip().upper()
-        if not origin or not dest or not full_route:
-            raise ValueError(f"{route_path}:{line_number}: origin, dest, and route must be non-empty")
+        if not origin or not dest:
+            raise ValueError(f"{route_path}:{line_number}: origin and dest must be non-empty")
+        if not full_route:
+            continue
         route_count += 1
 
     if route_count <= 0:
@@ -120,7 +122,7 @@ def build_release_manifest(routes_manifest: dict[str, object], published_at: str
         "published_at": published,
         "assets": {
             "routes_tsv": {
-                "repo_path": "routes/routes.tsv",
+                "repo_path": "ROUTES/routes.tsv",
                 "airac": str(routes_manifest.get("airac", "")).strip(),
                 "asset_name": str(routes_manifest.get("asset_name", "")).strip(),
                 "download_url": str(routes_manifest.get("download_url", "")).strip(),
@@ -134,9 +136,9 @@ def build_release_manifest(routes_manifest: dict[str, object], published_at: str
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Validate routes.tsv and write GitHub-release-backed community manifests.")
+    parser = argparse.ArgumentParser(description="Validate ROUTES/routes.tsv and write GitHub-release-backed community manifests.")
     parser.add_argument("--write", action="store_true", help="Write .voiceatc/routes_manifest.json and .voiceatc/release_manifest.json")
-    parser.add_argument("--validate-only", action="store_true", help="Validate routes/routes.tsv without writing manifests")
+    parser.add_argument("--validate-only", action="store_true", help="Validate ROUTES/routes.tsv without writing manifests")
     parser.add_argument("--release-tag", default="", help="Release tag, for example daily-2026-03-15")
     parser.add_argument("--asset-name", default="", help="Release asset name, for example routes-2602.tsv")
     parser.add_argument("--download-url", default="", help="Full release asset download URL")

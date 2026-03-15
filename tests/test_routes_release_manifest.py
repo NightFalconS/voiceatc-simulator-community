@@ -17,7 +17,7 @@ class RoutesReleaseManifestTests(unittest.TestCase):
     def test_build_routes_manifest_accepts_valid_routes_file(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             root = Path(tmp_dir)
-            routes_path = root / "routes" / "routes.tsv"
+            routes_path = root / "ROUTES" / "routes.tsv"
             routes_path.parent.mkdir(parents=True, exist_ok=True)
             routes_path.write_text(
                 "airac 2602\n"
@@ -42,7 +42,7 @@ class RoutesReleaseManifestTests(unittest.TestCase):
     def test_parse_routes_file_rejects_invalid_header(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             root = Path(tmp_dir)
-            routes_path = root / "routes" / "routes.tsv"
+            routes_path = root / "ROUTES" / "routes.tsv"
             routes_path.parent.mkdir(parents=True, exist_ok=True)
             routes_path.write_text("cycle 2602\nLEMD\tEGLL\tLEMD NANDO EGLL\n", encoding="utf-8")
 
@@ -52,12 +52,29 @@ class RoutesReleaseManifestTests(unittest.TestCase):
     def test_parse_routes_file_rejects_invalid_row(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             root = Path(tmp_dir)
-            routes_path = root / "routes" / "routes.tsv"
+            routes_path = root / "ROUTES" / "routes.tsv"
             routes_path.parent.mkdir(parents=True, exist_ok=True)
             routes_path.write_text("airac 2602\nLEMD\tEGLL\n", encoding="utf-8")
 
             with self.assertRaisesRegex(ValueError, "expected 3 tab-separated columns"):
                 MODULE.parse_routes_file(root)
+
+    def test_parse_routes_file_skips_empty_route_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            root = Path(tmp_dir)
+            routes_path = root / "ROUTES" / "routes.tsv"
+            routes_path.parent.mkdir(parents=True, exist_ok=True)
+            routes_path.write_text(
+                "airac 2602\n"
+                "LEMD\tEGLL\tLEMD NANDO UN10 SAM EGLL\n"
+                "OEJN\tHECA\t\n",
+                encoding="utf-8",
+            )
+
+            parsed = MODULE.parse_routes_file(root)
+
+            self.assertEqual("2602", parsed["airac"])
+            self.assertEqual(1, parsed["route_count"])
 
     def test_build_release_manifest_includes_routes_asset(self) -> None:
         routes_manifest = {
