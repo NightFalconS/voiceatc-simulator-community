@@ -41,20 +41,10 @@ jobs:
           ASSET_NAME="routes-${AIRAC}.tsv"
           PUBLISHED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           SOURCE_SHA="$(git rev-parse HEAD)"
-          PREVIOUS_SHA="$(python - <<'PY'
-import json
-from pathlib import Path
-path = Path(".voiceatc/routes_manifest.json")
-if not path.exists():
-    print("")
-else:
-    try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        payload = {}
-    print(str(payload.get("sha256", "")).strip())
-PY
-)"
+          PREVIOUS_SHA=""
+          if [[ -f .voiceatc/routes_manifest.json ]]; then
+            PREVIOUS_SHA="$(python -c 'import json; from pathlib import Path; payload = json.loads(Path(".voiceatc/routes_manifest.json").read_text(encoding="utf-8")); print(str(payload.get("sha256", "")).strip())' 2>/dev/null || true)"
+          fi
           if [[ -n "${PREVIOUS_SHA}" && "${PREVIOUS_SHA}" == "${SHA256}" ]]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
