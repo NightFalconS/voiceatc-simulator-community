@@ -1,4 +1,4 @@
-name: Validate Sector Data
+name: Build Sector Data Manifest
 
 on:
   push:

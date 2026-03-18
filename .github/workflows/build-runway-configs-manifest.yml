@@ -1,4 +1,4 @@
-name: Validate Runway Configs
+name: Build Runway Configs Manifest
 
 on:
   push:

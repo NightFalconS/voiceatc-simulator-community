@@ -1,4 +1,4 @@
-name: Validate MVA
+name: Build MVA Manifest
 
 on:
   push:

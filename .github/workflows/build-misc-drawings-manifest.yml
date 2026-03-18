@@ -1,4 +1,4 @@
-name: Validate Misc Drawings
+name: Build Misc Drawings Manifest
 
 on:
   push:
