@@ -1,14 +1,23 @@
 {
   "airac": "2602",
   "assets": {
+    "misc_drawings_zip": {
+      "airport_count": 1,
+      "asset_name": "misc-drawings-2602.zip",
+      "content_type": "application/zip",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-18/misc-drawings-2602.zip",
+      "preserves_repo_paths": true,
+      "sha256": "331108e7c31ae0a12db61c5e086ca2bc6cf1c20ef93f87d5697e64e923c175ed",
+      "size_bytes": 8800
+    },
     "mva_zip": {
       "airport_count": 6,
       "asset_name": "mva-2602.zip",
       "content_type": "application/zip",
       "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-18/mva-2602.zip",
       "preserves_repo_paths": true,
-      "sha256": "c0c4f6e1b6e9a22aca71d451dd135c212a3f07887b7aaf623ce0806acc659ace",
-      "size_bytes": 26866
+      "sha256": "e9bded18e2fa617c703c28771d2e7c468da2954f8a7d6c719ada7e593a4364e6",
+      "size_bytes": 26940
     },
     "routes_tsv": {
       "airac": "2602",
@@ -28,12 +37,21 @@
       "preserves_repo_paths": true,
       "sha256": "ec7bb2d923ebb25988c4b7ace857d982fe92f0e9f34bb474abec05e0b4ec9725",
       "size_bytes": 8919
+    },
+    "sector_data_zip": {
+      "asset_name": "sector-data-2602.zip",
+      "bundle_count": 9,
+      "content_type": "application/zip",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-18/sector-data-2602.zip",
+      "preserves_repo_paths": true,
+      "sha256": "cf0324d9c4fd1d2e8b812ffd8320fc43022c229d26235e402fd177d54dc6662b",
+      "size_bytes": 24249
     }
   },
-  "commit_sha": "739fbd3628e73b818d1225ac38c34fae49533671",
+  "commit_sha": "df10d4cc877e146e4331374621c63ceeed89e92e",
   "published_at": "2026-03-18T12:15:07Z",
   "release_tag": "daily-2026-03-18",
   "release_title": "Daily Community Release - Wednesday 2026-03-18",
   "repo": "lainoa-software/voiceatc-simulator-community",
-  "schema_version": 2
+  "schema_version": 3
 }

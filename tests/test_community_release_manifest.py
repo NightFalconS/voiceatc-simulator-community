@@ -149,6 +149,19 @@ def build_fixture_repo(root: Path) -> None:
             ]
         },
     )
+    write_json(
+        root / "L" / "LE" / "LECM" / "LECM_R2" / "MADRID_TMA" / "misc_drawings.json",
+        {
+            "airports": ["LEMD", "LETO"],
+            "line_sections": [
+                {
+                    "color": "STAR",
+                    "points": [[40.4, -3.7], [40.5, -3.6]],
+                }
+            ],
+            "labels": [{"text": "TEST", "lat": 40.45, "lon": -3.65}],
+        },
+    )
 
 
 class CommunityReleaseManifestTests(unittest.TestCase):
@@ -172,15 +185,17 @@ class CommunityReleaseManifestTests(unittest.TestCase):
             self.assertEqual("mva-2602.zip", bundle["assets"]["mva_zip"]["asset_name"])
             self.assertEqual("runway-configs-2602.zip", bundle["assets"]["runway_configs_zip"]["asset_name"])
             self.assertEqual("sector-data-2602.zip", bundle["assets"]["sector_data_zip"]["asset_name"])
+            self.assertEqual("misc-drawings-2602.zip", bundle["assets"]["misc_drawings_zip"]["asset_name"])
             self.assertEqual("release-manifest.json", bundle["assets"]["release_manifest"]["asset_name"])
 
             release_manifest = bundle["manifests"]["release"]
-            self.assertEqual(2, release_manifest["schema_version"])
+            self.assertEqual(3, release_manifest["schema_version"])
             self.assertEqual("daily-2026-03-18", release_manifest["release_tag"])
             self.assertEqual("Daily Community Release - Wednesday 2026-03-18", release_manifest["release_title"])
             self.assertIn("mva_zip", release_manifest["assets"])
             self.assertIn("runway_configs_zip", release_manifest["assets"])
             self.assertIn("sector_data_zip", release_manifest["assets"])
+            self.assertIn("misc_drawings_zip", release_manifest["assets"])
 
             mva_manifest = bundle["manifests"]["mva"]
             self.assertEqual(2, mva_manifest["schema_version"])
@@ -196,6 +211,11 @@ class CommunityReleaseManifestTests(unittest.TestCase):
             self.assertEqual(2, sector_manifest["schema_version"])
             self.assertEqual("sector-data-2602.zip", sector_manifest["asset_name"])
             self.assertEqual(2, sector_manifest["bundle_count"])
+
+            misc_drawings_manifest = bundle["manifests"]["misc_drawings"]
+            self.assertEqual(2, misc_drawings_manifest["schema_version"])
+            self.assertEqual("misc-drawings-2602.zip", misc_drawings_manifest["asset_name"])
+            self.assertEqual(2, misc_drawings_manifest["airport_count"])
 
     def test_zip_assets_are_deterministic_and_preserve_repo_paths(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -228,6 +248,10 @@ class CommunityReleaseManifestTests(unittest.TestCase):
                 first["assets"]["sector_data_zip"]["sha256"],
                 second["assets"]["sector_data_zip"]["sha256"],
             )
+            self.assertEqual(
+                first["assets"]["misc_drawings_zip"]["sha256"],
+                second["assets"]["misc_drawings_zip"]["sha256"],
+            )
 
             with zipfile.ZipFile(first["assets"]["mva_zip"]["path"], "r") as archive:
                 self.assertEqual(
@@ -256,6 +280,14 @@ class CommunityReleaseManifestTests(unittest.TestCase):
                         "L/LE/LECM/LECM_R2/MADRID_TMA/sector_configs.json",
                         "L/LE/LECM/LECM_R2/MADRID_TMA/sector_definitions.json",
                         "L/LE/LECM/LECM_R2/MADRID_TMA/sector_influence.json",
+                    ],
+                    archive.namelist(),
+                )
+
+            with zipfile.ZipFile(first["assets"]["misc_drawings_zip"]["path"], "r") as archive:
+                self.assertEqual(
+                    [
+                        "L/LE/LECM/LECM_R2/MADRID_TMA/misc_drawings.json",
                     ],
                     archive.namelist(),
                 )

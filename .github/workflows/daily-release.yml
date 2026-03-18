@@ -30,6 +30,8 @@ jobs:
         run: python tools/runway_configs_manifest.py --validate-only
       - name: Validate sector data files
         run: python tools/sector_data_manifest.py --validate-only
+      - name: Validate misc drawings files
+        run: python tools/misc_drawings_manifest.py --validate-only
       - name: Compute release metadata
         id: meta
         env:
@@ -125,6 +127,7 @@ jobs:
               and previous_hash(".voiceatc/mva_manifest.json") == str(assets["mva_zip"]["sha256"]).strip()
               and previous_hash(".voiceatc/runway_configs_manifest.json") == str(assets["runway_configs_zip"]["sha256"]).strip()
               and previous_hash(".voiceatc/sector_data_manifest.json") == str(assets["sector_data_zip"]["sha256"]).strip()
+              and previous_hash(".voiceatc/misc_drawings_manifest.json") == str(assets["misc_drawings_zip"]["sha256"]).strip()
           )
           should_publish = changed or os.environ.get("IS_MANUAL", "").strip() == "true"
 
@@ -136,11 +139,13 @@ jobs:
               handle.write(f"mva_asset_name={assets['mva_zip']['asset_name']}\n")
               handle.write(f"runway_asset_name={assets['runway_configs_zip']['asset_name']}\n")
               handle.write(f"sector_data_asset_name={assets['sector_data_zip']['asset_name']}\n")
+              handle.write(f"misc_drawings_asset_name={assets['misc_drawings_zip']['asset_name']}\n")
               handle.write(f"release_manifest_asset_name={assets['release_manifest']['asset_name']}\n")
               handle.write(f"routes_asset_path={assets['routes_tsv']['path']}\n")
               handle.write(f"mva_asset_path={assets['mva_zip']['path']}\n")
               handle.write(f"runway_asset_path={assets['runway_configs_zip']['path']}\n")
               handle.write(f"sector_data_asset_path={assets['sector_data_zip']['path']}\n")
+              handle.write(f"misc_drawings_asset_path={assets['misc_drawings_zip']['path']}\n")
               handle.write(f"release_manifest_asset_path={assets['release_manifest']['path']}\n")
           PY
           echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
@@ -167,6 +172,7 @@ jobs:
               "${{ steps.meta.outputs.mva_asset_path }}#${{ steps.meta.outputs.mva_asset_name }}" \
               "${{ steps.meta.outputs.runway_asset_path }}#${{ steps.meta.outputs.runway_asset_name }}" \
               "${{ steps.meta.outputs.sector_data_asset_path }}#${{ steps.meta.outputs.sector_data_asset_name }}" \
+              "${{ steps.meta.outputs.misc_drawings_asset_path }}#${{ steps.meta.outputs.misc_drawings_asset_name }}" \
               "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
               --clobber
           else
@@ -175,6 +181,7 @@ jobs:
               "${{ steps.meta.outputs.mva_asset_path }}#${{ steps.meta.outputs.mva_asset_name }}" \
               "${{ steps.meta.outputs.runway_asset_path }}#${{ steps.meta.outputs.runway_asset_name }}" \
               "${{ steps.meta.outputs.sector_data_asset_path }}#${{ steps.meta.outputs.sector_data_asset_name }}" \
+              "${{ steps.meta.outputs.misc_drawings_asset_path }}#${{ steps.meta.outputs.misc_drawings_asset_name }}" \
               "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
               --target "${TARGET}" \
               --latest=false \
@@ -201,30 +208,19 @@ jobs:
           Published at: ${PUBLISHED_AT}
           EOF
           if gh release view "${TAG}" >/dev/null 2>&1; then
-            gh release edit "${TAG}" \
-              --title "${TITLE}" \
-              --target "${TARGET}" \
-              --notes-file "${NOTES_FILE}" \
-              --latest
-            gh release upload "${TAG}" \
-              "${{ steps.meta.outputs.routes_asset_path }}#${{ steps.meta.outputs.routes_asset_name }}" \
-              "${{ steps.meta.outputs.mva_asset_path }}#${{ steps.meta.outputs.mva_asset_name }}" \
-              "${{ steps.meta.outputs.runway_asset_path }}#${{ steps.meta.outputs.runway_asset_name }}" \
-              "${{ steps.meta.outputs.sector_data_asset_path }}#${{ steps.meta.outputs.sector_data_asset_name }}" \
-              "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
-              --clobber
-          else
-            gh release create "${TAG}" \
-              "${{ steps.meta.outputs.routes_asset_path }}#${{ steps.meta.outputs.routes_asset_name }}" \
-              "${{ steps.meta.outputs.mva_asset_path }}#${{ steps.meta.outputs.mva_asset_name }}" \
-              "${{ steps.meta.outputs.runway_asset_path }}#${{ steps.meta.outputs.runway_asset_name }}" \
-              "${{ steps.meta.outputs.sector_data_asset_path }}#${{ steps.meta.outputs.sector_data_asset_name }}" \
-              "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
-              --target "${TARGET}" \
-              --title "${TITLE}" \
-              --notes-file "${NOTES_FILE}" \
-              --latest
+            gh release delete "${TAG}" --yes --cleanup-tag
           fi
+          gh release create "${TAG}" \
+            "${{ steps.meta.outputs.routes_asset_path }}#${{ steps.meta.outputs.routes_asset_name }}" \
+            "${{ steps.meta.outputs.mva_asset_path }}#${{ steps.meta.outputs.mva_asset_name }}" \
+            "${{ steps.meta.outputs.runway_asset_path }}#${{ steps.meta.outputs.runway_asset_name }}" \
+            "${{ steps.meta.outputs.sector_data_asset_path }}#${{ steps.meta.outputs.sector_data_asset_name }}" \
+            "${{ steps.meta.outputs.misc_drawings_asset_path }}#${{ steps.meta.outputs.misc_drawings_asset_name }}" \
+            "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
+            --target "${TARGET}" \
+            --title "${TITLE}" \
+            --notes-file "${NOTES_FILE}" \
+            --latest
       - name: Write manifests
         if: steps.meta.outputs.changed == 'true'
         shell: bash
@@ -239,6 +235,7 @@ jobs:
               "mva": Path(".voiceatc/mva_manifest.json"),
               "runway_configs": Path(".voiceatc/runway_configs_manifest.json"),
               "sector_data": Path(".voiceatc/sector_data_manifest.json"),
+              "misc_drawings": Path(".voiceatc/misc_drawings_manifest.json"),
               "release": Path(".voiceatc/release_manifest.json"),
           }
 
@@ -252,11 +249,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- .voiceatc/routes_manifest.json .voiceatc/mva_manifest.json .voiceatc/runway_configs_manifest.json .voiceatc/sector_data_manifest.json .voiceatc/release_manifest.json; then
+          if git diff --quiet -- .voiceatc/routes_manifest.json .voiceatc/mva_manifest.json .voiceatc/runway_configs_manifest.json .voiceatc/sector_data_manifest.json .voiceatc/misc_drawings_manifest.json .voiceatc/release_manifest.json; then
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .voiceatc/routes_manifest.json .voiceatc/mva_manifest.json .voiceatc/runway_configs_manifest.json .voiceatc/sector_data_manifest.json .voiceatc/release_manifest.json
+          git add .voiceatc/routes_manifest.json .voiceatc/mva_manifest.json .voiceatc/runway_configs_manifest.json .voiceatc/sector_data_manifest.json .voiceatc/misc_drawings_manifest.json .voiceatc/release_manifest.json
           git commit -m "chore: refresh daily community release manifests"
           git push

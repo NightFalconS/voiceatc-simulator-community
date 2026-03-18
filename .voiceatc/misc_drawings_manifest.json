@@ -1,0 +1,19 @@
+{
+  "airport_count": 1,
+  "airports": {
+    "LEMD": {
+      "repo_path": "L/LE/LECM/LECM_R2/MADRID_TMA/misc_drawings.json",
+      "sha256": "43186b6dbe511bfdb2c64d159ec2d032e4958360d87f30fbebfda159a9de09d1",
+      "size_bytes": 83678
+    }
+  },
+  "asset_name": "misc-drawings-2602.zip",
+  "commit_sha": "df10d4cc877e146e4331374621c63ceeed89e92e",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-18/misc-drawings-2602.zip",
+  "published_at": "2026-03-18T12:15:07Z",
+  "release_tag": "daily-2026-03-18",
+  "repo": "lainoa-software/voiceatc-simulator-community",
+  "schema_version": 2,
+  "sha256": "331108e7c31ae0a12db61c5e086ca2bc6cf1c20ef93f87d5697e64e923c175ed",
+  "size_bytes": 8800
+}
