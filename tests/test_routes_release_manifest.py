@@ -21,6 +21,7 @@ class RoutesReleaseManifestTests(unittest.TestCase):
             routes_path.parent.mkdir(parents=True, exist_ok=True)
             routes_path.write_text(
                 "airac 2602\n"
+                "ORIGIN\tDEST\tROUTE\tCREATION_AIRAC\tAUTHOR\n"
                 "LEMD\tEGLL\tLEMD NANDO UN10 SAM EGLL\n"
                 "EGLL\tLEMD\tEGLL SAM UL9 NANDO LEMD\n",
                 encoding="utf-8",
@@ -54,9 +55,9 @@ class RoutesReleaseManifestTests(unittest.TestCase):
             root = Path(tmp_dir)
             routes_path = root / "ROUTES" / "routes.tsv"
             routes_path.parent.mkdir(parents=True, exist_ok=True)
-            routes_path.write_text("airac 2602\nLEMD\tEGLL\n", encoding="utf-8")
+            routes_path.write_text("airac 2602\nORIGIN\tDEST\tROUTE\nLEMD\tEGLL\n", encoding="utf-8")
 
-            with self.assertRaisesRegex(ValueError, "expected 3 tab-separated columns"):
+            with self.assertRaisesRegex(ValueError, "expected at least 3 tab-separated columns"):
                 MODULE.parse_routes_file(root)
 
     def test_parse_routes_file_skips_empty_route_rows(self) -> None:
@@ -66,6 +67,7 @@ class RoutesReleaseManifestTests(unittest.TestCase):
             routes_path.parent.mkdir(parents=True, exist_ok=True)
             routes_path.write_text(
                 "airac 2602\n"
+                "ORIGIN\tDEST\tROUTE\n"
                 "LEMD\tEGLL\tLEMD NANDO UN10 SAM EGLL\n"
                 "OEJN\tHECA\t\n",
                 encoding="utf-8",
