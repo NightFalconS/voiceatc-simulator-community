@@ -1,20 +1,39 @@
 {
+  "airac": "2602",
   "assets": {
+    "mva_zip": {
+      "airport_count": 6,
+      "asset_name": "mva-2602.zip",
+      "content_type": "application/zip",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-18/mva-2602.zip",
+      "preserves_repo_paths": true,
+      "sha256": "c0c4f6e1b6e9a22aca71d451dd135c212a3f07887b7aaf623ce0806acc659ace",
+      "size_bytes": 26866
+    },
     "routes_tsv": {
       "airac": "2602",
       "asset_name": "routes-2602.tsv",
       "content_type": "text/tab-separated-values; charset=utf-8",
-      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-16/routes-2602.tsv",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-18/routes-2602.tsv",
       "repo_path": "ROUTES/routes.tsv",
-      "route_count": 57445,
-      "sha256": "dd6b742dd6060cd84fcf0b4f635676b69262779c8f5cd1c91dfac2c71a614005",
-      "size_bytes": 4887389
+      "route_count": 99869,
+      "sha256": "b20064f38b9d410d29b317e705862d4f255e8939f45b555f5c2bc2d8cdd7acb0",
+      "size_bytes": 8401214
+    },
+    "runway_configs_zip": {
+      "airport_count": 28,
+      "asset_name": "runway-configs-2602.zip",
+      "content_type": "application/zip",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-18/runway-configs-2602.zip",
+      "preserves_repo_paths": true,
+      "sha256": "ec7bb2d923ebb25988c4b7ace857d982fe92f0e9f34bb474abec05e0b4ec9725",
+      "size_bytes": 8919
     }
   },
-  "commit_sha": "56ea62572ea85b7ddd1a0d7c0e430baf51e9d668",
-  "published_at": "2026-03-16T09:51:19Z",
-  "release_tag": "daily-2026-03-16",
-  "release_title": "Daily Community Cache - Monday 2026-03-16",
+  "commit_sha": "739fbd3628e73b818d1225ac38c34fae49533671",
+  "published_at": "2026-03-18T12:15:07Z",
+  "release_tag": "daily-2026-03-18",
+  "release_title": "Daily Community Cache - Wednesday 2026-03-18",
   "repo": "lainoa-software/voiceatc-simulator-community",
-  "schema_version": 1
+  "schema_version": 2
 }
