@@ -117,7 +117,7 @@ def build_release_manifest(routes_manifest: dict[str, object], published_at: str
         "schema_version": SCHEMA_VERSION,
         "repo": REPO_NAME,
         "release_tag": release_tag,
-        "release_title": f"Daily Community Cache - {weekday} {release_tag.removeprefix('daily-')}",
+        "release_title": f"Daily Community Release - {weekday} {release_tag.removeprefix('daily-')}",
         "commit_sha": str(routes_manifest.get("commit_sha", "")).strip(),
         "published_at": published,
         "assets": {

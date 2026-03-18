@@ -153,7 +153,7 @@ def build_release_manifest(
         "schema_version": RELEASE_MANIFEST_SCHEMA_VERSION,
         "repo": REPO_NAME,
         "release_tag": release_tag,
-        "release_title": f"Daily Community Cache - {weekday} {release_tag.removeprefix('daily-')}",
+        "release_title": f"Daily Community Release - {weekday} {release_tag.removeprefix('daily-')}",
         "commit_sha": str(routes_manifest.get("commit_sha", "")).strip(),
         "published_at": published_at.strip(),
         "airac": str(routes_manifest.get("airac", "")).strip(),
