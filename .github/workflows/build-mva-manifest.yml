@@ -1,4 +1,4 @@
-name: Build MVA Manifest
+name: Validate MVA
 
 on:
   push:
@@ -24,15 +24,5 @@ jobs:
           python-version: "3.11"
       - name: Run tests
         run: python -m unittest discover -s tests -p "test_*.py"
-      - name: Generate manifest
-        run: python tools/mva_manifest.py --write
-      - name: Commit manifest
-        run: |
-          if git diff --quiet -- .voiceatc/mva_manifest.json; then
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .voiceatc/mva_manifest.json
-          git commit -m "chore: refresh mva manifest"
-          git push
+      - name: Validate MVA files
+        run: python tools/mva_manifest.py --validate-only

@@ -13,8 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
-      REPO_NAME: ${{ github.repository }}
-      ROUTES_PATH: ROUTES/routes.tsv
     steps:
       - uses: actions/checkout@v4
         with:
@@ -26,47 +24,71 @@ jobs:
         run: python -m unittest discover -s tests -p "test_*.py"
       - name: Validate routes file
         run: python tools/routes_release_manifest.py --validate-only
+      - name: Validate MVA files
+        run: python tools/mva_manifest.py --validate-only
+      - name: Validate runway config files
+        run: python tools/runway_configs_manifest.py --validate-only
       - name: Compute release metadata
         id: meta
         shell: bash
         run: |
           set -euo pipefail
-          AIRAC="$(python -c "from pathlib import Path; header = Path(r\"${ROUTES_PATH}\").read_text(encoding='utf-8-sig').splitlines()[0].strip(); print(header.split(None, 1)[1].strip())")"
-          SHA256="$(python -c "import hashlib; from pathlib import Path; print(hashlib.sha256(Path(r\"${ROUTES_PATH}\").read_bytes()).hexdigest())")"
-          SIZE_BYTES="$(python -c "from pathlib import Path; print(len(Path(r\"${ROUTES_PATH}\").read_bytes()))")"
           TAG="daily-$(date -u +%F)"
           TITLE_DATE="$(date -u +%F)"
           WEEKDAY="$(date -u +%A)"
           TITLE="Daily Community Cache - ${WEEKDAY} ${TITLE_DATE}"
-          ASSET_NAME="routes-${AIRAC}.tsv"
           PUBLISHED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           SOURCE_SHA="$(git rev-parse HEAD)"
-          PREVIOUS_SHA=""
-          if [[ -f .voiceatc/routes_manifest.json ]]; then
-            PREVIOUS_SHA="$(python -c 'import json; from pathlib import Path; payload = json.loads(Path(".voiceatc/routes_manifest.json").read_text(encoding="utf-8")); print(str(payload.get("sha256", "")).strip())' 2>/dev/null || true)"
-          fi
-          if [[ -n "${PREVIOUS_SHA}" && "${PREVIOUS_SHA}" == "${SHA256}" ]]; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          echo "changed=true" >> "$GITHUB_OUTPUT"
-          echo "airac=${AIRAC}" >> "$GITHUB_OUTPUT"
-          echo "sha256=${SHA256}" >> "$GITHUB_OUTPUT"
-          echo "size_bytes=${SIZE_BYTES}" >> "$GITHUB_OUTPUT"
+          mkdir -p build/release
+          python tools/community_release_manifest.py \
+            --output-dir build/release \
+            --release-tag "${TAG}" \
+            --published-at "${PUBLISHED_AT}" \
+            --commit-sha "${SOURCE_SHA}" \
+            --download-repo "${GITHUB_REPOSITORY}" > build/release/summary.json
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          summary = json.loads(Path("build/release/summary.json").read_text(encoding="utf-8"))
+          assets = summary["assets"]
+
+          def previous_hash(path: str) -> str:
+              manifest_path = Path(path)
+              if not manifest_path.exists():
+                  return ""
+              try:
+                  payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+              except Exception:
+                  return ""
+              return str(payload.get("sha256", "")).strip()
+
+          changed = not (
+              previous_hash(".voiceatc/routes_manifest.json") == str(assets["routes_tsv"]["sha256"]).strip()
+              and previous_hash(".voiceatc/mva_manifest.json") == str(assets["mva_zip"]["sha256"]).strip()
+              and previous_hash(".voiceatc/runway_configs_manifest.json") == str(assets["runway_configs_zip"]["sha256"]).strip()
+          )
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as handle:
+              handle.write(f"changed={'true' if changed else 'false'}\n")
+              handle.write(f"airac={summary['airac']}\n")
+              handle.write(f"routes_asset_name={assets['routes_tsv']['asset_name']}\n")
+              handle.write(f"mva_asset_name={assets['mva_zip']['asset_name']}\n")
+              handle.write(f"runway_asset_name={assets['runway_configs_zip']['asset_name']}\n")
+              handle.write(f"release_manifest_asset_name={assets['release_manifest']['asset_name']}\n")
+              handle.write(f"routes_asset_path={assets['routes_tsv']['path']}\n")
+              handle.write(f"mva_asset_path={assets['mva_zip']['path']}\n")
+              handle.write(f"runway_asset_path={assets['runway_configs_zip']['path']}\n")
+              handle.write(f"release_manifest_asset_path={assets['release_manifest']['path']}\n")
+          PY
           echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
           echo "title=${TITLE}" >> "$GITHUB_OUTPUT"
-          echo "asset_name=${ASSET_NAME}" >> "$GITHUB_OUTPUT"
           echo "published_at=${PUBLISHED_AT}" >> "$GITHUB_OUTPUT"
           echo "source_sha=${SOURCE_SHA}" >> "$GITHUB_OUTPUT"
       - name: Stop when nothing changed
         if: steps.meta.outputs.changed != 'true'
         run: echo "No release-managed community artifacts changed."
-      - name: Prepare release asset
-        if: steps.meta.outputs.changed == 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
-          cp "${ROUTES_PATH}" "/tmp/${{ steps.meta.outputs.asset_name }}"
       - name: Create or update daily release
         if: steps.meta.outputs.changed == 'true'
         shell: bash
@@ -75,33 +97,55 @@ jobs:
           TAG="${{ steps.meta.outputs.tag }}"
           TITLE="${{ steps.meta.outputs.title }}"
           TARGET="${{ steps.meta.outputs.source_sha }}"
-          ASSET_PATH="/tmp/${{ steps.meta.outputs.asset_name }}"
           if gh release view "${TAG}" >/dev/null 2>&1; then
             gh release edit "${TAG}" --title "${TITLE}"
-            gh release upload "${TAG}" "${ASSET_PATH}#${{ steps.meta.outputs.asset_name }}" --clobber
+            gh release upload "${TAG}" \
+              "${{ steps.meta.outputs.routes_asset_path }}#${{ steps.meta.outputs.routes_asset_name }}" \
+              "${{ steps.meta.outputs.mva_asset_path }}#${{ steps.meta.outputs.mva_asset_name }}" \
+              "${{ steps.meta.outputs.runway_asset_path }}#${{ steps.meta.outputs.runway_asset_name }}" \
+              "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
+              --clobber
           else
-            gh release create "${TAG}" "${ASSET_PATH}#${{ steps.meta.outputs.asset_name }}" --target "${TARGET}" --title "${TITLE}" --notes "Automated daily community cache release."
+            gh release create "${TAG}" \
+              "${{ steps.meta.outputs.routes_asset_path }}#${{ steps.meta.outputs.routes_asset_name }}" \
+              "${{ steps.meta.outputs.mva_asset_path }}#${{ steps.meta.outputs.mva_asset_name }}" \
+              "${{ steps.meta.outputs.runway_asset_path }}#${{ steps.meta.outputs.runway_asset_name }}" \
+              "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
+              --target "${TARGET}" \
+              --title "${TITLE}" \
+              --notes "Automated daily community cache release."
           fi
       - name: Write manifests
         if: steps.meta.outputs.changed == 'true'
+        shell: bash
         run: |
-          python tools/routes_release_manifest.py \
-            --write \
-            --release-tag "${{ steps.meta.outputs.tag }}" \
-            --asset-name "${{ steps.meta.outputs.asset_name }}" \
-            --download-url "https://github.com/${{ github.repository }}/releases/download/${{ steps.meta.outputs.tag }}/${{ steps.meta.outputs.asset_name }}" \
-            --published-at "${{ steps.meta.outputs.published_at }}" \
-            --commit-sha "${{ steps.meta.outputs.source_sha }}"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          summary = json.loads(Path("build/release/summary.json").read_text(encoding="utf-8"))
+          manifest_paths = {
+              "routes": Path(".voiceatc/routes_manifest.json"),
+              "mva": Path(".voiceatc/mva_manifest.json"),
+              "runway_configs": Path(".voiceatc/runway_configs_manifest.json"),
+              "release": Path(".voiceatc/release_manifest.json"),
+          }
+
+          for key, path in manifest_paths.items():
+              path.parent.mkdir(parents=True, exist_ok=True)
+              payload = summary["manifests"][key]
+              path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+          PY
       - name: Commit manifests
         if: steps.meta.outputs.changed == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- .voiceatc/routes_manifest.json .voiceatc/release_manifest.json; then
+          if git diff --quiet -- .voiceatc/routes_manifest.json .voiceatc/mva_manifest.json .voiceatc/runway_configs_manifest.json .voiceatc/release_manifest.json; then
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .voiceatc/routes_manifest.json .voiceatc/release_manifest.json
+          git add .voiceatc/routes_manifest.json .voiceatc/mva_manifest.json .voiceatc/runway_configs_manifest.json .voiceatc/release_manifest.json
           git commit -m "chore: refresh daily community release manifests"
           git push
