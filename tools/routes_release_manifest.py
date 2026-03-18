@@ -16,7 +16,7 @@ ROUTES_MANIFEST_PATH = ROOT / ".voiceatc" / "routes_manifest.json"
 RELEASE_MANIFEST_PATH = ROOT / ".voiceatc" / "release_manifest.json"
 REPO_NAME = "lainoa-software/voiceatc-simulator-community"
 SCHEMA_VERSION = 1
-RELEASE_TITLE_PREFIX = "Daily Community Cache"
+RELEASE_TITLE_PREFIX = "Daily Community Release"
 
 
 def current_commit_sha(root: Path = ROOT) -> str:
@@ -170,7 +170,7 @@ def main() -> int:
     parser.add_argument("--write", action="store_true", help="Write .voiceatc/routes_manifest.json and .voiceatc/release_manifest.json")
     parser.add_argument("--validate-only", action="store_true", help="Validate ROUTES/routes.tsv without writing manifests")
     parser.add_argument("--release-tag", default="", help="Release tag, for example daily-2026-03-15")
-    parser.add_argument("--release-title", default="", help="Release title, for example Daily Community Cache - Saturday 2026-03-15")
+    parser.add_argument("--release-title", default="", help="Release title, for example Daily Community Release - Saturday 2026-03-15")
     parser.add_argument("--asset-name", default="", help="Release asset name, for example routes-2602.tsv")
     parser.add_argument("--download-url", default="", help="Full release asset download URL")
     parser.add_argument("--published-at", default=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))

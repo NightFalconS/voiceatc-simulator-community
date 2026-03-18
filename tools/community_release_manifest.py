@@ -26,7 +26,7 @@ RELEASE_MANIFEST_SCHEMA_VERSION = 2
 DATASET_MANIFEST_SCHEMA_VERSION = 2
 RELEASE_MANIFEST_PATH = ROOT / ".voiceatc" / "release_manifest.json"
 RELEASE_MANIFEST_ASSET_NAME = "release-manifest.json"
-RELEASE_TITLE_PREFIX = "Daily Community Cache"
+RELEASE_TITLE_PREFIX = "Daily Community Release"
 ZIP_TIMESTAMP = (2024, 1, 1, 0, 0, 0)
 ZIP_FILE_MODE = 0o100644 << 16
 
@@ -325,7 +325,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Build deterministic daily community release assets and manifests.")
     parser.add_argument("--output-dir", required=True, help="Directory where release assets will be written")
     parser.add_argument("--release-tag", required=True, help="Release tag, for example daily-2026-03-18")
-    parser.add_argument("--release-title", default="", help="Release title, for example Daily Community Cache - Wednesday 2026-03-18")
+    parser.add_argument("--release-title", default="", help="Release title, for example Daily Community Release - Wednesday 2026-03-18")
     parser.add_argument("--published-at", required=True, help="Release timestamp in UTC")
     parser.add_argument("--commit-sha", default="", help="Source commit SHA for the published release")
     parser.add_argument("--download-repo", default=REPO_NAME, help="GitHub repo used in release asset URLs")

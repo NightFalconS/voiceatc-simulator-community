@@ -96,7 +96,7 @@ class RoutesReleaseManifestTests(unittest.TestCase):
         manifest = MODULE.build_release_manifest(routes_manifest, "2026-03-15T01:15:00Z")
 
         self.assertEqual("daily-2026-03-15", manifest["release_tag"])
-        self.assertEqual("Daily Community Cache - Sunday 2026-03-15", manifest["release_title"])
+        self.assertEqual("Daily Community Release - Sunday 2026-03-15", manifest["release_title"])
         self.assertEqual("routes-2602.tsv", manifest["assets"]["routes_tsv"]["asset_name"])
 
     def test_build_release_manifest_accepts_suffixed_release_tag(self) -> None:
@@ -116,7 +116,7 @@ class RoutesReleaseManifestTests(unittest.TestCase):
 
         manifest = MODULE.build_release_manifest(routes_manifest, "2026-03-15T01:15:00Z")
 
-        self.assertEqual("Daily Community Cache - Sunday 2026-03-15 b", manifest["release_title"])
+        self.assertEqual("Daily Community Release - Sunday 2026-03-15 b", manifest["release_title"])
 
 
 if __name__ == "__main__":

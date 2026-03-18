@@ -38,7 +38,7 @@ jobs:
           RELEASE_DATE="$(date -u +%F)"
           BASE_TAG="daily-${RELEASE_DATE}"
           WEEKDAY="$(date -u +%A)"
-          BASE_TITLE="Daily Community Cache - ${WEEKDAY} ${RELEASE_DATE}"
+          BASE_TITLE="Daily Community Release - ${WEEKDAY} ${RELEASE_DATE}"
           PUBLISHED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           SOURCE_SHA="$(git rev-parse HEAD)"
           mkdir -p build/release
@@ -169,7 +169,7 @@ jobs:
               "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
               --target "${TARGET}" \
               --title "${TITLE}" \
-              --notes "Automated daily community cache release."
+              --notes "Automated daily community release."
           fi
       - name: Write manifests
         if: steps.meta.outputs.changed == 'true'
