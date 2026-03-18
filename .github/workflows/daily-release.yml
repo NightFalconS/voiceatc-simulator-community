@@ -142,6 +142,8 @@ jobs:
           echo "title=${TITLE}" >> "$GITHUB_OUTPUT"
           echo "published_at=${PUBLISHED_AT}" >> "$GITHUB_OUTPUT"
           echo "source_sha=${SOURCE_SHA}" >> "$GITHUB_OUTPUT"
+          echo "latest_tag=latest" >> "$GITHUB_OUTPUT"
+          echo "latest_title=Latest Daily Community Release" >> "$GITHUB_OUTPUT"
       - name: Stop when nothing changed
         if: steps.meta.outputs.should_publish != 'true'
         run: echo "No release-managed community artifacts changed."
@@ -168,8 +170,51 @@ jobs:
               "${{ steps.meta.outputs.runway_asset_path }}#${{ steps.meta.outputs.runway_asset_name }}" \
               "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
               --target "${TARGET}" \
+              --latest=false \
               --title "${TITLE}" \
               --notes "Automated daily community release."
+          fi
+      - name: Create or update latest release alias
+        if: steps.meta.outputs.should_publish == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="${{ steps.meta.outputs.latest_tag }}"
+          TITLE="${{ steps.meta.outputs.latest_title }}"
+          TARGET="${{ steps.meta.outputs.source_sha }}"
+          SOURCE_TAG="${{ steps.meta.outputs.tag }}"
+          SOURCE_TITLE="${{ steps.meta.outputs.title }}"
+          PUBLISHED_AT="${{ steps.meta.outputs.published_at }}"
+          NOTES_FILE="$(mktemp)"
+          cat > "${NOTES_FILE}" <<EOF
+          Rolling alias for the most recent Daily Community Release.
+
+          Source release: ${SOURCE_TITLE}
+          Source tag: ${SOURCE_TAG}
+          Published at: ${PUBLISHED_AT}
+          EOF
+          if gh release view "${TAG}" >/dev/null 2>&1; then
+            gh release edit "${TAG}" \
+              --title "${TITLE}" \
+              --target "${TARGET}" \
+              --notes-file "${NOTES_FILE}" \
+              --latest
+            gh release upload "${TAG}" \
+              "${{ steps.meta.outputs.routes_asset_path }}#${{ steps.meta.outputs.routes_asset_name }}" \
+              "${{ steps.meta.outputs.mva_asset_path }}#${{ steps.meta.outputs.mva_asset_name }}" \
+              "${{ steps.meta.outputs.runway_asset_path }}#${{ steps.meta.outputs.runway_asset_name }}" \
+              "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
+              --clobber
+          else
+            gh release create "${TAG}" \
+              "${{ steps.meta.outputs.routes_asset_path }}#${{ steps.meta.outputs.routes_asset_name }}" \
+              "${{ steps.meta.outputs.mva_asset_path }}#${{ steps.meta.outputs.mva_asset_name }}" \
+              "${{ steps.meta.outputs.runway_asset_path }}#${{ steps.meta.outputs.runway_asset_name }}" \
+              "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
+              --target "${TARGET}" \
+              --title "${TITLE}" \
+              --notes-file "${NOTES_FILE}" \
+              --latest
           fi
       - name: Write manifests
         if: steps.meta.outputs.changed == 'true'
