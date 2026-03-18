@@ -45,11 +45,11 @@ def parse_routes_file(root: Path = ROOT) -> dict[str, object]:
     route_count = 0
     for line_number, raw_line in enumerate(lines[1:], start=2):
         line = raw_line.rstrip("\r\n")
-        if not line.strip():
+        if not line.strip() or line.upper().startswith("ORIGIN"):
             continue
-        parts = line.split("\t", 2)
-        if len(parts) != 3:
-            raise ValueError(f"{route_path}:{line_number}: expected 3 tab-separated columns")
+        parts = line.split("\t")
+        if len(parts) < 3:
+            raise ValueError(f"{route_path}:{line_number}: expected at least 3 tab-separated columns")
         origin = parts[0].strip().upper()
         dest = parts[1].strip().upper()
         full_route = parts[2].strip().upper()
