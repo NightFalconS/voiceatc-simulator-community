@@ -5,7 +5,7 @@
       "runway_configs": ["WRL", "ELR", "ENR", "WLL"],
       "sectors": [
         {
-          "sector_id": "LEBLCORE",
+          "sector_ids": "LEBLCORE",
           "frequency": "131.125"
         }
       ]

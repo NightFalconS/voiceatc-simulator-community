@@ -162,6 +162,34 @@ def build_fixture_repo(root: Path) -> None:
             "labels": [{"text": "TEST", "lat": 40.45, "lon": -3.65}],
         },
     )
+    write_json(
+        root / "L" / "LE" / "colors.json",
+        {
+            "assumed_tfc_color": "3bf451",
+            "bg_color": "080808",
+        },
+    )
+    write_json(
+        root / "L" / "LE" / "style.json",
+        {
+            "defined_symbols": {"diamond": "101;010;101"},
+            "assumed_symbol": "diamond",
+        },
+    )
+    write_json(
+        root / "E" / "EH" / "colors.json",
+        {
+            "assumed_tfc_color": "a5a5a7",
+            "bg_color": "071010",
+        },
+    )
+    write_json(
+        root / "E" / "EH" / "style.json",
+        {
+            "defined_symbols": {"square": "111;101;111"},
+            "assumed_symbol": "square",
+        },
+    )
 
 
 class CommunityReleaseManifestTests(unittest.TestCase):
@@ -186,16 +214,18 @@ class CommunityReleaseManifestTests(unittest.TestCase):
             self.assertEqual("runway-configs-2602.zip", bundle["assets"]["runway_configs_zip"]["asset_name"])
             self.assertEqual("sector-data-2602.zip", bundle["assets"]["sector_data_zip"]["asset_name"])
             self.assertEqual("misc-drawings-2602.zip", bundle["assets"]["misc_drawings_zip"]["asset_name"])
+            self.assertEqual("color-profiles-2602.zip", bundle["assets"]["color_profiles_zip"]["asset_name"])
             self.assertEqual("release-manifest.json", bundle["assets"]["release_manifest"]["asset_name"])
 
             release_manifest = bundle["manifests"]["release"]
-            self.assertEqual(3, release_manifest["schema_version"])
+            self.assertEqual(4, release_manifest["schema_version"])
             self.assertEqual("daily-2026-03-18", release_manifest["release_tag"])
             self.assertEqual("Daily Community Release - Wednesday 2026-03-18", release_manifest["release_title"])
             self.assertIn("mva_zip", release_manifest["assets"])
             self.assertIn("runway_configs_zip", release_manifest["assets"])
             self.assertIn("sector_data_zip", release_manifest["assets"])
             self.assertIn("misc_drawings_zip", release_manifest["assets"])
+            self.assertIn("color_profiles_zip", release_manifest["assets"])
 
             mva_manifest = bundle["manifests"]["mva"]
             self.assertEqual(2, mva_manifest["schema_version"])
@@ -216,6 +246,11 @@ class CommunityReleaseManifestTests(unittest.TestCase):
             self.assertEqual(2, misc_drawings_manifest["schema_version"])
             self.assertEqual("misc-drawings-2602.zip", misc_drawings_manifest["asset_name"])
             self.assertEqual(2, misc_drawings_manifest["airport_count"])
+
+            color_profiles_manifest = bundle["manifests"]["color_profiles"]
+            self.assertEqual(2, color_profiles_manifest["schema_version"])
+            self.assertEqual("color-profiles-2602.zip", color_profiles_manifest["asset_name"])
+            self.assertEqual(2, color_profiles_manifest["profile_count"])
 
     def test_zip_assets_are_deterministic_and_preserve_repo_paths(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -251,6 +286,10 @@ class CommunityReleaseManifestTests(unittest.TestCase):
             self.assertEqual(
                 first["assets"]["misc_drawings_zip"]["sha256"],
                 second["assets"]["misc_drawings_zip"]["sha256"],
+            )
+            self.assertEqual(
+                first["assets"]["color_profiles_zip"]["sha256"],
+                second["assets"]["color_profiles_zip"]["sha256"],
             )
 
             with zipfile.ZipFile(first["assets"]["mva_zip"]["path"], "r") as archive:
@@ -288,6 +327,17 @@ class CommunityReleaseManifestTests(unittest.TestCase):
                 self.assertEqual(
                     [
                         "L/LE/LECM/LECM_R2/MADRID_TMA/misc_drawings.json",
+                    ],
+                    archive.namelist(),
+                )
+
+            with zipfile.ZipFile(first["assets"]["color_profiles_zip"]["path"], "r") as archive:
+                self.assertEqual(
+                    [
+                        "E/EH/colors.json",
+                        "E/EH/style.json",
+                        "L/LE/colors.json",
+                        "L/LE/style.json",
                     ],
                     archive.namelist(),
                 )

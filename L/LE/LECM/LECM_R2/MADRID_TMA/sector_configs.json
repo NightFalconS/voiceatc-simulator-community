@@ -5,7 +5,7 @@
       "runway_configs": ["NORTH", "SOUTH"],
       "sectors": [
         {
-          "sector_id": "LEMDALN",
+          "sector_ids": "LEMDALN",
           "frequency": "136.105"
         }
       ]

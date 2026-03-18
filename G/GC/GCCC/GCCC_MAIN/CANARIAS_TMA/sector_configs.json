@@ -4,15 +4,15 @@
       "sector_config_id": "A3N",
       "sectors": [
         {
-          "sector_id": "GCCCINB",
+          "sector_ids": "GCCCINB",
           "frequency": "126.100"
         },
         {
-          "sector_id": "GCCCIGC",
+          "sector_ids": "GCCCIGC",
           "frequency": "124.300"
         },
         {
-          "sector_id": "GCCCAAC",
+          "sector_ids": "GCCCAAC",
           "frequency": "129.300"
         }
       ]

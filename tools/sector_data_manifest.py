@@ -147,7 +147,7 @@ def validate_sector_configs_file(path: Path, root: Path = ROOT) -> dict[str, obj
         for sector_index, sector in enumerate(sectors):
             if isinstance(sector, dict):
                 ensure_text_field(
-                    sector.get("sector_id", sector.get("sector", sector.get("id", sector.get("SECTOR_ID", "")))),
+                    sector.get("sector_ids", sector.get("sector_id", sector.get("sector", sector.get("id", sector.get("SECTOR_ID", ""))))),
                     "sector_id",
                     path,
                 )

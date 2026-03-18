@@ -19,7 +19,7 @@ def valid_sector_configs() -> dict[str, object]:
             {
                 "sector_config_id": "CFG_1",
                 "runway_configs": ["NORTH"],
-                "sectors": [{"sector_id": "LEMDAAA", "frequency": "119.100"}],
+                "sectors": [{"sector_ids": "LEMDAAA", "frequency": "119.100"}],
             }
         ]
     }

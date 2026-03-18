@@ -21,10 +21,11 @@ import misc_drawings_manifest
 import routes_release_manifest
 import runway_configs_manifest
 import sector_data_manifest
+import color_profiles_manifest
 
 
 REPO_NAME = "lainoa-software/voiceatc-simulator-community"
-RELEASE_MANIFEST_SCHEMA_VERSION = 3
+RELEASE_MANIFEST_SCHEMA_VERSION = 4
 DATASET_MANIFEST_SCHEMA_VERSION = 2
 RELEASE_MANIFEST_PATH = ROOT / ".voiceatc" / "release_manifest.json"
 RELEASE_MANIFEST_ASSET_NAME = "release-manifest.json"
@@ -224,12 +225,41 @@ def build_misc_drawings_release_manifest(
     }
 
 
+def build_color_profiles_release_manifest(
+    *,
+    release_tag: str,
+    asset_name: str,
+    download_url: str,
+    published_at: str,
+    commit_sha: str,
+    asset_sha256: str,
+    asset_size_bytes: int,
+    root: Path = ROOT,
+) -> dict[str, object]:
+    base_manifest = color_profiles_manifest.build_manifest(root, commit_sha=commit_sha)
+    profiles = base_manifest["profiles"]
+    return {
+        "schema_version": DATASET_MANIFEST_SCHEMA_VERSION,
+        "repo": REPO_NAME,
+        "release_tag": release_tag.strip(),
+        "commit_sha": commit_sha.strip(),
+        "asset_name": asset_name.strip(),
+        "download_url": download_url.strip(),
+        "sha256": asset_sha256.strip(),
+        "size_bytes": int(asset_size_bytes),
+        "profile_count": len(profiles),
+        "published_at": published_at.strip(),
+        "profiles": profiles,
+    }
+
+
 def build_release_manifest(
     routes_manifest: dict[str, object],
     mva_release_manifest: dict[str, object],
     runway_release_manifest: dict[str, object],
     sector_data_release_manifest: dict[str, object],
     misc_drawings_release_manifest: dict[str, object],
+    color_profiles_release_manifest: dict[str, object],
     published_at: str,
     release_title: str | None = None,
 ) -> dict[str, object]:
@@ -290,6 +320,15 @@ def build_release_manifest(
                 "content_type": "application/zip",
                 "preserves_repo_paths": True,
             },
+            "color_profiles_zip": {
+                "asset_name": str(color_profiles_release_manifest.get("asset_name", "")).strip(),
+                "download_url": str(color_profiles_release_manifest.get("download_url", "")).strip(),
+                "sha256": str(color_profiles_release_manifest.get("sha256", "")).strip(),
+                "size_bytes": int(color_profiles_release_manifest.get("size_bytes", 0)),
+                "profile_count": int(color_profiles_release_manifest.get("profile_count", 0)),
+                "content_type": "application/zip",
+                "preserves_repo_paths": True,
+            },
         },
     }
 
@@ -315,6 +354,7 @@ def build_release_bundle(
     runway_asset_name = f"runway-configs-{airac}.zip"
     sector_data_asset_name = f"sector-data-{airac}.zip"
     misc_drawings_asset_name = f"misc-drawings-{airac}.zip"
+    color_profiles_asset_name = f"color-profiles-{airac}.zip"
 
     routes_source_path = root / "ROUTES" / "routes.tsv"
     routes_asset_path = output_dir / routes_asset_name
@@ -324,6 +364,7 @@ def build_release_bundle(
     runway_base_manifest = runway_configs_manifest.build_manifest(root, commit_sha=commit_sha)
     sector_data_base_manifest = sector_data_manifest.build_manifest(root, commit_sha=commit_sha)
     misc_drawings_base_manifest = misc_drawings_manifest.build_manifest(root, commit_sha=commit_sha)
+    color_profiles_base_manifest = color_profiles_manifest.build_manifest(root, commit_sha=commit_sha)
 
     mva_repo_paths = [str(entry["repo_path"]) for entry in mva_base_manifest["airports"].values()]
     runway_repo_paths = [str(entry["repo_path"]) for entry in runway_base_manifest["airports"].values()]
@@ -333,11 +374,17 @@ def build_release_bundle(
         for file_entry in bundle["files"].values()
     ]
     misc_drawings_repo_paths = sorted({str(entry["repo_path"]) for entry in misc_drawings_base_manifest["airports"].values()})
+    color_profiles_repo_paths = [
+        str(file_entry["repo_path"])
+        for profile in color_profiles_base_manifest["profiles"].values()
+        for file_entry in profile["files"].values()
+    ]
 
     mva_asset = build_deterministic_zip(root, mva_repo_paths, output_dir / mva_asset_name)
     runway_asset = build_deterministic_zip(root, runway_repo_paths, output_dir / runway_asset_name)
     sector_data_asset = build_deterministic_zip(root, sector_data_repo_paths, output_dir / sector_data_asset_name)
     misc_drawings_asset = build_deterministic_zip(root, misc_drawings_repo_paths, output_dir / misc_drawings_asset_name)
+    color_profiles_asset = build_deterministic_zip(root, color_profiles_repo_paths, output_dir / color_profiles_asset_name)
 
     routes_manifest = routes_release_manifest.build_routes_manifest(
         release_tag=release_tag,
@@ -387,12 +434,23 @@ def build_release_bundle(
         asset_size_bytes=int(misc_drawings_asset["size_bytes"]),
         root=root,
     )
+    color_profiles_release_manifest = build_color_profiles_release_manifest(
+        release_tag=release_tag,
+        asset_name=color_profiles_asset_name,
+        download_url=_download_url(download_repo, release_tag, color_profiles_asset_name),
+        published_at=published_at,
+        commit_sha=commit_sha,
+        asset_sha256=str(color_profiles_asset["sha256"]),
+        asset_size_bytes=int(color_profiles_asset["size_bytes"]),
+        root=root,
+    )
     release_manifest = build_release_manifest(
         routes_manifest,
         mva_release_manifest,
         runway_release_manifest,
         sector_data_release_manifest,
         misc_drawings_release_manifest,
+        color_profiles_release_manifest,
         published_at,
         release_title=release_title,
     )
@@ -406,6 +464,7 @@ def build_release_bundle(
         _write_json(runway_configs_manifest.MANIFEST_PATH, runway_release_manifest)
         _write_json(sector_data_manifest.MANIFEST_PATH, sector_data_release_manifest)
         _write_json(misc_drawings_manifest.MANIFEST_PATH, misc_drawings_release_manifest)
+        _write_json(color_profiles_manifest.MANIFEST_PATH, color_profiles_release_manifest)
         _write_json(RELEASE_MANIFEST_PATH, release_manifest)
 
     return {
@@ -421,6 +480,7 @@ def build_release_bundle(
             "runway_configs_zip": runway_asset,
             "sector_data_zip": sector_data_asset,
             "misc_drawings_zip": misc_drawings_asset,
+            "color_profiles_zip": color_profiles_asset,
             "release_manifest": {
                 "asset_name": RELEASE_MANIFEST_ASSET_NAME,
                 "path": str(release_manifest_asset_path),
@@ -434,6 +494,7 @@ def build_release_bundle(
             "runway_configs": runway_release_manifest,
             "sector_data": sector_data_release_manifest,
             "misc_drawings": misc_drawings_release_manifest,
+            "color_profiles": color_profiles_release_manifest,
             "release": release_manifest,
         },
     }

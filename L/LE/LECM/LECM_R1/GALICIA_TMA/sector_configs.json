@@ -4,7 +4,7 @@
       "sector_config_id": "1",
       "sectors": [
         {
-          "sector_id": "LECGTMA",
+          "sector_ids": "LECGTMA",
           "frequency": "120.200"
         }
       ]

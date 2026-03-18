@@ -5,7 +5,7 @@
       "runway_configs": ["WEST", "EAST"],
       "sectors": [
         {
-          "sector_id": "LEBBTMA",
+          "sector_ids": "LEBBTMA",
           "frequency": "127.450"
         }
       ]

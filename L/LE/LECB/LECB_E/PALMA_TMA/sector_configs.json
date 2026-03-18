@@ -4,11 +4,11 @@
       "sector_config_id": "3D",
       "sectors": [
         {
-          "sector_id": "LECPAPR",
+          "sector_ids": "LECPAPR",
           "frequency": "119.155"
         },
         {
-          "sector_id": "LECPIXX",
+          "sector_ids": "LECPIXX",
           "frequency": "134.825"
         }
       ]
