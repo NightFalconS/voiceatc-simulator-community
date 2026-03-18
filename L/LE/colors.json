@@ -1,7 +1,6 @@
 {
   "assumed_tfc_color": "3bf451",
   "incoming_tfc_color": "cbffd2",
-  "released_tfc_color": "c8c8c8",
   "selected_tfc_color": "f7ee2d",
   "dragging_tfc_color": "f79621",
   "geo_color": "3c3c3c",
@@ -20,5 +19,9 @@
   "wake_light_color": "6b6e6b",
   "wake_medium_color": "3bf451",
   "wake_heavy_color": "f0e12a",
-  "wake_super_color": "c00000"
+  "wake_super_color": "c00000",
+  "alien_tfc_color": "c8c8c8",
+  "alien_cs_color": "c8c8c8",
+  "released_tfc_color": "c8c8c8",
+  "released_cs_color": "c8c8c8"
 }

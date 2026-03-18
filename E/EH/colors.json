@@ -7,10 +7,6 @@
   "assumed_cs_color": "a5a5a7",
   "of_interest_tfc_color": "a5a5a7",
   "of_interest_cs_color": "a5a5a7",
-  "unrelated_tfc_color": "a5a5a7",
-  "unrelated_cs_color": "a5a5a7",
-  "past_tfc_color": "a5a5a7",
-  "past_cs_color": "a5a5a7",
   "selected_tfc_color": "ffffff",
   "selected_cs_color": "ffffff",
   "dragging_tfc_color": "ffffff",
@@ -31,5 +27,9 @@
   "wake_light_color": "6B6E6B",
   "wake_medium_color": "3BF451",
   "wake_heavy_color": "F0E12A",
-  "wake_super_color": "C00000"
+  "wake_super_color": "C00000",
+  "alien_tfc_color": "a5a5a7",
+  "alien_cs_color": "a5a5a7",
+  "released_tfc_color": "a5a5a7",
+  "released_cs_color": "a5a5a7"
 }
