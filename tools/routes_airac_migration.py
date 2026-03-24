@@ -180,6 +180,18 @@ def _validate_row(
                 f"{row.origin}->{row.dest}: no {connector} path from {from_point} to {to_point}",
             ))
 
+    # STAR entry membership check — requires navdata with tbl_pe_stars
+    if navdata and navdata.star_airports:
+        tokens = [t.strip().upper() for t in row.route.split() if t.strip()]
+        if len(tokens) >= 3:
+            last_fix = tokens[-2]
+            if not navdata.is_valid_star_waypoint(row.dest, last_fix):
+                errors.append(Finding(
+                    row.line_number, "error", "star_entry_not_in_procedure",
+                    f"{row.origin}->{row.dest}: last fix '{last_fix}' is not a published "
+                    f"STAR waypoint for {row.dest} — possible proximity substitution",
+                ))
+
     return errors, warnings
 
 
