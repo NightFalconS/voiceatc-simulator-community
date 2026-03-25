@@ -185,11 +185,11 @@ def _validate_row(
         tokens = [t.strip().upper() for t in row.route.split() if t.strip()]
         if len(tokens) >= 3:
             last_fix = tokens[-2]
-            if not navdata.is_valid_star_waypoint(row.dest, last_fix):
+            if not navdata.is_valid_star_entry_point(row.dest, last_fix):
                 errors.append(Finding(
                     row.line_number, "error", "star_entry_not_in_procedure",
                     f"{row.origin}->{row.dest}: last fix '{last_fix}' is not a published "
-                    f"STAR waypoint for {row.dest} — possible proximity substitution",
+                    f"STAR entry point for {row.dest} — possible proximity substitution",
                 ))
 
     return errors, warnings
