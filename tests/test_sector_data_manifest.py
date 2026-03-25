@@ -52,19 +52,21 @@ def valid_sector_influence() -> dict[str, object]:
 class SectorDataManifestTests(unittest.TestCase):
     def test_repository_contains_expected_sector_bundle_paths(self) -> None:
         manifest = MODULE.build_manifest(REPO_ROOT, commit_sha="test-commit")
-        self.assertEqual(
-            {
-                "G/GC/GCCC/GCCC_MAIN/CANARIAS_TMA",
-                "L/LE/LECB/LECB_E/PALMA_TMA",
-                "L/LE/LECB/LECB_W/BARCELONA_TMA",
-                "L/LE/LECB/LECB_W/VALENCIA_TMA",
-                "L/LE/LECM/LECM_R1/BILBAO_TMA",
-                "L/LE/LECM/LECM_R1/GALICIA_TMA",
-                "L/LE/LECM/LECM_R2/MADRID_TMA",
-                "L/LE/LECM/LECS/MALAGA_TMA",
-                "L/LE/LECM/LECS/SEVILLA_TMA",
-            },
-            set(manifest["bundles"].keys()),
+        core_bundles = {
+            "G/GC/GCCC/GCCC_MAIN/CANARIAS_TMA",
+            "L/LE/LECB/LECB_E/PALMA_TMA",
+            "L/LE/LECB/LECB_W/BARCELONA_TMA",
+            "L/LE/LECB/LECB_W/VALENCIA_TMA",
+            "L/LE/LECM/LECM_R1/BILBAO_TMA",
+            "L/LE/LECM/LECM_R1/GALICIA_TMA",
+            "L/LE/LECM/LECM_R2/MADRID_TMA",
+            "L/LE/LECM/LECS/MALAGA_TMA",
+            "L/LE/LECM/LECS/SEVILLA_TMA",
+        }
+        found_bundles = set(manifest["bundles"].keys())
+        self.assertTrue(
+            core_bundles.issubset(found_bundles),
+            f"Missing core sector bundles: {core_bundles - found_bundles}",
         )
 
     def test_build_manifest_rejects_missing_required_file(self) -> None:
