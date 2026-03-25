@@ -1,6 +1,11 @@
 name: Format All JSON
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**/*.json"
   workflow_dispatch:
 
 permissions:

@@ -1,15 +1,7 @@
 name: JSON Format Check
 
 on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - "**/*.json"
-      - "package.json"
-      - "package-lock.json"
-      - ".prettierrc.json"
-      - ".github/workflows/json-format-check.yml"
+  workflow_dispatch:
 
 jobs:
   prettier:
