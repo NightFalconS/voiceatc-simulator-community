@@ -174,10 +174,18 @@ class NavdataIndex:
     def _load_star_waypoints(self) -> None:
         try:
             with sqlite3.connect(self.db_path) as con:
-                for row in con.execute(
-                    "SELECT DISTINCT airport_identifier, waypoint_identifier FROM tbl_pe_stars "
-                    "WHERE airport_identifier IS NOT NULL AND waypoint_identifier IS NOT NULL"
-                ):
+                # We only want the FIRST waypoint (minimum seqno) for each procedure
+                # transition/route_type group. This defines the valid entry points.
+                query = """
+                    SELECT airport_identifier, waypoint_identifier
+                    FROM tbl_pe_stars
+                    WHERE (airport_identifier, procedure_identifier, transition_identifier, route_type, seqno) IN (
+                        SELECT airport_identifier, procedure_identifier, transition_identifier, route_type, MIN(seqno)
+                        FROM tbl_pe_stars
+                        GROUP BY airport_identifier, procedure_identifier, transition_identifier, route_type
+                    )
+                """
+                for row in con.execute(query):
                     apt = str(row[0] or "").strip().upper()
                     wpt = str(row[1] or "").strip().upper()
                     if apt and wpt:
@@ -212,9 +220,9 @@ class NavdataIndex:
             or normalized in self.airports
         )
 
-    def is_valid_star_waypoint(self, airport: str, fix: str) -> bool:
-        """Return True if fix is a published STAR waypoint for airport, or if the airport
-        has no STAR data (so the check is skipped for airports without procedures)."""
+    def is_valid_star_entry_point(self, airport: str, fix: str) -> bool:
+        """Return True if fix is a published STAR entry point for airport, or if the
+        airport has no STAR data (so the check is skipped for airports without procedures)."""
         apt = airport.strip().upper()
         return apt not in self.star_airports or fix.strip().upper() in self.star_waypoints.get(apt, set())
 
@@ -434,11 +442,11 @@ def validate_routes(
             tokens = [t.strip().upper() for t in row.route.split() if t.strip()]
             if len(tokens) >= 3:
                 last_fix = tokens[-2]
-                if not navdata.is_valid_star_waypoint(row.dest, last_fix):
+                if not navdata.is_valid_star_entry_point(row.dest, last_fix):
                     errors.append(Finding(
                         row.line_number, "error", "star_entry_not_in_procedure",
                         f"{row.origin}->{row.dest}: last fix '{last_fix}' is not a published "
-                        f"STAR waypoint for {row.dest} — possible proximity substitution",
+                        f"STAR entry point for {row.dest} — possible proximity substitution",
                     ))
 
         if len(errors) >= max_findings:
