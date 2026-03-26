@@ -1,8 +1,8 @@
 {
   "asset_name": "color-profiles-2603.zip",
-  "commit_sha": "cc50cc1ca8149a6117b80b8ea9a3a19a98b73fcb",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-25-b/color-profiles-2603.zip",
-  "profile_count": 3,
+  "commit_sha": "710bdaa25cee0887f61ca808bd8a7d70e6cf6b8c",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-26/color-profiles-2603.zip",
+  "profile_count": 4,
   "profiles": {
     "E/EH": {
       "files": {
@@ -15,6 +15,20 @@
           "repo_path": "E/EH/style.json",
           "sha256": "304976b42b74e8b5ac86ecd42d9ae217f5df51f4f4073176530db7cecf3a406c",
           "size_bytes": 1078
+        }
+      }
+    },
+    "E/ES": {
+      "files": {
+        "colors": {
+          "repo_path": "E/ES/colors.json",
+          "sha256": "0f2ca55a98f6a056ee1fd8d20ae0036010d185495ad68580517685b6baf2bfe4",
+          "size_bytes": 734
+        },
+        "style": {
+          "repo_path": "E/ES/style.json",
+          "sha256": "b2f9ef89c50a4a9eb6cc5297dd56cf8986b3f1980710029f5e1952d01592becb",
+          "size_bytes": 393
         }
       }
     },
@@ -47,10 +61,10 @@
       }
     }
   },
-  "published_at": "2026-03-25T08:53:53Z",
-  "release_tag": "daily-2026-03-25-b",
+  "published_at": "2026-03-26T16:30:00Z",
+  "release_tag": "daily-2026-03-26",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "b5c3a4c003e4c4cd4fbd1dc759005b7a0fa94ce4e497e6ff465cd3ca81eacbdf",
-  "size_bytes": 2128
+  "sha256": "dc5282635486f509cbf7518ad1e2e2ae7b7d6742293d9bb446b1979465112ebe",
+  "size_bytes": 2704
 }

@@ -1,7 +1,45 @@
 {
   "asset_name": "sector-data-2603.zip",
-  "bundle_count": 9,
+  "bundle_count": 11,
   "bundles": {
+    "E/ES/ESMM/ESMM_23W45/ESGG_TMA": {
+      "files": {
+        "configs": {
+          "repo_path": "E/ES/ESMM/ESMM_23W45/ESGG_TMA/sector_configs.json",
+          "sha256": "9a633c7f03d754e786aacf93bad8b211b78db4ce7a7fe2884a707c2d7a8a88b5",
+          "size_bytes": 221
+        },
+        "definitions": {
+          "repo_path": "E/ES/ESMM/ESMM_23W45/ESGG_TMA/sector_definitions.json",
+          "sha256": "b311106400b691cde16fe7515182d7ffb8cdb4b9afa1422013c5a373f1377788",
+          "size_bytes": 1585
+        },
+        "influence": {
+          "repo_path": "E/ES/ESMM/ESMM_23W45/ESGG_TMA/sector_influence.json",
+          "sha256": "d97a0048ab24060721fe6b62042534aa625287049e5f9c763ccaba5189d69569",
+          "size_bytes": 113
+        }
+      }
+    },
+    "E/ES/ESOS/ESOS_Y/ESOS_APP": {
+      "files": {
+        "configs": {
+          "repo_path": "E/ES/ESOS/ESOS_Y/ESOS_APP/sector_configs.json",
+          "sha256": "075e9fa7d13ffa538f19fee0341ada2e5baa21d0423321cb8569a8a5db0ae276",
+          "size_bytes": 1055
+        },
+        "definitions": {
+          "repo_path": "E/ES/ESOS/ESOS_Y/ESOS_APP/sector_definitions.json",
+          "sha256": "f54140373ced6bd979aa6a984c5ccfbef2c52cd547745993a5801ac11b6755b3",
+          "size_bytes": 5608
+        },
+        "influence": {
+          "repo_path": "E/ES/ESOS/ESOS_Y/ESOS_APP/sector_influence.json",
+          "sha256": "881e41a9708c91999c949b53b942a0eb2e97c9271f272717bef346d3cf71425e",
+          "size_bytes": 264
+        }
+      }
+    },
     "G/GC/GCCC/GCCC_MAIN/CANARIAS_TMA": {
       "files": {
         "configs": {
@@ -174,12 +212,12 @@
       }
     }
   },
-  "commit_sha": "cc50cc1ca8149a6117b80b8ea9a3a19a98b73fcb",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-25-b/sector-data-2603.zip",
-  "published_at": "2026-03-25T08:53:53Z",
-  "release_tag": "daily-2026-03-25-b",
+  "commit_sha": "710bdaa25cee0887f61ca808bd8a7d70e6cf6b8c",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-26/sector-data-2603.zip",
+  "published_at": "2026-03-26T16:30:00Z",
+  "release_tag": "daily-2026-03-26",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "7e14dcf3fd7826254e4a6c216b7a81d6383586317b71fa7aa0dc002272ecc321",
-  "size_bytes": 24276
+  "sha256": "d5eb9761d94cfae8c3c09adb6b5d2474ba8ce0fdf4085194eae8d8f94adbe6ff",
+  "size_bytes": 26823
 }

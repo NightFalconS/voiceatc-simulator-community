@@ -1,10 +1,30 @@
 {
-  "airport_count": 6,
+  "airport_count": 10,
   "airports": {
     "EHAM": {
       "repo_path": "E/EH/EHAA/AMSTERDAM_TMA/mva.json",
       "sha256": "1ea5cdf7e96a7be6bd16811827dc101a9d1e75cd1a6355cca2a3230f0799aa0b",
       "size_bytes": 8527
+    },
+    "ESGG": {
+      "repo_path": "E/ES/ESMM/ESMM_23W45/ESGG_TMA/mva.json",
+      "sha256": "b1733282386795d6dd24e9af5dfe1be46ee55ae94164be1da99938dc544c5338",
+      "size_bytes": 2329
+    },
+    "ESOW": {
+      "repo_path": "E/ES/ESOS/ESOS_Y/ESOS_APP/mva.json",
+      "sha256": "d9cafe5b0d92c7a2fe5ff14fa7ca64db5d92325ef3aa298beef2dd44b0d2da58",
+      "size_bytes": 10292
+    },
+    "ESSA": {
+      "repo_path": "E/ES/ESOS/ESOS_Y/ESOS_APP/mva.json",
+      "sha256": "d9cafe5b0d92c7a2fe5ff14fa7ca64db5d92325ef3aa298beef2dd44b0d2da58",
+      "size_bytes": 10292
+    },
+    "ESSB": {
+      "repo_path": "E/ES/ESOS/ESOS_Y/ESOS_APP/mva.json",
+      "sha256": "d9cafe5b0d92c7a2fe5ff14fa7ca64db5d92325ef3aa298beef2dd44b0d2da58",
+      "size_bytes": 10292
     },
     "LEBB": {
       "repo_path": "L/LE/LECM/LECM_R1/BILBAO_TMA/mva.json",
@@ -33,12 +53,12 @@
     }
   },
   "asset_name": "mva-2603.zip",
-  "commit_sha": "cc50cc1ca8149a6117b80b8ea9a3a19a98b73fcb",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-25-b/mva-2603.zip",
-  "published_at": "2026-03-25T08:53:53Z",
-  "release_tag": "daily-2026-03-25-b",
+  "commit_sha": "710bdaa25cee0887f61ca808bd8a7d70e6cf6b8c",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-26/mva-2603.zip",
+  "published_at": "2026-03-26T16:30:00Z",
+  "release_tag": "daily-2026-03-26",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "c0c4f6e1b6e9a22aca71d451dd135c212a3f07887b7aaf623ce0806acc659ace",
-  "size_bytes": 26866
+  "sha256": "fd7472a66abbb513ec2a08546cb6aa58938b0e8bcf0717e77f446c1b69570967",
+  "size_bytes": 29463
 }
