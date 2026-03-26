@@ -366,7 +366,7 @@ def build_release_bundle(
     misc_drawings_base_manifest = misc_drawings_manifest.build_manifest(root, commit_sha=commit_sha)
     color_profiles_base_manifest = color_profiles_manifest.build_manifest(root, commit_sha=commit_sha)
 
-    mva_repo_paths = [str(entry["repo_path"]) for entry in mva_base_manifest["airports"].values()]
+    mva_repo_paths = sorted({str(entry["repo_path"]) for entry in mva_base_manifest["airports"].values()})
     runway_repo_paths = [str(entry["repo_path"]) for entry in runway_base_manifest["airports"].values()]
     sector_data_repo_paths = [
         str(file_entry["repo_path"])
