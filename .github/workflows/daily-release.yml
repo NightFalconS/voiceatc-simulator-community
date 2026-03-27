@@ -24,6 +24,8 @@ jobs:
         run: python -m unittest discover -s tests -p "test_*.py"
       - name: Validate routes file
         run: python tools/routes_release_manifest.py --validate-only
+      - name: Validate default routes file
+        run: python tools/routes_release_manifest.py --validate-only --validate-default
       - name: Validate MVA files
         run: python tools/mva_manifest.py --validate-only
       - name: Validate runway config files

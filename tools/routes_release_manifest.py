@@ -12,11 +12,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 ROUTES_PATH = ROOT / "ROUTES" / "routes.tsv"
+ROUTES_DEFAULT_PATH = ROOT / "ROUTES" / "routes_default.tsv"
 ROUTES_MANIFEST_PATH = ROOT / ".voiceatc" / "routes_manifest.json"
 RELEASE_MANIFEST_PATH = ROOT / ".voiceatc" / "release_manifest.json"
 REPO_NAME = "lainoa-software/voiceatc-simulator-community"
 SCHEMA_VERSION = 1
 RELEASE_TITLE_PREFIX = "Daily Community Release"
+BUNDLED_DEFAULT_AIRAC = "2403"
 
 
 def current_commit_sha(root: Path = ROOT) -> str:
@@ -27,9 +29,8 @@ def current_commit_sha(root: Path = ROOT) -> str:
     ).strip()
 
 
-def parse_routes_file(root: Path = ROOT) -> dict[str, object]:
-    raw_bytes = ROUTES_PATH.read_bytes() if root == ROOT else (root / "ROUTES" / "routes.tsv").read_bytes()
-    route_path = ROUTES_PATH if root == ROOT else (root / "ROUTES" / "routes.tsv")
+def _parse_routes_tsv(route_path: Path) -> dict[str, object]:
+    raw_bytes = route_path.read_bytes()
     text = raw_bytes.decode("utf-8-sig")
     lines = text.splitlines()
     if not lines:
@@ -69,6 +70,23 @@ def parse_routes_file(root: Path = ROOT) -> dict[str, object]:
         "sha256": hashlib.sha256(raw_bytes).hexdigest(),
         "size_bytes": len(raw_bytes),
     }
+
+
+def parse_routes_file(root: Path = ROOT) -> dict[str, object]:
+    route_path = ROUTES_PATH if root == ROOT else (root / "ROUTES" / "routes.tsv")
+    return _parse_routes_tsv(route_path)
+
+
+def validate_routes_default_file(root: Path = ROOT) -> dict[str, object]:
+    route_path = ROUTES_DEFAULT_PATH if root == ROOT else (root / "ROUTES" / "routes_default.tsv")
+    if not route_path.exists():
+        raise ValueError(f"{route_path}: routes_default.tsv not found")
+    result = _parse_routes_tsv(route_path)
+    if result["airac"] != BUNDLED_DEFAULT_AIRAC:
+        raise ValueError(
+            f"{route_path}: expected AIRAC {BUNDLED_DEFAULT_AIRAC} but found {result['airac']}"
+        )
+    return result
 
 
 def build_routes_manifest(
@@ -169,6 +187,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Validate ROUTES/routes.tsv and write GitHub-release-backed community manifests.")
     parser.add_argument("--write", action="store_true", help="Write .voiceatc/routes_manifest.json and .voiceatc/release_manifest.json")
     parser.add_argument("--validate-only", action="store_true", help="Validate ROUTES/routes.tsv without writing manifests")
+    parser.add_argument("--validate-default", action="store_true", help="Also validate ROUTES/routes_default.tsv (bundled default AIRAC 2403)")
     parser.add_argument("--release-tag", default="", help="Release tag, for example daily-2026-03-15")
     parser.add_argument("--release-title", default="", help="Release title, for example Daily Community Release - Saturday 2026-03-15")
     parser.add_argument("--asset-name", default="", help="Release asset name, for example routes-2602.tsv")
@@ -181,6 +200,9 @@ def main() -> int:
         routes = parse_routes_file()
         if args.validate_only and not args.write:
             print(f"Validated routes.tsv: AIRAC {routes['airac']} with {routes['route_count']} rows.")
+            if args.validate_default:
+                default_routes = validate_routes_default_file()
+                print(f"Validated routes_default.tsv: AIRAC {default_routes['airac']} with {default_routes['route_count']} rows.")
             return 0
 
         commit_sha = args.commit_sha.strip() or current_commit_sha()
