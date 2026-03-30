@@ -1,7 +1,26 @@
 {
   "asset_name": "sector-data-2603.zip",
-  "bundle_count": 11,
+  "bundle_count": 12,
   "bundles": {
+    "E/EN/ENOR/ENOS/OSLO_TMA": {
+      "files": {
+        "configs": {
+          "repo_path": "E/EN/ENOR/ENOS/OSLO_TMA/sector_configs.json",
+          "sha256": "9de62cd37de142479d716c86794ce4c723cb9f15118ab2ebb9e2ef237579ca24",
+          "size_bytes": 234
+        },
+        "definitions": {
+          "repo_path": "E/EN/ENOR/ENOS/OSLO_TMA/sector_definitions.json",
+          "sha256": "781248e77ff131c9ea7dfe443159dc65ea5055c5edf6dc71b78fea1ed99038b0",
+          "size_bytes": 1777
+        },
+        "influence": {
+          "repo_path": "E/EN/ENOR/ENOS/OSLO_TMA/sector_influence.json",
+          "sha256": "f70bbeaba9e8652d658bf2faeb612563d68a7a57f254716441dda0a06553e597",
+          "size_bytes": 108
+        }
+      }
+    },
     "E/ES/ESMM/ESMM_23W45/ESGG_TMA": {
       "files": {
         "configs": {
@@ -212,12 +231,12 @@
       }
     }
   },
-  "commit_sha": "710bdaa25cee0887f61ca808bd8a7d70e6cf6b8c",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-26/sector-data-2603.zip",
-  "published_at": "2026-03-26T16:30:00Z",
-  "release_tag": "daily-2026-03-26",
+  "commit_sha": "6a632dc93348d17497e63a46e4dfa678e7d9817c",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-03-30/sector-data-2603.zip",
+  "published_at": "2026-03-30T04:16:59Z",
+  "release_tag": "daily-2026-03-30",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "d5eb9761d94cfae8c3c09adb6b5d2474ba8ce0fdf4085194eae8d8f94adbe6ff",
-  "size_bytes": 26823
+  "sha256": "9df5ec3fc2f5c72feb02b9d1111822d4277dda687e5f5eb43202d085a577f9cf",
+  "size_bytes": 28018
 }
