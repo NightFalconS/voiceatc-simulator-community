@@ -172,7 +172,7 @@ def build_fixture_repo(root: Path) -> None:
     write_json(
         root / "L" / "LE" / "style.json",
         {
-            "defined_symbols": {"diamond": "101;010;101"},
+            "defined_symbols": {"diamond": {"type": "wireframe", "draw": "M 0 -7 L 7 0 L 0 7 L -7 0 L 0 -7", "connection_points": [[0, -7], [7, 0], [0, 7], [-7, 0]]}},
             "assumed_symbol": "diamond",
         },
     )
