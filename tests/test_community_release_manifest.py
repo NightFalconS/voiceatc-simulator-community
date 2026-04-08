@@ -186,7 +186,7 @@ def build_fixture_repo(root: Path) -> None:
     write_json(
         root / "E" / "EH" / "style.json",
         {
-            "defined_symbols": {"square": "111;101;111"},
+            "defined_symbols": {"square": {"type": "wireframe", "draw": "M -7 -7 L 7 -7 L 7 7 L -7 7 L -7 -7", "connection_points": [[-7, -7], [7, -7], [7, 7], [-7, 7]]}},
             "assumed_symbol": "square",
         },
     )
