@@ -22,8 +22,15 @@ def valid_colors() -> dict[str, object]:
 
 def valid_style() -> dict[str, object]:
     return {
+        "symbol_size": 0.6,
+        "traildot_size": 0.15,
+        "symbol_line_width": 2.0,
         "defined_symbols": {
-            "diamond": "101;010;101",
+            "diamond": {
+                "type": "wireframe",
+                "draw": "M 0 -7 L 7 0 L 0 7 L -7 0 L 0 -7",
+                "connection_points": [[0, -7], [7, 0], [0, 7], [-7, 0]],
+            },
         },
         "assumed_symbol": "diamond",
     }
@@ -93,6 +100,58 @@ class ColorProfilesManifestTests(unittest.TestCase):
             (scope_dir / "style.json").write_text(json.dumps(bad_style), encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "style.json only accepts"):
                 MODULE.build_manifest(root, commit_sha="test-commit")
+
+    def test_validate_style_accepts_numeric_config_keys(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            root = Path(tmp_dir)
+            scope_dir = root / "L" / "LE"
+            scope_dir.mkdir(parents=True, exist_ok=True)
+            style = valid_style()
+            style["symbol_size"] = 0.8
+            style["traildot_size"] = 0.2
+            style["symbol_line_width"] = 3.0
+            (scope_dir / "colors.json").write_text(json.dumps(valid_colors()), encoding="utf-8")
+            (scope_dir / "style.json").write_text(json.dumps(style), encoding="utf-8")
+            manifest = MODULE.build_manifest(root, commit_sha="test-commit")
+            self.assertIn("L/LE", manifest["profiles"])
+
+    def test_validate_style_rejects_invalid_symbol_definition(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            root = Path(tmp_dir)
+            scope_dir = root / "L" / "LE"
+            scope_dir.mkdir(parents=True, exist_ok=True)
+            bad_style = valid_style()
+            bad_style["defined_symbols"]["diamond"] = 12345
+            (scope_dir / "colors.json").write_text(json.dumps(valid_colors()), encoding="utf-8")
+            (scope_dir / "style.json").write_text(json.dumps(bad_style), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "must be a string or object"):
+                MODULE.build_manifest(root, commit_sha="test-commit")
+
+    def test_validate_style_rejects_symbol_missing_required_key(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            root = Path(tmp_dir)
+            scope_dir = root / "L" / "LE"
+            scope_dir.mkdir(parents=True, exist_ok=True)
+            bad_style = valid_style()
+            bad_style["defined_symbols"]["diamond"] = {"type": "wireframe", "draw": "M 0 0"}
+            (scope_dir / "colors.json").write_text(json.dumps(valid_colors()), encoding="utf-8")
+            (scope_dir / "style.json").write_text(json.dumps(bad_style), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "missing required key"):
+                MODULE.build_manifest(root, commit_sha="test-commit")
+
+    def test_validate_style_accepts_legacy_bitmap_symbols(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            root = Path(tmp_dir)
+            scope_dir = root / "L" / "LE"
+            scope_dir.mkdir(parents=True, exist_ok=True)
+            legacy_style = {
+                "defined_symbols": {"diamond": "101;010;101"},
+                "assumed_symbol": "diamond",
+            }
+            (scope_dir / "colors.json").write_text(json.dumps(valid_colors()), encoding="utf-8")
+            (scope_dir / "style.json").write_text(json.dumps(legacy_style), encoding="utf-8")
+            manifest = MODULE.build_manifest(root, commit_sha="test-commit")
+            self.assertIn("L/LE", manifest["profiles"])
 
 
 if __name__ == "__main__":

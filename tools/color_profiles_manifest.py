@@ -24,6 +24,7 @@ FILE_KIND_BY_NAME = {file_name: kind for kind, file_name in PROFILE_FILE_NAMES.i
 FILE_KIND_ORDER = ("colors", "style")
 ALLOWED_SCOPE_DEPTHS = {2, 3, 4, 5}
 HEX_COLOR_RE = re.compile(r"^[0-9A-Fa-f]{6}(?:[0-9A-Fa-f]{2})?$")
+ALLOWED_NUMERIC_KEYS = {"symbol_size", "traildot_size", "symbol_line_width"}
 
 
 def _tracked_profile_files(root: Path) -> list[Path]:
@@ -94,14 +95,31 @@ def validate_style_file(path: Path, root: Path = ROOT) -> dict[str, object]:
         if key == "defined_symbols":
             if not isinstance(value, dict) or not value:
                 raise ValueError(f"{path}: 'defined_symbols' must be a non-empty object")
-            for symbol_name, symbol_pattern in value.items():
+            for symbol_name, symbol_def in value.items():
                 if not isinstance(symbol_name, str) or not symbol_name.strip():
                     raise ValueError(f"{path}: defined_symbols keys must be non-empty strings")
-                if not isinstance(symbol_pattern, str) or not symbol_pattern.strip():
-                    raise ValueError(f"{path}: defined_symbols['{symbol_name}'] must be a non-empty string")
+                if isinstance(symbol_def, str):
+                    if not symbol_def.strip():
+                        raise ValueError(f"{path}: defined_symbols['{symbol_name}'] must be a non-empty string")
+                elif isinstance(symbol_def, dict):
+                    for required in ("type", "draw", "connection_points"):
+                        if required not in symbol_def:
+                            raise ValueError(f"{path}: defined_symbols['{symbol_name}'] missing required key '{required}'")
+                    if not isinstance(symbol_def["type"], str) or not symbol_def["type"].strip():
+                        raise ValueError(f"{path}: defined_symbols['{symbol_name}']['type'] must be a non-empty string")
+                    if not isinstance(symbol_def["draw"], str) or not symbol_def["draw"].strip():
+                        raise ValueError(f"{path}: defined_symbols['{symbol_name}']['draw'] must be a non-empty string")
+                    if not isinstance(symbol_def["connection_points"], list):
+                        raise ValueError(f"{path}: defined_symbols['{symbol_name}']['connection_points'] must be an array")
+                else:
+                    raise ValueError(f"{path}: defined_symbols['{symbol_name}'] must be a string or object")
+            continue
+        if key in ALLOWED_NUMERIC_KEYS:
+            if not isinstance(value, (int, float)) or value <= 0:
+                raise ValueError(f"{path}: '{key}' must be a positive number")
             continue
         if not isinstance(key, str) or not key.endswith("_symbol"):
-            raise ValueError(f"{path}: style.json only accepts 'defined_symbols' and '*_symbol' keys")
+            raise ValueError(f"{path}: style.json only accepts 'defined_symbols', '*_symbol', and numeric config keys")
         if not isinstance(value, str) or not value.strip():
             raise ValueError(f"{path}: '{key}' must be a non-empty string")
 
