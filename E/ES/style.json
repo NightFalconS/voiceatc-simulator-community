@@ -1,11 +1,86 @@
 {
+  "symbol_size": 0.6,
+  "traildot_size": 0.15,
+  "symbol_line_width": 2.0,
+  "forecast_symbol": "square_filled",
+  "incoming_symbol": "square_filled",
+  "assumed_symbol": "diamond_filled",
+  "of_interest_symbol": "square_filled",
+  "alien_symbol": "square_filled",
+  "released_symbol": "square_filled",
+  "traildot_symbol": "square_filled",
   "defined_symbols": {
-    "rps": "1111111111111;1111111111111;1111111111111;1111111111111;1111111111111;1111111111111;1111111111111;1111111111111;1111111111111;1111111111111;1111111111111;1111111111111;1111111111111"
-  },
-  "forecast_symbol": "rps",
-  "incoming_symbol": "rps",
-  "assumed_symbol": "rps",
-  "of_interest_symbol": "rps",
-  "unrelated_symbol": "rps",
-  "past_symbol": "rps"
+    "diamond": {
+      "type": "wireframe",
+      "draw": "M 0 -7 L 7 0 L 0 7 L -7 0 L 0 -7",
+      "connection_points": [
+        [0, -7],
+        [7, 0],
+        [0, 7],
+        [-7, 0]
+      ]
+    },
+    "diamond_crossed": {
+      "type": "wireframe",
+      "draw": "M 0 -7 L 7 0 L 0 7 L -7 0 L 0 -7 M 0 -7 L 0 7 M -7 0 L 7 0",
+      "connection_points": [
+        [0, -7],
+        [7, 0],
+        [0, 7],
+        [-7, 0]
+      ]
+    },
+    "square": {
+      "type": "wireframe",
+      "draw": "M -7 -7 L 7 -7 L 7 7 L -7 7 L -7 -7",
+      "connection_points": [
+        [-7, -7],
+        [0, -7],
+        [7, -7],
+        [-7, 0],
+        [7, 0],
+        [-7, 7],
+        [0, 7],
+        [7, 7]
+      ]
+    },
+    "square_crossed": {
+      "type": "wireframe",
+      "draw": "M -7 -7 L 7 -7 L 7 7 L -7 7 L -7 -7 M -7 -7 L 7 7 M 7 -7 L -7 7",
+      "connection_points": [
+        [-7, -7],
+        [0, -7],
+        [7, -7],
+        [-7, 0],
+        [7, 0],
+        [-7, 7],
+        [0, 7],
+        [7, 7]
+      ]
+    },
+    "diamond_filled": {
+      "type": "filled",
+      "draw": "M 0 -7 L 7 0 L 0 7 L -7 0",
+      "connection_points": [
+        [0, -7],
+        [7, 0],
+        [0, 7],
+        [-7, 0]
+      ]
+    },
+    "square_filled": {
+      "type": "filled",
+      "draw": "M -7 -7 L 7 -7 L 7 7 L -7 7",
+      "connection_points": [
+        [-7, -7],
+        [0, -7],
+        [7, -7],
+        [-7, 0],
+        [7, 0],
+        [-7, 7],
+        [0, 7],
+        [7, 7]
+      ]
+    }
+  }
 }
