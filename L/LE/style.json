@@ -1,7 +1,7 @@
 {
-  "symbol_size": 0.6,
+  "symbol_size": 1.0,
   "traildot_size": 0.15,
-  "symbol_line_width": 2.0,
+  "symbol_line_width": 1.0,
   "forecast_symbol": "square_crossed",
   "incoming_symbol": "square_crossed",
   "assumed_symbol": "diamond_crossed",
