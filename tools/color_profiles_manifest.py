@@ -99,8 +99,10 @@ def validate_style_file(path: Path, root: Path = ROOT) -> dict[str, object]:
                 if not isinstance(symbol_name, str) or not symbol_name.strip():
                     raise ValueError(f"{path}: defined_symbols keys must be non-empty strings")
                 if isinstance(symbol_def, str):
-                    if not symbol_def.strip():
-                        raise ValueError(f"{path}: defined_symbols['{symbol_name}'] must be a non-empty string")
+                    raise ValueError(
+                        f"{path}: defined_symbols['{symbol_name}'] uses legacy bitmap format; "
+                        f"convert to dict with 'type', 'draw', and 'connection_points'"
+                    )
                 elif isinstance(symbol_def, dict):
                     for required in ("type", "draw", "connection_points"):
                         if required not in symbol_def:
@@ -112,7 +114,7 @@ def validate_style_file(path: Path, root: Path = ROOT) -> dict[str, object]:
                     if not isinstance(symbol_def["connection_points"], list):
                         raise ValueError(f"{path}: defined_symbols['{symbol_name}']['connection_points'] must be an array")
                 else:
-                    raise ValueError(f"{path}: defined_symbols['{symbol_name}'] must be a string or object")
+                    raise ValueError(f"{path}: defined_symbols['{symbol_name}'] must be an object with 'type', 'draw', and 'connection_points'")
             continue
         if key in ALLOWED_NUMERIC_KEYS:
             if not isinstance(value, (int, float)) or value <= 0:

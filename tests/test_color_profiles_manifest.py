@@ -124,7 +124,7 @@ class ColorProfilesManifestTests(unittest.TestCase):
             bad_style["defined_symbols"]["diamond"] = 12345
             (scope_dir / "colors.json").write_text(json.dumps(valid_colors()), encoding="utf-8")
             (scope_dir / "style.json").write_text(json.dumps(bad_style), encoding="utf-8")
-            with self.assertRaisesRegex(ValueError, "must be a string or object"):
+            with self.assertRaisesRegex(ValueError, "must be an object"):
                 MODULE.build_manifest(root, commit_sha="test-commit")
 
     def test_validate_style_rejects_symbol_missing_required_key(self) -> None:
@@ -139,7 +139,7 @@ class ColorProfilesManifestTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "missing required key"):
                 MODULE.build_manifest(root, commit_sha="test-commit")
 
-    def test_validate_style_accepts_legacy_bitmap_symbols(self) -> None:
+    def test_validate_style_rejects_legacy_bitmap_symbols(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             root = Path(tmp_dir)
             scope_dir = root / "L" / "LE"
@@ -150,8 +150,8 @@ class ColorProfilesManifestTests(unittest.TestCase):
             }
             (scope_dir / "colors.json").write_text(json.dumps(valid_colors()), encoding="utf-8")
             (scope_dir / "style.json").write_text(json.dumps(legacy_style), encoding="utf-8")
-            manifest = MODULE.build_manifest(root, commit_sha="test-commit")
-            self.assertIn("L/LE", manifest["profiles"])
+            with self.assertRaisesRegex(ValueError, "legacy bitmap format"):
+                MODULE.build_manifest(root, commit_sha="test-commit")
 
 
 if __name__ == "__main__":
