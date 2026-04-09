@@ -68,13 +68,23 @@ class ColorProfilesManifestTests(unittest.TestCase):
                 set(manifest["profiles"].keys()),
             )
 
-    def test_build_manifest_rejects_missing_required_file(self) -> None:
+    def test_build_manifest_accepts_colors_only_profile(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             root = Path(tmp_dir)
             scope_dir = root / "L" / "LE"
             scope_dir.mkdir(parents=True, exist_ok=True)
             (scope_dir / "colors.json").write_text(json.dumps(valid_colors()), encoding="utf-8")
-            with self.assertRaisesRegex(ValueError, "missing color profile files"):
+            manifest = MODULE.build_manifest(root, commit_sha="test-commit")
+            self.assertIn("L/LE", manifest["profiles"])
+            self.assertNotIn("style", manifest["profiles"]["L/LE"]["files"])
+
+    def test_build_manifest_rejects_missing_colors_file(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            root = Path(tmp_dir)
+            scope_dir = root / "L" / "LE"
+            scope_dir.mkdir(parents=True, exist_ok=True)
+            (scope_dir / "style.json").write_text(json.dumps(valid_style()), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "missing color profile files: colors"):
                 MODULE.build_manifest(root, commit_sha="test-commit")
 
     def test_validate_colors_rejects_invalid_hex(self) -> None:

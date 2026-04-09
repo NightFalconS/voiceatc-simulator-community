@@ -136,14 +136,14 @@ def validate_profile_directory(profile_dir: Path, profile_files: dict[str, Path]
     scope_path = safe_repo_path(profile_dir, root)
     _validate_scope_depth(scope_path, profile_dir)
 
-    missing_kinds = [kind for kind in FILE_KIND_ORDER if kind not in profile_files]
-    if missing_kinds:
-        raise ValueError(f"{scope_path}: missing color profile files: {', '.join(missing_kinds)}")
+    if "colors" not in profile_files:
+        raise ValueError(f"{scope_path}: missing color profile files: colors")
 
-    files = {
+    files: dict[str, object] = {
         "colors": validate_colors_file(profile_files["colors"], root),
-        "style": validate_style_file(profile_files["style"], root),
     }
+    if "style" in profile_files:
+        files["style"] = validate_style_file(profile_files["style"], root)
     return {
         "scope_path": scope_path,
         "files": files,
