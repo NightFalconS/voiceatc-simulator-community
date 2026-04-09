@@ -1,7 +1,7 @@
 {
-  "symbol_size": 0.6,
+  "symbol_size": 0.75,
   "traildot_size": 0.15,
-  "symbol_line_width": 2.0,
+  "symbol_line_width": 1.0,
   "forecast_symbol": "square_crossed",
   "incoming_symbol": "square_crossed",
   "assumed_symbol": "diamond_crossed",
@@ -10,77 +10,20 @@
   "released_symbol": "square_crossed",
   "traildot_symbol": "diamond_filled",
   "defined_symbols": {
-    "diamond": {
-      "type": "wireframe",
-      "draw": "M 0 -7 L 7 0 L 0 7 L -7 0 L 0 -7",
-      "connection_points": [
-        [0, -7],
-        [7, 0],
-        [0, 7],
-        [-7, 0]
-      ]
-    },
     "diamond_crossed": {
       "type": "wireframe",
       "draw": "M 0 -7 L 7 0 L 0 7 L -7 0 L 0 -7 M 0 -7 L 0 7 M -7 0 L 7 0",
-      "connection_points": [
-        [0, -7],
-        [7, 0],
-        [0, 7],
-        [-7, 0]
-      ]
-    },
-    "square": {
-      "type": "wireframe",
-      "draw": "M -7 -7 L 7 -7 L 7 7 L -7 7 L -7 -7",
-      "connection_points": [
-        [-7, -7],
-        [0, -7],
-        [7, -7],
-        [-7, 0],
-        [7, 0],
-        [-7, 7],
-        [0, 7],
-        [7, 7]
-      ]
+      "connection_points": [[0, 0]]
     },
     "square_crossed": {
       "type": "wireframe",
-      "draw": "M -7 -7 L 7 -7 L 7 7 L -7 7 L -7 -7 M -7 -7 L 7 7 M 7 -7 L -7 7",
-      "connection_points": [
-        [-7, -7],
-        [0, -7],
-        [7, -7],
-        [-7, 0],
-        [7, 0],
-        [-7, 7],
-        [0, 7],
-        [7, 7]
-      ]
+      "draw": "M -7 0 L 7 0 M 0 -7 L 0 7 M 7 7 L 7 -7 L -7 -7 L -7 7 L 7 7",
+      "connection_points": [[0, 0]]
     },
     "diamond_filled": {
       "type": "filled",
       "draw": "M 0 -7 L 7 0 L 0 7 L -7 0",
-      "connection_points": [
-        [0, -7],
-        [7, 0],
-        [0, 7],
-        [-7, 0]
-      ]
-    },
-    "square_filled": {
-      "type": "filled",
-      "draw": "M -7 -7 L 7 -7 L 7 7 L -7 7",
-      "connection_points": [
-        [-7, -7],
-        [0, -7],
-        [7, -7],
-        [-7, 0],
-        [7, 0],
-        [-7, 7],
-        [0, 7],
-        [7, 7]
-      ]
+      "connection_points": [[0, 0]]
     }
   }
 }
