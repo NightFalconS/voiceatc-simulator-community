@@ -12,7 +12,7 @@
   "defined_symbols": {
     "rps": {
       "type": "filled",
-      "draw": "M 0 -1 L 0 2 M -1 0 L 2 0",
+      "draw": "M -2 -2 L -2 2 L 2 2 L 2 -2 L -2 -2",
       "connection_points": [[0, 0]]
     }
   }
