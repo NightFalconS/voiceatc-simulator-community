@@ -4,17 +4,17 @@
     "color_profiles_zip": {
       "asset_name": "color-profiles-2603.zip",
       "content_type": "application/zip",
-      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-15-b/color-profiles-2603.zip",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-15-c/color-profiles-2603.zip",
       "preserves_repo_paths": true,
       "profile_count": 6,
-      "sha256": "820fbbc166b6f2f1a55cbc2cc579041af6a8568a76c55dbbbc16995904a188fe",
+      "sha256": "59725db26ecb905ce6b2e3d879cf7ef0fc5cbc651de1e8ee23f700f9258fa1f3",
       "size_bytes": 4172
     },
     "misc_drawings_zip": {
       "airport_count": 11,
       "asset_name": "misc-drawings-2603.zip",
       "content_type": "application/zip",
-      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-15-b/misc-drawings-2603.zip",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-15-c/misc-drawings-2603.zip",
       "preserves_repo_paths": true,
       "sha256": "c4e463c4fbbbd96446465d15d513762f3e3a6794310e5a52e13c95512ac3fd52",
       "size_bytes": 34800
@@ -23,7 +23,7 @@
       "airport_count": 11,
       "asset_name": "mva-2603.zip",
       "content_type": "application/zip",
-      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-15-b/mva-2603.zip",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-15-c/mva-2603.zip",
       "preserves_repo_paths": true,
       "sha256": "4f55baafad6b542558b7f16b9d454bdd4626ac0f66ffc761d5834124ff6ff72d",
       "size_bytes": 32079
@@ -32,7 +32,7 @@
       "airac": "2603",
       "asset_name": "routes-2603.tsv",
       "content_type": "text/tab-separated-values; charset=utf-8",
-      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-15-b/routes-2603.tsv",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-15-c/routes-2603.tsv",
       "repo_path": "ROUTES/routes.tsv",
       "route_count": 99869,
       "sha256": "99feea6ed8afcaad1c5e09f18b4565c7ddd948152e3890f6d8f70f914d2089f1",
@@ -42,7 +42,7 @@
       "airport_count": 30,
       "asset_name": "runway-configs-2603.zip",
       "content_type": "application/zip",
-      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-15-b/runway-configs-2603.zip",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-15-c/runway-configs-2603.zip",
       "preserves_repo_paths": true,
       "sha256": "7dc4401f0f15810158fedb848ea241d1ee6b8178d36d8c7d5ee43cc6870f5e50",
       "size_bytes": 9519
@@ -51,16 +51,16 @@
       "asset_name": "sector-data-2603.zip",
       "bundle_count": 13,
       "content_type": "application/zip",
-      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-15-b/sector-data-2603.zip",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-15-c/sector-data-2603.zip",
       "preserves_repo_paths": true,
       "sha256": "45c83074ba9e2111b0aaa60ced44fb4af1742400c4868626b8c16efb95c04e1e",
       "size_bytes": 29143
     }
   },
-  "commit_sha": "69445ba510ba656ac3856aa37de5643fc14c8904",
-  "published_at": "2026-04-15T18:38:55Z",
-  "release_tag": "daily-2026-04-15-b",
-  "release_title": "Daily Community Release - Wednesday 2026-04-15 b",
+  "commit_sha": "dd590b627e502852af2ed1dad4797da1b8a27ba9",
+  "published_at": "2026-04-15T18:45:03Z",
+  "release_tag": "daily-2026-04-15-c",
+  "release_title": "Daily Community Release - Wednesday 2026-04-15 c",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 4
 }
