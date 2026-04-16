@@ -2,11 +2,11 @@
   "sector_configs": [
     {
       "sector_config_id": "1",
-      "runway_configs": ["01 Dual", "19 Dual"],
+      "runway_configs": ["07", "25"],
       "sectors": [
         {
-          "sector_ids": ["TMA E"],
-          "frequency": "120.455"
+          "sector_ids": ["DFAN"],
+          "frequency": "120.805"
         }
       ]
     }
