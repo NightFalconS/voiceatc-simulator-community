@@ -1,13 +1,32 @@
 {
   "asset_name": "sector-data-2603.zip",
-  "bundle_count": 13,
+  "bundle_count": 14,
   "bundles": {
+    "E/ED/EDXX/EDGG/EDDF_TMA": {
+      "files": {
+        "configs": {
+          "repo_path": "E/ED/EDXX/EDGG/EDDF_TMA/sector_configs.json",
+          "sha256": "58e9891c7f2945a8b2fb84047cd82f5f1268b699e24f97a05f5ff040a71df169",
+          "size_bytes": 225
+        },
+        "definitions": {
+          "repo_path": "E/ED/EDXX/EDGG/EDDF_TMA/sector_definitions.json",
+          "sha256": "b87efa316a26454d0bdb4e2542d3c1737a48efb2ce96729ea0dd897b8e17b510",
+          "size_bytes": 1596
+        },
+        "influence": {
+          "repo_path": "E/ED/EDXX/EDGG/EDDF_TMA/sector_influence.json",
+          "sha256": "20f56343f4729eb1159006604a5a7ba2f2822623d29718664473ffaad00162a9",
+          "size_bytes": 99
+        }
+      }
+    },
     "E/EN/ENOR/ENOS/OSLO_TMA": {
       "files": {
         "configs": {
           "repo_path": "E/EN/ENOR/ENOS/OSLO_TMA/sector_configs.json",
-          "sha256": "9de62cd37de142479d716c86794ce4c723cb9f15118ab2ebb9e2ef237579ca24",
-          "size_bytes": 234
+          "sha256": "96e7699a981fa36735aeb7323f5b5b91202568043de4221d433081b550bfc996",
+          "size_bytes": 236
         },
         "definitions": {
           "repo_path": "E/EN/ENOR/ENOS/OSLO_TMA/sector_definitions.json",
@@ -250,12 +269,12 @@
       }
     }
   },
-  "commit_sha": "984b9a23593fbad1ec0dbf5bd163f2cea85cc1d3",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-16/sector-data-2603.zip",
-  "published_at": "2026-04-16T18:09:19Z",
-  "release_tag": "daily-2026-04-16",
+  "commit_sha": "fd7045604e77717aa341a6d612593dc27aaf07c6",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-16-b/sector-data-2603.zip",
+  "published_at": "2026-04-16T18:43:08Z",
+  "release_tag": "daily-2026-04-16-b",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "45c83074ba9e2111b0aaa60ced44fb4af1742400c4868626b8c16efb95c04e1e",
-  "size_bytes": 29143
+  "sha256": "9986a2ddc783ffc47b5c5bc878022dd705eb7aa1247f01534e24ea2060aace9c",
+  "size_bytes": 30255
 }

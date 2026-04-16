@@ -1,6 +1,11 @@
 {
-  "airport_count": 11,
+  "airport_count": 12,
   "airports": {
+    "EDDF": {
+      "repo_path": "E/ED/EDXX/EDGG/EDDF_TMA/misc_drawings.json",
+      "sha256": "93c55f09958211e0a6e289da71fb60a1e7214b715f47082498cd017c9fcda509",
+      "size_bytes": 7247
+    },
     "ENGM": {
       "repo_path": "E/EN/ENOR/ENOS/OSLO_TMA/misc_drawings.json",
       "sha256": "585951f4315daabc2b3929df181283d73e76ba117d87c8243ac1a39eae504d5f",
@@ -58,12 +63,12 @@
     }
   },
   "asset_name": "misc-drawings-2603.zip",
-  "commit_sha": "984b9a23593fbad1ec0dbf5bd163f2cea85cc1d3",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-16/misc-drawings-2603.zip",
-  "published_at": "2026-04-16T18:09:19Z",
-  "release_tag": "daily-2026-04-16",
+  "commit_sha": "fd7045604e77717aa341a6d612593dc27aaf07c6",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-16-b/misc-drawings-2603.zip",
+  "published_at": "2026-04-16T18:43:08Z",
+  "release_tag": "daily-2026-04-16-b",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "c4e463c4fbbbd96446465d15d513762f3e3a6794310e5a52e13c95512ac3fd52",
-  "size_bytes": 34800
+  "sha256": "1ec1c7c618ca59415b874b9785fdd69707688905ec62a8a7a18de971e6793136",
+  "size_bytes": 36421
 }
