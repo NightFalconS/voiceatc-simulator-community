@@ -28,17 +28,17 @@
     },
     "ESOW": {
       "repo_path": "E/ES/ESOS/ESOS_Y/ESOS_APP/misc_drawings.json",
-      "sha256": "f6f810181548935b50ed3302ead62df6310da34156f8bd1379830927bbbc5702",
+      "sha256": "5afdc92c99164c51d3748565b2336486d2a4ba8cf7252073558e740bd631e968",
       "size_bytes": 80145
     },
     "ESSA": {
       "repo_path": "E/ES/ESOS/ESOS_Y/ESOS_APP/misc_drawings.json",
-      "sha256": "f6f810181548935b50ed3302ead62df6310da34156f8bd1379830927bbbc5702",
+      "sha256": "5afdc92c99164c51d3748565b2336486d2a4ba8cf7252073558e740bd631e968",
       "size_bytes": 80145
     },
     "ESSB": {
       "repo_path": "E/ES/ESOS/ESOS_Y/ESOS_APP/misc_drawings.json",
-      "sha256": "f6f810181548935b50ed3302ead62df6310da34156f8bd1379830927bbbc5702",
+      "sha256": "5afdc92c99164c51d3748565b2336486d2a4ba8cf7252073558e740bd631e968",
       "size_bytes": 80145
     },
     "LEMD": {
@@ -63,12 +63,12 @@
     }
   },
   "asset_name": "misc-drawings-2604.zip",
-  "commit_sha": "ee79ec9792fb5d7d486f74b14982e81e4abcbad5",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-17/misc-drawings-2604.zip",
-  "published_at": "2026-04-17T09:33:58Z",
-  "release_tag": "daily-2026-04-17",
+  "commit_sha": "160f4bf1fff5cbc6d358a1d5c5b71e8ee5f3a659",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-17-b/misc-drawings-2604.zip",
+  "published_at": "2026-04-17T13:42:27Z",
+  "release_tag": "daily-2026-04-17-b",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "1ec1c7c618ca59415b874b9785fdd69707688905ec62a8a7a18de971e6793136",
-  "size_bytes": 36421
+  "sha256": "25c1da6f39c3f7b59246f7c2e98d2b59275dd10687c238455adcb5d34766a496",
+  "size_bytes": 36418
 }
