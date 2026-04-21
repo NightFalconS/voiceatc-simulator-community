@@ -1,12 +1,12 @@
 {
-  "schema_version": 1,
-  "repo": "lainoa-software/voiceatc-simulator-community",
   "airports": {
     "RCTP": {
-      "repo_path": "R/RC/RCTP/constraints.json",
-      "sha256": "dacce764b0783e159b2eee6a9c0450a46d14531ebce45721c55608049adbd65e",
-      "size_bytes": 735
+      "repo_path": "R/RC/RCAA/TAIPEI_TMA/RCTP/constraints.json",
+      "sha256": "c7bd589d0c58f0bb9cffd99ab11d99339664b57cf20b1ea316a3728487fccad7",
+      "size_bytes": 1070
     }
   },
-  "published_at": "2026-04-21T00:00:00Z"
+  "published_at": "2026-04-21T08:36:22Z",
+  "repo": "lainoa-software/voiceatc-simulator-community",
+  "schema_version": 1
 }
