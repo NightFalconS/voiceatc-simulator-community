@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "repo": "lainoa-software/voiceatc-simulator-community",
+  "airports": {
+    "RCTP": {
+      "repo_path": "R/RC/RCTP/constraints.json",
+      "sha256": "dacce764b0783e159b2eee6a9c0450a46d14531ebce45721c55608049adbd65e",
+      "size_bytes": 735
+    }
+  },
+  "published_at": "2026-04-21T00:00:00Z"
+}
