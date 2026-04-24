@@ -3,7 +3,7 @@
   "runway_config": "SOUTH",
   "line_sections": [
     {
-      "color": "#323264",
+      "color": "323264",
       "dash_length": 1.0,
       "gap_length": 0.0,
       "points": [
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "color": "STAR",
+      "color": "323264",
       "dash_length": 1.0,
       "gap_length": 0.0,
       "points": [
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "color": "STAR",
+      "color": "323264",
       "dash_length": 1.0,
       "gap_length": 0.0,
       "points": [
