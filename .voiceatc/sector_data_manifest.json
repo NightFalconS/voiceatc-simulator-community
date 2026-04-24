@@ -125,8 +125,8 @@
         },
         "definitions": {
           "repo_path": "L/LE/LECB/LECB_E/PALMA_TMA/LEMH/sector_definitions.json",
-          "sha256": "38c3b471a5ba2c1da0c0ee2ae0bcf7c6fb3db5d0b3617f877e01f86625e61fec",
-          "size_bytes": 9060
+          "sha256": "a72a1579a3805bc304f2917a34c7bc24186fa1e12def8704aa91e01071453df7",
+          "size_bytes": 7996
         },
         "influence": {
           "repo_path": "L/LE/LECB/LECB_E/PALMA_TMA/LEMH/sector_influence.json",
@@ -288,12 +288,12 @@
       }
     }
   },
-  "commit_sha": "b33e28b4556eb86c8a4bf2c4385c280cee895b42",
+  "commit_sha": "e24fb8f0c53b96799553749b55a23e70ffb643ca",
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-24/sector-data-2604.zip",
-  "published_at": "2026-04-24T04:25:41Z",
+  "published_at": "2026-04-24T10:06:47Z",
   "release_tag": "daily-2026-04-24",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "801fb696aaccae85e75ec60ec1a0656042c55c8ae2503fe220c65df2e2e01f72",
-  "size_bytes": 31729
+  "sha256": "4bfb07078d25e175779df9844812e93173e98285d12da6aef77f616b0bf76180",
+  "size_bytes": 31678
 }
