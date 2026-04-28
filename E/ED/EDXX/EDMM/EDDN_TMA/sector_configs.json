@@ -5,7 +5,7 @@
       "runway_configs": ["10", "28"],
       "sectors": [
         {
-          "sector_ids": ["FRK"],
+          "sector_ids": ["FRK1", "FRK2"],
           "frequency": "129.525"
         }
       ]
