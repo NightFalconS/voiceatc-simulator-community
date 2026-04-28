@@ -1,7 +1,7 @@
 {
   "sector_definitions": [
     {
-      "sector_id": "FRK",
+      "sector_id": "FRK1",
       "lower_limit": 0,
       "higher_limit": 19500,
       "polygon": [
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "sector_id": "FRK",
+      "sector_id": "FRK2",
       "lower_limit": 0,
       "higher_limit": 13500,
       "polygon": [
