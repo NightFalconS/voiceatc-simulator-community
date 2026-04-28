@@ -4,7 +4,7 @@
     "color_profiles_zip": {
       "asset_name": "color-profiles-2604.zip",
       "content_type": "application/zip",
-      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-27-d/color-profiles-2604.zip",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-28/color-profiles-2604.zip",
       "preserves_repo_paths": true,
       "profile_count": 8,
       "sha256": "ee675b2a9593c33b6a20a18882dd67e6c7a08706dd432332511ace37e1874263",
@@ -14,7 +14,7 @@
       "airport_count": 15,
       "asset_name": "misc-drawings-2604.zip",
       "content_type": "application/zip",
-      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-27-d/misc-drawings-2604.zip",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-28/misc-drawings-2604.zip",
       "preserves_repo_paths": true,
       "sha256": "f90c32f75d407ac750c0b2d3cb8fee4037ecb87b3fd7defa38f7321240a0dd56",
       "size_bytes": 38285
@@ -23,7 +23,7 @@
       "airport_count": 13,
       "asset_name": "mva-2604.zip",
       "content_type": "application/zip",
-      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-27-d/mva-2604.zip",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-28/mva-2604.zip",
       "preserves_repo_paths": true,
       "sha256": "638f9123b6e87affb3c9d3cc92c87147fa5560e5fcfa6230a1f4fa21b17862cf",
       "size_bytes": 31047
@@ -32,7 +32,7 @@
       "airac": "2604",
       "asset_name": "routes-2604.tsv",
       "content_type": "text/tab-separated-values; charset=utf-8",
-      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-27-d/routes-2604.tsv",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-28/routes-2604.tsv",
       "repo_path": "ROUTES/routes.tsv",
       "route_count": 99869,
       "sha256": "18123fc572c86010d0b63f277e427fad8c73e7efb67bf77403c70e075a968dcb",
@@ -42,7 +42,7 @@
       "airport_count": 33,
       "asset_name": "runway-configs-2604.zip",
       "content_type": "application/zip",
-      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-27-d/runway-configs-2604.zip",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-28/runway-configs-2604.zip",
       "preserves_repo_paths": true,
       "sha256": "1caa1f54d96a0bb16457663646f93695c03072a44276b6ca59fac102d1b46298",
       "size_bytes": 10375
@@ -51,16 +51,16 @@
       "asset_name": "sector-data-2604.zip",
       "bundle_count": 16,
       "content_type": "application/zip",
-      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-27-d/sector-data-2604.zip",
+      "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-04-28/sector-data-2604.zip",
       "preserves_repo_paths": true,
-      "sha256": "669094caf71160c5c2253eba8ae45f0e7ced9f72bf74c63a876766627edfb969",
-      "size_bytes": 33141
+      "sha256": "11b90b0b23bfe6feb92858d4d9e8322bd293810298fa6cef4d953d03553431fd",
+      "size_bytes": 33295
     }
   },
-  "commit_sha": "a54cae28e7a8cad61d37791abb438853b0f2819d",
-  "published_at": "2026-04-27T16:42:00Z",
-  "release_tag": "daily-2026-04-27-d",
-  "release_title": "Daily Community Release - Monday 2026-04-27 d",
+  "commit_sha": "d5e07168ad20f9560ec64a66980dacb2ab4eacfc",
+  "published_at": "2026-04-28T14:30:44Z",
+  "release_tag": "daily-2026-04-28",
+  "release_title": "Daily Community Release - Tuesday 2026-04-28",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 4
 }
