@@ -1,5 +1,5 @@
 {
-  "airport_count": 121,
+  "airport_count": 123,
   "airports": {
     "EBBR": {
       "repo_path": "E/EB/EBBU/BRUSSELS_TMA/EBBR/runway_configs.json",
@@ -426,6 +426,11 @@
       "sha256": "2f585d4b4328da48cdd2dc7cd517d327009cec60bbac25445df5778fa9c2c7f0",
       "size_bytes": 256
     },
+    "LEDA": {
+      "repo_path": "L/LE/LECB/LECB_W/BARCELONA_TMA/LEDA/runway_configs.json",
+      "sha256": "2d971ca10d5b7e88211dc8c44767494d0bab870760c6f270683ea20582cb751f",
+      "size_bytes": 226
+    },
     "LEGE": {
       "repo_path": "L/LE/LECB/LECB_W/BARCELONA_TMA/LEGE/runway_configs.json",
       "sha256": "cc2f568910dc7f5754490867e0d0407324f642ecb2fd408177f610d670f64bbb",
@@ -435,6 +440,11 @@
       "repo_path": "L/LE/LECM/LECS/SEVILLA_TMA/LEGR/runway_configs.json",
       "sha256": "fd52fe61d55e27a75259834af04f0ea02190b40c5ca8e10d193a05c66d736667",
       "size_bytes": 254
+    },
+    "LEGT": {
+      "repo_path": "L/LE/LECM/LECM_R2/MADRID_TMA/LEGT/runway_configs.json",
+      "sha256": "6d56439171952354a05e265381e49346e78c0637cd3ece0c1f8f3db8ed5229b1",
+      "size_bytes": 226
     },
     "LEIB": {
       "repo_path": "L/LE/LECB/LECB_E/PALMA_TMA/LEIB/runway_configs.json",
@@ -608,12 +618,12 @@
     }
   },
   "asset_name": "runway-configs-2608.zip",
-  "commit_sha": "90cb1f0a4fc97a742cb3b4a43db1ed3f3035679e",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-07-b/runway-configs-2608.zip",
-  "published_at": "2026-08-07T09:40:31Z",
-  "release_tag": "daily-2026-08-07-b",
+  "commit_sha": "f72addd9e1bb4e9d9942bae14d293d36ffce42c0",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-07-d/runway-configs-2608.zip",
+  "published_at": "2026-08-07T10:05:32Z",
+  "release_tag": "daily-2026-08-07-d",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "020b810cb57703e01e3c71cafbc28c1c14e7f5f705186b9710cca62d11b3b970",
-  "size_bytes": 38180
+  "sha256": "cf5ac0ac729a8ad29459c71abf5a980c3156eb54d84ccb62f2e2003f5073698a",
+  "size_bytes": 38758
 }
