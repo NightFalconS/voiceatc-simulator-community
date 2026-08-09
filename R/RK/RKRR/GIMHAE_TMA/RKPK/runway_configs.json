@@ -1,0 +1,17 @@
+{
+  "airport": "RKPK",
+  "runway_configs": [
+    {
+      "id": "DEFAULT",
+      "name": "Default",
+      "arr": "36L",
+      "dep": "36R"
+    },
+    {
+      "id": "SOUTH_FLOW",
+      "name": "South Flow",
+      "arr": "18R",
+      "dep": "18L"
+    }
+  ]
+}
