@@ -1,0 +1,23 @@
+{
+  "airport": "RKSS",
+  "runway_configs": [
+    {
+      "id": "NORTH_FLOW1",
+      "name": "North Flow1",
+      "arr": "32L",
+      "dep": "32R"
+    },
+    {
+      "id": "NORTH_FLOW2",
+      "name": "North Flow2",
+      "arr": "32R",
+      "dep": "32L"
+    },
+    {
+      "id": "SOUTH_FLOW",
+      "name": "South Flow",
+      "arr": "14R",
+      "dep": "14L"
+    }
+  ]
+}

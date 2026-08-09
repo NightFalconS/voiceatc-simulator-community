@@ -1,5 +1,5 @@
 {
-  "airport_count": 125,
+  "airport_count": 128,
   "airports": {
     "EBBR": {
       "repo_path": "E/EB/EBBU/BRUSSELS_TMA/EBBR/runway_configs.json",
@@ -616,10 +616,25 @@
       "sha256": "ffcbebb8c6f59830c635324c467a91bc2caa78e64a4889643bec41af3bc11405",
       "size_bytes": 396
     },
+    "RKPC": {
+      "repo_path": "R/RK/RKRR/JEJU_TMA/RKPC/runway_configs.json",
+      "sha256": "33068c0e3754f97c8b654ed645392dc3de33cf0525673755b3984b88822aebbc",
+      "size_bytes": 258
+    },
+    "RKPK": {
+      "repo_path": "R/RK/RKRR/GIMHAE_TMA/RKPK/runway_configs.json",
+      "sha256": "7beaccab5bb249cd829572e2591a99b11f78059ba069d3f475e1dfe49e7ffa1a",
+      "size_bytes": 256
+    },
     "RKSI": {
       "repo_path": "R/RK/RKRR/INCHEON_TMA/RKSI/runway_configs.json",
       "sha256": "7f354f6d067cf1c84651cf38f4775e0251375109e89f3c4dba6c9a9b37228a22",
       "size_bytes": 278
+    },
+    "RKSS": {
+      "repo_path": "R/RK/RKRR/INCHEON_TMA/RKSS/runway_configs.json",
+      "sha256": "4d8cf4e614c182d4ce1f4abd19401c2f75c8823fcab255ccec6f0be00130bfaf",
+      "size_bytes": 372
     },
     "TJSJ": {
       "repo_path": "T/TJ/TJZS/SAN_JUAN_TMA/TJSJ/runway_configs.json",
@@ -628,12 +643,12 @@
     }
   },
   "asset_name": "runway-configs-2608.zip",
-  "commit_sha": "d92db34bd10457094ff0ccd2b18a30d28b0b701e",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-09-h/runway-configs-2608.zip",
-  "published_at": "2026-08-09T17:45:43Z",
-  "release_tag": "daily-2026-08-09-h",
+  "commit_sha": "8700e99acea6391968580205979b0a8b7f3bd40c",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-09-k/runway-configs-2608.zip",
+  "published_at": "2026-08-09T18:06:41Z",
+  "release_tag": "daily-2026-08-09-k",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "b99e9a9765e4d6336102c02dac8266a097e08eb108d578d71fcfafa71baae222",
-  "size_bytes": 39364
+  "sha256": "81a352a5cc4b0431fcdbf1367492add4cce0e701112609353aa5932327320501",
+  "size_bytes": 40283
 }
