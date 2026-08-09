@@ -244,8 +244,7 @@
     "R/RC/RCAA/TAIPEI_TMA": ["RCMQ", "RCSS", "RCTP"],
     "R/RK/RKRR/INCHEON_TMA": ["RKSI"],
     "T/TJ/TJZS/SAN_JUAN_TMA": ["TJSJ"],
-    "V/VH/VHHK/HONGKONG_TMA": []
-  ,
+    "V/VH/VHHK/HONGKONG_TMA": [],
     "R/RK/RKRR/JEJU_TMA": ["RKPC"]
-}
+  }
 }
