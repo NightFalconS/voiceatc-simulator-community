@@ -3,6 +3,15 @@
     "airac": "2608",
     "deep_validation": true,
     "pairs": {
+      "BIKF_ESSA": {
+        "1e58e5cd": {
+          "checked_airac": "2608",
+          "reasons": [
+            "token_unknown: BIKF->ESSA: token 64N010W is neither a known point nor airway"
+          ],
+          "status": "deprecated"
+        }
+      },
       "CYVR_RKSI": {
         "3be16e86": {
           "checked_airac": "2608",
@@ -122,6 +131,100 @@
       },
       "EPWR_RKSI": {
         "6c014be6": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ESGG_ESSA": {
+        "d28052d8": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ESSA_BIKF": {
+        "ea112d55": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ESSA_ESGG": {
+        "4dc4af1b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ESSA_HAAB": {
+        "8384f0e8": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ESSA_OMDB": {
+        "51ea0d3a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ESSA_OTHH": {
+        "25fe14be": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ESSA_RJTT": {
+        "fbd9ee94": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: ESSA->RJTT: no T316 path from BABAP to NEPVA"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "ESSA_RKSI": {
+        "9755b904": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: ESSA->RKSI: no T316 path from BABAP to NEPVA"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "ESSA_VTBS": {
+        "ffc8ba5d": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ESSA_ZBAA": {
+        "4e648da4": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: ESSA->ZBAA: no T316 path from BABAP to NEPVA",
+            "airway_disconnect: ESSA->ZBAA: no N133 path from PENOR to MOTAD"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "ESSA_ZSPD": {
+        "666e8b0d": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: ESSA->ZSPD: no T316 path from BABAP to NEPVA",
+            "airway_disconnect: ESSA->ZSPD: no N133 path from PENOR to MOTAD"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "HAAB_ESSA": {
+        "c03a9038": {
           "checked_airac": "2608",
           "reasons": [],
           "status": "ok"
@@ -381,12 +484,28 @@
           "status": "deprecated"
         }
       },
+      "OMDB_ESSA": {
+        "3a2bfca2": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "OMDB_RKSI": {
         "83e9ca43": {
           "checked_airac": "2608",
           "reasons": [
             "airway_disconnect: OMDB->RKSI: no B505 path from LALDO to APELO",
             "airway_disconnect: OMDB->RKSI: no B505 path from APELO to PI"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "OTHH_ESSA": {
+        "0ee4ef2c": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: OTHH->ESSA: no N133 path from LENOV to GOSAK"
           ],
           "status": "deprecated"
         }
@@ -716,6 +835,15 @@
           "checked_airac": "2608",
           "reasons": [],
           "status": "ok"
+        }
+      },
+      "RJTT_ESSA": {
+        "ec2ee2a8": {
+          "checked_airac": "2608",
+          "reasons": [
+            "token_unknown: RJTT->ESSA: token 44N160E is neither a known point nor airway"
+          ],
+          "status": "deprecated"
         }
       },
       "RJTT_RKSI": {
@@ -1135,6 +1263,15 @@
           "checked_airac": "2608",
           "reasons": [],
           "status": "ok"
+        }
+      },
+      "RKSI_ESSA": {
+        "63bc1b50": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->ESSA: no N133 path from DOMAG to MOTAD"
+          ],
+          "status": "deprecated"
         }
       },
       "RKSI_HAAB": {
@@ -2692,6 +2829,13 @@
           "status": "ok"
         }
       },
+      "VTBS_ESSA": {
+        "30d663df": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "VTBS_RKSI": {
         "a7997edd": {
           "checked_airac": "2608",
@@ -2860,6 +3004,13 @@
             "route_token_pattern: YSSY->RKSI: connector DCT is not followed by a known point"
           ],
           "status": "deprecated"
+        }
+      },
+      "ZBAA_ESSA": {
+        "f2b8da9b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
         }
       },
       "ZBAA_RKPC": {
@@ -3100,6 +3251,13 @@
           "status": "ok"
         }
       },
+      "ZSPD_ESSA": {
+        "c13a6931": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "ZSPD_RKPC": {
         "75459f1e": {
           "checked_airac": "2608",
@@ -3254,7 +3412,7 @@
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-08-09T10:50:42Z",
+  "generated_at": "2026-08-09T16:06:47Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
