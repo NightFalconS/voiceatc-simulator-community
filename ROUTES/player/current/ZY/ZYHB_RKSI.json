@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "ZYHB",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "d7e30df0",
+      "route": "ZYHB DCT DUKIR W655 NIMEM W205 NULRA A588 BIDIB A345 DDG H114 DONVO G597 AGAVO Y644 REBIT DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

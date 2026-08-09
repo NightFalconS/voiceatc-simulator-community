@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "ROIG",
+  "routes": [
+    {
+      "id": "194f98ed",
+      "route": "RKSI DCT BOPTA Z51 BEDES Y711 ELPOS Y711 KIDOS Z81 CJU Y572 RUGMA Y579 RUSAR Y27 YURIX Y62 GANAS Y576 DIANA DCT ROIG",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

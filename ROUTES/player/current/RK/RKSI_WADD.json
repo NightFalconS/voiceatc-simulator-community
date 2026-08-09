@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "WADD",
+  "routes": [
+    {
+      "id": "ceeb44ad",
+      "route": "RKSI DCT BOPTA Z51 BEDES Y711 MUGUS Y742 SALMI Q11 WP900 Q11 METRO Q11 POTIB M646 MIA M646 MIKE M646 VJN M522 ELANG M522 DOBMA DCT WADD",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

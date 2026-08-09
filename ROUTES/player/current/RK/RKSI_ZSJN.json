@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "ZSJN",
+  "routes": [
+    {
+      "id": "fb824017",
+      "route": "RKSI DCT NOPIK Y697 AGAVO A591 IKEKA W4 BASOV DCT ZSJN",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

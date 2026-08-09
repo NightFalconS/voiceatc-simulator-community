@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "VYYY",
+  "routes": [
+    {
+      "id": "c4e9a803",
+      "route": "RKSI DCT BOPTA Z51 BEDES Y711 PONIK A593 LAMEN A593 PUD A599 NXD W131 AKDIM A470 DUBGO W134 ELNEX A599 GYA R474 TEBAK R474 NAKHA R474 MC B465 LPB R215 NAN W25 PAE R202 BIGVO A581 BGO DCT VYYY",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

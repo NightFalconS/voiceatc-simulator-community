@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "PGSN",
+  "routes": [
+    {
+      "id": "4b2b8422",
+      "route": "RKSI DCT OSPOT Y782 TGU Y781 OMOTU Y781 BESNA Y209 IKE A582 HKC Y14 TGE G339 CANAI G339 PAKDO G339 NATSS G339 RIDLL DCT SN DCT PGSN",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

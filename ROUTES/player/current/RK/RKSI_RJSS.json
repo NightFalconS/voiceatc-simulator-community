@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "RJSS",
+  "routes": [
+    {
+      "id": "bf3de0a5",
+      "route": "RKSI DCT EGOBA Y697 LANAT Y51 SAMON Y517 ZUWAI Y515 LANCE DCT RJSS",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

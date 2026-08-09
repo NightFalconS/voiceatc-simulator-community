@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "RJOA",
+  "routes": [
+    {
+      "id": "0705572a",
+      "route": "RKSI DCT EGOBA Y697 LANAT Y597 KABKI DCT STAGE DCT OPERA DCT AKANA DCT MIYOS DCT HGE DCT RJOA",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

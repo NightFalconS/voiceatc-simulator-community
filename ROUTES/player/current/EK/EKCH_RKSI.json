@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "EKCH",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "127b0d2f",
+      "route": "EKCH DCT SIMEG Z493 BILRA DCT BESTO DCT SUDOL DCT KELEL DCT KEKED DCT BADOR DCT REVDA DCT UDROS UM859 KARDE UN644 ROLIN DCT TAGAR DCT BT DCT BARAD M747 SUBUT T916 LEYLA N161 SARIN A368 FKG W188 LIKMI W270 DKO W69 UXODI W69 HUR B339 LADIX W34 VAPGU W100 ORAVA W201 UNSEK A326 DONVO G597 AGAVO Y644 REBIT DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

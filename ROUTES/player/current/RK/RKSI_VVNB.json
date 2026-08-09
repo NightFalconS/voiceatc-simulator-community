@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "VVNB",
+  "routes": [
+    {
+      "id": "fd7f6a30",
+      "route": "RKSI DCT BOPTA Z51 BEDES Y711 PONIK A593 LAMEN A593 PUD A599 NXD W131 AKDIM A470 DUBGO W134 ELNEX A599 GYA R474 VAPNA R474 WUY R474 LON R474 TEBAK R474 NAKHA DCT VVNB",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

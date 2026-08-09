@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "HAAB",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "12b54c6d",
+      "route": "HAAB DCT MASEV DCT BAKLA DCT KOKAT M59 PABMA M59 DELUL DCT NIDMA M59 NWK T631 SOREB A307 KUMOD N869 RO R497 LONKA A822 SERNA Y520 POLHO W33 HOT W33 UKDUM W201 UNSEK A326 DONVO G597 AGAVO Y644 REBIT DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

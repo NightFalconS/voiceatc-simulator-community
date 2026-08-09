@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "KMSP",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "5a1d613f",
+      "route": "KMSP DCT BRNRD DCT KOBID DCT POLLE DCT PETMA DCT 58N110W 60N120W 62N130W DCT GAHAM DCT GKN DCT DTOUR DCT NICHO R220 NUZAN R220 NUBDA R220 NODAN R217 GTC Y142 SAMON Y14 SUGNO Y16 SAPRA G585 GUKDO DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

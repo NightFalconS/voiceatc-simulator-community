@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "VVPQ",
+  "routes": [
+    {
+      "id": "16c1f6e3",
+      "route": "RKSI DCT BOPTA Z51 BEDES Y711 KIDOS Y711 MUGUS Y742 SALMI Q11 METRO Q11 TACLE Q12 KABAM N892 MIGUG N892 MIMUX N500 TSH W17 TUNPO DCT VVPQ",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

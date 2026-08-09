@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "ZSHC",
+  "routes": [
+    {
+      "id": "273dba99",
+      "route": "RKSI DCT BOPTA Z51 BEDES Y711 PONIK A593 LAMEN A593 DUMET W114 LASAN G327 NINAS B221 SUPAR W505 DSH DCT ZSHC",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "RJOT",
+  "routes": [
+    {
+      "id": "d4fdff99",
+      "route": "RKSI DCT EGOBA Y697 LANAT Y597 MIHOU Y39 OYE DCT KTE DCT RJOT",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

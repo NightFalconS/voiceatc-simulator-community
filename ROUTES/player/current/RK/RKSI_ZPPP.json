@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "ZPPP",
+  "routes": [
+    {
+      "id": "dd15ebeb",
+      "route": "RKSI DCT NOPIK Y697 AGAVO A591 IKEKA W4 SEBLI W4 ARENO W4 IPNIT W37 DUBAS R343 WHA A581 QNX W136 XISLI DCT ZPPP",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

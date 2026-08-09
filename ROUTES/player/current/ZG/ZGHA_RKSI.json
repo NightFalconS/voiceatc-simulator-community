@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "ZGHA",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "19ddf82f",
+      "route": "ZGHA DCT GUDRO W56 VADMO W4 WXI W59 SUNOK W103 YQG W569 NOBUP W4 IKEKA A591 AGAVO Y644 GONAV Y644 REBIT DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

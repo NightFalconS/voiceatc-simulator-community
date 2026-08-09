@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "ZGGG",
+  "routes": [
+    {
+      "id": "87a5cc0f",
+      "route": "RKSI DCT BOPTA Z51 BEDES Y711 PONIK A593 LAMEN A593 PUD A599 NXD W131 AKDIM A470 DUBGO W134 ELNEX A599 PLT W19 OLPAB DCT ZGGG",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

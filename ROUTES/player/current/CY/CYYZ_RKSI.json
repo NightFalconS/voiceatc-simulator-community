@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "CYYZ",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "5c674c02",
+      "route": "CYYZ DCT TONNY DCT 52N090W 57N100W 60N110W 61N120W 62N130W DCT GAHAM DCT GKN DCT DTOUR DCT 61N160W DCT NANZA R220 NANDY R220 NODAN R217 ASTER Y514 SDE Y512 GTC Y142 SAMON Y14 SUGNO Y16 SAPRA Y685 GUKDO DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

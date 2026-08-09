@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKPC",
+  "dest": "RJAA",
+  "routes": [
+    {
+      "id": "174f3865",
+      "route": "RKPC DCT TAMNA Y677 SAMDO A595 DGC V28 MARCO V56 MYE Y412 ROSIE Y43 ISEBI Y81 RUTAS DCT RJAA",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "ZYTL",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "dc71817f",
+      "route": "ZYTL DCT POVAG A326 DONVO G597 AGAVO Y644 REBIT DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

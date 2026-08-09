@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSS",
+  "dest": "ZSSS",
+  "routes": [
+    {
+      "id": "53a20ab3",
+      "route": "RKSS DCT BULTI Y711 PONIK A593 PUD DCT ZSSS",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

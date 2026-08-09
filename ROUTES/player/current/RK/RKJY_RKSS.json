@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKJY",
+  "dest": "RKSS",
+  "routes": [
+    {
+      "id": "b0808c11",
+      "route": "RKJY DCT TEDAN Y253 SAMUL Y722 OLMEN DCT RKSS",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

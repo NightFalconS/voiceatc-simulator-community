@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKPC",
+  "dest": "RJBB",
+  "routes": [
+    {
+      "id": "b7647d5d",
+      "route": "RKPC DCT TAMNA Y677 SAMDO A595 DGC V28 MARCO V56 MYE Y401 SALTY Y35 IGLEV DCT RJBB",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

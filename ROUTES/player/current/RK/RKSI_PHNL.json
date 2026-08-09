@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "PHNL",
+  "routes": [
+    {
+      "id": "bb9e946c",
+      "route": "RKSI DCT EGOBA Y697 KAE Y437 TENAS L512 GTC Y512 ADNAP OTR7 EMRON DCT 36N160E 35N170E 33N180E 29N170W DCT DANNO DCT PHNL",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

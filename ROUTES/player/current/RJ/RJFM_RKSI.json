@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RJFM",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "3e65dcb0",
+      "route": "RJFM DCT LALAG Y252 HINAG G339 DGC G339 INVOK Z91 PSN Y782 BITUX Z53 BASEM Y685 GUKDO DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

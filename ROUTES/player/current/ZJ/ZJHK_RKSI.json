@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "ZJHK",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "12a1cc80",
+      "route": "ZJHK DCT MLT SAMAS A202 SIKOU J104 CHALI DCT BEKOL A461 SHL W26 UPRIK W41 OMDUP G471 PLT A599 JTN G327 LAMEN A593 SADLI Y590 ELGEP Y722 OLMEN DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

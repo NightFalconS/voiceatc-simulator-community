@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "VHHH",
+  "routes": [
+    {
+      "id": "eb446b1b",
+      "route": "RKSI DCT BOPTA Z51 BEDES Y711 ELPOS DCT PORIX DCT MANGI DALSU Y711 PONIK SADLI A593 DUMET W114 LASAN DCT PD305 DCT ELAGO GOVNI B221 AND VEXEX G204 SHZ REMIM B221 LJG FQG A470 MAGOG ENPET V512 ABBEY DCT VHHH",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

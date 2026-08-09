@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "OMAA",
+  "routes": [
+    {
+      "id": "57ccbbec",
+      "route": "RKSI DCT NOPIK Y697 AGAVO A591 IKEKA W4 IPNIT W37 DUBAS R343 WHA A581 QNX W136 XISLI A581 SGM A599 LINSO A599 CHILA A599 CTG B465 CEA G450 JJS A791 BPL L639 RASKI N881 KIPOL L444 TOLDA M628 TULBU P558 SODEX N563 NOBTO DCT OMAA",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

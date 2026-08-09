@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKPC",
+  "dest": "RKPK",
+  "routes": [
+    {
+      "id": "f5431ccc",
+      "route": "RKPC DCT AKPON Y571 ANROD DCT RKPK",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RJFF",
+  "dest": "RKPC",
+  "routes": [
+    {
+      "id": "6edfc330",
+      "route": "RJFF DCT DGC A595 TAMNA DCT RKPC",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

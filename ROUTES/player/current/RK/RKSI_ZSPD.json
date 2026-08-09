@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "ZSPD",
+  "routes": [
+    {
+      "id": "52c88483",
+      "route": "RKSI DCT NOPIK Y697 AGAVO W209 OMLIB A326 IKADI W113 SOSMA W108 MATNU W115 BEKOK DCT ZSPD",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

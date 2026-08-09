@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "ZBAD",
+  "dest": "RKPC",
+  "routes": [
+    {
+      "id": "a13ce87d",
+      "route": "ZBAD DCT MUGLO W34 VAPGU W100 ORAVA W201 UNSEK A326 DONVO G597 AGAVO Y644 RILRO Z57 DALPO Y655 TOLIS Y677 LIMDI DCT RKPC",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

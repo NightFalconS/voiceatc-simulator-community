@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "ZSNJ",
+  "routes": [
+    {
+      "id": "71c9b8b0",
+      "route": "RKSI DCT NOPIK Y697 AGAVO W209 OMLIB A326 IKADI W113 YCH W185 OF DCT ZSNJ",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

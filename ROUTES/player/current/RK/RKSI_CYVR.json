@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "CYVR",
+  "routes": [
+    {
+      "id": "31b353cb",
+      "route": "RKSI DCT EGOBA G597 LANAT Y51 SAMON Y142 GTC Y512 BEKEN Y512 ADNAP OTR7 EMRON DCT 39N160E 41N170E 44N180E 47N170W 49N160W 49N150W 49N140W DCT PRETY DCT GOVAD DCT CYVR",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

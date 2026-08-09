@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "RJAH",
+  "routes": [
+    {
+      "id": "b82eb17b",
+      "route": "RKSI DCT EGOBA Y697 LANAT G597 YME Y295 KCC Y88 DAIGO Y887 TATSU DCT NAKAH DCT RJAH",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

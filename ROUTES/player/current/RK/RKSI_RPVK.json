@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "RPVK",
+  "routes": [
+    {
+      "id": "772c07b8",
+      "route": "RKSI DCT BOPTA Z51 BEDES Y711 MUGUS Y742 SALMI Q11 POTIB M646 LAO B462 MIA A461 VERDE W24 TAPER DCT RPVK",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

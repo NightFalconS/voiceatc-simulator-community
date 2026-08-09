@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "ZSYT",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "5af87938",
+      "route": "ZSYT DCT FZ W4 IKEKA A591 AGAVO Y644 REBIT DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

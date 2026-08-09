@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "KEWR",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "e972a243",
+      "route": "KEWR DCT GAYEL Q812 SYR DCT 45N077W 49N080W 55N090W 59N100W 62N110W 64N120W 65N130W DCT CHAPO DCT FAI J120 MCG B932 KIVAK DCT 58N180E DCT NATES R220 NIKLL R220 NIPPI R220 NANNO R220 NODAN R217 ASTER Y514 SDE Y512 GTC L512 TENAS Y437 KAE Y697 KARBU DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "WIII",
+  "routes": [
+    {
+      "id": "366c1413",
+      "route": "RKSI DCT BOPTA Z51 BEDES Y711 MUGUS Y742 SALMI Q11 DRAKE A1 APU B1 ANLOT W4 TNN A577 KABAM N892 DALRA A583 AKOTA M754 VINIK M754 SUMLA M754 BRU R223 BUTAX P648 AMBOY DCT WIII",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

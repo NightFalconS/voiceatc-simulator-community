@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "ZBAA",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "b007bb80",
+      "route": "ZBAA DCT MUGLO W34 VAPGU W100 ORAVA W201 UNSEK A326 ALARA A326 DONVO G597 AGAVO Y644 REBIT DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

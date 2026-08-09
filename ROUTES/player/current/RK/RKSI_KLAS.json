@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "KLAS",
+  "routes": [
+    {
+      "id": "8d2f5667",
+      "route": "RKSI DCT EGOBA Y697 KAE Y437 TENAS L512 KAMSA L512 GTC Y512 ADNAP OTR7 EMRON DCT 39N160E 41N170E 45N180E 48N170W 49N160W 49N150W 47N140W 42N130W DCT FATMO DCT PAINT DCT PIRAT DCT BURGL DCT KLAS",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

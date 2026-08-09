@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKPS",
+  "dest": "RKPC",
+  "routes": [
+    {
+      "id": "3d0380b8",
+      "route": "RKPS DCT POVOR Y572 UPGOS DCT RKPC",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

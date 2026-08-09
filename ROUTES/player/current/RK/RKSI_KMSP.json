@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "KMSP",
+  "routes": [
+    {
+      "id": "d16429f9",
+      "route": "RKSI DCT EGOBA Y697 LANAT Y51 SAMON Y142 GTC Y512 ADNAP R591 ADGOR DCT AGEDI DCT AKISU DCT ASPIN DCT AAMYY DCT AMOND DCT 56N170W DCT CUDDA DCT CJAYY DCT 57N140W 56N130W 55N122W 55N120W 52N110W 50N105W DCT TTAIL DCT KMSP",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

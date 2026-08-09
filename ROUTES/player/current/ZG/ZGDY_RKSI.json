@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "ZGDY",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "365729e8",
+      "route": "ZGDY DCT DYG W141 LIN A581 WHA R343 URGEB R343 MADUK W73 NOBEM W95 OF X194 IDKOT W178 RUXEL H28 URBAD W172 FD H101 FZ W4 IKEKA A591 AGAVO Y644 REBIT DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

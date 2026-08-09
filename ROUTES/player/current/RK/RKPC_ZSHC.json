@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKPC",
+  "dest": "ZSHC",
+  "routes": [
+    {
+      "id": "4fcfae0f",
+      "route": "RKPC DCT PANSI Y711 PONIK A593 LAMEN A593 DUMET W114 LASAN G327 NINAS B221 SUPAR W505 DSH DCT ZSHC",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

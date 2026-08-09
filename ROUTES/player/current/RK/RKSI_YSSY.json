@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "YSSY",
+  "routes": [
+    {
+      "id": "d9cd6fe7",
+      "route": "RKSI DCT EGOBA Y697 LANAT Y597 MIHOU Y39 OYE DCT KTE DCT TSC DCT ISIMA DCT KISYU DCT KEC Y47 BUBDO A597 MONPI A597 UNZ B586 PIKOK B586 PY B462 MK H652 BOREE DCT YSSY",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

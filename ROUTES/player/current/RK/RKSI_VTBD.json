@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "VTBD",
+  "routes": [
+    {
+      "id": "777af2dd",
+      "route": "RKSI DCT BOPTA Z51 BEDES Y711 MUGUS Y742 SALMI Q11 TINHO B591 HCN G86 KAPLI DCT MADRU DCT SULUX DCT IGLEG DCT IKELA A1 BUNTA A1 UBL Y20 UBLOD DCT ENDUU DCT VTBD",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "KCVG",
+  "routes": [
+    {
+      "id": "14442d2e",
+      "route": "RKSI DCT EGOBA Y697 LANAT Y51 INUBO Y830 IPROS Y832 POVAL OTR15 MORAY DCT 38N150E 43N160E 47N170E 50N180E 51N170W 51N160W 50N150W 50N145W 50N140W 49N130W DCT TOU DCT 48N115W DCT KU15Q DCT MLS J204 DPR DCT KP84A DCT KP66G DCT KK54K DCT ENL DCT DAAVE DCT KCVG",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

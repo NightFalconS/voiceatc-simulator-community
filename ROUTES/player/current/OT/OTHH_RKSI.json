@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "OTHH",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "8c20ca46",
+      "route": "OTHH DCT KUPRO N300 NOLSU P307 TONVO A777 NADSO B505 APELO B505 PI B505 PG G325 PURPA W112 VIDUT W112 TUSLI W187 DNH W621 NIXUK W271 BOTKI W270 DKO W69 UBSEV W69 HUR B339 SOTMU B339 LADIX W34 VAPGU W100 ORAVA W201 UNSEK A326 DONVO G597 AGAVO Y644 REBIT DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

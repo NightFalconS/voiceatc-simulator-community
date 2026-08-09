@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKJJ",
+  "dest": "RKSS",
+  "routes": [
+    {
+      "id": "35f5548d",
+      "route": "RKJJ DCT MAKSA Y722 OLMEN DCT RKSS",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

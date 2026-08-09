@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "KLAS",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "a7f10f0a",
+      "route": "KLAS DCT KENNO DCT ENI DCT REDWD DCT UNVER DCT 42N130W 47N140W 51N150W 53N160W 54N170W 54N180E DCT OPAKE A342 NUZAN R220 NANNO R220 NODAN R217 ASTER Y514 SDE Y512 GTC L512 TENAS Y437 UGOVI Y437 KAE Y697 KARBU DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

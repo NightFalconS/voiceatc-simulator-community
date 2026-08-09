@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "KIAD",
+  "routes": [
+    {
+      "id": "6f5f18fa",
+      "route": "RKSI DCT EGOBA Y697 BIKSI Y697 LANAT Y51 SAMON Y142 NESKO Y142 GTC Y512 ADNAP OTR7 EMRON DCT 39N160E 41N170E 45N180E 48N170W 50N160W 50N150W 49N140W DCT PRETY DCT TOU DCT KS18E DCT 47N110W 45N100W 42N090W DCT MGW DCT KIAD",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

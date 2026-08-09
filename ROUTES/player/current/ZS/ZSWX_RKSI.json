@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "ZSWX",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "35bae02b",
+      "route": "ZSWX DCT SASAN W161 VMB A593 NIXEM W185 YCH W113 IKADI A326 OMLIB W209 AGAVO Y644 REBIT DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

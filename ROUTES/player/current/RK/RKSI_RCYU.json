@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "RKSI",
+  "dest": "RCYU",
+  "routes": [
+    {
+      "id": "4dc713e8",
+      "route": "RKSI DCT BOPTA Z51 BEDES Y711 MUGUS Y742 SALMI B576 DUBAN B576 BERBA L2 POLKA DCT RCYU",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

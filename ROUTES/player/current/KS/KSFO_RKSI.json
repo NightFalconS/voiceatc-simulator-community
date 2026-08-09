@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "KSFO",
+  "dest": "RKSI",
+  "routes": [
+    {
+      "id": "2b9e514f",
+      "route": "KSFO DCT NODLE R220 NIKLL R220 NIPPI R220 NANNO R220 NODAN R217 ASTER Y514 SDE Y512 GTC Y142 SAMON Y14 SUGNO Y16 SAPRA Y685 GUKDO DCT RKSI",
+      "author": "Josu Blanco Ortiz",
+      "created_at": "2026-08-09T08:55:01Z",
+      "creation_airac": "2608"
+    }
+  ]
+}
