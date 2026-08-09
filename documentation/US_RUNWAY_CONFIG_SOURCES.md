@@ -2,6 +2,8 @@
 
 FAA CY2024 commercial-service enplanement ranking (top 50). Configs authored from Chart Supplement / AirNav preferential remarks, airport noise-abatement LOAs, and documented dominant ATC flows.
 
+**Pad single-digit runway identifiers.** US sources write `8L` and `4R`; the game matches configuration runways against Navigraph identifiers, which are padded (`08L`, `04R`), and pads neither side before comparing — so an unpadded identifier matches nothing and the whole configuration silently resolves to no runways. PHNL shipped four of them this way. `tools/runway_configs_manifest.py` now rejects them.
+
 | ICAO | Primary source | Key quote |
 |------|----------------|-----------|
 | KATL | https://airnav.com/airport/KATL | PREFERENTIAL RWY USE: deps 08R/26L, 09L/27R; arr 08L/26R, 09R/27L |
