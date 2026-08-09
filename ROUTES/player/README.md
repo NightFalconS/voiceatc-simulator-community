@@ -37,7 +37,7 @@ One file per origin–destination pair, at most 8 route variants per file:
   string. It identifies the variant everywhere: website badges, the nightly
   status artifact, and the game's route cache.
 - Routes must carry `DCT` bookends (`ORIGIN DCT … DCT DEST`), uppercase
-  `A–Z0-9` tokens, no runway designators, at most 400 characters / 60 tokens.
+  `A–Z0-9` tokens, no runway designators, at most 1000 characters / 120 tokens.
 - `LainoaSoftware` is a reserved author name — it marks generated routes and is
   rejected here.
 
