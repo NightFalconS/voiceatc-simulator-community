@@ -1531,12 +1531,10 @@
         }
       },
       "RKSI_RJCC": {
-        "fcf941a3": {
+        "b27064f1": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->RJCC: no Y1 path from GOLDO to MRE"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_RJFF": {
@@ -1998,13 +1996,10 @@
         }
       },
       "RKSI_WADD": {
-        "ceeb44ad": {
+        "58c06c57": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->WADD: no M646 path from MIA to MIKE",
-            "airway_disconnect: RKSI->WADD: no M646 path from MIKE to VJN"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_WAMM": {
@@ -2069,12 +2064,11 @@
         }
       },
       "RKSI_YSSY": {
-        "d9cd6fe7": {
+        "3de4e86b": {
           "checked_airac": "2608",
           "reasons": [
             "airway_disconnect: RKSI->YSSY: no B586 path from UNZ to PIKOK",
-            "airway_disconnect: RKSI->YSSY: no B586 path from PIKOK to PY",
-            "airway_disconnect: RKSI->YSSY: no H652 path from MK to BOREE"
+            "airway_disconnect: RKSI->YSSY: no B586 path from PIKOK to PY"
           ],
           "status": "deprecated"
         }
@@ -2113,12 +2107,10 @@
         }
       },
       "RKSI_ZGDY": {
-        "c044d11d": {
+        "4e71ef5f": {
           "checked_airac": "2608",
-          "reasons": [
-            "token_unknown: RKSI->ZGDY: token X193 is neither a known point nor airway"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_ZGGG": {
@@ -2929,12 +2921,10 @@
         }
       },
       "ZGDY_RKSI": {
-        "365729e8": {
+        "5833ce29": {
           "checked_airac": "2608",
-          "reasons": [
-            "token_unknown: ZGDY->RKSI: token X194 is neither a known point nor airway"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "ZGGG_RKPC": {
@@ -3014,12 +3004,10 @@
         }
       },
       "ZLXY_RKSI": {
-        "1accabde": {
+        "c2a17f92": {
           "checked_airac": "2608",
-          "reasons": [
-            "token_unknown: ZLXY->RKSI: token Y644 is neither a known point nor airway"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "ZMCK_RKSI": {
@@ -3211,21 +3199,17 @@
         }
       },
       "ZYCC_RKSI": {
-        "5b0445ea": {
+        "ed5ecb1a": {
           "checked_airac": "2608",
-          "reasons": [
-            "token_unknown: ZYCC->RKSI: token H114 is neither a known point nor airway"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "ZYHB_RKSI": {
-        "d7e30df0": {
+        "6586cd9a": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: ZYHB->RKSI: no H114 path from DDG to DONVO"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "ZYJM_RKSI": {
@@ -3243,12 +3227,10 @@
         }
       },
       "ZYTX_RKPC": {
-        "c7483bfa": {
+        "873e8172": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: ZYTX->RKPC: no H114 path from DDG to DONVO"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "ZYTX_RKSI": {
@@ -3272,7 +3254,7 @@
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-08-09T10:13:37Z",
+  "generated_at": "2026-08-09T10:50:42Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
