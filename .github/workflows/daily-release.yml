@@ -599,25 +599,53 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- .voiceatc/routes_manifest.json .voiceatc/mva_manifest.json .voiceatc/runway_configs_manifest.json .voiceatc/sector_data_manifest.json .voiceatc/misc_drawings_manifest.json .voiceatc/color_profiles_manifest.json .voiceatc/constraints_manifest.json .voiceatc/procedure_options_manifest.json .voiceatc/release_manifest.json .voiceatc/player_routes_manifest.json .voiceatc/player_routes_status.json && [[ -z "$(git status --porcelain -- .voiceatc/player_routes_manifest.json .voiceatc/player_routes_status.json)" ]]; then
+          MANIFESTS=(
+            .voiceatc/routes_manifest.json
+            .voiceatc/mva_manifest.json
+            .voiceatc/runway_configs_manifest.json
+            .voiceatc/sector_data_manifest.json
+            .voiceatc/misc_drawings_manifest.json
+            .voiceatc/color_profiles_manifest.json
+            .voiceatc/constraints_manifest.json
+            .voiceatc/procedure_options_manifest.json
+            .voiceatc/release_manifest.json
+            .voiceatc/player_routes_manifest.json
+            .voiceatc/player_routes_status.json
+          )
+          if git diff --quiet -- "${MANIFESTS[@]}" && [[ -z "$(git status --porcelain -- .voiceatc/player_routes_manifest.json .voiceatc/player_routes_status.json)" ]]; then
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .voiceatc/routes_manifest.json .voiceatc/mva_manifest.json .voiceatc/runway_configs_manifest.json .voiceatc/sector_data_manifest.json .voiceatc/misc_drawings_manifest.json .voiceatc/color_profiles_manifest.json .voiceatc/constraints_manifest.json .voiceatc/procedure_options_manifest.json .voiceatc/release_manifest.json .voiceatc/player_routes_manifest.json .voiceatc/player_routes_status.json
+          git add -- "${MANIFESTS[@]}"
           git commit -m "chore: refresh daily community release manifests"
           # Contributions land on main directly, so a push here can race one that
-          # arrived while the release was building. Rebase and retry rather than
-          # failing the release and leaving the manifests behind the content.
-          # --autostash matters: earlier steps can leave the tree dirty.
+          # arrived while the release was building. Do not rebase to recover:
+          # every file above is a generated artifact rewritten whole, so the
+          # rebase conflicts on exactly the files it is trying to carry across,
+          # and a conflicted rebase leaves a detached HEAD with unmerged files
+          # that makes every later attempt fail too — one lost race then costs
+          # the whole release. Rebuild the commit on the new tip instead: take
+          # origin/main wholesale, lay this run's manifests back on top. They are
+          # derived from content, not edited, so this run's copies simply win and
+          # no merge is needed. The next run regenerates them regardless.
+          MANIFEST_COMMIT="$(git rev-parse HEAD)"
           for attempt in 1 2 3 4 5; do
             if git push; then
               exit 0
             fi
-            echo "push rejected (attempt ${attempt}); rebasing onto origin/main"
-            # `|| true` because this block runs under `set -e`: a failed rebase
-            # must not abort the loop before the final push reports the real error.
-            git pull --rebase --autostash origin main || true
+            echo "push rejected (attempt ${attempt}); rebuilding the manifest commit onto origin/main"
+            # Clear any half-finished rebase left by an older revision of this
+            # loop, so a resumed run is never stuck off-branch.
+            git rebase --abort 2>/dev/null || true
+            git fetch origin main
+            git reset --hard FETCH_HEAD
+            git checkout "${MANIFEST_COMMIT}" -- "${MANIFESTS[@]}"
+            if git diff --cached --quiet -- "${MANIFESTS[@]}"; then
+              echo "origin/main already carries these manifests; nothing left to push"
+              exit 0
+            fi
+            git commit -m "chore: refresh daily community release manifests"
             sleep $(( (RANDOM % 5) + attempt ))
           done
           git push
