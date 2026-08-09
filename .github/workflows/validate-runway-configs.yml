@@ -10,7 +10,7 @@ on:
       - "tools/runway_configs_manifest.py"
       - "tests/test_runway_configs_manifest.py"
       - ".github/workflows/validate-runway-configs.yml"
-
+  workflow_dispatch:
 jobs:
   validate:
     runs-on: ubuntu-latest
