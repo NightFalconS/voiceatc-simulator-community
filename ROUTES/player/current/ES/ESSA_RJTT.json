@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "ESSA",
+  "dest": "RJTT",
+  "routes": [
+    {
+      "id": "fbd9ee94",
+      "route": "ESSA DCT BABAP T316 NEPVA PENOR N133 LENOV KEKED NARKA BULEN RIXEN UA17 YAVRU UA4 SIV UW706 TBN UN61 NOLGA BARAD SUBUT T916 PIGAL M610 RULAD A343 POSOT B215 FKG W188 LIKMI W270 DKO W69 HUR B339 LADIX W34 VAPGU W100 ORAVA W201 UNSEK A326 DONVO G597 AGAVO Y644 EGOBA Y697 LANAT Y71 XAC DCT RJTT",
+      "author": "William Kassmo",
+      "created_at": "2026-08-09T16:06:02Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

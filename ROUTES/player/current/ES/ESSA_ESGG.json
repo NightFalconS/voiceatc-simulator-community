@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "ESSA",
+  "dest": "ESGG",
+  "routes": [
+    {
+      "id": "4dc4af1b",
+      "route": "ESSA DCT ARS N623 BEDLA N866 MOXAM DCT ESGG",
+      "author": "William Kassmo",
+      "created_at": "2026-08-09T16:06:02Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

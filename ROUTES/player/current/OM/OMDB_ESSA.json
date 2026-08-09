@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "OMDB",
+  "dest": "ESSA",
+  "routes": [
+    {
+      "id": "3a2bfca2",
+      "route": "OMDB DCT RIDAP M557 TUMAK L602 GADSI M860 SEPTU VUSEB M860 NINVA UM860 ODALI UL852 NEGEM MAXOV VEVIN SOBSA ANAVU KENIN TOXAR BOKSU ORZIK MIRMA NEKET TOMBU N616 XILAN DCT ESSA",
+      "author": "William Kassmo",
+      "created_at": "2026-08-09T16:06:02Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

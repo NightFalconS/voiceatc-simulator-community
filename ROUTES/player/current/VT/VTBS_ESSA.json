@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "VTBS",
+  "dest": "ESSA",
+  "routes": [
+    {
+      "id": "30d663df",
+      "route": "VTBS DCT TARED P646 JJS B209 KKJ L333 MERUN L750 RANAH B449 MAMED B450 BIBIM A909 RODAR N644 ADEKI BADIR LAGAS FOQUS SARPI UM10 GOKPA UL746 ODERO L621 REVDA URELA ETEPA KARIL KENIN LENOV N133 KARTI PENOR TESPO ARMOD Z228 NILUG DCT ESSA",
+      "author": "William Kassmo",
+      "created_at": "2026-08-09T16:06:02Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

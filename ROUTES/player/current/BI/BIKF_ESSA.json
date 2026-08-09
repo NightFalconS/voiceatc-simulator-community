@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "BIKF",
+  "dest": "ESSA",
+  "routes": [
+    {
+      "id": "1e58e5cd",
+      "route": "BIKF DCT LUTER 64N010W ISVIG ELTOK DCT ESSA",
+      "author": "William Kassmo",
+      "created_at": "2026-08-09T16:06:02Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

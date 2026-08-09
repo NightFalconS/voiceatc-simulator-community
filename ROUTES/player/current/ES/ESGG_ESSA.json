@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "ESGG",
+  "dest": "ESSA",
+  "routes": [
+    {
+      "id": "d28052d8",
+      "route": "ESGG DCT LABAN N873 ARS T317 ELTOK DCT ESSA",
+      "author": "William Kassmo",
+      "created_at": "2026-08-09T16:06:02Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

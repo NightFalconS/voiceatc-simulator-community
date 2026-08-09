@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin": "OTHH",
+  "dest": "ESSA",
+  "routes": [
+    {
+      "id": "0ee4ef2c",
+      "route": "OTHH DCT LUBET L934 DAVUS L602 GADSI M860 SEPTU VUSEB M860 NINVA UM860 ODALI UL852 NEGEM MATEL T746 ARGES PEXAL PELUR EDETA REBLA ROMKA RAZEC LENOV N133 GOSAK ADOXO PENOR TESPO ARMOD Z228 NILUG DCT ESSA",
+      "author": "William Kassmo",
+      "created_at": "2026-08-09T16:06:02Z",
+      "creation_airac": "2608"
+    }
+  ]
+}
