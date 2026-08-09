@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "VTBS",
   "dest": "RKSI",
   "routes": [
     {
       "id": "a7997edd",
       "route": "VTBS DCT LIPLI Y16 BUTRA A1 IKELA DCT MORTU DCT NOBAD DCT ENVAR M750 ANLOT B1 APU DCT DRAKE Q11 WP900 L4 LIPLO Y741 ATOTI Y722 KAMIT Y722 OLMEN DCT RKSI",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

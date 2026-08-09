@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "RJNK",
   "routes": [
     {
       "id": "a3bcd92e",
       "route": "RKSI DCT EGOBA Y697 LANAT Y51 DISSH Y333 MADUL Y45 SONBU DCT RJNK",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

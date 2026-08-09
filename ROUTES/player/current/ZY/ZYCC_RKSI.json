@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "ZYCC",
   "dest": "RKSI",
   "routes": [
     {
       "id": "ed5ecb1a",
       "route": "ZYCC DCT LEMOT A588 CHI W107 SANKO A326 DONVO G597 AGAVO Y644 REBIT DCT RKSI",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T10:50:01Z",
       "creation_airac": "2608"
     }

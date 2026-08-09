@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "UAII",
   "routes": [
     {
       "id": "3dbc6a6d",
       "route": "RKSI DCT NOPIK Y697 AGAVO A591 IKEKA W4 HCH W200 DOVIV W55 PAMRU W34 LADIX B339 POLHO Y345 UDA Y787 NOPUS T140 AKTAS M993 GOMIR N143 KOLAM DCT UAII",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

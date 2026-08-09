@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "KORD",
   "routes": [
     {
       "id": "62c40214",
       "route": "RKSI DCT EGOBA Y697 LANAT Y51 SAMON Y142 GTC Y512 ADNAP OTR7 EMRON DCT 40N160E 43N170E 46N180E 48N170W 49N160W 49N150W 49N140W DCT PRETY DCT DOLFF DCT TOU DCT TEMPL DCT 47N110W 46N100W DCT ZZIPR DCT KORD",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

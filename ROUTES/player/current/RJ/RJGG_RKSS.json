@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RJGG",
   "dest": "RKSS",
   "routes": [
     {
       "id": "f4797b5b",
       "route": "RJGG DCT HIKNE DCT PUDAN DCT YME Y18 MIHOU Y38 SAPRA Y685 GUKDO DCT RKSS",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

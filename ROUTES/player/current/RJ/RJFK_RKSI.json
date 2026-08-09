@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RJFK",
   "dest": "RKSI",
   "routes": [
     {
       "id": "18c41d52",
       "route": "RJFK DCT SASIK Y208 INVOK Z91 PSN Y782 BITUX Z53 BASEM Y685 GUKDO DCT RKSI",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

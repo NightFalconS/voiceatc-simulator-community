@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "ZUUU",
   "routes": [
     {
       "id": "a7b3a709",
       "route": "RKSI DCT NOPIK Y697 AGAVO A591 IKEKA W4 HCH W200 DOVIV W55 PAMRU W34 VYK B215 KAPDO W276 ANRUG W279 ONEBA G212 SUBUL W230 AKDIK DCT ZUUU",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

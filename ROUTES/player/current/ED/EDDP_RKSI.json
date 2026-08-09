@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "EDDP",
   "dest": "RKSI",
   "routes": [
     {
       "id": "7a6621d5",
       "route": "EDDP DCT PENEM Z131 PENEK Z131 EVOKI L733 LOLPA L733 BODLA L733 BEZMI DCT KUNER DCT BALIT DCT GARSO DCT NEVTO DCT TUKMA P989 MEGAS P989 OBIBA P997 AKUGI T635 SADER T580 ADMUR G117 XV R229 BA R104 GINOM Y684 UDA B339 POLHO W33 UKDUM W201 UNSEK A326 DONVO G597 AGAVO Y644 REBIT DCT RKSI",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

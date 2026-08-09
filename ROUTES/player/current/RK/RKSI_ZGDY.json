@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "ZGDY",
   "routes": [
     {
       "id": "4e71ef5f",
       "route": "RKSI DCT NOPIK Y697 AGAVO A591 IKEKA V112 LATUX DCT GFK W529 RUXEL W178 OF W95 NOBEM W73 MADUK W51 LEGIV W164 ADGOL W50 XSH W80 IDGAG A581 GUGAM A581 LIN W141 DYG DCT ZGDY",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T10:50:01Z",
       "creation_airac": "2608"
     }

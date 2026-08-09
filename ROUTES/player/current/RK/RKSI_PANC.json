@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "PANC",
   "routes": [
     {
       "id": "1311c9cc",
       "route": "RKSI DCT EGOBA Y697 LANAT Y51 SAMON Y142 GTC Y512 SDE Y512 OATIS Y889 PUTER A590 PASRO A590 PLADO A590 HAMND DCT PANC",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "RJFS",
   "routes": [
     {
       "id": "3addfe35",
       "route": "RKSI DCT OSPOT Y782 TGU Y781 BESNA Y209 IKE Y251 OLE DCT SGE DCT RJFS",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

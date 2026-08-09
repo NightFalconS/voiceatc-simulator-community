@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "ESSA",
   "dest": "HAAB",
   "routes": [
     {
       "id": "8384f0e8",
       "route": "ESSA DCT BABAP N5 ODIBI PENOR MOLIL KELEL NARKA NERDI ADORU YAYLA EDISI UT39 TOMBI DASNI M855 RASDA A16 CVO A727 LXR P751 TOMRU KSL ALRAP T124 AMUDO DCT HAAB",
-      "author": "William Kassmo",
       "created_at": "2026-08-09T16:06:02Z",
       "creation_airac": "2608"
     }

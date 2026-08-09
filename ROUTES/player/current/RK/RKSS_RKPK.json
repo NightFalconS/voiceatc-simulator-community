@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSS",
   "dest": "RKPK",
   "routes": [
     {
       "id": "bcc02002",
       "route": "RKSS DCT OSPOT Y782 TGU Z83 MASTA DCT RKPK",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

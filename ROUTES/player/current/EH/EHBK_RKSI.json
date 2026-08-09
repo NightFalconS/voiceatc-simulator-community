@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "EHBK",
   "dest": "RKSI",
   "routes": [
     {
       "id": "d60bceb1",
       "route": "EHBK DCT NETEX DCT ONUNE DCT GMH DCT ESAMA DCT OSBIT DCT TENLO DCT LAMSI DCT TAGAS DCT ABETI DCT LUGEB DCT UDROS UM859 KARDE UN644 ROLIN DCT FOQUS DCT LAGAS DCT DISKA M737 VERCA M747 SUBUT T916 LEYLA N161 SARIN A368 FKG W188 LIKMI W270 DKO W69 HUR B339 LADIX W34 VAPGU W100 ORAVA W201 UNSEK A326 DONVO G597 AGAVO Y644 REBIT DCT RKSI",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

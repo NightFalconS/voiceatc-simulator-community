@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSS",
   "dest": "RKJY",
   "routes": [
     {
       "id": "d8b2d2b1",
       "route": "RKSS DCT BULTI Y711 DALSU Y253 TEDAN DCT RKJY",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

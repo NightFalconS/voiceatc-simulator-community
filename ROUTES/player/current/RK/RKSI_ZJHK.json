@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "ZJHK",
   "routes": [
     {
       "id": "a06c8105",
       "route": "RKSI DCT BOPTA Z51 BEDES Y711 PONIK A593 LAMEN A593 PUD A599 NXD W131 AKDIM A470 DUBGO W134 ELNEX A599 PLT W19 NOMAR W18 TAMOT DCT ALLEY V10 SIKOU A202 ISBIG W605 DOMGO DCT ZJHK",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

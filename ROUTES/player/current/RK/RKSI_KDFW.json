@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "KDFW",
   "routes": [
     {
       "id": "b8510828",
       "route": "RKSI DCT EGOBA Y697 LANAT Y51 SAMON Y142 GTC Y512 ADNAP OTR7 EMRON DCT 39N160E 41N170E 44N180E 48N170W 50N160W 50N150W 49N140W DCT ROUKE DCT DOLFF DCT TOU DCT PDT DCT 41N110W DCT KD45W DCT MDANO DCT KDFW",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

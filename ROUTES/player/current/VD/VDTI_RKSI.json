@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "VDTI",
   "dest": "RKSI",
   "routes": [
     {
       "id": "d99b6136",
       "route": "VDTI DCT TIA N639 VIBUN R575 NILIS R575 PAPRA A1 IKELA DCT MORTU DCT NOBAD DCT ENVAR M750 ANLOT B1 APU DCT DRAKE Q11 WP900 L4 LIPLO Y741 ATOTI Y722 OLMEN DCT RKSI",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

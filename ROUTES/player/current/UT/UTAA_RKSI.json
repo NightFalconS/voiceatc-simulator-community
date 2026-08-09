@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "UTAA",
   "dest": "RKSI",
   "routes": [
     {
       "id": "e5ea62dd",
       "route": "UTAA DCT BUROT B114 ABDAN R433 AGNAN Z621 GENDI N147 GENGA N143 RUDIZ N161 SARIN A368 FKG W188 LIKMI W270 DKO W69 HUR B339 LADIX W34 VAPGU W100 ORAVA W201 UNSEK A326 DONVO G597 AGAVO Y644 REBIT DCT RKSI",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

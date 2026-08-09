@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "ZYYJ",
   "routes": [
     {
       "id": "344e45a4",
       "route": "RKSI DCT NOPIK Y697 AGAVO G597 DONVO A326 SANKO W107 CHI A588 LJB G341 KANVU W39 YNJ DCT ZYYJ",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

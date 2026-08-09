@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "RJOH",
   "routes": [
     {
       "id": "3325cc25",
       "route": "RKSI DCT EGOBA Y697 LANAT Y597 PEPOS DCT RJOH",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

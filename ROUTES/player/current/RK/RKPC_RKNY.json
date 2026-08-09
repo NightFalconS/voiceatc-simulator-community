@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKPC",
   "dest": "RKNY",
   "routes": [
     {
       "id": "a1bfee92",
       "route": "RKPC DCT KAMIT Y722 SOT Z50 EGOBA Y697 BIKSI DCT RKNY",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

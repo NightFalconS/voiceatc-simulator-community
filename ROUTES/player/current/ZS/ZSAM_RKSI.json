@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "ZSAM",
   "dest": "RKSI",
   "routes": [
     {
       "id": "59b312f1",
       "route": "ZSAM DCT DOVPU W643 FOC W644 ANLUD B221 DST W117 BEGMO W13 LASAN G327 LAMEN A593 SADLI Y590 ELGEP Y722 OLMEN DCT RKSI",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

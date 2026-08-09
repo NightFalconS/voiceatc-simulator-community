@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "KATL",
   "dest": "RKSI",
   "routes": [
     {
       "id": "c97b3b63",
       "route": "KATL DCT JAACE DCT BNA DCT STL DCT IRK J45 DSM J45 ABR DCT MOT Q971 DURUR DCT IMOTA DCT WAINN Q971 NUBEG DCT YXJ DCT MITOM DCT DEEJA DCT YAK DCT ARISE DCT 60N150W DCT FAGIN DCT PORGE DCT 59N170W DCT HOWRR DCT NULUK R220 NANDY R220 NUBDA R220 NODAN R217 GTC Y142 SAMON Y14 SUGNO Y16 SAPRA G585 GUKDO DCT RKSI",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

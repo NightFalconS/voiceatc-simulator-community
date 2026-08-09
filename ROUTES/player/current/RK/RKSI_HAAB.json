@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "HAAB",
   "routes": [
     {
       "id": "1f8a702d",
       "route": "RKSI DCT NOPIK Y697 AGAVO A591 IKEKA W4 HCH W200 DOVIV W55 PAMRU W34 LADIX B339 ASILA A575 UPREK W28 ISBOS W28 LAGEB W66 NUKTI B215 IBANO W187 DNH W187 TUSLI W112 DJQ W112 PURPA G325 PS P500 LAKRA G325 PG T385 TAPDO G652 GEPOT B400 IMKAD B400 RIGAM B404 PURKA B404 DEMGO UB404 HARGA UW885 DWA DCT MAGON DCT HAAB",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

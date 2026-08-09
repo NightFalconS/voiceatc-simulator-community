@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKPS",
   "dest": "RKSS",
   "routes": [
     {
       "id": "e17f08bb",
       "route": "RKPS DCT SARAM Z83 TGU Y782 SOT DCT SEL DCT RKSS",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

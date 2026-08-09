@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKPC",
   "dest": "ZSNJ",
   "routes": [
     {
       "id": "535acb87",
       "route": "RKPC DCT PANSI Y711 PONIK A593 PK R343 ESBAG DCT ZSNJ",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

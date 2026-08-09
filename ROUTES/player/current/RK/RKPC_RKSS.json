@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKPC",
   "dest": "RKSS",
   "routes": [
     {
       "id": "48569834",
       "route": "RKPC DCT KAMIT Y722 OLMEN DCT RKSS",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

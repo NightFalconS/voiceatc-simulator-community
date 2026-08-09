@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "ZUCK",
   "routes": [
     {
       "id": "80db0b6b",
       "route": "RKSI DCT NOPIK Y697 NOGON Y697 AGAVO A591 IKEKA W4 LIMGI W152 URGOD W278 AVDIG W666 VINEX DCT ZUCK",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

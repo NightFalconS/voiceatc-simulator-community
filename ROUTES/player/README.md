@@ -18,14 +18,13 @@ One file per origin–destination pair, at most 8 route variants per file:
 
 ```json
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "LEMH",
   "dest": "LEPA",
   "routes": [
     {
       "id": "a1b2c3d4",
       "route": "LEMH DCT MAMEB DCT LEPA",
-      "author": "Display Name",
       "created_at": "2026-08-08T12:00:00Z",
       "creation_airac": "2607"
     }
@@ -38,8 +37,9 @@ One file per origin–destination pair, at most 8 route variants per file:
   status artifact, and the game's route cache.
 - Routes must carry `DCT` bookends (`ORIGIN DCT … DCT DEST`), uppercase
   `A–Z0-9` tokens, no runway designators, at most 1000 characters / 120 tokens.
-- `LainoaSoftware` is a reserved author name — it marks generated routes and is
-  rejected here.
+- Player route data is anonymous. Source JSON must not contain a contributor
+  name or public pseudonym. The release overlay keeps its legacy fifth `AUTHOR`
+  TSV cell empty so existing game builds remain compatible.
 
 ## Single writer
 

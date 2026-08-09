@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "NZAA",
   "routes": [
     {
       "id": "0dda42ea",
       "route": "RKSI DCT OSPOT Y782 TGU Y781 BESNA Y209 IKE A582 HKC Y14 TGE G339 BIXAK DCT 25N137E 20N141E DCT RICHH DCT 15N144E 10N146E 05N148E 00N149E 05S150E 10S152E DCT HOBBO DCT 15S154E 20S157E 25S161E 27S163E DCT LEBOL DCT SALAG DCT NZAA",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

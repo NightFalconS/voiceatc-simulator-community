@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "LHBP",
   "routes": [
     {
       "id": "21c844b6",
       "route": "RKSI DCT NOPIK Y697 AGAVO A591 IKEKA W4 HCH W200 DOVIV W55 PAMRU W34 LADIX B339 ASILA A575 UPREK W28 LAGEB W66 NUKTI B215 IRPEP B215 FKG A368 OSUPO A368 SARIN N161 LEYLA N644 ADEKI DCT BADIR DCT LAGAS DCT FOQUS DCT SARPI UM10 GOKPA UL746 ODERO DCT LUGEB DCT BUDOP DCT KEZAL DCT LHBP",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

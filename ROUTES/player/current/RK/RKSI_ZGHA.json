@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "ZGHA",
   "routes": [
     {
       "id": "05564e30",
       "route": "RKSI DCT NOPIK Y697 AGAVO A591 IKEKA W4 IPNIT W37 GUSIV DCT ZGHA",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

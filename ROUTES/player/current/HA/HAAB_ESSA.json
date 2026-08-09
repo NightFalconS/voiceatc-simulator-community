@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "HAAB",
   "dest": "ESSA",
   "routes": [
     {
       "id": "c03a9038",
       "route": "HAAB DCT LABLA UT124 ALRAP KSL PSD P751 KUNKI L321 REXUM M872 SOBAX NOGLI L551 ANTAR RIGRO UN133 KOROS ATFIR OVDOT SODGO NEKUL BUXLE MEGIK LENOV MOTAD PENOR ARMOD Z228 NILUG DCT ESSA",
-      "author": "William Kassmo",
       "created_at": "2026-08-09T16:06:02Z",
       "creation_airac": "2608"
     }

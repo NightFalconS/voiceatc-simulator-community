@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "VLVT",
   "dest": "RKSI",
   "routes": [
     {
       "id": "916dc953",
       "route": "VLVT DCT NOHET R474 TEBAK R474 GYA B330 POU G471 SHL W26 UPRIK W41 OMDUP G471 EGEDA G471 PLT A599 JTN G327 LAMEN A593 SADLI Y590 ELGEP Y722 OLMEN DCT RKSI",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

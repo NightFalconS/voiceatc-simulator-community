@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "VIDP",
   "routes": [
     {
       "id": "260ed36e",
       "route": "RKSI DCT BOPTA Z51 BEDES Y711 PONIK A593 LAMEN A593 PK R343 MADUK W51 LEGIV W164 ADGOL W50 XSH W80 IDGAG A581 QNX W136 XISLI A581 SGM A599 LINSO A599 LSO A201 TEBID A201 LKN R594 JAL DCT VIDP",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

@@ -39,7 +39,7 @@ ROOT = Path(__file__).resolve().parent.parent
 STATUS_PATH = ROOT / ".voiceatc" / "player_routes_status.json"
 REPO_NAME = "lainoa-software/voiceatc-simulator-community"
 
-FILE_SCHEMA_VERSION = 1
+FILE_SCHEMA_VERSION = 2
 MANIFEST_SCHEMA_VERSION = 1
 STATUS_SCHEMA_VERSION = 1
 
@@ -48,10 +48,8 @@ MAX_VARIANTS_PER_PAIR = 8
 MAX_ROUTE_CHARS = 1000
 MAX_ROUTE_TOKENS = 120
 MIN_ROUTE_TOKENS = 3
-MAX_AUTHOR_CHARS = 64
 MAX_REASONS_PER_ROUTE = 5
 MAX_REASON_CHARS = 160
-RESERVED_AUTHOR = "lainoasoftware"
 
 ICAO_RE = re.compile(r"^[A-Z0-9]{4}$")
 TOKEN_RE = re.compile(r"^[A-Z0-9]{1,15}$")
@@ -88,7 +86,6 @@ class PlayerRoute:
     dest: str
     route_id: str
     route: str
-    author: str
     created_at: str
     creation_airac: str
     repo_path: str
@@ -166,16 +163,8 @@ def _validate_route_entry(entry: object, lane: str, origin: str, dest: str, repo
     if route_id != expected_id:
         raise ValueError(f"{repo_path}: routes[{index}].id '{route_id}' does not match route hash '{expected_id}'")
 
-    author_raw = entry.get("author")
-    if not isinstance(author_raw, str):
-        raise ValueError(f"{repo_path}: routes[{index}].author must be a string")
-    author = author_raw.strip()
-    if not author or len(author) > MAX_AUTHOR_CHARS:
-        raise ValueError(f"{repo_path}: routes[{index}].author must be 1..{MAX_AUTHOR_CHARS} characters")
-    if any(ord(char) < 0x20 or char == "\t" for char in author):
-        raise ValueError(f"{repo_path}: routes[{index}].author contains control characters")
-    if author.lower() == RESERVED_AUTHOR:
-        raise ValueError(f"{repo_path}: routes[{index}].author '{author}' is reserved for generated routes")
+    if "author" in entry:
+        raise ValueError(f"{repo_path}: routes[{index}].author is not allowed; player route data is anonymous")
 
     created_at = entry.get("created_at")
     if not isinstance(created_at, str) or len(created_at.strip()) < 10:
@@ -191,7 +180,6 @@ def _validate_route_entry(entry: object, lane: str, origin: str, dest: str, repo
         dest=dest,
         route_id=route_id,
         route=route,
-        author=author,
         created_at=created_at.strip(),
         creation_airac=creation_airac,
         repo_path=repo_path,
@@ -275,7 +263,7 @@ def deep_validate_lane(
     line_to_route: dict[int, PlayerRoute] = {}
     lines = ["airac 0000", TSV_COLUMN_HEADER]
     for row in rows:
-        lines.append(f"{row.origin}\t{row.dest}\t{row.route}\t{row.creation_airac}\t{row.author}")
+        lines.append(f"{row.origin}\t{row.dest}\t{row.route}\t{row.creation_airac}\t")
         line_to_route[len(lines)] = row
 
     try:
@@ -363,7 +351,9 @@ def build_overlay_tsv(rows: list[PlayerRoute], lane_status: dict[str, object], l
         entry = pairs.get(row.pair_key, {}).get(row.route_id, {}) if isinstance(pairs, dict) else {}
         if str(entry.get("status", "ok")) != "ok":
             continue
-        lines.append(f"{row.origin}\t{row.dest}\t{row.route}\t{row.creation_airac}\t{row.author}")
+        # Keep the legacy fifth column empty so already-released game builds can
+        # parse the overlay without receiving public contributor attribution.
+        lines.append(f"{row.origin}\t{row.dest}\t{row.route}\t{row.creation_airac}\t")
         route_count += 1
     return "\n".join(lines) + "\n", route_count
 

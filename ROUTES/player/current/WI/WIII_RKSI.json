@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "WIII",
   "dest": "RKSI",
   "routes": [
     {
       "id": "fc882f0b",
       "route": "WIII DCT AMBOY P648 VJN M646 POTIB Q14 TNN W4 APU A1 DRAKE Q11 WP900 L4 LIPLO Y741 BOLUT B576 ATOTI Y722 OLMEN DCT RKSI",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

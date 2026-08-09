@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RPLL",
   "dest": "RKSI",
   "routes": [
     {
       "id": "e525f923",
       "route": "RPLL DCT CAB B462 LAO POTIB Q14 TNN W4 ANLOT B1 APU DCT DRAKE Q11 WP900 L4 LIPLO Y741 ATOTI Y722 KAMIT Y722 OLMEN DCT RKSI",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "KDTW",
   "routes": [
     {
       "id": "30fa9d82",
       "route": "RKSI DCT EGOBA Y697 LANAT Y51 SAMON Y142 GTC Y512 OATIS Y512 ADNAP OTR7 EMRON DCT 40N160E 42N170E 45N180W 48N170W 48N160W 48N150W 48N140W DCT ROUKE DCT VIDKU DCT DOLFF DCT TOU DCT PAE DCT GEG J136 MLP DCT KU12Q DCT MLDRD DCT ABR DCT ODI J34 BAE DCT PORZL DCT KDTW",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

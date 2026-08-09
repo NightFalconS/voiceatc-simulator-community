@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RJOB",
   "dest": "RKSI",
   "routes": [
     {
       "id": "bfb38e3a",
       "route": "RJOB DCT OYE Y39 MIHOU Y38 SAPRA Y685 GUKDO DCT RKSI",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

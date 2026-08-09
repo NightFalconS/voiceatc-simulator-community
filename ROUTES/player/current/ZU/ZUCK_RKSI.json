@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "ZUCK",
   "dest": "RKSI",
   "routes": [
     {
       "id": "a2cb2bf5",
       "route": "ZUCK DCT OVNUL W677 IGIRO W4 LIMGI W175 OLGUP G212 VYK W34 VAPGU W100 ORAVA W201 UNSEK A326 DONVO G597 AGAVO Y644 REBIT DCT RKSI",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

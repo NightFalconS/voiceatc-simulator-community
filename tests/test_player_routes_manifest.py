@@ -115,12 +115,11 @@ def create_navdata_db(path: Path) -> None:
     con.close()
 
 
-def make_route_entry(origin: str, dest: str, middle: str, author: str = "Tester") -> dict:
+def make_route_entry(origin: str, dest: str, middle: str) -> dict:
     route = MODULE.normalize_route(f"{origin} DCT {middle} DCT {dest}" if middle else f"{origin} DCT {dest}")
     return {
         "id": MODULE.route_id_for(route),
         "route": route,
-        "author": author,
         "created_at": "2026-08-08T12:00:00Z",
         "creation_airac": "2607",
     }
@@ -129,7 +128,7 @@ def make_route_entry(origin: str, dest: str, middle: str, author: str = "Tester"
 def write_player_file(root: Path, lane: str, origin: str, dest: str, routes: list[dict]) -> Path:
     target = root / "ROUTES" / "player" / lane / origin[:2] / f"{origin}_{dest}.json"
     target.parent.mkdir(parents=True, exist_ok=True)
-    payload = {"schema_version": 1, "origin": origin, "dest": dest, "routes": routes}
+    payload = {"schema_version": 2, "origin": origin, "dest": dest, "routes": routes}
     target.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
     return target
 
@@ -167,8 +166,7 @@ class PlayerRoutesManifestTests(unittest.TestCase):
         cases = [
             ("wrong id", {**base_entry, "id": "deadbeef"}),
             ("missing bookends", {**base_entry, "id": MODULE.route_id_for("LEMH MAMEB LEPA"), "route": "LEMH MAMEB LEPA"}),
-            ("reserved author", {**base_entry, "author": "LainoaSoftware"}),
-            ("tab in author", {**base_entry, "author": "Bad\tActor"}),
+            ("public author field", {**base_entry, "author": "Test Pilot"}),
             (
                 "runway token",
                 {
@@ -200,7 +198,7 @@ class PlayerRoutesManifestTests(unittest.TestCase):
             target = root / "ROUTES" / "player" / "current" / "XX" / "LEMH_LEPA.json"
             target.parent.mkdir(parents=True, exist_ok=True)
             payload = {
-                "schema_version": 1,
+                "schema_version": 2,
                 "origin": "LEMH",
                 "dest": "LEPA",
                 "routes": [make_route_entry("LEMH", "LEPA", "MAMEB")],
@@ -310,7 +308,8 @@ class PlayerRoutesManifestTests(unittest.TestCase):
         self.assertEqual(MODULE.TSV_COLUMN_HEADER, lines[1])
         self.assertEqual(3, len(lines))
         self.assertIn(good["route"], lines[2])
-        self.assertIn("Tester", lines[2])
+        self.assertTrue(lines[2].endswith("\t"))
+        self.assertEqual("", lines[2].split("\t")[4])
 
     def test_build_bundle_end_to_end(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

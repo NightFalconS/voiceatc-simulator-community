@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "LSZH",
   "dest": "RKSI",
   "routes": [
     {
       "id": "de213cfb",
       "route": "LSZH DCT DEGES Z2 UMVEG DCT DIMLO DCT TEGRI DCT VEVIN DCT DINRO DCT UDROS UM859 KARDE UL851 TBN UM11 REBLO M11 LUSAL N199 RASAM L88 METKA B476 TIMGA A480 OTBOR N147 GENDI Z621 ARBOL M610 RULAD A343 POSOT B215 FKG W188 LIKMI W270 DKO W69 HUR B339 LADIX W34 VAPGU W100 MUDOT DCT UNSEK A326 DONVO G597 AGAVO Y644 REBIT DCT RKSI",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "KEWR",
   "routes": [
     {
       "id": "640c8046",
       "route": "RKSI DCT EGOBA Y697 KAE Y437 TENAS L512 GTC Y512 ADNAP OTR5 KALNA DCT 40N160E 42N170E 45N180E 49N170W 51N160W 52N150W 51N140W DCT PRETY DCT DOLFF DCT TOU DCT 48N120W 48N110W 46N100W 44N090W 43N080W DCT WOZEE DCT GEE DCT KEWR",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKPC",
   "dest": "RJFF",
   "routes": [
     {
       "id": "f943f9d1",
       "route": "RKPC DCT TAMNA Y677 SAMDO A595 IKE DCT RJFF",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

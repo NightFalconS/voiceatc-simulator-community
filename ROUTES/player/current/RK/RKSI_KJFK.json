@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKSI",
   "dest": "KJFK",
   "routes": [
     {
       "id": "b9fd4fcf",
       "route": "RKSI DCT EGOBA Y697 LANAT Y51 SAMON Y142 GTC Y512 ADNAP OTR7 EMRON DCT 39N160E 41N170E 45N180E 48N170W 50N160W 50N150W 49N140W DCT PRETY DCT TOU DCT KS18E DCT 47N110W 46N100W DCT DLL J68 BAE DCT TWIGS DCT JHW Q476 WLKES DCT KJFK",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

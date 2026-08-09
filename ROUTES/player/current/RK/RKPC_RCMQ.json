@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKPC",
   "dest": "RCMQ",
   "routes": [
     {
       "id": "9cdb7fd6",
       "route": "RKPC DCT PANSI Y711 MUGUS Y742 SALMI B576 APU A1 HLG DCT RCMQ",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

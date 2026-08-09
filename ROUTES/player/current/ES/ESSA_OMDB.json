@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "ESSA",
   "dest": "OMDB",
   "routes": [
     {
       "id": "51ea0d3a",
       "route": "ESSA DCT BABAP P156 NEKLA RASEL RUCAV ESARA ITVUL GOLAD PODAN HATIP KUSIS LARMU IVDEK IVGOT Q7 ARTAT UL601 AZBUL UW75 KEMER ADKAR TUNLA KTN ZELAF R785 RASLI P559 TRF R23 NEVOL N318 TAMRO T503 KSA M321 RESAL T533 RAPMA KUVSO KATIT PEKEM M628 RIGIL G783 ASPED Q308 KIPOK Q568 IMPED DCT OMDB",
-      "author": "William Kassmo",
       "created_at": "2026-08-09T16:06:02Z",
       "creation_airac": "2608"
     }

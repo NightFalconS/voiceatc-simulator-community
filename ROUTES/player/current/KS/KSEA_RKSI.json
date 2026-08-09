@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "KSEA",
   "dest": "RKSI",
   "routes": [
     {
       "id": "457b8dc7",
       "route": "KSEA DCT ARRIE J523 TOU DCT FINGS DCT JOWEN DCT LOHNE DCT ARCAL DCT 58N160W DCT SPY DCT CREMR DCT OBOYD DCT NATES R220 NRKEY R220 NIPPI R220 NANNO R220 BEKEN Y512 SDE R217 GTC Y142 SAMON Y14 SUGNO Y16 SAPRA G585 GUKDO DCT RKSI",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }

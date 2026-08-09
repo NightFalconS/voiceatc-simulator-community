@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "origin": "RKPC",
   "dest": "RKJK",
   "routes": [
     {
       "id": "3b5cf6ec",
       "route": "RKPC DCT IPDAS B576 LINTA DCT RKJK",
-      "author": "Josu Blanco Ortiz",
       "created_at": "2026-08-09T08:55:01Z",
       "creation_airac": "2608"
     }
