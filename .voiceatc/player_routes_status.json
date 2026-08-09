@@ -6,28 +6,22 @@
       "BIKF_ESSA": {
         "1e58e5cd": {
           "checked_airac": "2608",
-          "reasons": [
-            "token_unknown: BIKF->ESSA: token 64N010W is neither a known point nor airway"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "CYVR_RKSI": {
         "3be16e86": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: CYVR->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "CYYZ_RKSI": {
         "5c674c02": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: CYYZ->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "EBBR_RKSI": {
@@ -40,34 +34,22 @@
       "EDDF_RKSI": {
         "948a9e66": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: EDDF->RKSI: no W100 path from VAPGU to MUDOT",
-            "airway_disconnect: EDDF->RKSI: no W100 path from MUDOT to ORAVA"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "EDDM_RKSI": {
         "1babfcf5": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: EDDM->RKSI: no W188 path from FKG to ESGIV",
-            "airway_disconnect: EDDM->RKSI: no W188 path from ESGIV to LIKMI"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "EDDP_RKSI": {
         "7a6621d5": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: EDDP->RKSI: no Z131 path from PENEM to PENEK",
-            "airway_disconnect: EDDP->RKSI: no Z131 path from PENEK to EVOKI",
-            "airway_disconnect: EDDP->RKSI: no P989 path from TUKMA to MEGAS",
-            "airway_disconnect: EDDP->RKSI: no P989 path from MEGAS to OBIBA",
-            "airway_disconnect: EDDP->RKSI: no W201 path from UKDUM to UNSEK"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "EFHK_RKSI": {
@@ -87,12 +69,8 @@
       "EHAM_RKSI": {
         "e1288fda": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: EHAM->RKSI: no W188 path from FKG to ESGIV",
-            "airway_disconnect: EHAM->RKSI: no W188 path from ESGIV to RIMDU",
-            "airway_disconnect: EHAM->RKSI: no W188 path from RIMDU to LIKMI"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "EHBK_RKSI": {
@@ -105,11 +83,8 @@
       "EKCH_RKSI": {
         "127b0d2f": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: EKCH->RKSI: no W69 path from DKO to UXODI",
-            "airway_disconnect: EKCH->RKSI: no W69 path from UXODI to HUR"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "ENGM_RKSI": {
@@ -122,11 +97,8 @@
       "EPWA_RKSI": {
         "3a04cc60": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: EPWA->RKSI: no N161 path from GASBI to ARKAM",
-            "airway_disconnect: EPWA->RKSI: no N161 path from ARKAM to UNABO"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "EPWR_RKSI": {
@@ -181,19 +153,15 @@
       "ESSA_RJTT": {
         "fbd9ee94": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: ESSA->RJTT: no T316 path from BABAP to NEPVA"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "ESSA_RKSI": {
         "9755b904": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: ESSA->RKSI: no T316 path from BABAP to NEPVA"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "ESSA_VTBS": {
@@ -206,21 +174,15 @@
       "ESSA_ZBAA": {
         "4e648da4": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: ESSA->ZBAA: no T316 path from BABAP to NEPVA",
-            "airway_disconnect: ESSA->ZBAA: no N133 path from PENOR to MOTAD"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "ESSA_ZSPD": {
         "666e8b0d": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: ESSA->ZSPD: no T316 path from BABAP to NEPVA",
-            "airway_disconnect: ESSA->ZSPD: no N133 path from PENOR to MOTAD"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "HAAB_ESSA": {
@@ -233,150 +195,113 @@
       "HAAB_RKSI": {
         "12b54c6d": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: HAAB->RKSI: no M59 path from NIDMA to NWK",
-            "airway_disconnect: HAAB->RKSI: no W33 path from POLHO to HOT",
-            "airway_disconnect: HAAB->RKSI: no W33 path from HOT to UKDUM",
-            "airway_disconnect: HAAB->RKSI: no W201 path from UKDUM to UNSEK"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "KATL_RKSI": {
         "c97b3b63": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: KATL->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "KBOS_RKSI": {
         "5b2f2c14": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: KBOS->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "KCVG_RKSI": {
         "c590e40b": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: KCVG->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "KDFW_RKSI": {
         "721e3482": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: KDFW->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "KDTW_RKSI": {
         "6afae0be": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: KDTW->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "KEWR_RKSI": {
         "e972a243": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: KEWR->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "KIAD_RKSI": {
         "01a07f00": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: KIAD->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "KJFK_RKSI": {
         "87df4c0e": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: KJFK->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "KLAS_RKSI": {
         "a7f10f0a": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: KLAS->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "KLAX_RKSI": {
         "e3f76615": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: KLAX->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "KMSP_RKSI": {
         "5a1d613f": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: KMSP->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "KORD_RKSI": {
         "908ca750": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: KORD->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "KSEA_RKSI": {
         "457b8dc7": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: KSEA->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "KSFO_RKSI": {
         "2b9e514f": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: KSFO->RKSI: no R220 path from NODLE to NIKLL",
-            "airway_disconnect: KSFO->RKSI: no R220 path from NIKLL to NIPPI",
-            "airway_disconnect: KSFO->RKSI: no R220 path from NIPPI to NANNO"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "KSLC_RKSI": {
         "cb049848": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: KSLC->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "LEBL_RKSI": {
@@ -389,11 +314,8 @@
       "LEMD_RKSI": {
         "9e908401": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: LEMD->RKSI: no W188 path from FKG to RIMDU",
-            "airway_disconnect: LEMD->RKSI: no W188 path from RIMDU to LIKMI"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "LFPG_RKSI": {
@@ -441,19 +363,15 @@
       "LPPT_RKSI": {
         "2effd796": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: LPPT->RKSI: no N870 path from UREDI to PINAR"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "LSZH_RKSI": {
         "de213cfb": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: LSZH->RKSI: no W100 path from VAPGU to MUDOT"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "LTFM_RKSI": {
@@ -466,22 +384,15 @@
       "NZAA_RKSI": {
         "d15b211b": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: NZAA->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "OMAA_RKSI": {
         "0581853e": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: OMAA->RKSI: no B505 path from EGTAL to APELO",
-            "airway_disconnect: OMAA->RKSI: no B505 path from APELO to PI",
-            "airway_disconnect: OMAA->RKSI: no W100 path from VAPGU to MUDOT",
-            "airway_disconnect: OMAA->RKSI: no W100 path from MUDOT to ORAVA"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "OMDB_ESSA": {
@@ -494,30 +405,22 @@
       "OMDB_RKSI": {
         "83e9ca43": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: OMDB->RKSI: no B505 path from LALDO to APELO",
-            "airway_disconnect: OMDB->RKSI: no B505 path from APELO to PI"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "OTHH_ESSA": {
         "0ee4ef2c": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: OTHH->ESSA: no N133 path from LENOV to GOSAK"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "OTHH_RKSI": {
         "8c20ca46": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: OTHH->RKSI: no B505 path from NADSO to APELO",
-            "airway_disconnect: OTHH->RKSI: no B505 path from APELO to PI"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "PANC_RKSI": {
@@ -530,31 +433,22 @@
       "PGSN_RKSI": {
         "1318ab1c": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: PGSN->RKSI: no G339 path from RIDLL to NATSS",
-            "airway_disconnect: PGSN->RKSI: no G339 path from NATSS to PAKDO",
-            "airway_disconnect: PGSN->RKSI: no G339 path from PAKDO to BIXAK"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "PGUM_RKSI": {
         "0267c5ab": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: PGUM->RKSI: no G339 path from UNZ to PAKDO",
-            "airway_disconnect: PGUM->RKSI: no G339 path from PAKDO to LUKRA"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "PHNL_RKSI": {
         "611ecabc": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: PHNL->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RCKH_RKPC": {
@@ -840,10 +734,8 @@
       "RJTT_ESSA": {
         "ec2ee2a8": {
           "checked_airac": "2608",
-          "reasons": [
-            "token_unknown: RJTT->ESSA: token 44N160E is neither a known point nor airway"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RJTT_RKSI": {
@@ -1052,11 +944,8 @@
       "RKPC_WSSS": {
         "34c45255": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKPC->WSSS: no N892 path from KABAM to MIGUG",
-            "airway_disconnect: RKPC->WSSS: no N892 path from MIGUG to MELAS"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKPC_ZBAA": {
@@ -1181,29 +1070,22 @@
       "RKSI_CYVR": {
         "31b353cb": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->CYVR: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_CYYZ": {
         "19a8d738": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->CYYZ: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_EDDF": {
         "1176bcd8": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->EDDF: no A368 path from FKG to OSUPO",
-            "airway_disconnect: RKSI->EDDF: no A368 path from OSUPO to SARIN"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_EDDM": {
@@ -1216,12 +1098,8 @@
       "RKSI_EFHK": {
         "8a857b49": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->EFHK: no B215 path from NUKTI to DUBUV",
-            "airway_disconnect: RKSI->EFHK: no B215 path from DUBUV to FKG",
-            "airway_disconnect: RKSI->EFHK: no M857 path from VENES to UNPEG"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_EGLL": {
@@ -1248,14 +1126,8 @@
       "RKSI_EPWA": {
         "f4a7a5c8": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->EPWA: no W66 path from DKO to IDSIP",
-            "airway_disconnect: RKSI->EPWA: no W66 path from IDSIP to GOVSA",
-            "airway_disconnect: RKSI->EPWA: no B215 path from NUKTI to POVEK",
-            "airway_disconnect: RKSI->EPWA: no B215 path from POVEK to FKG",
-            "airway_disconnect: RKSI->EPWA: no N161 path from SARIN to ARKAM"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_EPWR": {
@@ -1268,158 +1140,120 @@
       "RKSI_ESSA": {
         "63bc1b50": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->ESSA: no N133 path from DOMAG to MOTAD"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_HAAB": {
         "1f8a702d": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->HAAB: no W28 path from UPREK to ISBOS",
-            "airway_disconnect: RKSI->HAAB: no W28 path from ISBOS to LAGEB",
-            "airway_disconnect: RKSI->HAAB: no W112 path from TUSLI to DJQ",
-            "airway_disconnect: RKSI->HAAB: no W112 path from DJQ to PURPA",
-            "airway_disconnect: RKSI->HAAB: no B400 path from GEPOT to IMKAD"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_KATL": {
         "0a0a854d": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->KATL: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_KBOS": {
         "1e294c21": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->KBOS: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_KCVG": {
         "14442d2e": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->KCVG: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_KDFW": {
         "b8510828": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->KDFW: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_KDTW": {
         "30fa9d82": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->KDTW: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_KEWR": {
         "640c8046": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->KEWR: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_KIAD": {
         "6f5f18fa": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->KIAD: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_KJFK": {
         "b9fd4fcf": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->KJFK: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_KLAS": {
         "8d2f5667": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->KLAS: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_KLAX": {
         "78af57f5": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->KLAX: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_KMSP": {
         "d16429f9": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->KMSP: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_KORD": {
         "62c40214": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->KORD: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_KSEA": {
         "c12ed9fc": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->KSEA: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_KSFO": {
         "bf87fe4a": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->KSFO: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_KSLC": {
         "95f36e3f": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->KSLC: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_LEBL": {
@@ -1432,41 +1266,29 @@
       "RKSI_LEMD": {
         "4cba3665": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->LEMD: no A368 path from FKG to OSUPO",
-            "airway_disconnect: RKSI->LEMD: no A368 path from OSUPO to SARIN"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_LFPG": {
         "8cc901c6": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->LFPG: no Y697 path from NOPIK to NOGON",
-            "airway_disconnect: RKSI->LFPG: no Y697 path from NOGON to AGAVO"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_LHBP": {
         "21c844b6": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->LHBP: no A368 path from FKG to OSUPO",
-            "airway_disconnect: RKSI->LHBP: no A368 path from OSUPO to SARIN"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_LIMC": {
         "e3c9ea12": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->LIMC: no A368 path from FKG to OSUPO",
-            "airway_disconnect: RKSI->LIMC: no A368 path from OSUPO to SARIN"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_LIRF": {
@@ -1479,11 +1301,8 @@
       "RKSI_LKPR": {
         "eea2f3c7": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->LKPR: no W55 path from DOVIV to VIDEL",
-            "airway_disconnect: RKSI->LKPR: no W55 path from VIDEL to PAMRU"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_LOWW": {
@@ -1503,105 +1322,71 @@
       "RKSI_LTFM": {
         "536e7175": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->LTFM: no Y697 path from NOPIK to OLBIM",
-            "airway_disconnect: RKSI->LTFM: no Y697 path from OLBIM to AGAVO",
-            "airway_disconnect: RKSI->LTFM: no A368 path from FKG to SALMO",
-            "airway_disconnect: RKSI->LTFM: no A368 path from SALMO to SARIN"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_MMMX": {
         "387fa64f": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->MMMX: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_NZAA": {
         "0dda42ea": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->NZAA: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_OMAA": {
         "57ccbbec": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->OMAA: no A599 path from SGM to LINSO",
-            "airway_disconnect: RKSI->OMAA: no A599 path from LINSO to CHILA"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_OMDB": {
         "9f28d2c1": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->OMDB: no A599 path from SGM to LINSO",
-            "airway_disconnect: RKSI->OMDB: no A599 path from LINSO to CHILA",
-            "airway_disconnect: RKSI->OMDB: no A454 path from VUSET to UMEKO",
-            "airway_disconnect: RKSI->OMDB: no A454 path from UMEKO to BORER",
-            "airway_disconnect: RKSI->OMDB: no A454 path from BORER to PASOV"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_OTHH": {
         "213fe1fd": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->OTHH: no Y697 path from NOPIK to NOGON",
-            "airway_disconnect: RKSI->OTHH: no Y697 path from NOGON to AGAVO",
-            "airway_disconnect: RKSI->OTHH: no W112 path from TUSLI to TEPUT",
-            "airway_disconnect: RKSI->OTHH: no W112 path from TEPUT to PURPA"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_PANC": {
         "1311c9cc": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->PANC: no A590 path from PUTER to PASRO",
-            "airway_disconnect: RKSI->PANC: no A590 path from PASRO to PLADO"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_PGSN": {
         "4b2b8422": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->PGSN: no G339 path from CANAI to PAKDO",
-            "airway_disconnect: RKSI->PGSN: no G339 path from PAKDO to NATSS",
-            "airway_disconnect: RKSI->PGSN: no G339 path from NATSS to RIDLL"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_PGUM": {
         "75b8d079": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->PGUM: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_PHNL": {
         "bb9e946c": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->PHNL: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_RCKH": {
@@ -1936,11 +1721,8 @@
       "RKSI_UBBB": {
         "0ea219fd": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->UBBB: no B215 path from NUKTI to POVEK",
-            "airway_disconnect: RKSI->UBBB: no B215 path from POVEK to FKG"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_UCFM": {
@@ -1967,11 +1749,8 @@
       "RKSI_VCBI": {
         "c8a7e5bf": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->VCBI: no P762 path from DWI to LULDA",
-            "airway_disconnect: RKSI->VCBI: no P762 path from LULDA to DUGOS"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_VDTI": {
@@ -1991,43 +1770,29 @@
       "RKSI_VIDP": {
         "260ed36e": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->VIDP: no A599 path from SGM to LINSO",
-            "airway_disconnect: RKSI->VIDP: no A599 path from LINSO to LSO"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_VLVT": {
         "7268ef5e": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->VLVT: no R474 path from WUY to TEBAK",
-            "airway_disconnect: RKSI->VLVT: no R474 path from TEBAK to NOHET"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_VMMC": {
         "3ac073af": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->VMMC: no J101 path from ELATO to TUBBY",
-            "airway_disconnect: RKSI->VMMC: no J101 path from TUBBY to SAMMI",
-            "airway_disconnect: RKSI->VMMC: no J101 path from SAMMI to NEDLE",
-            "airway_disconnect: RKSI->VMMC: no J101 path from NEDLE to SMT"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_VNKT": {
         "15bd0c0a": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->VNKT: no A599 path from SGM to LINSO",
-            "airway_disconnect: RKSI->VNKT: no A599 path from LINSO to LSO"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_VTBD": {
@@ -2040,52 +1805,36 @@
       "RKSI_VTBS": {
         "cee5ba30": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->VTBS: no Q11 path from SALMI to GID"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_VTCC": {
         "00f1f811": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->VTCC: no R474 path from GYA to TEBAK",
-            "airway_disconnect: RKSI->VTCC: no R474 path from TEBAK to MC"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_VTSP": {
         "73261029": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->VTSP: no Y711 path from BEDES to DOMKO",
-            "airway_disconnect: RKSI->VTSP: no Y711 path from DOMKO to MUGUS",
-            "airway_disconnect: RKSI->VTSP: no R575 path from PAPRA to NILIS",
-            "airway_disconnect: RKSI->VTSP: no R575 path from NILIS to SAKDA"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_VVCI": {
         "fa84fc62": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->VVCI: no R474 path from GYA to TEBAK",
-            "airway_disconnect: RKSI->VVCI: no R474 path from TEBAK to NOB"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_VVCR": {
         "62804b74": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->VVCR: no N892 path from KABAM to MIGUG",
-            "airway_disconnect: RKSI->VVCR: no N892 path from MIGUG to MESOX"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_VVDN": {
@@ -2098,21 +1847,15 @@
       "RKSI_VVNB": {
         "fd7f6a30": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->VVNB: no R474 path from LON to TEBAK",
-            "airway_disconnect: RKSI->VVNB: no R474 path from TEBAK to NAKHA"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_VVPQ": {
         "16c1f6e3": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->VVPQ: no N892 path from KABAM to MIGUG",
-            "airway_disconnect: RKSI->VVPQ: no N892 path from MIGUG to MIMUX"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_VVTS": {
@@ -2125,11 +1868,8 @@
       "RKSI_VYYY": {
         "c4e9a803": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->VYYY: no R474 path from GYA to TEBAK",
-            "airway_disconnect: RKSI->VYYY: no R474 path from TEBAK to NAKHA"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_WADD": {
@@ -2149,20 +1889,15 @@
       "RKSI_WBKK": {
         "b75ceb78": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->WBKK: no M646 path from MIA to OSANU"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_WIII": {
         "366c1413": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->WIII: no M754 path from VINIK to SUMLA",
-            "airway_disconnect: RKSI->WIII: no M754 path from SUMLA to BRU"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_WMKK": {
@@ -2175,39 +1910,29 @@
       "RKSI_WMKP": {
         "46a2fa26": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->WMKP: no N892 path from KABAM to MELAS"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_WSSS": {
         "64438522": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->WSSS: no N892 path from KABAM to MIGUG",
-            "airway_disconnect: RKSI->WSSS: no N892 path from MIGUG to MELAS"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_YBBN": {
         "60ffd888": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: RKSI->YBBN: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_YSSY": {
         "3de4e86b": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->YSSY: no B586 path from UNZ to PIKOK",
-            "airway_disconnect: RKSI->YSSY: no B586 path from PIKOK to PY"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_ZBAA": {
@@ -2220,13 +1945,8 @@
       "RKSI_ZBAD": {
         "2fd8e018": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->ZBAD: no Y697 path from NOPIK to NOGON",
-            "airway_disconnect: RKSI->ZBAD: no Y697 path from NOGON to AGAVO",
-            "airway_disconnect: RKSI->ZBAD: no W55 path from DOVIV to VIDEL",
-            "airway_disconnect: RKSI->ZBAD: no W55 path from VIDEL to DUMAP"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_ZBSJ": {
@@ -2330,11 +2050,8 @@
       "RKSI_ZSAM": {
         "e5ce3617": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->ZSAM: no W13 path from HSN to TOGUG",
-            "airway_disconnect: RKSI->ZSAM: no W13 path from TOGUG to BEGMO"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_ZSFZ": {
@@ -2431,21 +2148,15 @@
       "RKSI_ZUCK": {
         "80db0b6b": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->ZUCK: no Y697 path from NOPIK to NOGON",
-            "airway_disconnect: RKSI->ZUCK: no Y697 path from NOGON to AGAVO"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_ZUTF": {
         "d6649090": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: RKSI->ZUTF: no Y697 path from NOPIK to NOGON",
-            "airway_disconnect: RKSI->ZUTF: no Y697 path from NOGON to AGAVO"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "RKSI_ZUUU": {
@@ -2745,31 +2456,22 @@
       "UZTT_RKSI": {
         "52117dab": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: UZTT->RKSI: no A326 path from ALARA to OBDIS",
-            "airway_disconnect: UZTT->RKSI: no A326 path from OBDIS to DONVO"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "VCBI_RKSI": {
         "485b3a5c": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: VCBI->RKSI: no Q11 path from DRAKE to MUNNA",
-            "airway_disconnect: VCBI->RKSI: no Q11 path from MUNNA to WP900"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "VDTI_RKSI": {
         "d99b6136": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: VDTI->RKSI: no R575 path from VIBUN to NILIS",
-            "airway_disconnect: VDTI->RKSI: no R575 path from NILIS to PAPRA"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "VHHH_RKPC": {
@@ -2789,23 +2491,15 @@
       "VIDP_RKSI": {
         "04274444": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: VIDP->RKSI: no A599 path from LSO to LINSO",
-            "airway_disconnect: VIDP->RKSI: no A599 path from LINSO to SGM"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "VLVT_RKSI": {
         "916dc953": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: VLVT->RKSI: no R474 path from NOHET to TEBAK",
-            "airway_disconnect: VLVT->RKSI: no R474 path from TEBAK to GYA",
-            "airway_disconnect: VLVT->RKSI: no G471 path from OMDUP to EGEDA",
-            "airway_disconnect: VLVT->RKSI: no G471 path from EGEDA to PLT"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "VMMC_RKSI": {
@@ -2846,31 +2540,22 @@
       "VTCC_RKSI": {
         "bc7af0f0": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: VTCC->RKSI: no R474 path from NOB to TEBAK",
-            "airway_disconnect: VTCC->RKSI: no R474 path from TEBAK to WUY"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "VTSP_RKSI": {
         "3fc9f776": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: VTSP->RKSI: no R575 path from ONETI to NILIS",
-            "airway_disconnect: VTSP->RKSI: no R575 path from NILIS to PAPRA"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "VVCI_RKSI": {
         "95a84389": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: VVCI->RKSI: no R474 path from NAKHA to TEBAK",
-            "airway_disconnect: VVCI->RKSI: no R474 path from TEBAK to WUY"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "VVCR_RKSI": {
@@ -2890,21 +2575,15 @@
       "VVNB_RKSI": {
         "fda0bb8e": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: VVNB->RKSI: no R474 path from NAKHA to TEBAK",
-            "airway_disconnect: VVNB->RKSI: no R474 path from TEBAK to WUY"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "VVPQ_RKSI": {
         "85175afa": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: VVPQ->RKSI: no R575 path from VIBUN to NILIS",
-            "airway_disconnect: VVPQ->RKSI: no R575 path from NILIS to PAPRA"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "VVTS_RKSI": {
@@ -2917,11 +2596,8 @@
       "VYYY_RKSI": {
         "f7dfde0f": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: VYYY->RKSI: no R474 path from NOB to TEBAK",
-            "airway_disconnect: VYYY->RKSI: no R474 path from TEBAK to WUY"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "WADD_RKSI": {
@@ -2941,10 +2617,8 @@
       "WBKK_RKSI": {
         "7fcf7c10": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: WBKK->RKSI: no M646 path from OSANU to KAPOH"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "WIII_RKSI": {
@@ -2957,21 +2631,15 @@
       "WMKK_RKSI": {
         "086015f0": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: WMKK->RKSI: no R575 path from VIBUN to NILIS",
-            "airway_disconnect: WMKK->RKSI: no R575 path from NILIS to PAPRA"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "WMKP_RKSI": {
         "16f9a4a3": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: WMKP->RKSI: no M765 path from VKB to VENLI",
-            "airway_disconnect: WMKP->RKSI: no M765 path from VENLI to MAPNO"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "WSSS_RKPC": {
@@ -2991,17 +2659,15 @@
       "YBBN_RKSI": {
         "cb716703": {
           "checked_airac": "2608",
-          "reasons": [
-            "route_token_pattern: YBBN->RKSI: connector DCT is not followed by a known point"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "YSSY_RKSI": {
         "bc299822": {
           "checked_airac": "2608",
           "reasons": [
-            "route_token_pattern: YSSY->RKSI: connector DCT is not followed by a known point"
+            "airway_disconnect: YSSY->RKSI: RIC not on airway H530"
           ],
           "status": "deprecated"
         }
@@ -3051,10 +2717,8 @@
       "ZBAD_RKSS": {
         "39eb019c": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: ZBAD->RKSS: no Y644 path from AGAVO to BOGAN"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "ZBSJ_RKSI": {
@@ -3088,11 +2752,8 @@
       "ZGGG_RKSI": {
         "428450a8": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: ZGGG->RKSI: no G471 path from OMDUP to EGEDA",
-            "airway_disconnect: ZGGG->RKSI: no G471 path from EGEDA to PLT"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "ZGHA_RKSI": {
@@ -3112,11 +2773,8 @@
       "ZGSZ_RKSI": {
         "1dcdc29d": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: ZGSZ->RKSI: no G471 path from OMDUP to EGEDA",
-            "airway_disconnect: ZGSZ->RKSI: no G471 path from EGEDA to PLT"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "ZHCC_RKSI": {
@@ -3164,11 +2822,8 @@
       "ZMCK_RKSI": {
         "afd6cfb0": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: ZMCK->RKSI: no W201 path from UKDUM to ANOBI",
-            "airway_disconnect: ZMCK->RKSI: no W201 path from ANOBI to UNSEK"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "ZPPP_RKSI": {
@@ -3188,11 +2843,8 @@
       "ZSFZ_RKSI": {
         "c68dcffa": {
           "checked_airac": "2608",
-          "reasons": [
-            "airway_disconnect: ZSFZ->RKSI: no W13 path from BEGMO to TOGUG",
-            "airway_disconnect: ZSFZ->RKSI: no W13 path from TOGUG to HSN"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "ZSHC_RKPC": {
@@ -3412,7 +3064,7 @@
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-08-09T16:06:47Z",
+  "generated_at": "2026-08-09T17:31:12Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
