@@ -1,0 +1,17 @@
+{
+  "airport": "RKSI",
+  "runway_configs": [
+    {
+      "id": "NORTH_FLOW",
+      "name": "North Flow",
+      "arr": "33R 34L",
+      "dep": "34R 33L"
+    },
+    {
+      "id": "SOUTH_FLOW",
+      "name": "South Flow",
+      "arr": "16R 15L",
+      "dep": "16L 15R"
+    }
+  ]
+}
