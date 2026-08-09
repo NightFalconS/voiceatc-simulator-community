@@ -6,6 +6,16 @@ To contribute, fork this repository, commit your changes there and then create a
 
 Community assets follow `Region / [Nationality] / FIR-or-ARTCC / [ACC] / Terminal / [Airport]`. Bracketed layers are optional. The continental United States omits nationality, so Austin is `K/KZHU/AUSTIN_TMA/KAUS`, while Frankfurt is `E/ED/EDGG/EDDF_TMA/EDDF`. Placeholder identifiers such as `KXXX` and `EDXX` are prohibited. U.S. `K/KA`–`K/KZ` colour/style paths are generated release compatibility aliases only and must never be added to the source tree. Run `python tools/content_hierarchy.py --validate-only` before opening a pull request.
 
+## Player-contributed routes (`ROUTES/player/`)
+
+Player-shared origin–destination routes published by the VoiceATC Simulator
+website. They overlay the generated route tables — the game prefers them per
+pair and falls back to the generated route — and are validated against the live
+cycle every night, with stale routes marked deprecated in
+`.voiceatc/player_routes_status.json` rather than deleted. The website is the
+single writer of this tree; regeneration and releases only read it. Contract
+and lifecycle: [`ROUTES/player/README.md`](ROUTES/player/README.md).
+
 ## Route publication compatibility
 
 `ROUTES/routes.tsv` and `ROUTES/routes_default_rich.tsv` are the coordinate-capable

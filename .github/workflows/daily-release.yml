@@ -8,6 +8,18 @@ on:
 permissions:
   contents: write
 
+# Serialises every workflow that writes to main. This job deletes and recreates
+# the rolling `latest` release and pushes a manifest commit, so two overlapping
+# runs corrupt each other. Shared with format-all-json.yml, which also pushes.
+#
+# cancel-in-progress stays false: a run must never be killed between deleting
+# `latest` and recreating it. Queued runs coalesce instead — GitHub keeps only
+# the newest pending run per group, and that run sees every commit accumulated
+# while the current one was busy.
+concurrency:
+  group: community-repo-write
+  cancel-in-progress: false
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -42,6 +54,71 @@ jobs:
         run: python tools/constraints_manifest.py --validate-only
       - name: Validate procedure options files
         run: python tools/procedure_options_manifest.py --validate-only
+      - name: Validate player route files
+        run: python tools/player_routes_manifest.py --validate-only
+      - name: Compute route lane cycles
+        id: lanes
+        shell: bash
+        run: |
+          set -euo pipefail
+          header_airac() { head -n 1 "$1" | sed -nE 's/^airac[[:space:]]+([0-9]{4}).*/\1/Ip'; }
+          echo "current_airac=$(header_airac ROUTES/routes.tsv)" >> "$GITHUB_OUTPUT"
+          echo "default_airac=$(header_airac ROUTES/routes_default.tsv)" >> "$GITHUB_OUTPUT"
+      - name: Cache route graph databases
+        uses: actions/cache@v4
+        with:
+          path: build/navdb
+          key: player-navdb-${{ steps.lanes.outputs.current_airac }}-${{ steps.lanes.outputs.default_airac }}
+      - name: Fetch route graph databases
+        continue-on-error: true
+        shell: bash
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_R2_ACCOUNT_ID }}
+          R2_BUCKET: ${{ secrets.CLOUDFLARE_R2_BUCKET }}
+          CUR_AIRAC: ${{ steps.lanes.outputs.current_airac }}
+          DEF_AIRAC: ${{ steps.lanes.outputs.default_airac }}
+        run: |
+          # Deep-validation inputs for player-contributed routes: the compacted
+          # route graph (~12 MB) and navdata (~165 MB) per lane, produced by the
+          # game repo's AIRAC pipeline. The cache step above keys them by cycle
+          # pair, so R2 sees real downloads roughly once per cycle, not daily.
+          # Best-effort throughout: when a database is missing the release still
+          # ships and player route statuses carry forward unchanged.
+          set -euo pipefail
+          if [[ -z "${AWS_ACCESS_KEY_ID:-}" || -z "${R2_ACCOUNT_ID:-}" || -z "${R2_BUCKET:-}" ]]; then
+            echo "Cloudflare R2 secrets not configured — skipping graph fetch."
+            exit 0
+          fi
+          python -m pip install --quiet --upgrade awscli
+          EP="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
+          fetch() {
+            # Download to .tmp then move, so a failed transfer can never leave a
+            # partial file that would poison the cycle-keyed cache.
+            local key="$1" dest="$2"
+            if [[ -f "${dest}" ]]; then
+              echo "cached: ${dest}"
+              return 0
+            fi
+            if aws s3 cp "s3://${R2_BUCKET}/${key}" "${dest}.tmp" --endpoint-url "${EP}"; then
+              mv "${dest}.tmp" "${dest}"
+            else
+              rm -f "${dest}.tmp"
+              echo "unavailable: ${key}"
+            fi
+          }
+          if [[ -n "${CUR_AIRAC}" ]]; then
+            mkdir -p build/navdb/current
+            fetch "graphs/${CUR_AIRAC}/compacted_route_graph_${CUR_AIRAC}.s3db" "build/navdb/current/graph.s3db"
+            fetch "navdata/${CUR_AIRAC}/navigraph_data.s3db" "build/navdb/current/navdata.s3db"
+          fi
+          if [[ -n "${DEF_AIRAC}" ]]; then
+            mkdir -p build/navdb/default
+            fetch "graphs/${DEF_AIRAC}/compacted_route_graph_${DEF_AIRAC}_default.s3db" "build/navdb/default/graph.s3db"
+            fetch "navdata/${DEF_AIRAC}/navigraph_data_default.s3db" "build/navdb/default/navdata.s3db"
+          fi
       - name: Compute release metadata
         id: meta
         env:
@@ -114,6 +191,16 @@ jobs:
             --published-at "${PUBLISHED_AT}" \
             --commit-sha "${SOURCE_SHA}" \
             --download-repo "${GITHUB_REPOSITORY}" > build/release/summary.json
+          python tools/player_routes_manifest.py --build \
+            --output-dir build/release \
+            --release-tag "${TAG}" \
+            --published-at "${PUBLISHED_AT}" \
+            --commit-sha "${SOURCE_SHA}" \
+            --download-repo "${GITHUB_REPOSITORY}" \
+            --current-graph build/navdb/current/graph.s3db \
+            --current-navdata build/navdb/current/navdata.s3db \
+            --default-graph build/navdb/default/graph.s3db \
+            --default-navdata build/navdb/default/navdata.s3db > build/release/player_summary.json
           python - <<'PY'
           import hashlib
           import importlib.util
@@ -123,6 +210,8 @@ jobs:
 
           summary = json.loads(Path("build/release/summary.json").read_text(encoding="utf-8"))
           assets = summary["assets"]
+          player_summary = json.loads(Path("build/release/player_summary.json").read_text(encoding="utf-8"))
+          player_assets = player_summary["assets"]
 
           def previous_hash(path: str) -> str:
               manifest_path = Path(path)
@@ -145,6 +234,17 @@ jobs:
               rich = payload.get("rich_routes_tsv", {})
               return str(rich.get("sha256", "")).strip() if isinstance(rich, dict) else ""
 
+          def previous_player_overlay_hash(tier: str) -> str:
+              manifest_path = Path(".voiceatc/player_routes_manifest.json")
+              if not manifest_path.exists():
+                  return ""
+              try:
+                  payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+              except Exception:
+                  return ""
+              tier_payload = payload.get(tier, {})
+              return str(tier_payload.get("sha256", "")).strip() if isinstance(tier_payload, dict) else ""
+
           release_assets_changed = not (
               previous_hash(".voiceatc/routes_manifest.json") == str(assets["routes_tsv"]["sha256"]).strip()
               and previous_rich_routes_hash(".voiceatc/routes_manifest.json") == str(assets["routes_rich_tsv"]["sha256"]).strip()
@@ -153,6 +253,8 @@ jobs:
               and previous_hash(".voiceatc/sector_data_manifest.json") == str(assets["sector_data_zip"]["sha256"]).strip()
               and previous_hash(".voiceatc/misc_drawings_manifest.json") == str(assets["misc_drawings_zip"]["sha256"]).strip()
               and previous_hash(".voiceatc/color_profiles_manifest.json") == str(assets["color_profiles_zip"]["sha256"]).strip()
+              and previous_player_overlay_hash("current") == str(player_assets["player_routes_tsv"]["sha256"]).strip()
+              and previous_player_overlay_hash("default") == str(player_assets["player_routes_default_tsv"]["sha256"]).strip()
           )
 
           constraints_spec = importlib.util.spec_from_file_location(
@@ -201,7 +303,24 @@ jobs:
 
           procedure_options_changed = canonical_hash(current_options_manifest) != canonical_hash(generated_options_manifest)
 
-          changed = release_assets_changed or constraints_changed or procedure_options_changed
+          # Player route status drift (deprecation flips, revalidation stamps) must
+          # commit even when the overlay bytes are unchanged — the website badges
+          # read the committed status file. The player manifest itself embeds the
+          # daily release tag, so it is deliberately NOT part of this comparison.
+          player_status_path = Path(".voiceatc/player_routes_status.json")
+          current_player_status: object = {}
+          if player_status_path.exists():
+              try:
+                  current_player_status = json.loads(player_status_path.read_text(encoding="utf-8"))
+              except Exception:
+                  current_player_status = {}
+          generated_player_status = dict(player_summary["manifests"]["player_routes_status"])
+          stable_current_status = dict(current_player_status) if isinstance(current_player_status, dict) else {}
+          generated_player_status.pop("generated_at", None)
+          stable_current_status.pop("generated_at", None)
+          player_status_changed = canonical_hash(stable_current_status) != canonical_hash(generated_player_status)
+
+          changed = release_assets_changed or constraints_changed or procedure_options_changed or player_status_changed
           should_publish = release_assets_changed or os.environ.get("IS_MANUAL", "").strip() == "true"
 
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as handle:
@@ -209,6 +328,7 @@ jobs:
               handle.write(f"release_assets_changed={'true' if release_assets_changed else 'false'}\n")
               handle.write(f"constraints_changed={'true' if constraints_changed else 'false'}\n")
               handle.write(f"procedure_options_changed={'true' if procedure_options_changed else 'false'}\n")
+              handle.write(f"player_status_changed={'true' if player_status_changed else 'false'}\n")
               handle.write(f"should_publish={'true' if should_publish else 'false'}\n")
               handle.write(f"airac={summary['airac']}\n")
               handle.write(f"routes_asset_name={assets['routes_tsv']['asset_name']}\n")
@@ -219,6 +339,8 @@ jobs:
               handle.write(f"misc_drawings_asset_name={assets['misc_drawings_zip']['asset_name']}\n")
               handle.write(f"color_profiles_asset_name={assets['color_profiles_zip']['asset_name']}\n")
               handle.write(f"release_manifest_asset_name={assets['release_manifest']['asset_name']}\n")
+              handle.write(f"player_routes_asset_name={player_assets['player_routes_tsv']['asset_name']}\n")
+              handle.write(f"player_routes_default_asset_name={player_assets['player_routes_default_tsv']['asset_name']}\n")
               handle.write(f"routes_asset_path={assets['routes_tsv']['path']}\n")
               handle.write(f"routes_rich_asset_path={assets['routes_rich_tsv']['path']}\n")
               handle.write(f"mva_asset_path={assets['mva_zip']['path']}\n")
@@ -227,6 +349,8 @@ jobs:
               handle.write(f"misc_drawings_asset_path={assets['misc_drawings_zip']['path']}\n")
               handle.write(f"color_profiles_asset_path={assets['color_profiles_zip']['path']}\n")
               handle.write(f"release_manifest_asset_path={assets['release_manifest']['path']}\n")
+              handle.write(f"player_routes_asset_path={player_assets['player_routes_tsv']['path']}\n")
+              handle.write(f"player_routes_default_asset_path={player_assets['player_routes_default_tsv']['path']}\n")
           PY
           echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
           echo "title=${TITLE}" >> "$GITHUB_OUTPUT"
@@ -255,6 +379,8 @@ jobs:
               "${{ steps.meta.outputs.sector_data_asset_path }}#${{ steps.meta.outputs.sector_data_asset_name }}" \
               "${{ steps.meta.outputs.misc_drawings_asset_path }}#${{ steps.meta.outputs.misc_drawings_asset_name }}" \
               "${{ steps.meta.outputs.color_profiles_asset_path }}#${{ steps.meta.outputs.color_profiles_asset_name }}" \
+              "${{ steps.meta.outputs.player_routes_asset_path }}#${{ steps.meta.outputs.player_routes_asset_name }}" \
+              "${{ steps.meta.outputs.player_routes_default_asset_path }}#${{ steps.meta.outputs.player_routes_default_asset_name }}" \
               "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
               --clobber
           else
@@ -266,6 +392,8 @@ jobs:
               "${{ steps.meta.outputs.sector_data_asset_path }}#${{ steps.meta.outputs.sector_data_asset_name }}" \
               "${{ steps.meta.outputs.misc_drawings_asset_path }}#${{ steps.meta.outputs.misc_drawings_asset_name }}" \
               "${{ steps.meta.outputs.color_profiles_asset_path }}#${{ steps.meta.outputs.color_profiles_asset_name }}" \
+              "${{ steps.meta.outputs.player_routes_asset_path }}#${{ steps.meta.outputs.player_routes_asset_name }}" \
+              "${{ steps.meta.outputs.player_routes_default_asset_path }}#${{ steps.meta.outputs.player_routes_default_asset_name }}" \
               "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
               --target "${TARGET}" \
               --latest=false \
@@ -302,6 +430,8 @@ jobs:
             "${{ steps.meta.outputs.sector_data_asset_path }}#${{ steps.meta.outputs.sector_data_asset_name }}" \
             "${{ steps.meta.outputs.misc_drawings_asset_path }}#${{ steps.meta.outputs.misc_drawings_asset_name }}" \
             "${{ steps.meta.outputs.color_profiles_asset_path }}#${{ steps.meta.outputs.color_profiles_asset_name }}" \
+            "${{ steps.meta.outputs.player_routes_asset_path }}#${{ steps.meta.outputs.player_routes_asset_name }}" \
+            "${{ steps.meta.outputs.player_routes_default_asset_path }}#${{ steps.meta.outputs.player_routes_default_asset_name }}" \
             "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
             --target "${TARGET}" \
             --title "${TITLE}" \
@@ -333,6 +463,7 @@ jobs:
           PY
           python tools/constraints_manifest.py --write
           python tools/procedure_options_manifest.py --write
+          python tools/player_routes_manifest.py --write-manifests --summary build/release/player_summary.json
       - name: Publish routes to Cloudflare R2
         if: steps.meta.outputs.should_publish == 'true'
         continue-on-error: true
@@ -346,6 +477,8 @@ jobs:
           SUB_AIRAC: ${{ steps.meta.outputs.airac }}
           SUB_TSV: ${{ steps.meta.outputs.routes_asset_path }}
           SUB_RICH_TSV: ${{ steps.meta.outputs.routes_rich_asset_path }}
+          PLAYER_TSV: ${{ steps.meta.outputs.player_routes_asset_path }}
+          PLAYER_DEF_TSV: ${{ steps.meta.outputs.player_routes_default_asset_path }}
         run: |
           # Mirror the just-published routes to Cloudflare R2 so the game can fetch route data
           # from the api.voiceatcsimulator.com Worker (routes/<airac>/...) instead of GitHub
@@ -397,16 +530,114 @@ jobs:
             echo "Default routes file or manifest missing — skipping default R2 upload."
           fi
 
+          # Player-contributed route overlays: per-lane TSV plus the shared
+          # manifest/status files, published under each lane's cycle prefix so the
+          # game and website fetch them next to the managed routes.
+          PDEF_AIRAC=""
+          if [[ -f "ROUTES/routes_default.tsv" ]]; then
+            PDEF_AIRAC="$(header_airac ROUTES/routes_default.tsv)"
+          fi
+          if [[ -n "${SUB_AIRAC:-}" && -n "${PLAYER_TSV:-}" && -f "${PLAYER_TSV}" ]]; then
+            aws s3 cp "${PLAYER_TSV}" "s3://${R2_BUCKET}/routes/${SUB_AIRAC}/player_overlay.tsv" \
+              --content-type "text/tab-separated-values" --endpoint-url "${EP}"
+            echo "Published player overlay to routes/${SUB_AIRAC}/."
+          fi
+          if [[ -n "${PDEF_AIRAC}" && -n "${PLAYER_DEF_TSV:-}" && -f "${PLAYER_DEF_TSV}" ]]; then
+            aws s3 cp "${PLAYER_DEF_TSV}" "s3://${R2_BUCKET}/routes/${PDEF_AIRAC}/player_overlay.tsv" \
+              --content-type "text/tab-separated-values" --endpoint-url "${EP}"
+            echo "Published default player overlay to routes/${PDEF_AIRAC}/."
+          fi
+          for PLAYER_JSON in player_routes_manifest.json player_routes_status.json; do
+            if [[ -f ".voiceatc/${PLAYER_JSON}" ]]; then
+              for CYCLE in "${SUB_AIRAC:-}" "${PDEF_AIRAC}"; do
+                [[ -n "${CYCLE}" ]] || continue
+                aws s3 cp ".voiceatc/${PLAYER_JSON}" "s3://${R2_BUCKET}/routes/${CYCLE}/${PLAYER_JSON}" \
+                  --content-type "application/json" --endpoint-url "${EP}"
+              done
+            fi
+          done
+
+          # Origin-prefix shards of the managed routes: the website reads
+          # routes/<cycle>/od_lookup/<XX>.tsv to show the generated route for one
+          # OD pair without ever parsing the full multi-megabyte TSV.
+          SUB_TSV_PATH="${SUB_TSV:-}" DEF_TSV_PATH="ROUTES/routes_default.tsv" python - <<'PY'
+          import os
+          from pathlib import Path
+
+          def build_shards(tsv: str, out_dir: Path) -> None:
+              path = Path(tsv)
+              if not tsv or not path.is_file():
+                  return
+              if out_dir.exists():
+                  for stale in out_dir.glob("*.tsv"):
+                      stale.unlink()
+              out_dir.mkdir(parents=True, exist_ok=True)
+              shards: dict[str, list[str]] = {}
+              for line in path.read_text(encoding="utf-8").splitlines():
+                  parts = line.split("\t")
+                  if len(parts) < 3 or parts[0] == "ORIGIN" or len(parts[0]) != 4 or not parts[0].isalnum():
+                      continue
+                  shards.setdefault(parts[0][:2].upper(), []).append(line)
+              for prefix, rows in sorted(shards.items()):
+                  (out_dir / (prefix + ".tsv")).write_text("\n".join(rows) + "\n", encoding="utf-8")
+              print(f"{len(shards)} od_lookup shards from {path.name}")
+
+          build_shards(os.environ.get("SUB_TSV_PATH", ""), Path("build/release/od_lookup/current"))
+          build_shards(os.environ.get("DEF_TSV_PATH", ""), Path("build/release/od_lookup/default"))
+          PY
+          if [[ -n "${SUB_AIRAC:-}" && -d build/release/od_lookup/current ]]; then
+            aws s3 sync build/release/od_lookup/current "s3://${R2_BUCKET}/routes/${SUB_AIRAC}/od_lookup" \
+              --content-type "text/tab-separated-values" --delete --endpoint-url "${EP}"
+          fi
+          if [[ -n "${PDEF_AIRAC}" && -d build/release/od_lookup/default ]]; then
+            aws s3 sync build/release/od_lookup/default "s3://${R2_BUCKET}/routes/${PDEF_AIRAC}/od_lookup" \
+              --content-type "text/tab-separated-values" --delete --endpoint-url "${EP}"
+          fi
+
       - name: Commit manifests
         if: steps.meta.outputs.changed == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- .voiceatc/routes_manifest.json .voiceatc/mva_manifest.json .voiceatc/runway_configs_manifest.json .voiceatc/sector_data_manifest.json .voiceatc/misc_drawings_manifest.json .voiceatc/color_profiles_manifest.json .voiceatc/constraints_manifest.json .voiceatc/procedure_options_manifest.json .voiceatc/release_manifest.json; then
+          if git diff --quiet -- .voiceatc/routes_manifest.json .voiceatc/mva_manifest.json .voiceatc/runway_configs_manifest.json .voiceatc/sector_data_manifest.json .voiceatc/misc_drawings_manifest.json .voiceatc/color_profiles_manifest.json .voiceatc/constraints_manifest.json .voiceatc/procedure_options_manifest.json .voiceatc/release_manifest.json .voiceatc/player_routes_manifest.json .voiceatc/player_routes_status.json && [[ -z "$(git status --porcelain -- .voiceatc/player_routes_manifest.json .voiceatc/player_routes_status.json)" ]]; then
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .voiceatc/routes_manifest.json .voiceatc/mva_manifest.json .voiceatc/runway_configs_manifest.json .voiceatc/sector_data_manifest.json .voiceatc/misc_drawings_manifest.json .voiceatc/color_profiles_manifest.json .voiceatc/constraints_manifest.json .voiceatc/procedure_options_manifest.json .voiceatc/release_manifest.json
+          git add .voiceatc/routes_manifest.json .voiceatc/mva_manifest.json .voiceatc/runway_configs_manifest.json .voiceatc/sector_data_manifest.json .voiceatc/misc_drawings_manifest.json .voiceatc/color_profiles_manifest.json .voiceatc/constraints_manifest.json .voiceatc/procedure_options_manifest.json .voiceatc/release_manifest.json .voiceatc/player_routes_manifest.json .voiceatc/player_routes_status.json
           git commit -m "chore: refresh daily community release manifests"
+          # Contributions land on main directly, so a push here can race one that
+          # arrived while the release was building. Rebase and retry rather than
+          # failing the release and leaving the manifests behind the content.
+          # --autostash matters: earlier steps can leave the tree dirty.
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "push rejected (attempt ${attempt}); rebasing onto origin/main"
+            # `|| true` because this block runs under `set -e`: a failed rebase
+            # must not abort the loop before the final push reports the real error.
+            git pull --rebase --autostash origin main || true
+            sleep $(( (RANDOM % 5) + attempt ))
+          done
           git push
+
+      # A failed release stops every data type shipping — routes, MVAs, sector
+      # data and all airports — not just whatever caused it. Without this the
+      # only signal is players reporting stale data days later.
+      - name: Alert on failure
+        if: failure()
+        continue-on-error: true
+        shell: bash
+        env:
+          ALERT_WEBHOOK: ${{ secrets.RELEASE_ALERT_WEBHOOK }}
+        run: |
+          set -uo pipefail
+          if [[ -z "${ALERT_WEBHOOK:-}" ]]; then
+            echo "RELEASE_ALERT_WEBHOOK not configured — skipping alert."
+            exit 0
+          fi
+          RUN_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          MESSAGE=":rotating_light: **Daily Community Release failed** — no community data is shipping until this is fixed (routes, MVAs, runway configs, sector data, colours)."
+          jq -n --arg msg "${MESSAGE}" --arg url "${RUN_URL}" '{content: ($msg + "\n" + $url)}' \
+            | curl -sS -X POST -H "Content-Type: application/json" -d @- "${ALERT_WEBHOOK}"
