@@ -3,7 +3,12 @@
 routes_airac_migration.py — AIRAC route compliance migration tool.
 
 For each route in ROUTES/routes.tsv, checks connectivity against a new AIRAC's
-compacted graph.  Produces three outputs:
+navigation database, using routes_connectivity_check.validate_routes so this
+tool and the contribution gate always agree on what "flyable" means.  Navdata
+is therefore required: the compacted graph is built for route *generation* and
+drops the pass-through fixes, oceanic coordinate points and cross-FIR airway
+halves that named routes rely on, so it cannot decide acceptance for a tool
+that blanks rows.  Produces three outputs:
 
   migration_ready.tsv   — same as source but with failing LainoaSoftware routes
                           blanked (empty route column) so route_builder.py can
@@ -32,7 +37,6 @@ import json
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Optional
 
 # ---------------------------------------------------------------------------
 # Ensure tools/ directory is on sys.path so sibling imports work
@@ -43,12 +47,9 @@ if str(_TOOLS_DIR) not in sys.path:
 
 from routes_connectivity_check import (  # noqa: E402
     Finding,
-    GraphIndex,
-    NavdataIndex,
     RouteRow,
-    RouteSegment,
     parse_routes_file,
-    parse_route_tokens,
+    validate_routes,
 )
 
 # ---------------------------------------------------------------------------
@@ -74,125 +75,59 @@ def _is_lainoa(author: str) -> bool:
 
 
 # ---------------------------------------------------------------------------
-# Core validation — mirrors validate_routes() but without max_findings cap
+# Core validation — delegated wholesale to the contribution gate
 # ---------------------------------------------------------------------------
 
-def _validate_row(
-    row: RouteRow,
-    graph: GraphIndex,
-    navdata: Optional[NavdataIndex],
+def _validate_rows(
+    routes_path: Path,
+    rows: list[RouteRow],
+    graph_db: Path | None,
+    navdata_db: Path,
     *,
     strict_dct: bool,
-) -> tuple[list[Finding], list[Finding]]:
-    """Return (errors, warnings) for a single route row."""
-    errors: list[Finding] = []
-    warnings: list[Finding] = []
+) -> list[RouteOutcome]:
+    """Categorise every route row using the shared connectivity checker.
 
-    def point_exists(token: str) -> bool:
-        normalized = token.strip().upper()
-        return graph.has_point(normalized) or bool(navdata and navdata.has_point(normalized))
+    routes_connectivity_check.validate_routes is the single implementation of
+    "would the game fly this route", so this tool calls it rather than keeping a
+    second copy that can drift.  The copy it used to keep resolved hops through
+    the compacted graph, which rejects any route naming a fix the graph bake
+    collapsed, an oceanic lat/lon point the graph does not hold, or an airway
+    Navigraph splits across FIRs — and it read the last fix off the raw token
+    list, so every route ending "... DCT <dest>" failed the STAR entry check on
+    the literal token DCT.  Against AIRAC 2608 that pair of faults marked 73,941
+    of 99,869 routes for rebuild where the shared checker marks 3,904.
 
-    def airway_exists(token: str) -> bool:
-        return graph.has_airway(token.strip().upper())
-
-    segments, parse_findings = parse_route_tokens(
-        row, point_exists=point_exists, airway_exists=airway_exists
+    validate_routes walks the file itself, so its findings are grouped back onto
+    rows by line number, which parse_routes_file assigns uniquely.
+    """
+    summary = validate_routes(
+        routes_path,
+        graph_db,
+        navdata_db,
+        strict_dct=strict_dct,
+        # Migration has to see every route: a findings cap stops the scan early
+        # and would silently categorise the untouched tail as "ok".
+        max_findings=sys.maxsize,
     )
-    for finding in parse_findings:
-        (errors if finding.severity == "error" else warnings).append(finding)
 
-    # If route couldn't even be parsed, no point checking further
-    if any(f.severity == "error" for f in parse_findings):
-        return errors, warnings
+    errors_by_line: dict[int, list[Finding]] = {}
+    warnings_by_line: dict[int, list[Finding]] = {}
+    for finding in summary.errors:
+        errors_by_line.setdefault(finding.line_number, []).append(finding)
+    for finding in summary.warnings:
+        warnings_by_line.setdefault(finding.line_number, []).append(finding)
 
-    # Airport existence (requires navdata)
-    if navdata:
-        if not navdata.has_airport(row.origin):
-            errors.append(Finding(
-                row.line_number, "error", "origin_missing",
-                f"{row.origin}->{row.dest}: origin airport {row.origin} missing from navdata",
-            ))
-        if not navdata.has_airport(row.dest):
-            errors.append(Finding(
-                row.line_number, "error", "dest_missing",
-                f"{row.origin}->{row.dest}: destination airport {row.dest} missing from navdata",
-            ))
-
-    # Interior point existence
-    interior_points: set[str] = set()
-    for segment in segments:
-        for token in (segment.from_token, segment.to_token):
-            if token not in {row.origin, row.dest}:
-                interior_points.add(token)
-    for point_ident in sorted(interior_points):
-        if not point_exists(point_ident):
-            errors.append(Finding(
-                row.line_number, "error", "point_missing",
-                f"{row.origin}->{row.dest}: point {point_ident} missing from graph/navdata",
-            ))
-
-    # Segment connectivity
-    for segment in segments:
-        from_point = segment.from_token
-        connector = segment.connector
-        to_point = segment.to_token
-
-        from_is_airport = from_point in {row.origin, row.dest} and not graph.has_point(from_point)
-        to_is_airport = to_point in {row.origin, row.dest} and not graph.has_point(to_point)
-
-        if not connector:
-            if not from_is_airport and not to_is_airport:
-                warnings.append(Finding(
-                    row.line_number, "warning", "implicit_direct",
-                    f"{row.origin}->{row.dest}: implicit direct segment {from_point}->{to_point}",
-                ))
-            continue
-
-        if connector == "DCT":
-            if from_is_airport or to_is_airport:
-                continue
-            if graph.has_exact_dct(from_point, to_point):
-                continue
-            detail = f"{row.origin}->{row.dest}: DCT {from_point}->{to_point} not present in FRA DCT graph"
-            if strict_dct:
-                errors.append(Finding(row.line_number, "error", "dct_not_in_graph", detail))
-            else:
-                warnings.append(Finding(row.line_number, "warning", "dct_unchecked", detail))
-            continue
-
-        if from_is_airport or to_is_airport:
-            errors.append(Finding(
-                row.line_number, "error", "airway_to_airport",
-                f"{row.origin}->{row.dest}: airway {connector} cannot connect directly to airport token",
-            ))
-            continue
-
-        if not graph.has_airway(connector):
-            errors.append(Finding(
-                row.line_number, "error", "airway_missing",
-                f"{row.origin}->{row.dest}: airway {connector} missing from compacted graph",
-            ))
-            continue
-
-        if not graph.has_airway_path(from_point, connector, to_point):
-            errors.append(Finding(
-                row.line_number, "error", "airway_disconnect",
-                f"{row.origin}->{row.dest}: no {connector} path from {from_point} to {to_point}",
-            ))
-
-    # STAR entry membership check — requires navdata with tbl_pe_stars
-    if navdata and navdata.star_airports:
-        tokens = [t.strip().upper() for t in row.route.split() if t.strip()]
-        if len(tokens) >= 3:
-            last_fix = tokens[-2]
-            if not navdata.is_valid_star_entry_point(row.dest, last_fix):
-                errors.append(Finding(
-                    row.line_number, "error", "star_entry_not_in_procedure",
-                    f"{row.origin}->{row.dest}: last fix '{last_fix}' is not a published "
-                    f"STAR entry point for {row.dest} — possible proximity substitution",
-                ))
-
-    return errors, warnings
+    outcomes: list[RouteOutcome] = []
+    for row in rows:
+        errors = errors_by_line.get(row.line_number, [])
+        warnings = warnings_by_line.get(row.line_number, [])
+        if errors:
+            category = "lainoa_rebuild" if _is_lainoa(row.author) else "community_flag"
+        else:
+            category = "ok"
+        outcomes.append(RouteOutcome(row=row, errors=errors, warnings=warnings, category=category))
+    return outcomes
 
 
 # ---------------------------------------------------------------------------
@@ -262,7 +197,7 @@ def _build_json_report(
     target_airac: str,
     source_airac: str,
     graph_path: Path,
-    navdata_path: Optional[Path],
+    navdata_path: Path,
     outcomes: list[RouteOutcome],
 ) -> dict:
     lainoa_list = []
@@ -297,7 +232,7 @@ def _build_json_report(
         "source_airac": source_airac,
         "generated_at_utc": datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
         "graph_db": str(graph_path),
-        "navdata_db": str(navdata_path) if navdata_path else None,
+        "navdata_db": str(navdata_path),
         "summary": {
             "total_routes_checked": len(outcomes),
             "routes_ok": ok_count,
@@ -403,7 +338,7 @@ def main() -> int:
     parser.add_argument("--graph", required=True, metavar="PATH",
                         help="Path to compacted_route_graph_XXXX.s3db")
     parser.add_argument("--navdata", metavar="PATH", default="",
-                        help="Path to navigraph_data.s3db (optional)")
+                        help="Path to navigraph_data.s3db — decides route acceptance")
     parser.add_argument("--target-airac", required=True, metavar="XXXX",
                         help="New AIRAC cycle to migrate to (4-digit)")
     parser.add_argument("--output-tsv", required=True, metavar="PATH",
@@ -450,29 +385,19 @@ def main() -> int:
         if not path.exists():
             print(f"ERROR: {label} file not found: {path}", file=sys.stderr)
             return 1
-    if navdata_path and not navdata_path.exists():
-        print(f"WARNING: navdata file not found, proceeding without it: {navdata_path}",
-              file=sys.stderr)
-        navdata_path = None
-
-    # -----------------------------------------------------------------------
-    # Load indexes
-    # -----------------------------------------------------------------------
-    print(f"Loading graph index: {graph_path}")
-    try:
-        graph = GraphIndex(graph_path)
-    except Exception as exc:
-        print(f"ERROR loading graph: {exc}", file=sys.stderr)
+    # Navdata is not optional here even though the flag is. Route acceptance is
+    # decided against tbl_er_enroute_airways; without it the check falls back to
+    # the compacted graph, which drops pass-through fixes, oceanic points and
+    # cross-FIR airway halves — and this tool blanks what it rejects.
+    if navdata_path is None or not navdata_path.exists():
+        located = f": {navdata_path}" if navdata_path else ""
+        print(
+            f"ERROR: navdata is required to migrate routes{located}. Acceptance is decided "
+            "against tbl_er_enroute_airways, not the compacted graph; running without it "
+            "would blank correct routes.",
+            file=sys.stderr,
+        )
         return 1
-
-    navdata: Optional[NavdataIndex] = None
-    if navdata_path:
-        print(f"Loading navdata index: {navdata_path}")
-        try:
-            navdata = NavdataIndex(navdata_path)
-        except Exception as exc:
-            print(f"WARNING: could not load navdata ({exc}), proceeding without it",
-                  file=sys.stderr)
 
     # -----------------------------------------------------------------------
     # Parse routes
@@ -488,19 +413,16 @@ def main() -> int:
     # -----------------------------------------------------------------------
     # Validate every non-blank route
     # -----------------------------------------------------------------------
-    print(f"Validating {len(rows):,} routes against AIRAC {target_airac} graph…")
-    outcomes: list[RouteOutcome] = []
-    for i, row in enumerate(rows, 1):
-        if i % 10000 == 0 or i == len(rows):
-            print(f"  {i:,}/{len(rows):,}", flush=True)
-        errors, warnings = _validate_row(
-            row, graph, navdata, strict_dct=args.strict_dct
+    print(f"Validating {len(rows):,} routes against AIRAC {target_airac} navdata…")
+    print(f"  Navdata: {navdata_path}", flush=True)
+    print(f"  Graph:   {graph_path} (FRA DCT warnings only)", flush=True)
+    try:
+        outcomes = _validate_rows(
+            routes_path, rows, graph_path, navdata_path, strict_dct=args.strict_dct
         )
-        if errors:
-            category = "lainoa_rebuild" if _is_lainoa(row.author) else "community_flag"
-        else:
-            category = "ok"
-        outcomes.append(RouteOutcome(row=row, errors=errors, warnings=warnings, category=category))
+    except Exception as exc:
+        print(f"ERROR validating routes: {exc}", file=sys.stderr)
+        return 1
 
     # -----------------------------------------------------------------------
     # Summary

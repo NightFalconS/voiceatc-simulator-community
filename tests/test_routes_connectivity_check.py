@@ -105,10 +105,36 @@ def create_navdata_db(path: Path) -> None:
         CREATE TABLE tbl_db_enroute_ndbnavaids (
             navaid_identifier TEXT NOT NULL
         );
+        CREATE TABLE tbl_er_enroute_airways (
+            route_identifier TEXT NOT NULL,
+            icao_code TEXT,
+            seqno INTEGER NOT NULL,
+            waypoint_identifier TEXT NOT NULL
+        );
         """
     )
     cur.executemany("INSERT INTO tbl_pa_airports(airport_identifier) VALUES (?)", [("KAAA",), ("KDDD",)])
-    cur.executemany("INSERT INTO tbl_ea_enroute_waypoints(waypoint_identifier) VALUES (?)", [("AAA",), ("BBB",), ("CCC",), ("DDD",)])
+    cur.executemany("INSERT INTO tbl_ea_enroute_waypoints(waypoint_identifier) VALUES (?)", [("AAA",), ("BBB",), ("CCC",), ("DDD",), ("EEE",)])
+    # Y1 runs AAA-EEE-BBB-CCC. EEE is deliberately absent from the compacted
+    # graph fixture — it is the pass-through fix the graph bake collapsed, and
+    # the only fix here that the graph oracle cannot resolve. W2 is split across
+    # two icao_code blocks and is likewise graph-absent, as Navigraph stores any
+    # airway that crosses an FIR boundary.
+    cur.executemany(
+        "INSERT INTO tbl_er_enroute_airways(route_identifier, icao_code, seqno, waypoint_identifier) VALUES (?, ?, ?, ?)",
+        [
+            ("Y1", "KZ", 10, "AAA"),
+            ("Y1", "KZ", 15, "EEE"),
+            ("Y1", "KZ", 20, "BBB"),
+            ("Y1", "KZ", 30, "CCC"),
+            ("W2", "KZ", 10, "AAA"),
+            ("W2", "KZ", 20, "BBB"),
+            ("W2", "ZY", 30, "CCC"),
+            ("W2", "ZY", 40, "DDD"),
+            ("V2", "KZ", 10, "CCC"),
+            ("V2", "KZ", 20, "DDD"),
+        ],
+    )
     con.commit()
     con.close()
 
@@ -170,6 +196,71 @@ class RoutesConnectivityCheckTests(unittest.TestCase):
 
             self.assertFalse(summary.is_valid)
             self.assertEqual("airway_disconnect", summary.errors[0].code)
+
+    def _validate(self, root: Path, route: str, *, with_graph: bool = True) -> object:
+        routes_path = root / "routes.tsv"
+        graph_db = root / "graph.s3db"
+        navdata_db = root / "navdata.s3db"
+        create_graph_db(graph_db)
+        create_navdata_db(navdata_db)
+        routes_path.write_text(
+            "airac 2602\n"
+            "ORIGIN\tDEST\tROUTE\tCREATION_AIRAC\tAUTHOR\n"
+            f"{route}\t2602\tTester\n",
+            encoding="utf-8",
+        )
+        return MODULE.validate_routes(
+            routes_path,
+            graph_db if with_graph else None,
+            navdata_db,
+            strict_dct=False,
+            max_findings=100,
+        )
+
+    def test_fix_collapsed_out_of_graph_still_validates(self) -> None:
+        """EEE is a pass-through fix the compacted graph bake deleted; the game
+        resolves it from navdata, so naming it must not fail the route."""
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp_dir:
+            summary = self._validate(Path(tmp_dir), "KAAA\tKDDD\tKAAA AAA Y1 EEE Y1 CCC KDDD")
+            self.assertEqual([], [finding.code for finding in summary.errors])
+
+    def test_airway_split_across_fir_blocks_validates(self) -> None:
+        """W2 is stored as two icao_code blocks; get_full_airway concatenates them
+        by seqno with no airspace filter, so a crossing hop is flyable."""
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp_dir:
+            summary = self._validate(Path(tmp_dir), "KAAA\tKDDD\tKAAA AAA W2 DDD KDDD")
+            self.assertEqual([], [finding.code for finding in summary.errors])
+
+    def test_coordinate_fix_is_a_known_point(self) -> None:
+        """Oceanic lat/lon fixes are in neither database but are valid points."""
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp_dir:
+            summary = self._validate(Path(tmp_dir), "KAAA\tKDDD\tKAAA AAA DCT 59N142W DCT 0330N13300E DCT CCC KDDD")
+            self.assertEqual([], [finding.code for finding in summary.errors])
+
+    def test_fix_genuinely_off_the_airway_still_fails(self) -> None:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp_dir:
+            summary = self._validate(Path(tmp_dir), "KAAA\tKDDD\tKAAA CCC V2 AAA KDDD")
+            self.assertEqual(["airway_disconnect"], [finding.code for finding in summary.errors])
+            self.assertIn("AAA not on airway V2", summary.errors[0].detail)
+
+    def test_unknown_token_names_the_point_not_the_airway(self) -> None:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp_dir:
+            summary = self._validate(Path(tmp_dir), "KAAA\tKDDD\tKAAA AAA Y1 ZZZZZ KDDD")
+            self.assertEqual(["point_missing"], [finding.code for finding in summary.errors])
+            self.assertIn("point ZZZZZ", summary.errors[0].detail)
+            self.assertNotIn("Y1", summary.errors[0].detail)
+
+    def test_all_faults_reported_not_just_the_first(self) -> None:
+        """A bad token used to abandon the whole route, hiding later mistakes."""
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp_dir:
+            summary = self._validate(Path(tmp_dir), "KAAA\tKDDD\tKAAA AAA DCT ZZZZZ DCT CCC V2 AAA KDDD")
+            self.assertEqual({"point_missing", "airway_disconnect"}, {finding.code for finding in summary.errors})
+
+    def test_validates_without_a_compacted_graph(self) -> None:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp_dir:
+            summary = self._validate(Path(tmp_dir), "KAAA\tKDDD\tKAAA AAA Y1 CCC KDDD", with_graph=False)
+            self.assertTrue(summary.is_valid)
+            self.assertIsNone(summary.graph_db)
 
     def test_validate_routes_warns_for_unchecked_dct_by_default(self) -> None:
         with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp_dir:

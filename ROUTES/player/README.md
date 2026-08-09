@@ -51,11 +51,37 @@ website flow is preferred; `python tools/player_routes_manifest.py
 
 ## Nightly validation and deprecation
 
-The daily release checks every route against the live cycle's route graph and
-navigation data. Routes that no longer resolve (a waypoint or airway
-disappeared) are marked `deprecated` in `.voiceatc/player_routes_status.json`
-and excluded from the published overlay TSVs — the source file here is left
-untouched, so a route that validates again in a later cycle returns
-automatically. The website shows the per-route status so anyone signed in can
-fix or remove stale routes. When the validation databases are unavailable the
-previous statuses carry forward and the release still ships.
+The daily release checks every route against the live cycle's navigation data.
+Routes that no longer resolve (a waypoint or airway disappeared) are marked
+`deprecated` in `.voiceatc/player_routes_status.json` and excluded from the
+published overlay TSVs — the source file here is left untouched, so a route that
+validates again in a later cycle returns automatically. The website shows the
+per-route status so anyone signed in can fix or remove stale routes. When
+navdata is unavailable the previous statuses carry forward and the release still
+ships.
+
+### Acceptance is decided against navdata, never the compacted graph
+
+`tools/routes_connectivity_check.py` asks the same question the game asks. To
+fly `FIX AIRWAY FIX`, the game calls `NavigraphManager.get_full_airway()` —
+`SELECT * FROM tbl_er_enroute_airways WHERE route_identifier = ? ORDER BY seqno`,
+with **no `icao_code` filter** — and `RouteDecoder._expand_airway_segment` slices
+that list between the two named fixes. So the check is simply *are both fixes on
+that airway*, answered from `tbl_er_enroute_airways`.
+
+The compacted route graph must **not** be used for this. It is built for route
+*generation* and deliberately collapses any node with in/out degree 1 (or 2),
+which deletes most pass-through fixes; it also holds no oceanic lat/lon fixes,
+and it cannot see that an airway split across FIRs by `icao_code` is one airway.
+Validating against it rejected 124 of 416 correct routes in the 2026-08-09
+import. `--graph-db` is now optional and backs only the FRA DCT *warning*, which
+never deprecates a row.
+
+Consequences worth remembering:
+
+- Oceanic fixes (`59N142W`, `0330N13300E`) are matched by shape — they exist in
+  no table. See `COORDINATE_FIX_RE`.
+- An unresolvable token is reported once, by name, as `point_missing`. The old
+  `route_token_pattern` / `token_unknown` codes stayed in `DEPRECATING_CODES` for
+  previously stored statuses but are no longer emitted.
+- A route is inspected to the end; one bad token no longer hides later faults.

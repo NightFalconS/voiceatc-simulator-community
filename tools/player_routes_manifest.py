@@ -262,8 +262,12 @@ def deep_validate_lane(
     navdata_db: Path | None,
 ) -> dict[str, list[str]] | None:
     """Return {route_id: [reason, ...]} for deprecated rows, or None when the
-    deep check could not run (missing/broken graph input -> carry forward)."""
-    if graph_db is None or not Path(graph_db).is_file():
+    deep check could not run (missing/broken navdata input -> carry forward).
+
+    Navdata decides acceptance: the game expands a player route by name against
+    tbl_er_enroute_airways. The compacted graph is optional here and only backs
+    the FRA DCT warning, which never deprecates a row."""
+    if navdata_db is None or not Path(navdata_db).is_file():
         return None
     if not rows:
         return {}
@@ -280,8 +284,8 @@ def deep_validate_lane(
             tmp_path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
             summary = routes_connectivity_check.validate_routes(
                 tmp_path,
-                Path(graph_db),
-                Path(navdata_db) if navdata_db and Path(navdata_db).is_file() else None,
+                Path(graph_db) if graph_db and Path(graph_db).is_file() else None,
+                Path(navdata_db),
                 strict_dct=False,
                 max_findings=1_000_000_000,
             )

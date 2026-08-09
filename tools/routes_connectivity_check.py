@@ -2,9 +2,11 @@
 from __future__ import annotations
 
 import argparse
+import re
 import sqlite3
 import sys
 from collections import deque
+from contextlib import closing
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -13,6 +15,11 @@ ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_ROUTES_PATH = ROOT / "ROUTES" / "routes.tsv"
 RELATED_ROOT = ROOT.parent
 GRAPH_SCHEMA_VERSION = "7"
+
+# Oceanic lat/lon fixes ("59N142W", "0330N13300E"). These are first-class route
+# points for every flight planner but appear in no navdata table and in no
+# compacted-graph node, so they have to be recognised by shape.
+COORDINATE_FIX_RE = re.compile(r"^\d{2,4}[NS]\d{3,5}[EW]$")
 
 
 @dataclass(frozen=True)
@@ -39,7 +46,7 @@ class ValidationSummary:
     routes_checked: int
     errors: tuple[Finding, ...]
     warnings: tuple[Finding, ...]
-    graph_db: Path
+    graph_db: Path | None
     navdata_db: Path | None
 
     @property
@@ -170,10 +177,37 @@ class NavdataIndex:
         self.star_airports: set[str] = set()
         self.star_waypoints: dict[str, set[str]] = {}
         self._load_star_waypoints()
+        self.airway_sequences: dict[str, list[str]] = {}
+        self._load_airway_sequences()
+
+    def _load_airway_sequences(self) -> None:
+        """Build each airway's published fix list exactly as the game builds it.
+
+        Mirrors RouteDecoder._get_navigraph_airway_names in the game repo: the
+        rows are taken in seqno order with no filter on icao_code, so an airway
+        split across FIRs concatenates back into one list, and only *consecutive*
+        repeats are collapsed.
+        """
+        try:
+            with closing(sqlite3.connect(self.db_path)) as con:
+                query = (
+                    "SELECT route_identifier, waypoint_identifier FROM tbl_er_enroute_airways "
+                    "ORDER BY route_identifier, seqno"
+                )
+                for row in con.execute(query):
+                    airway = str(row[0] or "").strip().upper()
+                    fix = str(row[1] or "").strip().upper()
+                    if not airway or not fix:
+                        continue
+                    sequence = self.airway_sequences.setdefault(airway, [])
+                    if not sequence or sequence[-1] != fix:
+                        sequence.append(fix)
+        except sqlite3.OperationalError:
+            pass  # table absent in mock/older navdata — skip silently
 
     def _load_star_waypoints(self) -> None:
         try:
-            with sqlite3.connect(self.db_path) as con:
+            with closing(sqlite3.connect(self.db_path)) as con:
                 # We only want the FIRST waypoint (minimum seqno) for each procedure
                 # transition/route_type group. This defines the valid entry points.
                 query = """
@@ -203,7 +237,7 @@ class NavdataIndex:
 
     def _load_values(self, query: str) -> set[str]:
         try:
-            with sqlite3.connect(self.db_path) as con:
+            with closing(sqlite3.connect(self.db_path)) as con:
                 cur = con.cursor()
                 return {
                     str(row[0]).strip().upper()
@@ -226,6 +260,31 @@ class NavdataIndex:
             or normalized in self.terminal_ndbs
             or normalized in self.airports
         )
+
+    def has_point_excluding_airports(self, ident: str) -> bool:
+        """has_point, minus the airport table — used to tell a route fix apart from
+        a bare origin/destination identifier when no compacted graph is supplied."""
+        normalized = ident.strip().upper()
+        return (
+            normalized in self.waypoints
+            or normalized in self.terminal_waypoints
+            or normalized in self.vhfs
+            or normalized in self.ndbs
+            or normalized in self.terminal_ndbs
+        )
+
+    def has_airway(self, airway: str) -> bool:
+        return airway.strip().upper() in self.airway_sequences
+
+    def fix_on_airway(self, fix: str, airway: str) -> bool:
+        """Return True when the game could anchor an airway expansion on this fix.
+
+        RouteDecoder._expand_airway_segment slices the airway's fix list between
+        the two named fixes, so a hop succeeds exactly when both names appear on
+        the airway. Anything stricter than membership rejects routes the game
+        flies perfectly well.
+        """
+        return fix.strip().upper() in self.airway_sequences.get(airway.strip().upper(), ())
 
     def is_valid_star_entry_point(self, airport: str, fix: str) -> bool:
         """Return True if fix is a published STAR entry point for airport, or if the
@@ -274,15 +333,20 @@ def parse_routes_file(routes_path: Path) -> tuple[str, list[RouteRow]]:
     return airac, rows
 
 
-def resolve_graph_db(airac: str, graph_db_arg: str) -> Path:
-    candidates = [Path(graph_db_arg)] if graph_db_arg.strip() else [
-        RELATED_ROOT / "Project-Emerald-Upgrade-Routes" / "required" / airac / "compacted_route_graph.s3db",
-    ]
-    for candidate in candidates:
-        if candidate.exists():
-            return candidate.resolve()
-    candidate_list = ", ".join(str(path) for path in candidates)
-    raise FileNotFoundError(f"Unable to find compacted graph for AIRAC {airac}. Checked: {candidate_list}")
+def resolve_graph_db(airac: str, graph_db_arg: str) -> Path | None:
+    """Locate the compacted graph, which is optional.
+
+    The graph only backs the FRA DCT warning and the airport-token heuristic;
+    navdata is what decides whether a route is accepted. An explicitly requested
+    graph that does not exist is still an error.
+    """
+    if graph_db_arg.strip():
+        candidate = Path(graph_db_arg)
+        if not candidate.exists():
+            raise FileNotFoundError(f"Compacted graph not found: {candidate}")
+        return candidate.resolve()
+    default = RELATED_ROOT / "Project-Emerald-Upgrade-Routes" / "required" / airac / "compacted_route_graph.s3db"
+    return default.resolve() if default.exists() else None
 
 
 def resolve_navdata_db(airac: str, navdata_db_arg: str) -> Path | None:
@@ -323,28 +387,31 @@ def parse_route_tokens(
         token = interior[index]
         next_token = interior[index + 1] if index + 1 < len(interior) else ""
 
-        if token == "DCT" or (airway_exists(token) and next_token and point_exists(next_token)):
+        # 72 idents in AIRAC 2608 are both an airway and a fix (A1, T5, UN601 ...).
+        # For those, keep disambiguating on what follows; an unambiguous airway is
+        # a connector whatever comes next, so an unknown fix after it is blamed on
+        # the fix rather than on the airway.
+        is_connector = token == "DCT" or (
+            airway_exists(token)
+            and (not point_exists(token) or (next_token != "" and point_exists(next_token)))
+        )
+        if is_connector:
             if index == len(interior) - 1:
                 segments.append(RouteSegment(current_token, token, row.dest))
                 current_token = row.dest
                 index += 1
                 continue
-            if not next_token or not point_exists(next_token):
-                findings.append(Finding(row.line_number, "error", "route_token_pattern", f"{row.origin}->{row.dest}: connector {token} is not followed by a known point"))
-                return segments, findings
             segments.append(RouteSegment(current_token, token, next_token))
             current_token = next_token
             index += 2
             continue
 
-        if point_exists(token):
-            segments.append(RouteSegment(current_token, "", token))
-            current_token = token
-            index += 1
-            continue
-
-        findings.append(Finding(row.line_number, "error", "token_unknown", f"{row.origin}->{row.dest}: token {token} is neither a known point nor airway"))
-        return segments, findings
+        # Anything else is a fix. An unrecognised one is reported once, by name, by
+        # the point_missing check in validate_routes; parsing continues so the rest
+        # of the route is still inspected instead of being abandoned here.
+        segments.append(RouteSegment(current_token, "", token))
+        current_token = token
+        index += 1
 
     if current_token != row.dest:
         segments.append(RouteSegment(current_token, "", row.dest))
@@ -353,33 +420,58 @@ def parse_route_tokens(
 
 def validate_routes(
     routes_path: Path,
-    graph_db: Path,
+    graph_db: Path | None,
     navdata_db: Path | None,
     *,
     strict_dct: bool,
     max_findings: int,
 ) -> ValidationSummary:
+    """Validate contributed routes the way the game resolves them.
+
+    Navdata is the authority: the game expands a contributed route by name against
+    tbl_er_enroute_airways, never against the compacted graph, which exists for
+    route *generation* and deliberately drops pass-through fixes and coordinate
+    points. The graph is consulted only where navdata cannot answer — the FRA DCT
+    warning — and as a fallback when no navdata is supplied.
+    """
     airac, rows = parse_routes_file(routes_path)
-    graph = GraphIndex(graph_db)
+    graph = GraphIndex(graph_db) if graph_db else None
     navdata = NavdataIndex(navdata_db) if navdata_db else None
+    # Navdata answers airway questions only when it actually carries the airway
+    # table; a navdata file without it must not deprecate every airway hop.
+    airway_source = navdata if navdata and navdata.airway_sequences else None
     errors: list[Finding] = []
     warnings: list[Finding] = []
 
     def point_exists(token: str) -> bool:
         normalized = token.strip().upper()
-        return graph.has_point(normalized) or bool(navdata and navdata.has_point(normalized))
+        if COORDINATE_FIX_RE.match(normalized):
+            return True
+        if navdata and navdata.has_point(normalized):
+            return True
+        return bool(graph and graph.has_point(normalized))
 
     def airway_exists(token: str) -> bool:
-        return graph.has_airway(token.strip().upper())
+        normalized = token.strip().upper()
+        if airway_source:
+            return airway_source.has_airway(normalized)
+        return bool(graph and graph.has_airway(normalized))
+
+    def is_airport_token(row: RouteRow, token: str) -> bool:
+        if token not in {row.origin, row.dest}:
+            return False
+        if graph:
+            return not graph.has_point(token)
+        return not (navdata and navdata.has_point_excluding_airports(token))
 
     for row in rows:
         segments, parse_findings = parse_route_tokens(row, point_exists=point_exists, airway_exists=airway_exists)
         for finding in parse_findings:
             target = errors if finding.severity == "error" else warnings
             target.append(finding)
-        if any(finding.severity == "error" for finding in parse_findings):
-            if len(errors) >= max_findings:
-                break
+        if len(errors) >= max_findings:
+            break
+        if not segments:
             continue
 
         if navdata and not navdata.has_airport(row.origin):
@@ -394,11 +486,9 @@ def validate_routes(
             if token not in {row.origin, row.dest}
         ]
         for point_ident in sorted(set(point_idents)):
-            if graph.has_point(point_ident):
+            if point_exists(point_ident):
                 continue
-            if navdata and navdata.has_point(point_ident):
-                continue
-            errors.append(Finding(row.line_number, "error", "point_missing", f"{row.origin}->{row.dest}: point {point_ident} missing from graph/navdata"))
+            errors.append(Finding(row.line_number, "error", "point_missing", f"{row.origin}->{row.dest}: point {point_ident} missing from navdata"))
             if len(errors) >= max_findings:
                 break
         if len(errors) >= max_findings:
@@ -408,8 +498,8 @@ def validate_routes(
             from_point = segment.from_token
             connector = segment.connector
             to_point = segment.to_token
-            from_is_airport = from_point in {row.origin, row.dest} and not graph.has_point(from_point)
-            to_is_airport = to_point in {row.origin, row.dest} and not graph.has_point(to_point)
+            from_is_airport = is_airport_token(row, from_point)
+            to_is_airport = is_airport_token(row, to_point)
 
             if not connector:
                 if not from_is_airport and not to_is_airport:
@@ -419,7 +509,10 @@ def validate_routes(
             if connector == "DCT":
                 if from_is_airport or to_is_airport:
                     continue
-                if graph.has_exact_dct(from_point, to_point):
+                # An endpoint point_missing already rejected cannot be looked up here.
+                if not point_exists(from_point) or not point_exists(to_point):
+                    continue
+                if graph and graph.has_exact_dct(from_point, to_point):
                     continue
                 detail = f"{row.origin}->{row.dest}: DCT {from_point}->{to_point} not present in FRA DCT graph"
                 target = errors if strict_dct else warnings
@@ -434,12 +527,26 @@ def validate_routes(
                 if len(errors) >= max_findings:
                     break
                 continue
-            if not graph.has_airway(connector):
-                errors.append(Finding(row.line_number, "error", "airway_missing", f"{row.origin}->{row.dest}: airway {connector} missing from compacted graph"))
+            if not airway_exists(connector):
+                errors.append(Finding(row.line_number, "error", "airway_missing", f"{row.origin}->{row.dest}: airway {connector} missing from navdata"))
                 if len(errors) >= max_findings:
                     break
                 continue
-            if not graph.has_airway_path(from_point, connector, to_point):
+            # Check each endpoint against the airway separately, so a hop whose
+            # other end is an unknown fix still reports what it can. An endpoint
+            # point_missing already rejected is skipped — "X is not on this
+            # airway" says nothing useful about a fix that does not exist.
+            if airway_source:
+                off_airway = [
+                    fix
+                    for fix in dict.fromkeys((from_point, to_point))
+                    if point_exists(fix) and not airway_source.fix_on_airway(fix, connector)
+                ]
+                if off_airway:
+                    errors.append(Finding(row.line_number, "error", "airway_disconnect", f"{row.origin}->{row.dest}: {' and '.join(off_airway)} not on airway {connector}"))
+                    if len(errors) >= max_findings:
+                        break
+            elif graph and not graph.has_airway_path(from_point, connector, to_point):
                 errors.append(Finding(row.line_number, "error", "airway_disconnect", f"{row.origin}->{row.dest}: no {connector} path from {from_point} to {to_point}"))
                 if len(errors) >= max_findings:
                     break
@@ -477,11 +584,11 @@ def validate_routes(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Validate community routes against the AIRAC compacted route graph.",
+        description="Validate community routes against the AIRAC navigation database.",
     )
     parser.add_argument("--routes-path", default=str(DEFAULT_ROUTES_PATH), help="Path to ROUTES/routes.tsv")
-    parser.add_argument("--graph-db", default="", help="Path to compacted_route_graph.s3db")
-    parser.add_argument("--navdata-db", default="", help="Optional path to navigraph_data.s3db for airport/point lookup")
+    parser.add_argument("--graph-db", default="", help="Optional path to compacted_route_graph.s3db (FRA DCT warnings only)")
+    parser.add_argument("--navdata-db", default="", help="Path to navigraph_data.s3db — decides route acceptance")
     parser.add_argument("--strict-dct", action="store_true", help="Fail DCT segments not present in FRA DCT graph")
     parser.add_argument("--max-findings", type=int, default=50, help="Stop after this many errors")
     return parser.parse_args()
@@ -495,6 +602,11 @@ def main() -> int:
         airac, _ = parse_routes_file(routes_path)
         graph_db = resolve_graph_db(airac, args.graph_db)
         navdata_db = resolve_navdata_db(airac, args.navdata_db)
+        if navdata_db is None:
+            raise FileNotFoundError(
+                f"Unable to find navdata for AIRAC {airac}; pass --navdata-db. "
+                "Route acceptance is decided against tbl_er_enroute_airways, not the compacted graph."
+            )
         summary = validate_routes(
             routes_path,
             graph_db,
@@ -509,8 +621,8 @@ def main() -> int:
     status = "PASS" if summary.is_valid else "FAIL"
     print(f"{status} {routes_path}")
     print(f"AIRAC: {summary.airac}")
-    print(f"Graph DB: {summary.graph_db}")
-    print(f"Navdata DB: {summary.navdata_db if summary.navdata_db else 'not used'}")
+    print(f"Graph DB: {summary.graph_db if summary.graph_db else 'not used'}")
+    print(f"Navdata DB: {summary.navdata_db}")
     print(f"Routes checked: {summary.routes_checked}")
     print(f"Errors: {len(summary.errors)}")
     print(f"Warnings: {len(summary.warnings)}")

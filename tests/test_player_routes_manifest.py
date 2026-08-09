@@ -86,6 +86,35 @@ def create_graph_db(path: Path) -> None:
     con.close()
 
 
+def create_navdata_db(path: Path) -> None:
+    """Minimal navdata: deep validation is decided against this, not the graph."""
+    con = sqlite3.connect(path)
+    cur = con.cursor()
+    cur.executescript(
+        """
+        CREATE TABLE tbl_pa_airports (airport_identifier TEXT NOT NULL);
+        CREATE TABLE tbl_ea_enroute_waypoints (waypoint_identifier TEXT NOT NULL);
+        CREATE TABLE tbl_er_enroute_airways (
+            route_identifier TEXT NOT NULL,
+            icao_code TEXT,
+            seqno INTEGER NOT NULL,
+            waypoint_identifier TEXT NOT NULL
+        );
+        """
+    )
+    cur.executemany("INSERT INTO tbl_pa_airports(airport_identifier) VALUES (?)", [("KAAA",), ("KDDD",)])
+    cur.executemany(
+        "INSERT INTO tbl_ea_enroute_waypoints(waypoint_identifier) VALUES (?)",
+        [("AAA",), ("BBB",), ("CCC",)],
+    )
+    cur.executemany(
+        "INSERT INTO tbl_er_enroute_airways(route_identifier, icao_code, seqno, waypoint_identifier) VALUES (?, ?, ?, ?)",
+        [("Y1", "KZ", 10, "AAA"), ("Y1", "KZ", 20, "BBB"), ("Y1", "KZ", 30, "CCC")],
+    )
+    con.commit()
+    con.close()
+
+
 def make_route_entry(origin: str, dest: str, middle: str, author: str = "Tester") -> dict:
     route = MODULE.normalize_route(f"{origin} DCT {middle} DCT {dest}" if middle else f"{origin} DCT {dest}")
     return {
@@ -200,21 +229,43 @@ class PlayerRoutesManifestTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             graph_db = root / "graph.s3db"
+            navdata_db = root / "navdata.s3db"
             create_graph_db(graph_db)
+            create_navdata_db(navdata_db)
             good = make_route_entry("KAAA", "KDDD", "AAA Y1 CCC")
             bad = make_route_entry("KAAA", "KDDD", "ZZZZ")
             write_player_file(root, "current", "KAAA", "KDDD", [good, bad])
             rows = MODULE.load_lane("current", root)
-            deprecated = MODULE.deep_validate_lane(rows, graph_db, None)
+            deprecated = MODULE.deep_validate_lane(rows, graph_db, navdata_db)
         self.assertIsNotNone(deprecated)
         self.assertNotIn(good["id"], deprecated)
         self.assertIn(bad["id"], deprecated)
-        self.assertTrue(any(reason.startswith("route_token_pattern:") for reason in deprecated[bad["id"]]))
+        self.assertTrue(any(reason.startswith("point_missing:") for reason in deprecated[bad["id"]]))
 
-    def test_deep_validate_unavailable_returns_none(self) -> None:
-        rows = []
-        self.assertIsNone(MODULE.deep_validate_lane(rows, None, None))
-        self.assertIsNone(MODULE.deep_validate_lane(rows, Path("missing/graph.s3db"), None))
+    def test_deep_validate_without_navdata_returns_none(self) -> None:
+        """Navdata decides acceptance, so its absence must carry status forward
+        rather than silently fall back to the compacted graph."""
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            graph_db = root / "graph.s3db"
+            create_graph_db(graph_db)
+            self.assertIsNone(MODULE.deep_validate_lane([], None, None))
+            self.assertIsNone(MODULE.deep_validate_lane([], graph_db, None))
+            self.assertIsNone(MODULE.deep_validate_lane([], graph_db, Path("missing/navdata.s3db")))
+
+    def test_deep_validate_without_graph_still_runs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            navdata_db = root / "navdata.s3db"
+            create_navdata_db(navdata_db)
+            good = make_route_entry("KAAA", "KDDD", "AAA Y1 CCC")
+            bad = make_route_entry("KAAA", "KDDD", "ZZZZ")
+            write_player_file(root, "current", "KAAA", "KDDD", [good, bad])
+            rows = MODULE.load_lane("current", root)
+            deprecated = MODULE.deep_validate_lane(rows, None, navdata_db)
+        self.assertIsNotNone(deprecated)
+        self.assertNotIn(good["id"], deprecated)
+        self.assertIn(bad["id"], deprecated)
 
     def test_lane_status_carry_forward_without_deep_validation(self) -> None:
         entry = make_route_entry("LEMH", "LEPA", "MAMEB")
@@ -266,7 +317,9 @@ class PlayerRoutesManifestTests(unittest.TestCase):
             root = Path(tmp)
             write_lane_headers(root)
             graph_db = root / "graph.s3db"
+            navdata_db = root / "navdata.s3db"
             create_graph_db(graph_db)
+            create_navdata_db(navdata_db)
             good = make_route_entry("KAAA", "KDDD", "AAA Y1 CCC")
             bad = make_route_entry("KAAA", "KDDD", "ZZZZ")
             write_player_file(root, "current", "KAAA", "KDDD", [good, bad])
@@ -279,7 +332,7 @@ class PlayerRoutesManifestTests(unittest.TestCase):
                 commit_sha="abc123",
                 download_repo="lainoa-software/voiceatc-simulator-community",
                 graph_dbs={"current": graph_db, "default": None},
-                navdata_dbs={"current": None, "default": None},
+                navdata_dbs={"current": navdata_db, "default": None},
                 root=root,
             )
 
