@@ -1,5 +1,5 @@
 {
-  "airport_count": 123,
+  "airport_count": 124,
   "airports": {
     "EBBR": {
       "repo_path": "E/EB/EBBU/BRUSSELS_TMA/EBBR/runway_configs.json",
@@ -516,6 +516,11 @@
       "sha256": "1b0d0b3b4b561cd19b237a0a5776abc95576af640dddb315678f65a0b814f103",
       "size_bytes": 226
     },
+    "LETO": {
+      "repo_path": "L/LE/LECM/LECM_R2/MADRID_TMA/LETO/runway_configs.json",
+      "sha256": "4ec9dbbf2889d69079e88ce061a0c7c7a65e422492db7b743ece8a826495baac",
+      "size_bytes": 226
+    },
     "LEVC": {
       "repo_path": "L/LE/LECB/LECB_W/VALENCIA_TMA/LEVC/runway_configs.json",
       "sha256": "2af12b208ffedd2d01955ac401e50635a11e999f6684123e587fcb780b0b5566",
@@ -608,8 +613,8 @@
     },
     "PHNL": {
       "repo_path": "P/PH/PHZH/PHNL_TMA/PHNL/runway_configs.json",
-      "sha256": "f2a32177472036caeda86840723b465e3d63f40ec758a4ed1d9110758f512063",
-      "size_bytes": 385
+      "sha256": "ffcbebb8c6f59830c635324c467a91bc2caa78e64a4889643bec41af3bc11405",
+      "size_bytes": 396
     },
     "TJSJ": {
       "repo_path": "T/TJ/TJZS/SAN_JUAN_TMA/TJSJ/runway_configs.json",
@@ -618,12 +623,12 @@
     }
   },
   "asset_name": "runway-configs-2608.zip",
-  "commit_sha": "7ffda1fefe1044fc208173b46be436e24e35c248",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-09-c/runway-configs-2608.zip",
-  "published_at": "2026-08-09T08:55:46Z",
-  "release_tag": "daily-2026-08-09-c",
+  "commit_sha": "5ef1e81980500abc67fb8af655570e039e88f2be",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-09-d/runway-configs-2608.zip",
+  "published_at": "2026-08-09T10:13:37Z",
+  "release_tag": "daily-2026-08-09-d",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "cf5ac0ac729a8ad29459c71abf5a980c3156eb54d84ccb62f2e2003f5073698a",
-  "size_bytes": 38758
+  "sha256": "b33e86d231bb7d933d1c2c1ec0a4a514d90326eb8e9d4752ca5ba932c0edfdd4",
+  "size_bytes": 39048
 }
