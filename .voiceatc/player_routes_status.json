@@ -2,14 +2,3277 @@
   "current": {
     "airac": "2608",
     "deep_validation": true,
-    "pairs": {}
+    "pairs": {
+      "CYVR_RKSI": {
+        "3be16e86": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: CYVR->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "CYYZ_RKSI": {
+        "5c674c02": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: CYYZ->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "EBBR_RKSI": {
+        "fd06b867": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "EDDF_RKSI": {
+        "948a9e66": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: EDDF->RKSI: no W100 path from VAPGU to MUDOT",
+            "airway_disconnect: EDDF->RKSI: no W100 path from MUDOT to ORAVA"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "EDDM_RKSI": {
+        "1babfcf5": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: EDDM->RKSI: no W188 path from FKG to ESGIV",
+            "airway_disconnect: EDDM->RKSI: no W188 path from ESGIV to LIKMI"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "EDDP_RKSI": {
+        "7a6621d5": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: EDDP->RKSI: no Z131 path from PENEM to PENEK",
+            "airway_disconnect: EDDP->RKSI: no Z131 path from PENEK to EVOKI",
+            "airway_disconnect: EDDP->RKSI: no P989 path from TUKMA to MEGAS",
+            "airway_disconnect: EDDP->RKSI: no P989 path from MEGAS to OBIBA",
+            "airway_disconnect: EDDP->RKSI: no W201 path from UKDUM to UNSEK"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "EFHK_RKSI": {
+        "68a6bb4e": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "EGLL_RKSI": {
+        "b6d322a4": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "EHAM_RKSI": {
+        "e1288fda": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: EHAM->RKSI: no W188 path from FKG to ESGIV",
+            "airway_disconnect: EHAM->RKSI: no W188 path from ESGIV to RIMDU",
+            "airway_disconnect: EHAM->RKSI: no W188 path from RIMDU to LIKMI"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "EHBK_RKSI": {
+        "d60bceb1": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "EKCH_RKSI": {
+        "127b0d2f": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: EKCH->RKSI: no W69 path from DKO to UXODI",
+            "airway_disconnect: EKCH->RKSI: no W69 path from UXODI to HUR"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "ENGM_RKSI": {
+        "a421527e": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "EPWA_RKSI": {
+        "3a04cc60": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: EPWA->RKSI: no N161 path from GASBI to ARKAM",
+            "airway_disconnect: EPWA->RKSI: no N161 path from ARKAM to UNABO"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "EPWR_RKSI": {
+        "6c014be6": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "HAAB_RKSI": {
+        "12b54c6d": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: HAAB->RKSI: no M59 path from NIDMA to NWK",
+            "airway_disconnect: HAAB->RKSI: no W33 path from POLHO to HOT",
+            "airway_disconnect: HAAB->RKSI: no W33 path from HOT to UKDUM",
+            "airway_disconnect: HAAB->RKSI: no W201 path from UKDUM to UNSEK"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "KATL_RKSI": {
+        "c97b3b63": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: KATL->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "KBOS_RKSI": {
+        "5b2f2c14": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: KBOS->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "KCVG_RKSI": {
+        "c590e40b": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: KCVG->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "KDFW_RKSI": {
+        "721e3482": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: KDFW->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "KDTW_RKSI": {
+        "6afae0be": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: KDTW->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "KEWR_RKSI": {
+        "e972a243": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: KEWR->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "KIAD_RKSI": {
+        "01a07f00": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: KIAD->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "KJFK_RKSI": {
+        "87df4c0e": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: KJFK->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "KLAS_RKSI": {
+        "a7f10f0a": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: KLAS->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "KLAX_RKSI": {
+        "e3f76615": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: KLAX->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "KMSP_RKSI": {
+        "5a1d613f": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: KMSP->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "KORD_RKSI": {
+        "908ca750": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: KORD->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "KSEA_RKSI": {
+        "457b8dc7": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: KSEA->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "KSFO_RKSI": {
+        "2b9e514f": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: KSFO->RKSI: no R220 path from NODLE to NIKLL",
+            "airway_disconnect: KSFO->RKSI: no R220 path from NIKLL to NIPPI",
+            "airway_disconnect: KSFO->RKSI: no R220 path from NIPPI to NANNO"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "KSLC_RKSI": {
+        "cb049848": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: KSLC->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "LEBL_RKSI": {
+        "51a2f79b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "LEMD_RKSI": {
+        "9e908401": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: LEMD->RKSI: no W188 path from FKG to RIMDU",
+            "airway_disconnect: LEMD->RKSI: no W188 path from RIMDU to LIKMI"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "LFPG_RKSI": {
+        "4ba49916": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "LHBP_RKSI": {
+        "8ca83949": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "LIMC_RKSI": {
+        "909c0030": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "LIRF_RKSI": {
+        "eb594855": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "LKPR_RKSI": {
+        "af3bc9cc": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "LOWW_RKSI": {
+        "86c726e5": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "LPPT_RKSI": {
+        "2effd796": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: LPPT->RKSI: no N870 path from UREDI to PINAR"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "LSZH_RKSI": {
+        "de213cfb": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: LSZH->RKSI: no W100 path from VAPGU to MUDOT"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "LTFM_RKSI": {
+        "913b952a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "NZAA_RKSI": {
+        "d15b211b": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: NZAA->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "OMAA_RKSI": {
+        "0581853e": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: OMAA->RKSI: no B505 path from EGTAL to APELO",
+            "airway_disconnect: OMAA->RKSI: no B505 path from APELO to PI",
+            "airway_disconnect: OMAA->RKSI: no W100 path from VAPGU to MUDOT",
+            "airway_disconnect: OMAA->RKSI: no W100 path from MUDOT to ORAVA"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "OMDB_RKSI": {
+        "83e9ca43": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: OMDB->RKSI: no B505 path from LALDO to APELO",
+            "airway_disconnect: OMDB->RKSI: no B505 path from APELO to PI"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "OTHH_RKSI": {
+        "8c20ca46": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: OTHH->RKSI: no B505 path from NADSO to APELO",
+            "airway_disconnect: OTHH->RKSI: no B505 path from APELO to PI"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "PANC_RKSI": {
+        "a5ac5008": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "PGSN_RKSI": {
+        "1318ab1c": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: PGSN->RKSI: no G339 path from RIDLL to NATSS",
+            "airway_disconnect: PGSN->RKSI: no G339 path from NATSS to PAKDO",
+            "airway_disconnect: PGSN->RKSI: no G339 path from PAKDO to BIXAK"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "PGUM_RKSI": {
+        "0267c5ab": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: PGUM->RKSI: no G339 path from UNZ to PAKDO",
+            "airway_disconnect: PGUM->RKSI: no G339 path from PAKDO to LUKRA"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "PHNL_RKSI": {
+        "611ecabc": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: PHNL->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RCKH_RKPC": {
+        "932e8dbe": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RCKH_RKSI": {
+        "220178cb": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RCKH_RKSS": {
+        "fc150b34": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RCMQ_RKPC": {
+        "5654c0b4": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RCMQ_RKSI": {
+        "9f30e5a0": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RCSS_RKSI": {
+        "0a422d48": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RCSS_RKSS": {
+        "06941399": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RCTP_RKPC": {
+        "05a03f3b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RCTP_RKSI": {
+        "87570fd9": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RCYU_RKSI": {
+        "d1528909": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJAA_RKPC": {
+        "5d3e126b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJAA_RKSI": {
+        "1c1bdde4": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJAH_RKSI": {
+        "ab5fc63d": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJBB_RKPC": {
+        "3057b3f4": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJBB_RKSI": {
+        "17dc7cd3": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJBB_RKSS": {
+        "2f00bb0c": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJBE_RKSI": {
+        "91a5b03e": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJCC_RKSI": {
+        "c1e0df32": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJFF_RKPC": {
+        "6edfc330": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJFF_RKSI": {
+        "628267cd": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJFK_RKSI": {
+        "18c41d52": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJFM_RKSI": {
+        "3e65dcb0": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJFO_RKSI": {
+        "d24e8a39": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJFR_RKSI": {
+        "fbbfdf04": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJFS_RKSI": {
+        "5c465c22": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJFT_RKSI": {
+        "d12a2b86": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJFU_RKSI": {
+        "f25754e8": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJGG_RKSI": {
+        "e1826ad3": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJGG_RKSS": {
+        "f4797b5b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJNK_RKSI": {
+        "1b526770": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJNS_RKSI": {
+        "234d7c8e": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJOA_RKSI": {
+        "232a297f": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJOB_RKSI": {
+        "bfb38e3a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJOH_RKSI": {
+        "5b840b97": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJOM_RKSI": {
+        "57fd87c6": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJOS_RKSI": {
+        "4da3241a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJOT_RKSI": {
+        "bcbe4269": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJSA_RKSI": {
+        "43aee09f": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJSN_RKSI": {
+        "66f297d9": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJSS_RKSI": {
+        "0a8e993e": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJTT_RKSI": {
+        "7dc6cc78": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJTT_RKSS": {
+        "edce997a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKJJ_RKPC": {
+        "3fd29297": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKJJ_RKSS": {
+        "35f5548d": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKJK_RKPC": {
+        "d1364ee2": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKJY_RKPC": {
+        "89097a38": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKJY_RKSS": {
+        "b0808c11": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKNW_RKPC": {
+        "ae2d88cf": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKNY_RKPC": {
+        "3c854421": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RCKH": {
+        "0bc9950f": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RCMQ": {
+        "9cdb7fd6": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RCTP": {
+        "fcf52646": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RJAA": {
+        "174f3865": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RJBB": {
+        "b7647d5d": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RJFF": {
+        "f943f9d1": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RKJJ": {
+        "4449f7cf": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RKJK": {
+        "3b5cf6ec": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RKJY": {
+        "54d0bc77": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RKNW": {
+        "bece44bd": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RKNY": {
+        "a1bfee92": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RKPK": {
+        "f5431ccc": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RKPS": {
+        "2c855b74": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RKPU": {
+        "60b3bced": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RKSI": {
+        "9834af70": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RKSS": {
+        "48569834": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RKTH": {
+        "17ceb091": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RKTN": {
+        "0a8930d1": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_RKTU": {
+        "596d044f": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_VHHH": {
+        "8f9b210e": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_WSSS": {
+        "34c45255": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKPC->WSSS: no N892 path from KABAM to MIGUG",
+            "airway_disconnect: RKPC->WSSS: no N892 path from MIGUG to MELAS"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKPC_ZBAA": {
+        "4991a3a2": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_ZBAD": {
+        "f9c4297d": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_ZGGG": {
+        "d4a43ae3": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_ZGSZ": {
+        "75726dd0": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_ZSHC": {
+        "4fcfae0f": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_ZSNB": {
+        "0436a280": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_ZSNJ": {
+        "535acb87": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_ZSPD": {
+        "0c8ce8b7": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_ZSWX": {
+        "f2346963": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPC_ZYTX": {
+        "fa0c27cd": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPK_RKPC": {
+        "07367265": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPK_RKSI": {
+        "156958b6": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPK_RKSS": {
+        "6fbb039f": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPS_RKPC": {
+        "3d0380b8": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPS_RKSS": {
+        "e17f08bb": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPU_RKPC": {
+        "b6ad97a9": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKPU_RKSS": {
+        "8a0253a7": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_CYVR": {
+        "31b353cb": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->CYVR: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_CYYZ": {
+        "19a8d738": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->CYYZ: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_EDDF": {
+        "1176bcd8": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->EDDF: no A368 path from FKG to OSUPO",
+            "airway_disconnect: RKSI->EDDF: no A368 path from OSUPO to SARIN"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_EDDM": {
+        "bb3952f5": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_EFHK": {
+        "8a857b49": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->EFHK: no B215 path from NUKTI to DUBUV",
+            "airway_disconnect: RKSI->EFHK: no B215 path from DUBUV to FKG",
+            "airway_disconnect: RKSI->EFHK: no M857 path from VENES to UNPEG"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_EGLL": {
+        "c0d121cf": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_EHAM": {
+        "30937dc2": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_EKCH": {
+        "043dbabd": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_EPWA": {
+        "f4a7a5c8": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->EPWA: no W66 path from DKO to IDSIP",
+            "airway_disconnect: RKSI->EPWA: no W66 path from IDSIP to GOVSA",
+            "airway_disconnect: RKSI->EPWA: no B215 path from NUKTI to POVEK",
+            "airway_disconnect: RKSI->EPWA: no B215 path from POVEK to FKG",
+            "airway_disconnect: RKSI->EPWA: no N161 path from SARIN to ARKAM"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_EPWR": {
+        "ff9bd62d": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_HAAB": {
+        "1f8a702d": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->HAAB: no W28 path from UPREK to ISBOS",
+            "airway_disconnect: RKSI->HAAB: no W28 path from ISBOS to LAGEB",
+            "airway_disconnect: RKSI->HAAB: no W112 path from TUSLI to DJQ",
+            "airway_disconnect: RKSI->HAAB: no W112 path from DJQ to PURPA",
+            "airway_disconnect: RKSI->HAAB: no B400 path from GEPOT to IMKAD"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_KATL": {
+        "0a0a854d": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->KATL: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_KBOS": {
+        "1e294c21": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->KBOS: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_KCVG": {
+        "14442d2e": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->KCVG: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_KDFW": {
+        "b8510828": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->KDFW: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_KDTW": {
+        "30fa9d82": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->KDTW: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_KEWR": {
+        "640c8046": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->KEWR: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_KIAD": {
+        "6f5f18fa": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->KIAD: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_KJFK": {
+        "b9fd4fcf": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->KJFK: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_KLAS": {
+        "8d2f5667": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->KLAS: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_KLAX": {
+        "78af57f5": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->KLAX: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_KMSP": {
+        "d16429f9": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->KMSP: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_KORD": {
+        "62c40214": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->KORD: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_KSEA": {
+        "c12ed9fc": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->KSEA: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_KSFO": {
+        "bf87fe4a": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->KSFO: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_KSLC": {
+        "95f36e3f": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->KSLC: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_LEBL": {
+        "a9be92a3": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_LEMD": {
+        "4cba3665": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->LEMD: no A368 path from FKG to OSUPO",
+            "airway_disconnect: RKSI->LEMD: no A368 path from OSUPO to SARIN"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_LFPG": {
+        "8cc901c6": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->LFPG: no Y697 path from NOPIK to NOGON",
+            "airway_disconnect: RKSI->LFPG: no Y697 path from NOGON to AGAVO"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_LHBP": {
+        "21c844b6": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->LHBP: no A368 path from FKG to OSUPO",
+            "airway_disconnect: RKSI->LHBP: no A368 path from OSUPO to SARIN"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_LIMC": {
+        "e3c9ea12": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->LIMC: no A368 path from FKG to OSUPO",
+            "airway_disconnect: RKSI->LIMC: no A368 path from OSUPO to SARIN"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_LIRF": {
+        "4d372bb3": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_LKPR": {
+        "eea2f3c7": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->LKPR: no W55 path from DOVIV to VIDEL",
+            "airway_disconnect: RKSI->LKPR: no W55 path from VIDEL to PAMRU"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_LOWW": {
+        "3a39c723": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_LPPT": {
+        "ceb78867": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_LTFM": {
+        "536e7175": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->LTFM: no Y697 path from NOPIK to OLBIM",
+            "airway_disconnect: RKSI->LTFM: no Y697 path from OLBIM to AGAVO",
+            "airway_disconnect: RKSI->LTFM: no A368 path from FKG to SALMO",
+            "airway_disconnect: RKSI->LTFM: no A368 path from SALMO to SARIN"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_MMMX": {
+        "387fa64f": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->MMMX: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_NZAA": {
+        "0dda42ea": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->NZAA: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_OMAA": {
+        "57ccbbec": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->OMAA: no A599 path from SGM to LINSO",
+            "airway_disconnect: RKSI->OMAA: no A599 path from LINSO to CHILA"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_OMDB": {
+        "9f28d2c1": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->OMDB: no A599 path from SGM to LINSO",
+            "airway_disconnect: RKSI->OMDB: no A599 path from LINSO to CHILA",
+            "airway_disconnect: RKSI->OMDB: no A454 path from VUSET to UMEKO",
+            "airway_disconnect: RKSI->OMDB: no A454 path from UMEKO to BORER",
+            "airway_disconnect: RKSI->OMDB: no A454 path from BORER to PASOV"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_OTHH": {
+        "213fe1fd": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->OTHH: no Y697 path from NOPIK to NOGON",
+            "airway_disconnect: RKSI->OTHH: no Y697 path from NOGON to AGAVO",
+            "airway_disconnect: RKSI->OTHH: no W112 path from TUSLI to TEPUT",
+            "airway_disconnect: RKSI->OTHH: no W112 path from TEPUT to PURPA"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_PANC": {
+        "1311c9cc": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->PANC: no A590 path from PUTER to PASRO",
+            "airway_disconnect: RKSI->PANC: no A590 path from PASRO to PLADO"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_PGSN": {
+        "4b2b8422": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->PGSN: no G339 path from CANAI to PAKDO",
+            "airway_disconnect: RKSI->PGSN: no G339 path from PAKDO to NATSS",
+            "airway_disconnect: RKSI->PGSN: no G339 path from NATSS to RIDLL"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_PGUM": {
+        "75b8d079": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->PGUM: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_PHNL": {
+        "bb9e946c": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->PHNL: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_RCKH": {
+        "bec060c2": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RCMQ": {
+        "619ab334": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RCSS": {
+        "fcd6f795": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RCTP": {
+        "17ca63f8": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RCYU": {
+        "4dc713e8": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJAA": {
+        "63e529e1": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJAH": {
+        "b82eb17b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJBB": {
+        "0f6ac667": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJBE": {
+        "672e2b5a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJCC": {
+        "fcf941a3": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->RJCC: no Y1 path from GOLDO to MRE"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_RJFF": {
+        "1c55932a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJFK": {
+        "010ee0ea": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJFM": {
+        "6280f55a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJFO": {
+        "ac72eaab": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJFR": {
+        "dab5428b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJFS": {
+        "3addfe35": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJFT": {
+        "c7c3c631": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJFU": {
+        "96c19f4c": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJGG": {
+        "bb338d2c": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJNK": {
+        "a3bcd92e": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJNS": {
+        "b4a17baf": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJOA": {
+        "0705572a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJOB": {
+        "166fa11f": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJOH": {
+        "3325cc25": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJOM": {
+        "b61abf63": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJOS": {
+        "b68bd8c2": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJOT": {
+        "d4fdff99": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJSA": {
+        "7e3c8221": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJSN": {
+        "00bedde9": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJSS": {
+        "bf3de0a5": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RJTT": {
+        "2d1f7d93": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RKPC": {
+        "7a5f19cb": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RKPK": {
+        "b0d9e7d9": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RKSS": {
+        "6987cd63": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RKTN": {
+        "706a9dcb": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RKTU": {
+        "2721a29f": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ROAH": {
+        "eaaa273c": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ROIG": {
+        "194f98ed": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RORS": {
+        "8dc1d4ac": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RPLC": {
+        "fd88b8bb": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RPLL": {
+        "c8cff27b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RPSP": {
+        "edc5d265": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RPVK": {
+        "772c07b8": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_RPVM": {
+        "d8abab3c": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_UAAA": {
+        "f6de2591": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_UACC": {
+        "e57abc95": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_UAII": {
+        "3dbc6a6d": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_UBBB": {
+        "0ea219fd": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->UBBB: no B215 path from NUKTI to POVEK",
+            "airway_disconnect: RKSI->UBBB: no B215 path from POVEK to FKG"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_UCFM": {
+        "40ddaec0": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_UTAA": {
+        "6d4e4188": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_UZTT": {
+        "6e161a75": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_VCBI": {
+        "c8a7e5bf": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->VCBI: no P762 path from DWI to LULDA",
+            "airway_disconnect: RKSI->VCBI: no P762 path from LULDA to DUGOS"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_VDTI": {
+        "33ecd080": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_VHHH": {
+        "eb446b1b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_VIDP": {
+        "260ed36e": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->VIDP: no A599 path from SGM to LINSO",
+            "airway_disconnect: RKSI->VIDP: no A599 path from LINSO to LSO"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_VLVT": {
+        "7268ef5e": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->VLVT: no R474 path from WUY to TEBAK",
+            "airway_disconnect: RKSI->VLVT: no R474 path from TEBAK to NOHET"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_VMMC": {
+        "3ac073af": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->VMMC: no J101 path from ELATO to TUBBY",
+            "airway_disconnect: RKSI->VMMC: no J101 path from TUBBY to SAMMI",
+            "airway_disconnect: RKSI->VMMC: no J101 path from SAMMI to NEDLE",
+            "airway_disconnect: RKSI->VMMC: no J101 path from NEDLE to SMT"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_VNKT": {
+        "15bd0c0a": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->VNKT: no A599 path from SGM to LINSO",
+            "airway_disconnect: RKSI->VNKT: no A599 path from LINSO to LSO"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_VTBD": {
+        "777af2dd": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_VTBS": {
+        "cee5ba30": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->VTBS: no Q11 path from SALMI to GID"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_VTCC": {
+        "00f1f811": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->VTCC: no R474 path from GYA to TEBAK",
+            "airway_disconnect: RKSI->VTCC: no R474 path from TEBAK to MC"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_VTSP": {
+        "73261029": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->VTSP: no Y711 path from BEDES to DOMKO",
+            "airway_disconnect: RKSI->VTSP: no Y711 path from DOMKO to MUGUS",
+            "airway_disconnect: RKSI->VTSP: no R575 path from PAPRA to NILIS",
+            "airway_disconnect: RKSI->VTSP: no R575 path from NILIS to SAKDA"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_VVCI": {
+        "fa84fc62": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->VVCI: no R474 path from GYA to TEBAK",
+            "airway_disconnect: RKSI->VVCI: no R474 path from TEBAK to NOB"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_VVCR": {
+        "62804b74": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->VVCR: no N892 path from KABAM to MIGUG",
+            "airway_disconnect: RKSI->VVCR: no N892 path from MIGUG to MESOX"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_VVDN": {
+        "fe0fac9e": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_VVNB": {
+        "fd7f6a30": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->VVNB: no R474 path from LON to TEBAK",
+            "airway_disconnect: RKSI->VVNB: no R474 path from TEBAK to NAKHA"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_VVPQ": {
+        "16c1f6e3": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->VVPQ: no N892 path from KABAM to MIGUG",
+            "airway_disconnect: RKSI->VVPQ: no N892 path from MIGUG to MIMUX"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_VVTS": {
+        "4ea02a24": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_VYYY": {
+        "c4e9a803": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->VYYY: no R474 path from GYA to TEBAK",
+            "airway_disconnect: RKSI->VYYY: no R474 path from TEBAK to NAKHA"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_WADD": {
+        "ceeb44ad": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->WADD: no M646 path from MIA to MIKE",
+            "airway_disconnect: RKSI->WADD: no M646 path from MIKE to VJN"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_WAMM": {
+        "2e366636": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_WBKK": {
+        "b75ceb78": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->WBKK: no M646 path from MIA to OSANU"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_WIII": {
+        "366c1413": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->WIII: no M754 path from VINIK to SUMLA",
+            "airway_disconnect: RKSI->WIII: no M754 path from SUMLA to BRU"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_WMKK": {
+        "1c58e926": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_WMKP": {
+        "46a2fa26": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->WMKP: no N892 path from KABAM to MELAS"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_WSSS": {
+        "64438522": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->WSSS: no N892 path from KABAM to MIGUG",
+            "airway_disconnect: RKSI->WSSS: no N892 path from MIGUG to MELAS"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_YBBN": {
+        "60ffd888": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: RKSI->YBBN: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_YSSY": {
+        "d9cd6fe7": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->YSSY: no B586 path from UNZ to PIKOK",
+            "airway_disconnect: RKSI->YSSY: no B586 path from PIKOK to PY",
+            "airway_disconnect: RKSI->YSSY: no H652 path from MK to BOREE"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_ZBAA": {
+        "0fea77f9": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZBAD": {
+        "2fd8e018": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->ZBAD: no Y697 path from NOPIK to NOGON",
+            "airway_disconnect: RKSI->ZBAD: no Y697 path from NOGON to AGAVO",
+            "airway_disconnect: RKSI->ZBAD: no W55 path from DOVIV to VIDEL",
+            "airway_disconnect: RKSI->ZBAD: no W55 path from VIDEL to DUMAP"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_ZBSJ": {
+        "fd502484": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZBTJ": {
+        "e5aa3161": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZGDY": {
+        "c044d11d": {
+          "checked_airac": "2608",
+          "reasons": [
+            "token_unknown: RKSI->ZGDY: token X193 is neither a known point nor airway"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_ZGGG": {
+        "87a5cc0f": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZGHA": {
+        "05564e30": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZGSZ": {
+        "20524250": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZHCC": {
+        "9343137f": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZHEC": {
+        "0741fc0a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZHHH": {
+        "01a929e8": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZJHK": {
+        "a06c8105": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZJSY": {
+        "2de50b6b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZLXY": {
+        "f5f6942b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZMCK": {
+        "30dab905": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZPPP": {
+        "dd15ebeb": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZSAM": {
+        "e5ce3617": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->ZSAM: no W13 path from HSN to TOGUG",
+            "airway_disconnect: RKSI->ZSAM: no W13 path from TOGUG to BEGMO"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_ZSFZ": {
+        "fadd68d7": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZSHC": {
+        "273dba99": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZSJN": {
+        "fb824017": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZSNJ": {
+        "71c9b8b0": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZSOF": {
+        "f3b97b07": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZSPD": {
+        "52c88483": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZSQD": {
+        "12805412": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZSWH": {
+        "d9aca894": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZSWX": {
+        "0cccf66b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZSWZ": {
+        "377453d1": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZSYA": {
+        "887b768a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZSYN": {
+        "d132fea2": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZSYT": {
+        "d34482ab": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZUCK": {
+        "80db0b6b": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->ZUCK: no Y697 path from NOPIK to NOGON",
+            "airway_disconnect: RKSI->ZUCK: no Y697 path from NOGON to AGAVO"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_ZUTF": {
+        "d6649090": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: RKSI->ZUTF: no Y697 path from NOPIK to NOGON",
+            "airway_disconnect: RKSI->ZUTF: no Y697 path from NOGON to AGAVO"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "RKSI_ZUUU": {
+        "a7b3a709": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZYCC": {
+        "7f2bdf3a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZYHB": {
+        "b2942108": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZYJM": {
+        "24b7e1de": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZYTL": {
+        "f574c947": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZYTX": {
+        "563f099a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSI_ZYYJ": {
+        "344e45a4": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSS_RCKH": {
+        "089acbee": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSS_RCSS": {
+        "5c5ad15c": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSS_RJBB": {
+        "2fb50693": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSS_RJGG": {
+        "8b050f7a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSS_RJTT": {
+        "1d82d3c5": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSS_RKJJ": {
+        "551c6b46": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSS_RKJY": {
+        "d8b2d2b1": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSS_RKPC": {
+        "add02cc6": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSS_RKPK": {
+        "bcc02002": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSS_RKPS": {
+        "42121744": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSS_RKPU": {
+        "52447cb5": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSS_RKSI": {
+        "d2206d0e": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSS_RKTH": {
+        "f03257ce": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSS_ZBAA": {
+        "b996cace": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSS_ZBAD": {
+        "68b25518": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKSS_ZSSS": {
+        "53a20ab3": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTH_RKPC": {
+        "bd6670d4": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTH_RKSS": {
+        "924eb2eb": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTN_RKPC": {
+        "d333b36f": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTN_RKSI": {
+        "d4f9a2a9": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTU_RKPC": {
+        "30fb7eb5": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ROAH_RKSI": {
+        "de99deef": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ROIG_RKSI": {
+        "62e8da03": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RORS_RKSI": {
+        "b20d971a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RPLC_RKSI": {
+        "1edf8ec0": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RPLL_RKSI": {
+        "e525f923": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RPSP_RKSI": {
+        "d2b52b77": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RPVK_RKSI": {
+        "089ba7c4": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RPVM_RKSI": {
+        "d0c0dae5": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UAAA_RKSI": {
+        "397e865b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UACC_RKSI": {
+        "a9080b9b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UAII_RKSI": {
+        "b41c7feb": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UBBB_RKSI": {
+        "1f39e197": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UCFM_RKSI": {
+        "19e2cb09": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UTAA_RKSI": {
+        "e5ea62dd": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UZTT_RKSI": {
+        "52117dab": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: UZTT->RKSI: no A326 path from ALARA to OBDIS",
+            "airway_disconnect: UZTT->RKSI: no A326 path from OBDIS to DONVO"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "VCBI_RKSI": {
+        "485b3a5c": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: VCBI->RKSI: no Q11 path from DRAKE to MUNNA",
+            "airway_disconnect: VCBI->RKSI: no Q11 path from MUNNA to WP900"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "VDTI_RKSI": {
+        "d99b6136": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: VDTI->RKSI: no R575 path from VIBUN to NILIS",
+            "airway_disconnect: VDTI->RKSI: no R575 path from NILIS to PAPRA"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "VHHH_RKPC": {
+        "3661c840": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "VHHH_RKSI": {
+        "f5227c3e": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "VIDP_RKSI": {
+        "04274444": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: VIDP->RKSI: no A599 path from LSO to LINSO",
+            "airway_disconnect: VIDP->RKSI: no A599 path from LINSO to SGM"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "VLVT_RKSI": {
+        "916dc953": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: VLVT->RKSI: no R474 path from NOHET to TEBAK",
+            "airway_disconnect: VLVT->RKSI: no R474 path from TEBAK to GYA",
+            "airway_disconnect: VLVT->RKSI: no G471 path from OMDUP to EGEDA",
+            "airway_disconnect: VLVT->RKSI: no G471 path from EGEDA to PLT"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "VMMC_RKSI": {
+        "cd075ddb": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "VNKT_RKSI": {
+        "f0280d79": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "VTBD_RKSI": {
+        "56ceba3a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "VTBS_RKSI": {
+        "a7997edd": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "VTCC_RKSI": {
+        "bc7af0f0": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: VTCC->RKSI: no R474 path from NOB to TEBAK",
+            "airway_disconnect: VTCC->RKSI: no R474 path from TEBAK to WUY"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "VTSP_RKSI": {
+        "3fc9f776": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: VTSP->RKSI: no R575 path from ONETI to NILIS",
+            "airway_disconnect: VTSP->RKSI: no R575 path from NILIS to PAPRA"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "VVCI_RKSI": {
+        "95a84389": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: VVCI->RKSI: no R474 path from NAKHA to TEBAK",
+            "airway_disconnect: VVCI->RKSI: no R474 path from TEBAK to WUY"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "VVCR_RKSI": {
+        "b3f2d926": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "VVDN_RKSI": {
+        "c415d31f": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "VVNB_RKSI": {
+        "fda0bb8e": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: VVNB->RKSI: no R474 path from NAKHA to TEBAK",
+            "airway_disconnect: VVNB->RKSI: no R474 path from TEBAK to WUY"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "VVPQ_RKSI": {
+        "85175afa": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: VVPQ->RKSI: no R575 path from VIBUN to NILIS",
+            "airway_disconnect: VVPQ->RKSI: no R575 path from NILIS to PAPRA"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "VVTS_RKSI": {
+        "1d34ad8c": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "VYYY_RKSI": {
+        "f7dfde0f": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: VYYY->RKSI: no R474 path from NOB to TEBAK",
+            "airway_disconnect: VYYY->RKSI: no R474 path from TEBAK to WUY"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "WADD_RKSI": {
+        "3e440409": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "WAMM_RKSI": {
+        "dea2aec7": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "WBKK_RKSI": {
+        "7fcf7c10": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: WBKK->RKSI: no M646 path from OSANU to KAPOH"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "WIII_RKSI": {
+        "fc882f0b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "WMKK_RKSI": {
+        "086015f0": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: WMKK->RKSI: no R575 path from VIBUN to NILIS",
+            "airway_disconnect: WMKK->RKSI: no R575 path from NILIS to PAPRA"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "WMKP_RKSI": {
+        "16f9a4a3": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: WMKP->RKSI: no M765 path from VKB to VENLI",
+            "airway_disconnect: WMKP->RKSI: no M765 path from VENLI to MAPNO"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "WSSS_RKPC": {
+        "76638567": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "WSSS_RKSI": {
+        "4b572b85": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "YBBN_RKSI": {
+        "cb716703": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: YBBN->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "YSSY_RKSI": {
+        "bc299822": {
+          "checked_airac": "2608",
+          "reasons": [
+            "route_token_pattern: YSSY->RKSI: connector DCT is not followed by a known point"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "ZBAA_RKPC": {
+        "bf829c46": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZBAA_RKSI": {
+        "b007bb80": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZBAA_RKSS": {
+        "573aff7d": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZBAD_RKPC": {
+        "a13ce87d": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZBAD_RKSI": {
+        "6e31fbac": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZBAD_RKSS": {
+        "39eb019c": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: ZBAD->RKSS: no Y644 path from AGAVO to BOGAN"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "ZBSJ_RKSI": {
+        "51ff0d7c": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZBTJ_RKSI": {
+        "2e1124ea": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZGDY_RKSI": {
+        "365729e8": {
+          "checked_airac": "2608",
+          "reasons": [
+            "token_unknown: ZGDY->RKSI: token X194 is neither a known point nor airway"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "ZGGG_RKPC": {
+        "09fb2fc5": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZGGG_RKSI": {
+        "428450a8": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: ZGGG->RKSI: no G471 path from OMDUP to EGEDA",
+            "airway_disconnect: ZGGG->RKSI: no G471 path from EGEDA to PLT"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "ZGHA_RKSI": {
+        "19ddf82f": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZGSZ_RKPC": {
+        "8a498630": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZGSZ_RKSI": {
+        "1dcdc29d": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: ZGSZ->RKSI: no G471 path from OMDUP to EGEDA",
+            "airway_disconnect: ZGSZ->RKSI: no G471 path from EGEDA to PLT"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "ZHCC_RKSI": {
+        "8b4b546b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZHEC_RKSI": {
+        "45bc9f9e": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZHHH_RKSI": {
+        "bfc6afca": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZJHK_RKSI": {
+        "12a1cc80": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZJSY_RKSI": {
+        "8ebe79bc": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZLXY_RKSI": {
+        "1accabde": {
+          "checked_airac": "2608",
+          "reasons": [
+            "token_unknown: ZLXY->RKSI: token Y644 is neither a known point nor airway"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "ZMCK_RKSI": {
+        "afd6cfb0": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: ZMCK->RKSI: no W201 path from UKDUM to ANOBI",
+            "airway_disconnect: ZMCK->RKSI: no W201 path from ANOBI to UNSEK"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "ZPPP_RKSI": {
+        "e60c77e4": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSAM_RKSI": {
+        "59b312f1": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSFZ_RKSI": {
+        "c68dcffa": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: ZSFZ->RKSI: no W13 path from BEGMO to TOGUG",
+            "airway_disconnect: ZSFZ->RKSI: no W13 path from TOGUG to HSN"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "ZSHC_RKPC": {
+        "a17a5688": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSHC_RKSI": {
+        "7c617e58": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSJN_RKSI": {
+        "c8f94a78": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSNB_RKPC": {
+        "ebe7e9b4": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSNB_RKSI": {
+        "9b5455b0": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSNJ_RKPC": {
+        "16058d1a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSNJ_RKSI": {
+        "2f8a4d4a": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSOF_RKSI": {
+        "ad0f34b8": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSPD_RKPC": {
+        "75459f1e": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSPD_RKSI": {
+        "f16d4c1b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSQD_RKSI": {
+        "3ac9c409": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSSS_RKSS": {
+        "35526e02": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSWH_RKSI": {
+        "f0f44fc2": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSWX_RKPC": {
+        "ba40c1d5": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSWX_RKSI": {
+        "35bae02b": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSWZ_RKSI": {
+        "5852adbb": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSYA_RKSI": {
+        "7a5553b9": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSYN_RKSI": {
+        "5efd11a7": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZSYT_RKSI": {
+        "5af87938": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZUCK_RKSI": {
+        "a2cb2bf5": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZUTF_RKSI": {
+        "24689c5c": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZUUU_RKSI": {
+        "38817308": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZYCC_RKSI": {
+        "5b0445ea": {
+          "checked_airac": "2608",
+          "reasons": [
+            "token_unknown: ZYCC->RKSI: token H114 is neither a known point nor airway"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "ZYHB_RKSI": {
+        "d7e30df0": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: ZYHB->RKSI: no H114 path from DDG to DONVO"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "ZYJM_RKSI": {
+        "421f6d35": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZYTL_RKSI": {
+        "dc71817f": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZYTX_RKPC": {
+        "c7483bfa": {
+          "checked_airac": "2608",
+          "reasons": [
+            "airway_disconnect: ZYTX->RKPC: no H114 path from DDG to DONVO"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "ZYTX_RKSI": {
+        "a4804179": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ZYYJ_RKSI": {
+        "7d2215a9": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      }
+    }
   },
   "default": {
     "airac": "2503",
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-08-09T08:00:48Z",
+  "generated_at": "2026-08-09T08:55:46Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
