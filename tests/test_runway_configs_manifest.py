@@ -59,6 +59,47 @@ class RunwayConfigsManifestTests(unittest.TestCase):
                 manifest["airports"]["ESSB"]["repo_path"],
             )
 
+    def test_build_manifest_rejects_unpadded_runway_ident(self) -> None:
+        # PHNL shipped '8L 8R 4R'. The game compares against Navigraph's padded
+        # identifiers without padding either side, so those rows resolved to no
+        # runways at all and nothing reported it.
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            root = Path(tmp_dir)
+            config_file = root / "P" / "PH" / "TEST" / "TEST_TMA" / "PHNL" / "runway_configs.json"
+            config_file.parent.mkdir(parents=True, exist_ok=True)
+            config_file.write_text(
+                json.dumps(
+                    {
+                        "airport": "PHNL",
+                        "runway_configurations": [{"id": "EAST", "arr": "8L 8R", "dep": "8L"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(ValueError, "zero-padded identifier"):
+                MODULE.build_manifest(root, commit_sha="test-commit")
+
+    def test_runway_idents_splits_every_separator_the_game_accepts(self) -> None:
+        self.assertEqual(["08L", "08R", "04R"], MODULE.runway_idents("08L 08R 04R"))
+        self.assertEqual(["08L", "26R"], MODULE.runway_idents("08L,26R"))
+        self.assertEqual(["08L", "26R"], MODULE.runway_idents("08L|26R"))
+        self.assertEqual(["08L", "26R"], MODULE.runway_idents(["08L", "26R"]))
+        self.assertEqual([], MODULE.runway_idents("   "))
+
+    def test_repository_runway_idents_are_zero_padded(self) -> None:
+        offenders: list[str] = []
+        for path in MODULE.runway_files(REPO_ROOT):
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            configs = payload.get("runway_configurations", payload.get("runway_configs", []))
+            for row in configs:
+                for key in ("arr", "dep"):
+                    for ident in MODULE.runway_idents(row.get(key, "")):
+                        if not MODULE.RUNWAY_IDENT_RE.match(ident):
+                            relative = path.relative_to(REPO_ROOT).as_posix()
+                            offenders.append(f"{relative} {row.get('id')} {key}={ident}")
+        self.assertEqual([], offenders, f"Unpadded runway identifiers: {offenders}")
+
 
 if __name__ == "__main__":
     unittest.main()

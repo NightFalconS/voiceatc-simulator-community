@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -17,6 +18,16 @@ BRANCH_NAME = "main"
 SCHEMA_VERSION = 1
 RUNWAY_CONFIG_FILENAME = "runway_configs.json"
 LEGACY_RUNWAY_CONFIG_FILENAME = "runway_config.json"
+
+# Zero-padded, as Navigraph publishes them. The game compares configuration
+# runways against the airport's Navigraph identifiers without padding either
+# side, so an unpadded '8L' silently matches nothing and the whole
+# configuration resolves to no runways. US sources publish identifiers
+# unpadded, which is how PHNL shipped four of them.
+RUNWAY_IDENT_RE = re.compile(r"^(0[1-9]|[12][0-9]|3[0-6])[LCR]?$")
+
+# The separators the game's normalize_runway_tokens accepts.
+RUNWAY_FIELD_SEPARATORS = re.compile(r"[,;|+\\\t ]+")
 
 
 def _tracked_runway_files(root: Path, filename: str) -> list[Path]:
@@ -51,6 +62,15 @@ def ensure_text_field(value: object, label: str, path: Path) -> str:
     if not text:
         raise ValueError(f"{path}: '{label}' must not be empty")
     return text
+
+
+def runway_idents(value: str | list[object]) -> list[str]:
+    """Split an 'arr'/'dep' field the way the game does, dropping blanks."""
+    if isinstance(value, list):
+        parts = [str(item) for item in value]
+    else:
+        parts = RUNWAY_FIELD_SEPARATORS.split(value.strip())
+    return [part for part in parts if part]
 
 
 def validate_runway_file(path: Path, root: Path = ROOT) -> dict[str, object]:
@@ -89,6 +109,12 @@ def validate_runway_file(path: Path, root: Path = ROOT) -> dict[str, object]:
             value = row.get(key)
             if not isinstance(value, (str, list)):
                 raise ValueError(f"{path}: config '{config_id}' field '{key}' must be a string or array")
+            for ident in runway_idents(value):
+                if not RUNWAY_IDENT_RE.match(ident):
+                    raise ValueError(
+                        f"{path}: config '{config_id}' field '{key}' runway '{ident}' must be a "
+                        f"zero-padded identifier such as '08L'"
+                    )
 
     return {
         "airport": airport,
