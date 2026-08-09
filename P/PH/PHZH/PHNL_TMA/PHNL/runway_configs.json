@@ -4,14 +4,14 @@
     {
       "id": "EAST",
       "name": "EAST OPS",
-      "arr": "8L 8R 4R",
-      "dep": "8L 8R 4R 4L"
+      "arr": "08L 08R 04R",
+      "dep": "08L 08R 04R 04L"
     },
     {
       "id": "EAST_HEAVY",
       "name": "EAST OPS HEAVY DEP",
-      "arr": "8L 8R 4R",
-      "dep": "8R"
+      "arr": "08L 08R 04R",
+      "dep": "08R"
     },
     {
       "id": "WEST",
