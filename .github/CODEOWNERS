@@ -1,0 +1,19 @@
+# Who is asked to review a pull request here.
+#
+# Everything, one rule. Most of what lands in this repository now arrives from
+# voiceatcsimulator.com/contribute, opened by the website's GitHub App on behalf
+# of someone who has no GitHub account and is watching their contributions page
+# instead. Nobody would be notified of those at all without this file.
+#
+# It covers hand-written pull requests too, deliberately. A maintainer's own
+# pull request notifies the other two — GitHub never requests review from the
+# author — which is the review that used to depend on someone remembering to ask.
+#
+# Individual logins, not a team: this repository belongs to a user account, and
+# user accounts have no teams to name.
+#
+# The website also sets these three as Assignees. That is a separate field and a
+# separate permission; if it ever stops working, the review request made here is
+# unaffected.
+
+* @JBlank19 @IkerHervas @Willek10
