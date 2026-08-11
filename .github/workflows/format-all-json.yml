@@ -21,7 +21,11 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
+      # SSH checkout for the same reason as daily-release.yml: the formatting
+      # commit pushes to main, which the ruleset only lets a deploy key do.
       - uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.RELEASE_DEPLOY_KEY }}
       - uses: actions/setup-node@v4
         with:
           node-version: 24
