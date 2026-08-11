@@ -259,7 +259,7 @@
       ]
     },
     {
-      "area_id": "MN",
+      "area_id": "MMN",
       "minimum_altitude_ft": 2100,
       "polygon": [
         [41.451854166667, 28.526649166667],
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "area_id": "MS",
+      "area_id": "MMS",
       "minimum_altitude_ft": 2500,
       "polygon": [
         [41.232291111111, 28.906386944444],
