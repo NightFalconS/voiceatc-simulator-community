@@ -26,9 +26,13 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
+      # SSH checkout so the manifest commit below is pushed by the release
+      # deploy key. This repository is user-owned, where github-actions[bot]
+      # cannot be named in the main ruleset's allow list, but a deploy key can.
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ssh-key: ${{ secrets.RELEASE_DEPLOY_KEY }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
