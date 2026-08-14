@@ -1,6 +1,6 @@
 {
   "asset_name": "sector-data-2608.zip",
-  "bundle_count": 22,
+  "bundle_count": 23,
   "bundles": {
     "E/ED/EDGG/EDDF_TMA": {
       "files": {
@@ -382,6 +382,25 @@
         }
       }
     },
+    "L/LT/LTBB/ISTANBUL_TMA": {
+      "files": {
+        "configs": {
+          "repo_path": "L/LT/LTBB/ISTANBUL_TMA/sector_configs.json",
+          "sha256": "6e85bced61bbc014069f4d0d8782e83a3b312c11fab2c7d53cce63d154bb3531",
+          "size_bytes": 231
+        },
+        "definitions": {
+          "repo_path": "L/LT/LTBB/ISTANBUL_TMA/sector_definitions.json",
+          "sha256": "4bf3cf455819e388b874d787db78492c55859a7e6a3a761f13751e67dac0b3ff",
+          "size_bytes": 2198
+        },
+        "influence": {
+          "repo_path": "L/LT/LTBB/ISTANBUL_TMA/sector_influence.json",
+          "sha256": "b2b81426e04777d50f16a5b97a62d70d51a1a652c76197690ce4d61426168765",
+          "size_bytes": 114
+        }
+      }
+    },
     "O/OM/OMAE/DUBAI_TERMINAL": {
       "files": {
         "configs": {
@@ -421,12 +440,12 @@
       }
     }
   },
-  "commit_sha": "fee3d8cace41d6f610a4ecb355b5c64a3f77e180",
+  "commit_sha": "87e878e8c502615c61035357da9b250de9818a75",
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-14/sector-data-2608.zip",
-  "published_at": "2026-08-14T03:29:01Z",
+  "published_at": "2026-08-14T13:43:53Z",
   "release_tag": "daily-2026-08-14",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "e5e28672271b4608f4cfe85cf5023a51e23dc6df80ccebfe280a4559457f18ff",
-  "size_bytes": 44052
+  "sha256": "70c5081dfd90e6756183e0b7ebe607b2e9e9bd792a0c459bb228a62ce5369a80",
+  "size_bytes": 45306
 }

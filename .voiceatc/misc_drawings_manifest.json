@@ -1,5 +1,5 @@
 {
-  "airport_count": 18,
+  "airport_count": 21,
   "airports": {
     "EDDC": {
       "repo_path": "E/ED/EDMM/EDDC_TMA/misc_drawings.json",
@@ -76,6 +76,21 @@
       "sha256": "9d2b3f962137221749ec51c41783e4b996256ea60367a5fe86e3bc076ae03e1b",
       "size_bytes": 4526
     },
+    "LTBA": {
+      "repo_path": "L/LT/LTBB/ISTANBUL_TMA/misc_drawings.json",
+      "sha256": "ba8ad0159bb8c5863603d11e6c44c9023cf64ebb62ddfd6390a9e02e3a72727c",
+      "size_bytes": 4054
+    },
+    "LTFJ": {
+      "repo_path": "L/LT/LTBB/ISTANBUL_TMA/misc_drawings.json",
+      "sha256": "ba8ad0159bb8c5863603d11e6c44c9023cf64ebb62ddfd6390a9e02e3a72727c",
+      "size_bytes": 4054
+    },
+    "LTFM": {
+      "repo_path": "L/LT/LTBB/ISTANBUL_TMA/misc_drawings.json",
+      "sha256": "ba8ad0159bb8c5863603d11e6c44c9023cf64ebb62ddfd6390a9e02e3a72727c",
+      "size_bytes": 4054
+    },
     "OMDB": {
       "repo_path": "O/OM/OMAE/DUBAI_TERMINAL/misc_drawings.json",
       "sha256": "7de4ba602527206de20afd3d5bc4d085257eb2e9c96793a405ebc7b1c15d45be",
@@ -93,12 +108,12 @@
     }
   },
   "asset_name": "misc-drawings-2608.zip",
-  "commit_sha": "fee3d8cace41d6f610a4ecb355b5c64a3f77e180",
+  "commit_sha": "87e878e8c502615c61035357da9b250de9818a75",
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-14/misc-drawings-2608.zip",
-  "published_at": "2026-08-14T03:29:01Z",
+  "published_at": "2026-08-14T13:43:53Z",
   "release_tag": "daily-2026-08-14",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "a4bb372bd10ab3581f8df8ba61177b6637792024e990664491a1dc3fc70ca794",
-  "size_bytes": 49677
+  "sha256": "0ac457b83ca51cefbe661d57288f5f33f491f608431ab867492c139b11af11b4",
+  "size_bytes": 50728
 }
