@@ -2,64 +2,64 @@
   "airport": "KORD",
   "runway_configs": [
     {
-        "id": "WEST_FLOW_DUAL",
-        "name": "West Flow - Duals (27C/28C)",
-        "arr": "27C 28C",
-        "dep": "28R 22L"
+      "id": "WEST_FLOW_DUAL",
+      "name": "West Flow - Duals (27C/28C)",
+      "arr": "27C 28C",
+      "dep": "28R 22L"
     },
     {
-        "id": "WEST_FLOW_TRIPLE",
-        "name": "West Flow - Triples (27R/27C/28C)",
-        "arr": "27R 27C 28C",
-        "dep": "28R 22L"
+      "id": "WEST_FLOW_TRIPLE",
+      "name": "West Flow - Triples (27R/27C/28C)",
+      "arr": "27R 27C 28C",
+      "dep": "28R 22L"
     },
     {
-        "id": "WEST_FLOW_NOISE_ABATEMENT",
-        "name": "West Flow - Noise Abatement",
-        "arr": "28C",
-        "dep": "28R 22L"
+      "id": "WEST_FLOW_NOISE_ABATEMENT",
+      "name": "West Flow - Noise Abatement",
+      "arr": "28C",
+      "dep": "28R 22L"
     },
     {
-        "id": "EAST_FLOW_DUAL_1",
-        "name": "East Flow - Duals 9C/10C",
-        "arr": "09C 10C",
-        "dep": "09R 10L"
+      "id": "EAST_FLOW_DUAL_1",
+      "name": "East Flow - Duals 9C/10C",
+      "arr": "09C 10C",
+      "dep": "09R 10L"
     },
     {
-        "id": "EAST_FLOW_DUAL_2",
-        "name": "East Flow - Duals 9L/10C",
-        "arr": "09L 10C",
-        "dep": "09C 10L"
+      "id": "EAST_FLOW_DUAL_2",
+      "name": "East Flow - Duals 9L/10C",
+      "arr": "09L 10C",
+      "dep": "09C 10L"
     },
     {
-        "id": "EAST_FLOW_TRIPLE_1",
-        "name": "East Flow - Triples 9L/9C/10C",
-        "arr": "09L 09C 10C",
-        "dep": "09R 10L"
+      "id": "EAST_FLOW_TRIPLE_1",
+      "name": "East Flow - Triples 9L/9C/10C",
+      "arr": "09L 09C 10C",
+      "dep": "09R 10L"
     },
     {
-        "id": "EAST_FLOW_TRIPLE_2",
-        "name": "East Flow - Triples 9L/10C/10R",
-        "arr": "09L 10C 10R",
-        "dep": "09C 10L"
+      "id": "EAST_FLOW_TRIPLE_2",
+      "name": "East Flow - Triples 9L/10C/10R",
+      "arr": "09L 10C 10R",
+      "dep": "09C 10L"
     },
     {
-        "id": "EAST_FLOW_NOISE_ABATEMENT",
-        "name": "East Flow - Noise Abatement",
-        "arr": "10C",
-        "dep": "09C 10L"
+      "id": "EAST_FLOW_NOISE_ABATEMENT",
+      "name": "East Flow - Noise Abatement",
+      "arr": "10C",
+      "dep": "09C 10L"
     },
     {
-        "id": "4S",
-        "name": "4s",
-        "arr": "04R",
-        "dep": "04L"
+      "id": "4S",
+      "name": "4s",
+      "arr": "04R",
+      "dep": "04L"
     },
     {
-        "id": "22S",
-        "name": "22s",
-        "arr": "22R",
-        "dep": "22L"
-    }    
+      "id": "22S",
+      "name": "22s",
+      "arr": "22R",
+      "dep": "22L"
+    }
   ]
 }
