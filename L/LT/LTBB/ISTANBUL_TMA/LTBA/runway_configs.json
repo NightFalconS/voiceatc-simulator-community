@@ -1,0 +1,17 @@
+{
+  "airport": "LTBA",
+  "runway_configs": [
+    {
+      "id": "WEST",
+      "name": "West",
+      "arr": "23",
+      "dep": "23"
+    },
+    {
+      "id": "EAST",
+      "name": "East",
+      "arr": "08",
+      "dep": "08"
+    }
+  ]
+}
