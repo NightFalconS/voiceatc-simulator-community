@@ -1,5 +1,5 @@
 {
-  "airport_count": 128,
+  "airport_count": 129,
   "airports": {
     "EBBR": {
       "repo_path": "E/EB/EBBU/BRUSSELS_TMA/EBBR/runway_configs.json",
@@ -596,6 +596,11 @@
       "sha256": "a9d0c2f4a8e693c2aba94185995675de89441c8fc1b5f4cd5d8a9ce62245076e",
       "size_bytes": 354
     },
+    "LTBA": {
+      "repo_path": "L/LT/LTBB/ISTANBUL_TMA/LTBA/runway_configs.json",
+      "sha256": "ce4681551b5dcb9fbbc5f19a0e2caa5d10d593e8b16415095aa217352a534f2c",
+      "size_bytes": 234
+    },
     "LTFJ": {
       "repo_path": "L/LT/LTBB/ISTANBUL_TMA/LTFJ/runway_configs.json",
       "sha256": "8770668772662a9190f37c03b480bd1cffeef69ac400e7527b0cf8401cab050a",
@@ -603,8 +608,8 @@
     },
     "LTFM": {
       "repo_path": "L/LT/LTBB/ISTANBUL_TMA/LTFM/runway_configs.json",
-      "sha256": "b7d545160f7e03af629f2c6f455ead81ea52e8949e248966926e989c5d2f8e5f",
-      "size_bytes": 280
+      "sha256": "0ca297fa9069ed92f6b984fce706539ede232f76397feb086dda63fd63b1b83b",
+      "size_bytes": 278
     },
     "OMDB": {
       "repo_path": "O/OM/OMAE/DUBAI_TERMINAL/OMDB/runway_configs.json",
@@ -643,12 +648,12 @@
     }
   },
   "asset_name": "runway-configs-2608.zip",
-  "commit_sha": "fee3d8cace41d6f610a4ecb355b5c64a3f77e180",
+  "commit_sha": "87e878e8c502615c61035357da9b250de9818a75",
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-14/runway-configs-2608.zip",
-  "published_at": "2026-08-14T03:29:01Z",
+  "published_at": "2026-08-14T13:43:53Z",
   "release_tag": "daily-2026-08-14",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "81a352a5cc4b0431fcdbf1367492add4cce0e701112609353aa5932327320501",
-  "size_bytes": 40283
+  "sha256": "357fd99cfb40ce9d423903b92208fe148c1711c70fbc9f06dfd5c38280139ade",
+  "size_bytes": 40575
 }
