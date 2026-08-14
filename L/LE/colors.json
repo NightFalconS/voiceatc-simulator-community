@@ -1,14 +1,14 @@
 {
   "bg_color": "080808",
 
-  "assumed_tfc_color": "3bf451",
-  "incoming_tfc_color": "cbffd2",
+  "assumed_tfc_color": "0BB14CFF",
+  "incoming_tfc_color": "B3DC91FF",
   "selected_tfc_color": "f7ee2d",
   "dragging_tfc_color": "f79621",
   "alien_tfc_color": "888b90",
   "alien_cs_color": "888b90",
-  "released_tfc_color": "888b90",
-  "released_cs_color": "888b90",
+  "released_tfc_color": "85858EFF",
+  "released_cs_color": "85858EFF",
 
   "wake_light_color": "6b6e6b",
   "wake_medium_color": "3bf451",
@@ -26,6 +26,6 @@
 
   "qdm_color": "ff7d41",
   "route_tab_color": "ff7d41",
-  "mrva_color": "68682a",
+  "mrva_color": "664c00",
   "alert_color": "ff0000"
 }
