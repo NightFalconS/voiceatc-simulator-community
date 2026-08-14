@@ -308,8 +308,8 @@
     },
     "KORD": {
       "repo_path": "K/KZAU/CHICAGO_ORD_TMA/KORD/runway_configs.json",
-      "sha256": "c08e237e746c9acff3718f95f1ec950d8022c1078172a228e84ba2e8e18ceb11",
-      "size_bytes": 526
+      "sha256": "22c458fbdafa41076dd3e4b05631b232df6b59129fd558b4f8c60bb6a9df1bc9",
+      "size_bytes": 1357
     },
     "KPDX": {
       "repo_path": "K/KZSE/PORTLAND_TMA/KPDX/runway_configs.json",
@@ -648,12 +648,12 @@
     }
   },
   "asset_name": "runway-configs-2608.zip",
-  "commit_sha": "756b7e8a775b34f12bb0e1afd52a3f86c0b69c07",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-14-b/runway-configs-2608.zip",
-  "published_at": "2026-08-14T15:11:42Z",
-  "release_tag": "daily-2026-08-14-b",
+  "commit_sha": "e94d2be62c8b5f149a426521e92ebc5be79d0082",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-14-c/runway-configs-2608.zip",
+  "published_at": "2026-08-14T17:11:36Z",
+  "release_tag": "daily-2026-08-14-c",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "357fd99cfb40ce9d423903b92208fe148c1711c70fbc9f06dfd5c38280139ade",
-  "size_bytes": 40575
+  "sha256": "e7b32c1ad54fffcefe0cc09296402ebe0334ac7835d20772a6a36b226d278153",
+  "size_bytes": 40729
 }
