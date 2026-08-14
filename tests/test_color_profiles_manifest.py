@@ -69,11 +69,31 @@ class ColorProfilesManifestTests(unittest.TestCase):
         projection = MODULE.build_release_projection(REPO_ROOT, commit_sha="test-commit")
         aliases = set(legacy_us_aliases())
 
-        self.assertEqual(15, len(canonical["profiles"]))
-        self.assertEqual(40, len(projection["profiles"]))
-        self.assertEqual(79, len(projection["archive_sources"]))
-        self.assertNotIn("K", projection["profiles"])
-        self.assertEqual(aliases, {scope for scope in projection["profiles"] if scope.startswith("K/")})
+        canonical_scopes = set(canonical["profiles"])
+        projection_scopes = set(projection["profiles"])
+
+        # The single-segment K region scope is replaced by its 26 US aliases;
+        # every multi-segment canonical scope passes through unchanged.
+        self.assertNotIn("K", projection_scopes)
+        self.assertEqual(canonical_scopes - {"K"}, projection_scopes - aliases)
+        self.assertEqual(aliases, {scope for scope in projection_scopes if scope.startswith("K/")})
+
+        # Archive sources cover every released file exactly once, mapping each alias
+        # back to the canonical K source and leaving pass-through paths untouched.
+        expected_archive_paths = {
+            entry["repo_path"]
+            for profile in projection["profiles"].values()
+            for entry in profile["files"].values()
+        }
+        self.assertEqual(expected_archive_paths, set(projection["archive_sources"]))
+        for scope, profile in projection["profiles"].items():
+            for kind, entry in profile["files"].items():
+                file_name = MODULE.PROFILE_FILE_NAMES[kind]
+                self.assertEqual(f"{scope}/{file_name}", entry["repo_path"])
+                if scope in aliases:
+                    self.assertEqual(f"K/{file_name}", projection["archive_sources"][entry["repo_path"]])
+                else:
+                    self.assertEqual(entry["repo_path"], projection["archive_sources"][entry["repo_path"]])
 
     def test_build_manifest_accepts_region_country_fir_acc_tma_scopes(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
