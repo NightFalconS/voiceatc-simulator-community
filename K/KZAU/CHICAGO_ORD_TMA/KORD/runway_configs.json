@@ -22,38 +22,38 @@
     {
         "id": "EAST_FLOW_DUAL_1",
         "name": "East Flow - Duals 9C/10C",
-        "arr": "9C 10C",
-        "dep": "9R 10L"
+        "arr": "09C 10C",
+        "dep": "09R 10L"
     },
     {
         "id": "EAST_FLOW_DUAL_2",
         "name": "East Flow - Duals 9L/10C",
-        "arr": "9L 10C",
-        "dep": "9C 10L"
+        "arr": "09L 10C",
+        "dep": "09C 10L"
     },
     {
         "id": "EAST_FLOW_TRIPLE_1",
         "name": "East Flow - Triples 9L/9C/10C",
-        "arr": "9L 9C 10C",
-        "dep": "9R 10L"
+        "arr": "09L 09C 10C",
+        "dep": "09R 10L"
     },
     {
         "id": "EAST_FLOW_TRIPLE_2",
         "name": "East Flow - Triples 9L/10C/10R",
-        "arr": "9L 10C 10R",
-        "dep": "9C 10L"
+        "arr": "09L 10C 10R",
+        "dep": "09C 10L"
     },
     {
         "id": "EAST_FLOW_NOISE_ABATEMENT",
         "name": "East Flow - Noise Abatement",
         "arr": "10C",
-        "dep": "9C 10L"
+        "dep": "09C 10L"
     },
     {
         "id": "4S",
         "name": "4s",
-        "arr": "4R",
-        "dep": "4L"
+        "arr": "04R",
+        "dep": "04L"
     },
     {
         "id": "22S",
