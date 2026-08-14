@@ -386,8 +386,8 @@
       "files": {
         "configs": {
           "repo_path": "L/LT/LTBB/ISTANBUL_TMA/sector_configs.json",
-          "sha256": "6e85bced61bbc014069f4d0d8782e83a3b312c11fab2c7d53cce63d154bb3531",
-          "size_bytes": 231
+          "sha256": "ad0b28ce500a78f0adb20dccb280f2db3b1677bc3bbffc8fcb98431c772787f9",
+          "size_bytes": 230
         },
         "definitions": {
           "repo_path": "L/LT/LTBB/ISTANBUL_TMA/sector_definitions.json",
@@ -440,12 +440,12 @@
       }
     }
   },
-  "commit_sha": "87e878e8c502615c61035357da9b250de9818a75",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-14/sector-data-2608.zip",
-  "published_at": "2026-08-14T13:43:53Z",
-  "release_tag": "daily-2026-08-14",
+  "commit_sha": "756b7e8a775b34f12bb0e1afd52a3f86c0b69c07",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-14-b/sector-data-2608.zip",
+  "published_at": "2026-08-14T15:11:42Z",
+  "release_tag": "daily-2026-08-14-b",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "70c5081dfd90e6756183e0b7ebe607b2e9e9bd792a0c459bb228a62ce5369a80",
-  "size_bytes": 45306
+  "sha256": "524eff3148e74d1da12f1094478a1c06bb79d6ae206b8a29f80e163931439f0e",
+  "size_bytes": 45305
 }
