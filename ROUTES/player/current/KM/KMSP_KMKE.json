@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "origin": "KMSP",
+  "dest": "KMKE",
+  "routes": [
+    {
+      "id": "9927acb2",
+      "route": "KMSP DCT LMFRY DCT DLL DCT BAE DCT KMKE",
+      "created_at": "2026-08-15T14:56:37Z",
+      "creation_airac": "2608"
+    }
+  ]
+}
