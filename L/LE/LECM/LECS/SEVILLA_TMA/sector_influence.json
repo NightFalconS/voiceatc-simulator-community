@@ -7,10 +7,6 @@
     {
       "sector_id": "LECSASN",
       "airports": ["LEZL"]
-    },
-    {
-      "sector_id": "LECSASV",
-      "airports": ["LEJR"]
     }
   ]
 }
