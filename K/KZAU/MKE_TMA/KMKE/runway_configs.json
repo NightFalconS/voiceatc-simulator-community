@@ -1,0 +1,35 @@
+{
+  "airport": "KMKE",
+  "runway_configs": [
+    {
+      "id": "01",
+      "name": "01L",
+      "arr": "01L",
+      "dep": "01L"
+    },
+    {
+      "id": "07",
+      "name": "07R",
+      "arr": "07R",
+      "dep": "07R"
+    },
+    {
+      "id": "19",
+      "name": "19R",
+      "arr": "19R",
+      "dep": "19R"
+    },
+    {
+      "id": "25",
+      "name": "25L",
+      "arr": "25L",
+      "dep": "25L"
+    },
+    {
+      "id": "Overnight",
+      "name": "Overnight",
+      "arr": "19R",
+      "dep": "01L"
+    }
+  ]
+}
