@@ -12,6 +12,12 @@
       "name": "NON PREFERENTIAL",
       "arr": "06L",
       "dep": "06R"
+    },
+    {
+      "id": "WEST_DUAL",
+      "name": "WEST DUAL",
+      "arr": "24R 24L",
+      "dep": "24R"
     }
   ]
 }

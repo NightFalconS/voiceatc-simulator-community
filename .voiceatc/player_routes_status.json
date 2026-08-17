@@ -185,6 +185,13 @@
           "status": "ok"
         }
       },
+      "GCXO_LEZL": {
+        "07384f7d": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "HAAB_ESSA": {
         "c03a9038": {
           "checked_airac": "2608",
@@ -208,6 +215,13 @@
       },
       "KBOS_RKSI": {
         "5b2f2c14": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "KCLE_KMKE": {
+        "b32ec64a": {
           "checked_airac": "2608",
           "reasons": [],
           "status": "ok"
@@ -269,8 +283,22 @@
           "status": "ok"
         }
       },
+      "KMSP_KMKE": {
+        "9927acb2": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "KMSP_RKSI": {
         "5a1d613f": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "KORD_KMKE": {
+        "2a2da2c0": {
           "checked_airac": "2608",
           "reasons": [],
           "status": "ok"
@@ -313,6 +341,13 @@
       },
       "LEMD_RKSI": {
         "9e908401": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "LEMH_LEZL": {
+        "a0516adf": {
           "checked_airac": "2608",
           "reasons": [],
           "status": "ok"
@@ -3673,7 +3708,7 @@
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-08-14T17:11:36Z",
+  "generated_at": "2026-08-17T02:33:18Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }

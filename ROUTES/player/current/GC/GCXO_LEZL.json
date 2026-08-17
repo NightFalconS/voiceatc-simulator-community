@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "origin": "GCXO",
+  "dest": "LEZL",
+  "routes": [
+    {
+      "id": "07384f7d",
+      "route": "GCXO DCT VASTO UN858 AKUDA DCT PESAS N858 OSLEP DCT LEZL",
+      "created_at": "2026-08-15T15:40:03Z",
+      "creation_airac": "2608"
+    }
+  ]
+}

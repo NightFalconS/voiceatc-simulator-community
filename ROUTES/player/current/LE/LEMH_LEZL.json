@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "origin": "LEMH",
+  "dest": "LEZL",
+  "routes": [
+    {
+      "id": "a0516adf",
+      "route": "LEMH DCT EPAMA N733 VLC M985 YES N747 BLN DCT LEZL",
+      "created_at": "2026-08-15T15:40:03Z",
+      "creation_airac": "2608"
+    }
+  ]
+}
