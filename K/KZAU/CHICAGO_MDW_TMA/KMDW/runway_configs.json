@@ -2,16 +2,52 @@
   "airport": "KMDW",
   "runway_configs": [
     {
-      "id": "NIGHT_DEP",
-      "name": "NIGHT PREF DEP 22L",
-      "arr": "04R 13L 31R",
+      "id": "31R",
+      "name": "31R",
+      "arr": "31R",
+      "dep": "31R"
+    },
+    {
+      "id": "04R",
+      "name": "04R",
+      "arr": "04R",
+      "dep": "04R"
+    },
+    {
+      "id": "22L",
+      "name": "22L",
+      "arr": "22L",
       "dep": "22L"
     },
     {
-      "id": "NIGHT_NOISE",
-      "name": "NIGHT NOISE ABATEMENT",
-      "arr": "04R 13L 31R",
-      "dep": "04R 13L 22L 31R"
-    }
+      "id": "13L",
+      "name": "13L",
+      "arr": "13L",
+      "dep": "13L"
+    },
+    {
+      "id": "31R_Cross-runways",
+      "name": "31R Cross-runways",
+      "arr": "31R",
+      "dep": "31R, 22L"
+    },
+    {
+      "id": "04R_Cross-runways",
+      "name": "04R",
+      "arr": "04R",
+      "dep": "04R, 31R"
+    },
+    {
+      "id": "22L_Cross-runways",
+      "name": "22L Cross-runways",
+      "arr": "22L",
+      "dep": "22L, 31R"
+    },
+    {
+      "id": "13L_Cross-runways",
+      "name": "13L Cross-runways",
+      "arr": "13L",
+      "dep": "13L, 22L"
+    }    
   ]
 }
