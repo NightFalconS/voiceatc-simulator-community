@@ -1,7 +1,7 @@
 {
   "asset_name": "color-profiles-2608.zip",
-  "commit_sha": "7694259ffb98d8fbe89da941b553e91e038c9702",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-17/color-profiles-2608.zip",
+  "commit_sha": "9b32a6a40b0f3c16bf4c318d97514400ef70da2c",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-18/color-profiles-2608.zip",
   "profile_count": 42,
   "profiles": {
     "E/ED/EDGG": {
@@ -588,8 +588,8 @@
       }
     }
   },
-  "published_at": "2026-08-17T02:33:18Z",
-  "release_tag": "daily-2026-08-17",
+  "published_at": "2026-08-18T02:20:25Z",
+  "release_tag": "daily-2026-08-18",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
   "sha256": "b419f1ec5befcf373c70cf910d1c1e4409c34f93c82000dc8f63deccbeb6ea62",
