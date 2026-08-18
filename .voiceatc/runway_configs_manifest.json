@@ -1,5 +1,5 @@
 {
-  "airport_count": 129,
+  "airport_count": 130,
   "airports": {
     "EBBR": {
       "repo_path": "E/EB/EBBU/BRUSSELS_TMA/EBBR/runway_configs.json",
@@ -283,13 +283,18 @@
     },
     "KMDW": {
       "repo_path": "K/KZAU/CHICAGO_MDW_TMA/KMDW/runway_configs.json",
-      "sha256": "fb35ac2d5753db265e2b5efed01ff9af4eb99851871aa1d548d1478a6e56783c",
-      "size_bytes": 309
+      "sha256": "ce2bada04a4b685552dedc9ead8c0609064cf879c71b4a70c6b0b9e1cf31f85c",
+      "size_bytes": 904
     },
     "KMIA": {
       "repo_path": "K/KZMA/MIAMI_TMA/KMIA/runway_configs.json",
       "sha256": "c09612cd7d01377df36739ffe5436ddf5aeafee129b97127394de796fc434e15",
       "size_bytes": 365
+    },
+    "KMKE": {
+      "repo_path": "K/KZAU/MILWAUKEE_TMA/KMKE/runway_configs.json",
+      "sha256": "ead0bf629cf1349fcbb76d039dd19d8ccfef2b59c82ab9c7295577006c927abc",
+      "size_bytes": 518
     },
     "KMSP": {
       "repo_path": "K/KZMP/MINNEAPOLIS_TMA/KMSP/runway_configs.json",
@@ -557,42 +562,42 @@
       "size_bytes": 254
     },
     "LFPG": {
-      "repo_path": "E/LF/LFFF/PARIS_TMA/LFPG/runway_configs.json",
+      "repo_path": "L/LF/LFFF/PARIS_TMA/LFPG/runway_configs.json",
       "sha256": "6e65250ae81c38a891ff36b2f22b79b587a43c308c4d19b08c4af9db4d37bc4d",
       "size_bytes": 274
     },
     "LFPO": {
-      "repo_path": "E/LF/LFFF/PARIS_TMA/LFPO/runway_configs.json",
+      "repo_path": "L/LF/LFFF/PARIS_TMA/LFPO/runway_configs.json",
       "sha256": "fca8e7470adba68a0b964a8cd53dd34951147551b570e2be599435f3e176ae27",
       "size_bytes": 254
     },
     "LGAV": {
-      "repo_path": "E/LG/LGGG/ATHENS_TMA/LGAV/runway_configs.json",
+      "repo_path": "L/LG/LGGG/ATHENS_TMA/LGAV/runway_configs.json",
       "sha256": "95d3160e657c69becab014ba829379b7dc935233d003a891220073fc92da9afe",
       "size_bytes": 269
     },
     "LIMC": {
-      "repo_path": "E/LI/LIMM/MILAN_TMA/LIMC/runway_configs.json",
+      "repo_path": "L/LI/LIMM/MILAN_TMA/LIMC/runway_configs.json",
       "sha256": "58666385bf38a2abb5aae824bb83e35575e1ea0b0818ba12fed6a44ed7f97c59",
       "size_bytes": 379
     },
     "LIRF": {
-      "repo_path": "E/LI/LIRR/ROME_TMA/LIRF/runway_configs.json",
+      "repo_path": "L/LI/LIRR/ROME_TMA/LIRF/runway_configs.json",
       "sha256": "13c2b6be172e44dbbe088b59dd20ebc09ee46307a7b606a8ecfd0895721f3e99",
       "size_bytes": 266
     },
     "LOWW": {
-      "repo_path": "E/LO/LOVV/VIENNA_TMA/LOWW/runway_configs.json",
+      "repo_path": "L/LO/LOVV/VIENNA_TMA/LOWW/runway_configs.json",
       "sha256": "6d0abf31d2fa5b196223618a59dc7835cc8d1430b48a5bad6d1e471ad0526efe",
       "size_bytes": 368
     },
     "LPPT": {
-      "repo_path": "E/LP/LPPC/LISBON_TMA/LPPT/runway_configs.json",
+      "repo_path": "L/LP/LPPC/LISBON_TMA/LPPT/runway_configs.json",
       "sha256": "bd088e012d5be852e01c0f539cf1ad11ce50dca71cf850c5a18128cd8e6e19c4",
       "size_bytes": 265
     },
     "LSZH": {
-      "repo_path": "E/LS/LSAS/ZURICH_TMA/LSZH/runway_configs.json",
+      "repo_path": "L/LS/LSAS/ZURICH_TMA/LSZH/runway_configs.json",
       "sha256": "a9d0c2f4a8e693c2aba94185995675de89441c8fc1b5f4cd5d8a9ce62245076e",
       "size_bytes": 354
     },
@@ -648,12 +653,12 @@
     }
   },
   "asset_name": "runway-configs-2608.zip",
-  "commit_sha": "9b32a6a40b0f3c16bf4c318d97514400ef70da2c",
+  "commit_sha": "537b60c5ce0d92a889cc5fb6fc1c44fccd27a589",
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-18/runway-configs-2608.zip",
-  "published_at": "2026-08-18T02:20:25Z",
+  "published_at": "2026-08-18T13:16:11Z",
   "release_tag": "daily-2026-08-18",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "096f07a9134e391aa97877642cbb5a0a5f901ebefbe56ad6b055dac048f685e2",
-  "size_bytes": 40752
+  "sha256": "c842ef7f9399b55ec976162b22dda06042cf0e9ecacfb9929ce37019071e2e81",
+  "size_bytes": 41124
 }

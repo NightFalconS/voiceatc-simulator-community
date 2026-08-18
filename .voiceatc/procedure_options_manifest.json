@@ -25,13 +25,23 @@
       "sha256": "0db83123c8c443ab9633ad121f3397c8ac33168ed20e1c7d87565a902be59353",
       "size_bytes": 4217
     },
+    "KMDW": {
+      "repo_path": "K/KZAU/CHICAGO_MDW_TMA/KMDW/procedure_options.json",
+      "sha256": "41622a0cddc33ce6f953f32a6d5182386e65577975adf56c6c1e1f726caab4cc",
+      "size_bytes": 202
+    },
+    "KMKE": {
+      "repo_path": "K/KZAU/MILWAUKEE_TMA/KMKE/procedure_options.json",
+      "sha256": "0b8114051ccbaa22c403b01560228b156d99ad8b09a398d71347340d4eeb624d",
+      "size_bytes": 266
+    },
     "RCTP": {
       "repo_path": "R/RC/RCAA/TAIPEI_TMA/RCTP/procedure_options.json",
       "sha256": "9e03f5944e37e4abc35143efcaaa16176d63e12d8a82749b0f620c0add692fec",
       "size_bytes": 182
     }
   },
-  "published_at": "2026-08-18T02:20:29Z",
+  "published_at": "2026-08-18T13:16:24Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }

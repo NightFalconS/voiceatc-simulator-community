@@ -1,6 +1,6 @@
 {
   "asset_name": "sector-data-2608.zip",
-  "bundle_count": 23,
+  "bundle_count": 24,
   "bundles": {
     "E/ED/EDGG/EDDF_TMA": {
       "files": {
@@ -189,6 +189,25 @@
           "repo_path": "G/GC/GCCC/GCCC_MAIN/CANARIAS_TMA/sector_influence.json",
           "sha256": "01fbf7fb56377c64a72d4cdd29258e2c31e1d244763dc0fa59cfa474896fe9be",
           "size_bytes": 274
+        }
+      }
+    },
+    "K/KZAU/MILWAUKEE_TMA": {
+      "files": {
+        "configs": {
+          "repo_path": "K/KZAU/MILWAUKEE_TMA/sector_configs.json",
+          "sha256": "8f14986275bf7275a88ecc1ecd91a42a88c81704426ab74d5a76118912d76117",
+          "size_bytes": 581
+        },
+        "definitions": {
+          "repo_path": "K/KZAU/MILWAUKEE_TMA/sector_definitions.json",
+          "sha256": "6520f558d6c788aae3ba5ee1a21cd1d7fb8e762cfe5702c82e49b005a8c1791f",
+          "size_bytes": 4996
+        },
+        "influence": {
+          "repo_path": "K/KZAU/MILWAUKEE_TMA/sector_influence.json",
+          "sha256": "8d7f35dd0598e5b07cbe1703bf2d8e7c3d4c80abf54774d37853cf77f4d4824d",
+          "size_bytes": 246
         }
       }
     },
@@ -440,12 +459,12 @@
       }
     }
   },
-  "commit_sha": "9b32a6a40b0f3c16bf4c318d97514400ef70da2c",
+  "commit_sha": "537b60c5ce0d92a889cc5fb6fc1c44fccd27a589",
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-18/sector-data-2608.zip",
-  "published_at": "2026-08-18T02:20:25Z",
+  "published_at": "2026-08-18T13:16:11Z",
   "release_tag": "daily-2026-08-18",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "6f3fea22638e68271b8758167aa94f254368d7c186e677a04d8307f5aa67709f",
-  "size_bytes": 45284
+  "sha256": "066ddedc3bfb6f61cc35deeeb88b6d114b050be374ced06093d52270b43a8eeb",
+  "size_bytes": 46539
 }
