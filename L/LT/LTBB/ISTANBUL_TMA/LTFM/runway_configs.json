@@ -10,8 +10,8 @@
     {
       "id": "SOUTH",
       "name": "Southern PRS",
-      "arr": "16R 17L",
-      "dep": "16R 17R"
+      "arr": "16R 17L 18",
+      "dep": "16L 17R 18"
     }
   ]
 }
