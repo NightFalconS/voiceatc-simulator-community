@@ -2,7 +2,7 @@
   "airport": "ENGM",
   "schema_version": 1,
   "airac_min": 2606,
-  "defaults": { "spawn_enabled": true },
+  "defaults": { "spawn_enabled": true, "init_climb": 7000 },
   "stars": {},
   "sids": {},
   "iaps": {},
