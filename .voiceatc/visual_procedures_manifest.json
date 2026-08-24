@@ -55,6 +55,11 @@
       "sha256": "b147eb74acd0cce976034549bb54db3804d3430f046d3a30c742edf3e329375c",
       "size_bytes": 4758
     },
+    "KSAN": {
+      "repo_path": "K/KZLA/SAN_DIEGO_TMA/KSAN/visual_procedures.json",
+      "sha256": "44f1f7dc31874c018adf22e2a4652584b5d3186f53dd764a3c4c76346feb4f3b",
+      "size_bytes": 4281
+    },
     "KSEA": {
       "repo_path": "K/KZSE/SEATTLE_TMA/KSEA/visual_procedures.json",
       "sha256": "24b3d02d8599c859907ef80825800ec15db4e60284962e9ef6059d5484c6d4ee",
@@ -66,7 +71,7 @@
       "size_bytes": 2591
     }
   },
-  "published_at": "2026-08-24T15:49:41Z",
+  "published_at": "2026-08-24T15:50:27Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
