@@ -81,21 +81,21 @@ def valid_payload(airport: str = "KDCA") -> dict[str, object]:
                                 "name": "River turn",
                                 "path_term": "RF",
                                 "latitude": 38.88,
-                                "longitude": -77.06,
+                                "longitude": -77.0572,
                                 "fly_over": False,
                                 "arc_center": {"latitude": 38.88, "longitude": -77.07},
-                                "arc_radius_nm": 1.0,
+                                "arc_radius_nm": 0.6,
                                 "turn_direction": "R",
                             },
                             {
                                 "id": "AFLEG",
                                 "name": "Final turn",
                                 "path_term": "AF",
-                                "latitude": 38.86,
-                                "longitude": -77.05,
+                                "latitude": 38.87,
+                                "longitude": -77.0444,
                                 "fly_over": True,
-                                "arc_center": {"latitude": 38.87, "longitude": -77.05},
-                                "arc_radius_nm": 0.8,
+                                "arc_center": {"latitude": 38.88, "longitude": -77.0444},
+                                "arc_radius_nm": 0.6,
                                 "turn_direction": "L",
                             },
                         ],
@@ -172,6 +172,33 @@ class VisualProceduresManifestTests(unittest.TestCase):
         payload = valid_payload()
         del payload["procedures"][0]["variants"][0]["legs"][2]["arc_center"]
         with self.assertRaisesRegex(ValueError, "arc_center"):
+            MODULE.validate_visual_schema(payload, Path("visual_procedures.json"))
+
+    def test_rejects_arc_endpoints_off_the_declared_radius(self) -> None:
+        payload = valid_payload()
+        payload["procedures"][0]["variants"][0]["legs"][2]["arc_radius_nm"] = 4.0
+        with self.assertRaisesRegex(ValueError, "arc start"):
+            MODULE.validate_visual_schema(payload, Path("visual_procedures.json"))
+
+    def test_rejects_overlong_arc_sweep_from_wrong_turn_direction(self) -> None:
+        payload = valid_payload()
+        arc = payload["procedures"][0]["variants"][0]["legs"][3]
+        arc.update({
+            "latitude": 38.875,
+            "longitude": -77.0555,
+            "turn_direction": "R",
+        })
+        with self.assertRaisesRegex(ValueError, "arc sweep"):
+            MODULE.validate_visual_schema(payload, Path("visual_procedures.json"))
+
+    def test_accepts_altitude_windows_and_rejects_reversed_bounds(self) -> None:
+        payload = valid_payload()
+        altitude = payload["procedures"][0]["variants"][0]["legs"][0]["altitude"]
+        altitude.update({"kind": "between", "value_ft": 1500, "value2_ft": 2000})
+        MODULE.validate_visual_schema(payload, Path("visual_procedures.json"))
+
+        altitude["value2_ft"] = 1000
+        with self.assertRaisesRegex(ValueError, "must exceed"):
             MODULE.validate_visual_schema(payload, Path("visual_procedures.json"))
 
     def test_requires_source_provenance(self) -> None:

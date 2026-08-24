@@ -24,6 +24,9 @@ MAX_LEGS = 128
 MAX_ALIASES = 8
 ADVISORY_DISTANCE_NM = 40.0
 REJECT_DISTANCE_NM = 100.0
+ARC_RADIUS_TOLERANCE_NM = 0.25
+ARC_RADIUS_TOLERANCE_RATIO = 0.05
+MAX_ARC_SWEEP_DEG = 300.0
 EARTH_RADIUS_NM = 3440.065
 ID_RE = re.compile(r"^[A-Z0-9][A-Z0-9_]{0,63}$")
 AIRPORT_RE = re.compile(r"^[A-Z]{4}$")
@@ -47,7 +50,7 @@ LEG_KEYS = {
     "reference", "arc_center", "arc_radius_nm", "turn_direction", "altitude", "speed",
 }
 POINT_KEYS = {"latitude", "longitude"}
-CONSTRAINT_KEYS = {"value_ft", "value_kt", "status", "kind"}
+CONSTRAINT_KEYS = {"value_ft", "value2_ft", "value_kt", "status", "kind"}
 FINAL_KEYS = {"course_deg", "glidepath_deg"}
 MANIFEST_KEYS = {"schema_version", "repo", "airports", "published_at"}
 MANIFEST_ENTRY_KEYS = {"repo_path", "sha256", "size_bytes"}
@@ -144,16 +147,59 @@ def _distance_nm(left: tuple[float, float], right: tuple[float, float]) -> float
     return EARTH_RADIUS_NM * 2 * math.atan2(math.sqrt(hav), math.sqrt(max(0.0, 1.0 - hav)))
 
 
+def _bearing_deg(origin: tuple[float, float], target: tuple[float, float]) -> float:
+    lat1, lon1 = map(math.radians, origin)
+    lat2, lon2 = map(math.radians, target)
+    delta_lon = lon2 - lon1
+    y = math.sin(delta_lon) * math.cos(lat2)
+    x = (
+        math.cos(lat1) * math.sin(lat2)
+        - math.sin(lat1) * math.cos(lat2) * math.cos(delta_lon)
+    )
+    return math.degrees(math.atan2(y, x)) % 360.0
+
+
+def _arc_sweep_deg(
+    center: tuple[float, float],
+    start: tuple[float, float],
+    end: tuple[float, float],
+    turn_direction: str,
+) -> float:
+    start_bearing = _bearing_deg(center, start)
+    end_bearing = _bearing_deg(center, end)
+    if turn_direction == "R":
+        return (end_bearing - start_bearing) % 360.0
+    return (start_bearing - end_bearing) % 360.0
+
+
 def _validate_constraint(value: object, value_key: str, where: str, path: Path) -> None:
     if value is None:
         return
     constraint = _object(value, where, path)
     _strict_keys(constraint, CONSTRAINT_KEYS, where, path)
-    _number(constraint.get(value_key), f"{where}.{value_key}", path, 0.0, 100000.0)
+    first_value = _number(
+        constraint.get(value_key), f"{where}.{value_key}", path, 0.0, 100000.0
+    )
     if constraint.get("status") not in {"required", "recommended"}:
         raise ValueError(f"{path}: {where}.status must be required or recommended")
-    if constraint.get("kind") not in {"at", "at_or_above", "at_or_below"}:
+    kind = constraint.get("kind")
+    allowed_kinds = {"at", "at_or_above", "at_or_below"}
+    if value_key == "value_ft":
+        allowed_kinds.add("between")
+    if kind not in allowed_kinds:
         raise ValueError(f"{path}: {where}.kind is invalid")
+    if kind == "between":
+        second_value = _number(
+            constraint.get("value2_ft"), f"{where}.value2_ft", path, 0.0, 100000.0
+        )
+        if second_value <= first_value:
+            raise ValueError(f"{path}: {where}.value2_ft must exceed value_ft")
+    elif "value2_ft" in constraint:
+        raise ValueError(f"{path}: {where}.value2_ft is only valid for an altitude window")
+    if value_key == "value_kt" and "value_ft" in constraint:
+        raise ValueError(f"{path}: {where}.value_ft is invalid for a speed constraint")
+    if value_key == "value_ft" and "value_kt" in constraint:
+        raise ValueError(f"{path}: {where}.value_kt is invalid for an altitude constraint")
 
 
 def _validate_source(value: object, where: str, path: Path) -> None:
@@ -268,6 +314,37 @@ def _validate_variant(value: object, where: str, path: Path, advisories: list[st
                 advisories.append(
                     f"{path}: {where}.legs[{right_index}] is over 40 NM from leg {left_index}"
                 )
+    for index, leg_value in enumerate(legs):
+        leg = _object(leg_value, f"{where}.legs[{index}]", path)
+        if leg.get("path_term") not in {"RF", "AF"}:
+            continue
+        if index == 0:
+            raise ValueError(f"{path}: {where}.legs[0] cannot start with an arc")
+        center_value = _object(leg["arc_center"], f"{where}.legs[{index}].arc_center", path)
+        center = _coordinate(center_value, f"{where}.legs[{index}].arc_center", path)
+        radius = float(leg["arc_radius_nm"])
+        tolerance = max(ARC_RADIUS_TOLERANCE_NM, radius * ARC_RADIUS_TOLERANCE_RATIO)
+        for endpoint_name, endpoint in (
+            ("start", positions[index - 1]),
+            ("end", positions[index]),
+        ):
+            endpoint_radius = _distance_nm(center, endpoint)
+            if abs(endpoint_radius - radius) > tolerance:
+                raise ValueError(
+                    f"{path}: {where}.legs[{index}] arc {endpoint_name} is "
+                    f"{endpoint_radius:.2f} NM from its center; expected {radius:.2f} NM"
+                )
+        sweep = _arc_sweep_deg(
+            center,
+            positions[index - 1],
+            positions[index],
+            str(leg["turn_direction"]),
+        )
+        if sweep > MAX_ARC_SWEEP_DEG:
+            raise ValueError(
+                f"{path}: {where}.legs[{index}] arc sweep is {sweep:.1f} degrees; "
+                f"maximum is {MAX_ARC_SWEEP_DEG:.0f} degrees"
+            )
     if "final" in variant:
         final = _object(variant["final"], f"{where}.final", path)
         _strict_keys(final, FINAL_KEYS, f"{where}.final", path)

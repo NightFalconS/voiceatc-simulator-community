@@ -49,12 +49,21 @@ an `id`, display `name`, `path_term` (`TF`, `CF`, `RF`, or `AF`), latitude,
 longitude, and `fly_over`. `CF` legs require `course_deg`; `RF` and `AF` legs
 require `arc_center`, `arc_radius_nm`, and `turn_direction`. Optional altitude
 and speed constraints use `status: "required"` or `"recommended"` and are
-checked by the simulator accordingly.
+checked by the simulator accordingly. A published altitude window uses
+`kind: "between"`, `value_ft` for the lower bound, and `value2_ft` for the
+upper bound; do not discard either mandatory limit.
 
 An optional `final` object may provide `course_deg` and `glidepath_deg`. Do not
 write a runway threshold, missed approach, `approach_visual_segment`, contact
 approach, circling route, or VFR/AFIS landing route into this schema. The game
 resolves the threshold from navdata and owns go-around behavior.
+
+An RF or AF leg cannot be the first leg. Its preceding point and endpoint must
+both lie on the declared radius within the validator's small chart-tracing
+tolerance; author a straight leg to the arc join before the curved leg. The
+authored direction must produce a sweep of at most 300 degrees. This guard
+catches a reversed `turn_direction` before the simulator can treat an
+unsupported long arc as a straight chord.
 
 The validator rejects unknown keys, duplicate IDs or spoken names, invalid
 coordinates, malformed leg geometry, missing source/entry/sight evidence,
@@ -114,6 +123,7 @@ nightly sync.
 - [ ] Every variant has one explicit entry and one sight reference; no nearest
       entry or runway is inferred by the simulator.
 - [ ] TF/CF/RF/AF geometry and turn direction are transcribed from the source.
+- [ ] Every RF/AF direction produces the intended sweep, never more than 300°.
 - [ ] Required constraints are distinguished from recommended values.
 - [ ] The runway resolves in the current playable navdata and the exact
       navdata threshold is used by the simulator preview.

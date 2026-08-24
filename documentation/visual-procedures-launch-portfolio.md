@@ -6,24 +6,31 @@ current operational authenticity, gameplay distinctiveness, geographic
 diversity, and transcription feasibility.
 
 The infrastructure pull request deliberately contains no route geometry.
-After it merges, contributors submit the list as 25 airport-level pull
+After it merges, contributors submit the list as 24 airport-level pull
 requests: procedures sharing an airport stay in one `visual_procedures.json`.
 Every row must be rechecked against the current official chart immediately
 before it is transcribed.
+
+The 24 August 2026 source gate could not inspect current authoritative plates
+for the two Japan procedures or NAV CANADA's GOWER chart. France SIA's LFBD
+environment chart could not be represented safely without inventing unnamed
+radial geometry. In accordance with the fallback order below, ranks 2, 5, 6,
+and 9 use Waialae Golf Course, Bridge, Columbia, and Harbor respectively; no
+geometry was inferred from mirrors or incomplete chart cues.
 
 ## Ranked procedures
 
 | # | Airport | Procedure | Signature gameplay |
 |---:|---|---|---|
 | 1 | KDCA | River Visual RWY 19 | Potomac corridor and restricted-airspace discipline |
-| 2 | RJTT | Highway Visual RWY 34R | Tokyo Bay highway landmarks and parallel traffic |
+| 2 | PHNL | Waialae Golf Course Visual | Oahu shoreline and golf-course landmark routing |
 | 3 | KLGA | Park Visual RWY 31 | Dense urban landmarks and curved final |
 | 4 | KASE | Roaring Fork Visual RWY 15 | Mountain-valley route and strict chart conditions |
-| 5 | RJFK | KINKO Visual RWY 34 | Sakurajima, coastline, radials, and altitude gates |
-| 6 | CYVR | GOWER Visual entry RWY 12 | Bowen Island and Vancouver landmark routing |
+| 5 | TJSJ | Bridge Visual | San Juan shoreline and bridge landmark routing |
+| 6 | KPDX | Columbia Visual | Columbia River routing and Portland landmarks |
 | 7 | LPMA | Visual Approach RWY 05 | Coastal turn with close terrain |
 | 8 | LFMN | Environment Visual RWY 04 | Offshore routing and populated-area avoidance |
-| 9 | LFBD | Environment Visual RWY 05 | Prescribed environmental track |
+| 9 | KBFI | Harbor Visual | Seattle harbour and shoreline routing |
 | 10 | KSFO | Tipp Toe Visual RWY 28L/R | Bridges, altitude gates, and parallel finals |
 | 11 | KPHL | River Visual RWY 09L/R | Delaware River alignment and runway branching |
 | 12 | KSAN | Sweetwater Visual RWY 27 | Reservoir, mountain, and urban landmarks |
