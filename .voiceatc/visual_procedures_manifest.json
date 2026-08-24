@@ -95,13 +95,18 @@
       "sha256": "7e789d666b9a68a9ace5953a5dd3f240656c609d827096164f4c7708572d8b0c",
       "size_bytes": 7271
     },
+    "LPMA": {
+      "repo_path": "L/LP/LPPC/MADEIRA_TMA/LPMA/visual_procedures.json",
+      "sha256": "53e4cce3b0ab7383dfc263752c9f639bb33d9c76827cdf6dc3c6b8a0fa4f61a5",
+      "size_bytes": 1890
+    },
     "TJSJ": {
       "repo_path": "T/TJ/TJZS/SAN_JUAN_TMA/TJSJ/visual_procedures.json",
       "sha256": "0310d1fd2f3f9e51eb7a7ff5d3965ce011260be0324d0076268fecdd2c9dae38",
       "size_bytes": 2591
     }
   },
-  "published_at": "2026-08-24T15:54:48Z",
+  "published_at": "2026-08-24T15:55:46Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
