@@ -2,16 +2,28 @@
   "airport": "EDDM",
   "runway_configs": [
     {
+      "id": "26",
+      "name": "26s",
+      "arr": "26R 26L",
+      "dep": "26R 26L"
+    },
+    {
       "id": "08",
       "name": "08s",
       "arr": "08L 08R",
       "dep": "08L 08R"
     },
     {
-      "id": "26",
-      "name": "26s",
-      "arr": "26R 26L",
-      "dep": "26R 26L"
+      "id": "26S_LVP",
+      "name": "26s LVP",
+      "arr": "26R",
+      "dep": "26L"
+    },
+    {
+      "id": "08S_LVP",
+      "name": "08s LVP",
+      "arr": "08R",
+      "dep": "08L"
     }
   ]
 }
