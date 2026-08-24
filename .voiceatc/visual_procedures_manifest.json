@@ -30,6 +30,11 @@
       "sha256": "f8e950d2d8ed30c73ddec63eef4eed15c10cbb9355032ab3ce112c472615fede",
       "size_bytes": 4848
     },
+    "KLGA": {
+      "repo_path": "K/KZNY/LAGUARDIA_TMA/KLGA/visual_procedures.json",
+      "sha256": "1cab00708aab0fe361ee38176f634fa8fbcf13502e6581857c5c4d20d8822a86",
+      "size_bytes": 3667
+    },
     "KLSV": {
       "repo_path": "K/KZLA/LAS_TMA/KLSV/visual_procedures.json",
       "sha256": "034d36b234f05ecafd0cf1829cdd43284eb301813ebbfea3e4477bba91b85f27",
@@ -46,7 +51,7 @@
       "size_bytes": 2591
     }
   },
-  "published_at": "2026-08-24T15:46:53Z",
+  "published_at": "2026-08-24T15:47:28Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
