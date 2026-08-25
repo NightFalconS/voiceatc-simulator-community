@@ -5,10 +5,7 @@
     {
       "id": "PARK_VISUAL_31",
       "name": "Park Visual RWY 31",
-      "aliases": [
-        "park visual",
-        "park visual thirty one"
-      ],
+      "aliases": ["park visual", "park visual thirty one"],
       "classification": "charted_ifr_visual",
       "policy_profile": "FAA",
       "source": {
@@ -36,11 +33,7 @@
           "sight_reference_point_id": "GACAR",
           "sight_reference": {
             "name": "the Twin White Tanks",
-            "aliases": [
-              "Twin White Tanks",
-              "the airport",
-              "LaGuardia airport"
-            ],
+            "aliases": ["Twin White Tanks", "the airport", "LaGuardia airport"],
             "scope": "point"
           },
           "legs": [
