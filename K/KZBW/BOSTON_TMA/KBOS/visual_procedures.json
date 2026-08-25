@@ -5,10 +5,7 @@
     {
       "id": "LIGHT_VISUAL_33L",
       "name": "Light Visual RWY 33L",
-      "aliases": [
-        "light visual",
-        "boston light visual"
-      ],
+      "aliases": ["light visual", "boston light visual"],
       "classification": "charted_ifr_visual",
       "policy_profile": "FAA",
       "source": {
