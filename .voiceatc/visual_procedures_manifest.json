@@ -57,8 +57,8 @@
     },
     "KSAN": {
       "repo_path": "K/KZLA/SAN_DIEGO_TMA/KSAN/visual_procedures.json",
-      "sha256": "48e6e31a1d05df1c66139f1a0402b7c9377a6cfe848bb3a429c45dff3b494e8c",
-      "size_bytes": 4410
+      "sha256": "1a15342648b6479e097515d4ac4b15f4a980e4fd6493bccab9844078ed6cc76c",
+      "size_bytes": 4386
     },
     "KSEA": {
       "repo_path": "K/KZSE/SEATTLE_TMA/KSEA/visual_procedures.json",
