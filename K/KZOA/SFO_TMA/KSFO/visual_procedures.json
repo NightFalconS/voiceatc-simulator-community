@@ -5,10 +5,7 @@
     {
       "id": "QUIET_BRIDGE_VISUAL_28R",
       "name": "Quiet Bridge Visual RWY 28R",
-      "aliases": [
-        "quiet bridge visual",
-        "quiet bridge"
-      ],
+      "aliases": ["quiet bridge visual", "quiet bridge"],
       "classification": "charted_ifr_visual",
       "policy_profile": "FAA",
       "source": {
@@ -206,10 +203,7 @@
     {
       "id": "TIPP_TOE_VISUAL_28LR",
       "name": "Tipp Toe Visual RWY 28L/R",
-      "aliases": [
-        "tipp toe visual",
-        "tipp toe"
-      ],
+      "aliases": ["tipp toe visual", "tipp toe"],
       "classification": "charted_ifr_visual",
       "policy_profile": "FAA",
       "source": {
