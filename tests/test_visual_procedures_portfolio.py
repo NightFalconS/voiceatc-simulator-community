@@ -68,7 +68,10 @@ class VisualProceduresPortfolioTests(unittest.TestCase):
             leg["id"]: leg
             for leg in procedures["MOUNT_VERNON_VISUAL_01"]["variants"][0]["legs"]
         }
-        self.assertAlmostEqual(-77.039, mount_legs["POTOMAC_RIVER_NORTH_TRACE"]["longitude"])
+        mount_variant = procedures["MOUNT_VERNON_VISUAL_01"]["variants"][0]
+        self.assertEqual("BADDN", mount_variant["sight_reference_point_id"])
+        self.assertEqual("BADDN", mount_variant["legs"][-1]["id"])
+        self.assertNotIn("POTOMAC_RIVER_NORTH_TRACE", mount_legs)
 
     def test_sweetwater_east_branch_runs_east_to_west(self) -> None:
         procedure = airport_file("KSAN")["procedures"][0]

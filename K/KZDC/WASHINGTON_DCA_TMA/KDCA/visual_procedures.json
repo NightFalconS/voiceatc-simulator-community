@@ -5,7 +5,10 @@
     {
       "id": "MOUNT_VERNON_VISUAL_01",
       "name": "Mount Vernon Visual RWY 01",
-      "aliases": ["mount vernon visual", "mount vernon"],
+      "aliases": [
+        "mount vernon visual",
+        "mount vernon"
+      ],
       "classification": "charted_ifr_visual",
       "policy_profile": "FAA",
       "source": {
@@ -22,7 +25,7 @@
           "value": 4,
           "unit": "SM"
         },
-        "notes": "Radar required; Amdt 4A 14MAY26. Avoid P-56; R-185 is abeam/on-river; ILS/LOC joins north. Final river alignment chart-traced."
+        "notes": "Radar required; Amdt 4A 14MAY26. Avoid P-56; R-185 or ILS/LOC joins at BADDN, then follow the river to the airport."
       },
       "variants": [
         {
@@ -30,11 +33,13 @@
           "runway": "01",
           "clearance_name": "Mount Vernon Visual",
           "entry_point_id": "KATRN",
-          "sight_reference_point_id": "POTOMAC_RIVER_NORTH_TRACE",
+          "sight_reference_point_id": "BADDN",
           "join_policy": "forward_route",
           "sight_reference": {
             "name": "the river",
-            "aliases": ["river"],
+            "aliases": [
+              "river"
+            ],
             "scope": "route"
           },
           "legs": [
@@ -73,14 +78,6 @@
                 "status": "recommended",
                 "kind": "at"
               }
-            },
-            {
-              "id": "POTOMAC_RIVER_NORTH_TRACE",
-              "name": "Potomac River north of BADDN (chart-traced)",
-              "path_term": "TF",
-              "latitude": 38.82,
-              "longitude": -77.039,
-              "fly_over": false
             }
           ],
           "final": {
@@ -92,7 +89,10 @@
     {
       "id": "RIVER_VISUAL_19",
       "name": "River Visual RWY 19",
-      "aliases": ["river visual", "river visual nineteen"],
+      "aliases": [
+        "river visual",
+        "river visual nineteen"
+      ],
       "classification": "charted_ifr_visual",
       "policy_profile": "FAA",
       "source": {
@@ -121,7 +121,9 @@
           "join_policy": "forward_route",
           "sight_reference": {
             "name": "the river",
-            "aliases": ["river"],
+            "aliases": [
+              "river"
+            ],
             "scope": "route"
           },
           "legs": [
