@@ -5,10 +5,7 @@
     {
       "id": "ROARING_FORK_VISUAL_15",
       "name": "Roaring Fork Visual RWY 15",
-      "aliases": [
-        "roaring fork visual",
-        "roaring fork"
-      ],
+      "aliases": ["roaring fork visual", "roaring fork"],
       "classification": "charted_ifr_visual",
       "policy_profile": "FAA",
       "source": {
