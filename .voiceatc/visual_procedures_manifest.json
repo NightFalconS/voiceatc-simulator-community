@@ -22,8 +22,8 @@
     },
     "KEWR": {
       "repo_path": "K/KZNY/NEWARK_TMA/KEWR/visual_procedures.json",
-      "sha256": "c2c1948a1b05b7e901ad231d9cc51a5d37a395f974f683dc62710f068e6dd438",
-      "size_bytes": 4180
+      "sha256": "05729d6a469841ca941215a11472459d5e8bbea2857c6aaba169c4e605b183dd",
+      "size_bytes": 4156
     },
     "KJFK": {
       "repo_path": "K/KZNY/JFK_TMA/KJFK/visual_procedures.json",

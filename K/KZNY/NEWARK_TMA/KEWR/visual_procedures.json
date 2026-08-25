@@ -5,10 +5,7 @@
     {
       "id": "STADIUM_VISUAL_29",
       "name": "Stadium Visual RWY 29",
-      "aliases": [
-        "stadium visual",
-        "stadium visual twenty nine"
-      ],
+      "aliases": ["stadium visual", "stadium visual twenty nine"],
       "classification": "charted_ifr_visual",
       "policy_profile": "FAA",
       "source": {
