@@ -89,7 +89,7 @@ facts, and the simulator-owned threshold boundary match the authority source.
 | KBFI | [Harbor RWY 14R](https://aeronav.faa.gov/d-tpp/2608/00384HARBOR_VIS14R.PDF) | Pass: three branches. |
 | KBOS | [Light RWY 33L](https://aeronav.faa.gov/d-tpp/2608/00058LIGHT_VIS33L.PDF) | Corrected LYHTT and BOS 10 DME note. |
 | KDCA | [Mount Vernon RWY 01](https://aeronav.faa.gov/d-tpp/2608/00443MOUNTVERNON_VIS1.PDF) | Corrected: one river route and forward join. |
-| KDCA | [River RWY 19](https://aeronav.faa.gov/d-tpp/2608/00443RIVER_VIS19.PDF) | Corrected: complete upper-river corridor and P-56 note. |
+| KDCA | [River RWY 19](https://aeronav.faa.gov/d-tpp/2608/00443RIVER_VIS19.PDF) | Corrected: GREYZ/RORRK river joins, charted 1800/1500/900 profile, and bridge anchors verified against official DDOT lines; route clears P-56. |
 | KEWR | [Stadium RWY 29](https://aeronav.faa.gov/d-tpp/2608/00285STADIUM_VIS29.PDF) | Pass; source cautions retained. |
 | KJFK | [Parkway RWY 13L/R](https://aeronav.faa.gov/d-tpp/2608/00610PARKWAY_VIS13LR.PDF) | Corrected Rockaway abeam cue. |
 | KLGA | [Park RWY 31](https://aeronav.faa.gov/d-tpp/2608/00289PARK_VIS31.PDF) | Corrected recommended profile and sight cue. |
