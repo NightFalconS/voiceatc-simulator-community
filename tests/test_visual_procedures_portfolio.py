@@ -64,6 +64,11 @@ class VisualProceduresPortfolioTests(unittest.TestCase):
             },
         )
         self.assertFalse(river_legs["ROCHAMBEAU_BRIDGE_TRACE"]["fly_over"])
+        mount_legs = {
+            leg["id"]: leg
+            for leg in procedures["MOUNT_VERNON_VISUAL_01"]["variants"][0]["legs"]
+        }
+        self.assertAlmostEqual(-77.039, mount_legs["POTOMAC_RIVER_NORTH_TRACE"]["longitude"])
 
     def test_sweetwater_east_branch_runs_east_to_west(self) -> None:
         procedure = airport_file("KSAN")["procedures"][0]
