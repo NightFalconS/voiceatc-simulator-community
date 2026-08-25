@@ -5,7 +5,10 @@
     {
       "id": "MOUNT_VERNON_VISUAL_01",
       "name": "Mount Vernon Visual RWY 01",
-      "aliases": ["mount vernon visual", "mount vernon"],
+      "aliases": [
+        "mount vernon visual",
+        "mount vernon"
+      ],
       "classification": "charted_ifr_visual",
       "policy_profile": "FAA",
       "source": {
@@ -34,7 +37,9 @@
           "join_policy": "forward_route",
           "sight_reference": {
             "name": "the river",
-            "aliases": ["river"],
+            "aliases": [
+              "river"
+            ],
             "scope": "route"
           },
           "legs": [
@@ -92,7 +97,10 @@
     {
       "id": "RIVER_VISUAL_19",
       "name": "River Visual RWY 19",
-      "aliases": ["river visual", "river visual nineteen"],
+      "aliases": [
+        "river visual",
+        "river visual nineteen"
+      ],
       "classification": "charted_ifr_visual",
       "policy_profile": "FAA",
       "source": {
@@ -109,7 +117,7 @@
           "value": 3,
           "unit": "SM"
         },
-        "notes": "Radar required; Amdt 6 11JUL24. River from American Legion/David W. Taylor; RNAV feeders join ahead. Avoid P-56. Rochambeau checked against DDOT GIS."
+        "notes": "Radar required; Amdt 6 11JUL24. River via American Legion/David W. Taylor; joins at GREYZ/RORRK. Avoid P-56. Bridges checked against DDOT GIS."
       },
       "variants": [
         {
@@ -121,7 +129,9 @@
           "join_policy": "forward_route",
           "sight_reference": {
             "name": "the river",
-            "aliases": ["river"],
+            "aliases": [
+              "river"
+            ],
             "scope": "route"
           },
           "legs": [
@@ -150,8 +160,8 @@
               "id": "CHAIN_BRIDGE_TRACE",
               "name": "Chain Bridge (chart-traced)",
               "path_term": "TF",
-              "latitude": 38.932,
-              "longitude": -77.101,
+              "latitude": 38.9299243354,
+              "longitude": -77.1141640781,
               "fly_over": true,
               "altitude": {
                 "value_ft": 1800,
@@ -160,11 +170,19 @@
               }
             },
             {
-              "id": "KEY_BRIDGE_TRACE",
-              "name": "Key Bridge (chart-traced)",
+              "id": "GREYZ",
+              "name": "GREYZ / river trace",
               "path_term": "TF",
-              "latitude": 38.905,
-              "longitude": -77.072,
+              "latitude": 38.9182,
+              "longitude": -77.1084055556,
+              "fly_over": false
+            },
+            {
+              "id": "RORRK",
+              "name": "RORRK / river trace",
+              "path_term": "TF",
+              "latitude": 38.9098472222,
+              "longitude": -77.0988944444,
               "fly_over": true,
               "altitude": {
                 "value_ft": 1500,
@@ -173,11 +191,11 @@
               }
             },
             {
-              "id": "ROOSEVELT_MEMORIAL_BRIDGES_TRACE",
-              "name": "Roosevelt / Memorial Bridges (chart-traced)",
+              "id": "KEY_BRIDGE_TRACE",
+              "name": "Key Bridge (chart-traced)",
               "path_term": "TF",
-              "latitude": 38.895,
-              "longitude": -77.055,
+              "latitude": 38.902830691,
+              "longitude": -77.0697196772,
               "fly_over": true,
               "altitude": {
                 "value_ft": 900,
@@ -186,12 +204,28 @@
               }
             },
             {
+              "id": "ROOSEVELT_BRIDGE_TRACE",
+              "name": "Theodore Roosevelt Bridge (chart-traced)",
+              "path_term": "TF",
+              "latitude": 38.8926968089,
+              "longitude": -77.0577358494,
+              "fly_over": true
+            },
+            {
+              "id": "MEMORIAL_BRIDGE_TRACE",
+              "name": "Arlington Memorial Bridge (chart-traced)",
+              "path_term": "TF",
+              "latitude": 38.8873358946,
+              "longitude": -77.0553832781,
+              "fly_over": true
+            },
+            {
               "id": "ROCHAMBEAU_BRIDGE_TRACE",
               "name": "Rochambeau Bridge (chart-traced)",
               "path_term": "TF",
               "latitude": 38.8764601507,
               "longitude": -77.0413292679,
-              "fly_over": true
+              "fly_over": false
             }
           ],
           "final": {
