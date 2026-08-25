@@ -5,10 +5,7 @@
     {
       "id": "KAHE_POWER_PLANT_VISUAL_22L",
       "name": "Kahe Power Plant Visual RWY 22L",
-      "aliases": [
-        "kahe power plant visual",
-        "kahe power plant"
-      ],
+      "aliases": ["kahe power plant visual", "kahe power plant"],
       "classification": "charted_ifr_visual",
       "policy_profile": "FAA",
       "source": {
@@ -107,11 +104,7 @@
     {
       "id": "WAIALAE_GOLF_COURSE_VISUAL_22L",
       "name": "Waialae Golf Course Visual RWY 22L",
-      "aliases": [
-        "waialae golf course visual",
-        "waialae visual",
-        "waialae"
-      ],
+      "aliases": ["waialae golf course visual", "waialae visual", "waialae"],
       "classification": "charted_ifr_visual",
       "policy_profile": "FAA",
       "source": {
