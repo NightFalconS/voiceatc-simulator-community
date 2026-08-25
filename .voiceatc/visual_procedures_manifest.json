@@ -17,8 +17,8 @@
     },
     "KDCA": {
       "repo_path": "K/KZDC/WASHINGTON_DCA_TMA/KDCA/visual_procedures.json",
-      "sha256": "2ff116125c21fec5744b6a673125c2f3acb80b1bcf21733acec61a22bc70eee4",
-      "size_bytes": 7388
+      "sha256": "0237b5a6a3c675b397118b89bc65c75e5e009dafcab86a9d742165834d76c171",
+      "size_bytes": 7284
     },
     "KEWR": {
       "repo_path": "K/KZNY/NEWARK_TMA/KEWR/visual_procedures.json",
