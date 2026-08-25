@@ -43,12 +43,27 @@ class VisualProceduresPortfolioTests(unittest.TestCase):
                 "AMERICAN_LEGION_DAVID_TAYLOR_TRACE",
                 "DARIC",
                 "CHAIN_BRIDGE_TRACE",
+                "GREYZ",
+                "RORRK",
                 "KEY_BRIDGE_TRACE",
-                "ROOSEVELT_MEMORIAL_BRIDGES_TRACE",
+                "ROOSEVELT_BRIDGE_TRACE",
+                "MEMORIAL_BRIDGE_TRACE",
                 "ROCHAMBEAU_BRIDGE_TRACE",
             ],
             river_ids,
         )
+        river_legs = {
+            leg["id"]: leg
+            for leg in procedures["RIVER_VISUAL_19"]["variants"][0]["legs"]
+        }
+        self.assertEqual(
+            {"CHAIN_BRIDGE_TRACE": 1800, "RORRK": 1500, "KEY_BRIDGE_TRACE": 900},
+            {
+                leg_id: river_legs[leg_id]["altitude"]["value_ft"]
+                for leg_id in ["CHAIN_BRIDGE_TRACE", "RORRK", "KEY_BRIDGE_TRACE"]
+            },
+        )
+        self.assertFalse(river_legs["ROCHAMBEAU_BRIDGE_TRACE"]["fly_over"])
 
     def test_sweetwater_east_branch_runs_east_to_west(self) -> None:
         procedure = airport_file("KSAN")["procedures"][0]
