@@ -339,6 +339,13 @@
           "status": "ok"
         }
       },
+      "LEMD_LBSF": {
+        "39d5b330": {
+          "checked_airac": "2608",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "LEMD_RKSI": {
         "9e908401": {
           "checked_airac": "2608",
@@ -3226,7 +3233,9 @@
       "YSSY_RKSI": {
         "bc299822": {
           "checked_airac": "2608",
-          "reasons": ["airway_disconnect: YSSY->RKSI: RIC not on airway H530"],
+          "reasons": [
+            "airway_disconnect: YSSY->RKSI: RIC not on airway H530"
+          ],
           "status": "deprecated"
         }
       },
@@ -3708,7 +3717,7 @@
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-08-26T02:38:29Z",
+  "generated_at": "2026-08-27T08:12:43Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
