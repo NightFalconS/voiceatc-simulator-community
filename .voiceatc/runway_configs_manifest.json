@@ -1,5 +1,5 @@
 {
-  "airport_count": 130,
+  "airport_count": 133,
   "airports": {
     "EBBR": {
       "repo_path": "E/EB/EBBU/BRUSSELS_TMA/EBBR/runway_configs.json",
@@ -21,6 +21,11 @@
       "sha256": "372176b4c077fc080cf487ffdd91db5a7ffe0018effbbcbbd975922574641772",
       "size_bytes": 246
     },
+    "EDDH": {
+      "repo_path": "E/ED/EDWW/HAMBURG_TMA/EDDH/runway_configs.json",
+      "sha256": "61b88a76650b577d75a80b2d155a2ed30cf4d9cb6de3e3810385a5b59c56932e",
+      "size_bytes": 350
+    },
     "EDDL": {
       "repo_path": "E/ED/EDGG/DUSSELDORF_TMA/EDDL/runway_configs.json",
       "sha256": "359d48368bdc1609efd294bfe4b8bae27dfa1d942b5b275d3330af710fee48f6",
@@ -35,6 +40,16 @@
       "repo_path": "E/ED/EDMM/EDDN_TMA/EDDN/runway_configs.json",
       "sha256": "8b9756741206d4ffef54d82e1ba8b7e721c757d94d34ec890770a693518f892b",
       "size_bytes": 226
+    },
+    "EDHI": {
+      "repo_path": "E/ED/EDWW/HAMBURG_TMA/EDHI/runway_configs.json",
+      "sha256": "4140f824dca30b42b2ebcb84d08f1b7a36f76666bbc76860263faf967d1425d6",
+      "size_bytes": 234
+    },
+    "EDHL": {
+      "repo_path": "E/ED/EDWW/HAMBURG_TMA/EDHL/runway_configs.json",
+      "sha256": "69f39722ebe1683b8c2e7a2384bb1e98624f57077a8d42749772bf1f3b45a87e",
+      "size_bytes": 234
     },
     "EFHK": {
       "repo_path": "E/EF/EFIN/EFIN_S/HELSINKI_TMA/EFHK/runway_configs.json",
@@ -653,12 +668,12 @@
     }
   },
   "asset_name": "runway-configs-2608.zip",
-  "commit_sha": "9c1fd99f2fe06bb2880039339c9c4724e3a2a8da",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-28/runway-configs-2608.zip",
-  "published_at": "2026-08-28T14:01:10Z",
-  "release_tag": "daily-2026-08-28",
+  "commit_sha": "1caf9500357034d4b58d2e02d60df8f13ec13ccc",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-28-b/runway-configs-2608.zip",
+  "published_at": "2026-08-28T19:48:22Z",
+  "release_tag": "daily-2026-08-28-b",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "0620f2ee12d7e12cb0ba1a0c1aeb93ccd3816c245ae1bd5aaedfffebe793f4c9",
-  "size_bytes": 41162
+  "sha256": "c9d82cfb9c54be99803f3055eae9481ea8b5c6008290f4252d204ea7896d0f5d",
+  "size_bytes": 42032
 }

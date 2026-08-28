@@ -1,5 +1,5 @@
 {
-  "airport_count": 22,
+  "airport_count": 25,
   "airports": {
     "EDDC": {
       "repo_path": "E/ED/EDMM/EDDC_TMA/misc_drawings.json",
@@ -11,6 +11,11 @@
       "sha256": "68c12602c6c343922e8736284f90a00a7c498e9cc4d8ed025114c5da9ff8b850",
       "size_bytes": 7229
     },
+    "EDDH": {
+      "repo_path": "E/ED/EDWW/HAMBURG_TMA/misc_drawings.json",
+      "sha256": "37a467ebef88af731ff0ed7ab17a14c881b119d0cc5564344352a226d74ab17b",
+      "size_bytes": 994
+    },
     "EDDM": {
       "repo_path": "E/ED/EDMM/EDDM_TMA/misc_drawings.json",
       "sha256": "bb74a84ae7ea3f376ceb03980097e05635e1402219e7fb248e3fea36b4f995bf",
@@ -20,6 +25,16 @@
       "repo_path": "E/ED/EDMM/EDDN_TMA/misc_drawings.json",
       "sha256": "f6fee453097975b537abb21318a8f56b9a9b318de80cca68b07545db899d33b8",
       "size_bytes": 2166
+    },
+    "EDHI": {
+      "repo_path": "E/ED/EDWW/HAMBURG_TMA/misc_drawings.json",
+      "sha256": "37a467ebef88af731ff0ed7ab17a14c881b119d0cc5564344352a226d74ab17b",
+      "size_bytes": 994
+    },
+    "EDHL": {
+      "repo_path": "E/ED/EDWW/HAMBURG_TMA/misc_drawings.json",
+      "sha256": "37a467ebef88af731ff0ed7ab17a14c881b119d0cc5564344352a226d74ab17b",
+      "size_bytes": 994
     },
     "EFHK": {
       "repo_path": "E/EF/EFIN/EFIN_S/HELSINKI_TMA/misc_drawings.json",
@@ -53,18 +68,18 @@
     },
     "ESOW": {
       "repo_path": "E/ES/ESAA/ESOS_Y/ESOS_APP/misc_drawings.json",
-      "sha256": "5afdc92c99164c51d3748565b2336486d2a4ba8cf7252073558e740bd631e968",
-      "size_bytes": 80145
+      "sha256": "ed1d46e32488e680914784856389af2d46997504e5f4e615ed71a303ec037340",
+      "size_bytes": 80269
     },
     "ESSA": {
       "repo_path": "E/ES/ESAA/ESOS_Y/ESOS_APP/misc_drawings.json",
-      "sha256": "5afdc92c99164c51d3748565b2336486d2a4ba8cf7252073558e740bd631e968",
-      "size_bytes": 80145
+      "sha256": "ed1d46e32488e680914784856389af2d46997504e5f4e615ed71a303ec037340",
+      "size_bytes": 80269
     },
     "ESSB": {
       "repo_path": "E/ES/ESAA/ESOS_Y/ESOS_APP/misc_drawings.json",
-      "sha256": "5afdc92c99164c51d3748565b2336486d2a4ba8cf7252073558e740bd631e968",
-      "size_bytes": 80145
+      "sha256": "ed1d46e32488e680914784856389af2d46997504e5f4e615ed71a303ec037340",
+      "size_bytes": 80269
     },
     "KMKE": {
       "repo_path": "K/KZAU/MILWAUKEE_TMA/misc_drawings.json",
@@ -113,12 +128,12 @@
     }
   },
   "asset_name": "misc-drawings-2608.zip",
-  "commit_sha": "9c1fd99f2fe06bb2880039339c9c4724e3a2a8da",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-28/misc-drawings-2608.zip",
-  "published_at": "2026-08-28T14:01:10Z",
-  "release_tag": "daily-2026-08-28",
+  "commit_sha": "1caf9500357034d4b58d2e02d60df8f13ec13ccc",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-28-b/misc-drawings-2608.zip",
+  "published_at": "2026-08-28T19:48:22Z",
+  "release_tag": "daily-2026-08-28-b",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "d5b6197f931b7469da2c97b37a47922a675ff6dcd6937ce4fbf5dfd403e4714d",
-  "size_bytes": 51421
+  "sha256": "6f8b8398c01006867c131b9bdddffbc3f2b7985df095bc402528fa86710b5b40",
+  "size_bytes": 51972
 }

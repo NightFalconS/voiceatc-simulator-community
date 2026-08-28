@@ -1,6 +1,6 @@
 {
   "asset_name": "sector-data-2608.zip",
-  "bundle_count": 24,
+  "bundle_count": 25,
   "bundles": {
     "E/ED/EDGG/EDDF_TMA": {
       "files": {
@@ -75,6 +75,25 @@
           "repo_path": "E/ED/EDMM/EDDN_TMA/sector_influence.json",
           "sha256": "3e468cb449060d600c16b8f80ee7b99bda58f81879468bb032d154bbde8de665",
           "size_bytes": 174
+        }
+      }
+    },
+    "E/ED/EDWW/HAMBURG_TMA": {
+      "files": {
+        "configs": {
+          "repo_path": "E/ED/EDWW/HAMBURG_TMA/sector_configs.json",
+          "sha256": "1173588c1586365be5b77b4e56f412962f950c20a2d2f34e00a0d327a4cbc33f",
+          "size_bytes": 247
+        },
+        "definitions": {
+          "repo_path": "E/ED/EDWW/HAMBURG_TMA/sector_definitions.json",
+          "sha256": "13c74d461edf1650ddffff363aefccc6bbc949e18d70f35b248adf0d651c1ab8",
+          "size_bytes": 1359
+        },
+        "influence": {
+          "repo_path": "E/ED/EDWW/HAMBURG_TMA/sector_influence.json",
+          "sha256": "c330d29ec7e660c2e24f8738b855c9125227f352483ded50a5e2257f00d45a5d",
+          "size_bytes": 114
         }
       }
     },
@@ -459,12 +478,12 @@
       }
     }
   },
-  "commit_sha": "9c1fd99f2fe06bb2880039339c9c4724e3a2a8da",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-28/sector-data-2608.zip",
-  "published_at": "2026-08-28T14:01:10Z",
-  "release_tag": "daily-2026-08-28",
+  "commit_sha": "1caf9500357034d4b58d2e02d60df8f13ec13ccc",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-08-28-b/sector-data-2608.zip",
+  "published_at": "2026-08-28T19:48:22Z",
+  "release_tag": "daily-2026-08-28-b",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "066ddedc3bfb6f61cc35deeeb88b6d114b050be374ced06093d52270b43a8eeb",
-  "size_bytes": 46539
+  "sha256": "442d13c274790c56a18a11f30db4fadf506ab063b57ca7be70d2aace86751cac",
+  "size_bytes": 47577
 }
