@@ -1,0 +1,23 @@
+{
+  "airport": "EDDH",
+  "runway_configs": [
+    {
+      "id": "33/23",
+      "name": "DEP33 ARR23",
+      "arr": "23",
+      "dep": "33"
+    },
+    {
+      "id": "23/15",
+      "name": "DEP23 ARR15",
+      "arr": "15",
+      "dep": "23"
+    },
+    {
+      "id": "33/05",
+      "name": "DEP33 ARR05",
+      "arr": "05",
+      "dep": "33"
+    }
+  ]
+}
