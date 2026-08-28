@@ -5,6 +5,11 @@
       "sha256": "743a5879e3ada01e2cb71bda0f80733bb529f3ac63531638a2d218d0abc3158c",
       "size_bytes": 1578
     },
+    "EDDH": {
+      "repo_path": "E/ED/EDWW/HAMBURG_TMA/EDDH/procedure_options.json",
+      "sha256": "0e2ba0c510197009ed0a26f6f6501bc774a59eb95c4161333d73a98465307b0d",
+      "size_bytes": 462
+    },
     "EDDS": {
       "repo_path": "E/ED/EDGG/EDDS_TMA/EDDS/procedure_options.json",
       "sha256": "d2c1cd570c31c4198fe063914fa78cec79c68cd5cba1e0d00c79dcd155507802",
@@ -51,7 +56,7 @@
       "size_bytes": 182
     }
   },
-  "published_at": "2026-08-28T14:01:25Z",
+  "published_at": "2026-08-28T19:43:37Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
