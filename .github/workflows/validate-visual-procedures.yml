@@ -6,8 +6,11 @@ on:
       - main
     paths:
       - "**/visual_procedures.json"
+      - "**/visual_go_arounds.json"
       - "tools/visual_procedures_manifest.py"
+      - "tools/visual_go_arounds_manifest.py"
       - "tests/test_visual_procedures_manifest.py"
+      - "tests/test_visual_go_arounds_manifest.py"
       - ".github/workflows/validate-visual-procedures.yml"
 
 permissions:
@@ -27,3 +30,5 @@ jobs:
         run: python tools/content_hierarchy.py --validate-only
       - name: Validate visual procedure files
         run: python tools/visual_procedures_manifest.py --validate-only
+      - name: Validate visual go-around files
+        run: python tools/visual_go_arounds_manifest.py --validate-only

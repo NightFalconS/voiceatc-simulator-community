@@ -68,7 +68,8 @@ anchors in both cases.
 An optional `final` object may provide `course_deg` and `glidepath_deg`. Do not
 write a runway threshold, missed approach, `approach_visual_segment`, contact
 approach, circling route, or VFR/AFIS landing route into this schema. The game
-resolves the threshold from navdata and owns go-around behavior.
+resolves the threshold from navdata. When the same official chart publishes a
+go-around, author it in the separate additive sidecar described below.
 
 An RF or AF leg cannot be the first leg. Its preceding point and endpoint must
 both lie on the declared radius within the validator's small chart-tracing
@@ -84,6 +85,51 @@ Geometry beyond 40 NM from the entry is a review advisory; beyond 100 NM is a
 hard error. Runway existence is checked against playable navdata by the game
 review tooling; this repository validator checks identifier shape and airport
 placement because navdata is not shipped here.
+
+## Published visual go-arounds
+
+`visual_go_arounds.json` is an optional sibling of `visual_procedures.json`.
+It exists only for charted visuals whose authoritative chart publishes a
+go-around route. Keeping it separate preserves the visual schema-v1 contract:
+older simulator builds never request the new manifest and continue to consume
+the same approach files.
+
+The top level is:
+
+```json
+{
+  "schema_version": 1,
+  "airport": "KSFO",
+  "go_arounds": []
+}
+```
+
+Each entry is keyed by an existing `procedure_id` and `variant_id`, repeats the
+exact runway, carries its own authoritative `source`, declares a
+`terminal_policy`, and contains ordered normalized missed legs. The validator
+requires the key and runway to match the sibling visual procedure. Do not add
+a sidecar entry to give an ordinary visual a convenient escape route: absence
+is meaningful and makes the controller assign heading or altitude in the game.
+
+Legs use stable `sequence`, `ident`, and ARINC `path_term` fields plus only the
+geometry and constraints that the chart publishes. Supported terms are `AF`,
+`CA`, `CD`, `CF`, `CI`, `CR`, `DF`, `FA`, `FC`, `FD`, `HF`, `HM`, `RF`, `TF`,
+`VA`, `VD`, `VI`, `VM`, `FM`, and `VR`. Coordinate-less course, altitude,
+intercept, and manual terminators remain genuine legs; never fabricate a fix
+to make them look like `TF`. Altitudes use `altitude1`, optional `altitude2`,
+and `altitude_desc`: `@` exact, `+` at-or-above, `-` at-or-below, or `B` for a
+low-to-high window. `speed_limit` is a published maximum.
+
+`sequence`, `altitude1`, `altitude2`, and `speed_limit` are JSON integers; the
+validator never rounds fractional values. Latitude and longitude fields are
+always supplied as a pair and validated independently. A real zero coordinate
+is valid—the presence of the two keys, not a zero-value sentinel, determines
+whether a leg has coordinates.
+
+The final term determines the terminal policy. `HM` requires
+`HOLD_INDEFINITE`, `HF` requires `HOLD_ONCE`, and every other final term uses
+`REQUEST_INSTRUCTIONS`. Never synthesize a hold when the chart ends on a
+course or manual terminator.
 
 ## Sources and licensing
 
@@ -110,6 +156,8 @@ from the same bytes:
 npx prettier --write <airport>/visual_procedures.json
 python tools/visual_procedures_manifest.py --write
 python tools/visual_procedures_manifest.py --validate-only
+python tools/visual_go_arounds_manifest.py --write
+python tools/visual_go_arounds_manifest.py --validate-only
 python tools/content_hierarchy.py --validate-only
 python -m unittest discover -s tests -p "test_*.py"
 ```
@@ -119,8 +167,10 @@ The automatic JSON formatter runs the manifest writer with
 refreshes hashes and sizes, but it is not a new data publication. Daily release
 generation continues to mint the actual publication timestamp.
 
-Commit both `visual_procedures.json` and
-`.voiceatc/visual_procedures_manifest.json`. The manifest maps each ICAO to
+Commit `visual_procedures.json` and
+`.voiceatc/visual_procedures_manifest.json`. When a sourced go-around is
+present, also commit `visual_go_arounds.json` and
+`.voiceatc/visual_go_arounds_manifest.json`. Each manifest maps its ICAO to
 the repository path, canonical LF-byte SHA-256, and byte size. It is a direct
 raw-file index: it is not a release archive and must not cause a visual-
 procedure ZIP to be added. The daily release refreshes this manifest and
@@ -149,8 +199,10 @@ nightly sync.
 - [ ] Required constraints are distinguished from recommended values.
 - [ ] The runway resolves in the current playable navdata and the exact
       navdata threshold is used by the simulator preview.
-- [ ] No missed-approach field, chart artwork, invented fixture, or `Z`
-      approach marker is present.
+- [ ] No missed-approach field is embedded in `visual_procedures.json`; any
+      sourced go-around is in the additive sidecar and exactly matches its
+      official chart. Unsourced visuals have no sidecar entry.
+- [ ] No chart artwork, invented fixture, or `Z` approach marker is present.
 - [ ] `content_hierarchy.py`, the visual validator, and the full test suite
       pass; the generated manifest is committed with the data.
 - [ ] A simulator preview confirms the requested sight report, clearance,

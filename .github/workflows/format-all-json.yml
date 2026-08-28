@@ -36,6 +36,8 @@ jobs:
       # paired with the pre-format hash and size.
       - run: python tools/visual_procedures_manifest.py --write --preserve-published-at
       - run: python tools/visual_procedures_manifest.py --validate-only
+      - run: python tools/visual_go_arounds_manifest.py --write --preserve-published-at
+      - run: python tools/visual_go_arounds_manifest.py --validate-only
       - name: Commit formatted JSON
         shell: bash
         env:

@@ -108,7 +108,7 @@ facts, and the simulator-owned threshold boundary match the authority source.
 | LLBG | [NAMIM RWY 21](https://e-aip.azurefd.net/2026-08-06-AIRAC/graphics/eAIP/LL_AD_2_LLBG_VAC_21NAMIM_V1_en.pdf) | Corrected TADOV/GINTU windows. |
 | LLBG | [ROMIE RWY 30](https://e-aip.azurefd.net/2026-08-06-AIRAC/graphics/eAIP/LL_AD_2_LLBG_VAC_30-3_v1_en.pdf) | Corrected BG303 window. |
 | LLER | [ADIVI RWY 01](https://e-aip.azurefd.net/2026-08-06-AIRAC/graphics/eAIP/LL_AD_2_LLER_VAC-01-1_V1_en.pdf) | Pass. |
-| LLER | [NURIT RWY 19](https://e-aip.azurefd.net/2026-08-06-AIRAC/graphics/eAIP/LL_AD_2_LLER_VAC-19-1_V2_en.pdf) | Corrected missed-route speeds. |
+| LLER | [NURIT RWY 19](https://e-aip.azurefd.net/2026-08-06-AIRAC/graphics/eAIP/LL_AD_2_LLER_VAC-19-1_V2_en.pdf) | Published go-around route retained in the additive sidecar. |
 | LPMA | [Visual RWY 05](https://ais.nav.pt/wp-content/uploads/AIS_Files/eAIP_Current/eAIP_Online/eAIP/graphics/eAIP/LP_AD_2_LPMA_13-1_en.pdf) | Pass. |
 | PANC | [Highway RWY 25R](https://aeronav.faa.gov/d-tpp/2608/01500HIGHWAY_VIS25R.PDF) | Pass: two branches and AF arc. |
 | PHNL | [Kahe Power Plant RWY 22L](https://aeronav.faa.gov/d-tpp/2608/00754KAHEPOWERPLANT_VIS22L.PDF) | Pass. |

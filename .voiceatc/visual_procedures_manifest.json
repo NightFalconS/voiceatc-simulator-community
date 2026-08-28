@@ -67,8 +67,8 @@
     },
     "KSFO": {
       "repo_path": "K/KZOA/SFO_TMA/KSFO/visual_procedures.json",
-      "sha256": "b9596bf6fdeb2ebec27e36c5178727c6de0f8ea6c4f9ca3133fceaea1591f308",
-      "size_bytes": 9767
+      "sha256": "17fc532e178474a3a32224b231f40bc79e2f398992b8ca5c7193094c12b2a3c5",
+      "size_bytes": 9739
     },
     "LCLK": {
       "repo_path": "L/LC/LCCC/LARNACA_TMA/LCLK/visual_procedures.json",

@@ -17,6 +17,7 @@ AIRPORT_FILE_NAMES = {
     "constraints.json",
     "procedure_options.json",
     "visual_procedures.json",
+    "visual_go_arounds.json",
 }
 TERMINAL_FILE_NAMES = {
     "mva.json",
