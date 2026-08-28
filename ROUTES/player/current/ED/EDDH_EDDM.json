@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "origin": "EDDH",
+  "dest": "EDDM",
+  "routes": [
+    {
+      "id": "17d0115f",
+      "route": "EDDH DCT HABFU Y348 WIMCI Y804 PIROT T152 ROBAR Z190 ELNAT T220 ROBEL DCT PETIX DCT TALAL DCT D263E DCT WLD T104 ROKIL DCT EDDM",
+      "created_at": "2026-08-28T13:34:03Z",
+      "creation_airac": "2608"
+    }
+  ]
+}
