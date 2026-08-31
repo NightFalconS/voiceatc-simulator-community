@@ -23,5 +23,9 @@ jobs:
           python-version: "3.11"
       - name: Run tests
         run: python -m unittest discover -s tests -p "test_*.py"
+      # Sources only. format-all-json.yml owns the index and fires on this same
+      # push; a strict check here would race it, and its repair commit touches
+      # constraints_manifest.json, which this workflow's path filter never
+      # matches - so the red would never be retried away.
       - name: Validate constraints files
-        run: python tools/constraints_manifest.py --validate-only
+        run: python tools/constraints_manifest.py --validate-sources
