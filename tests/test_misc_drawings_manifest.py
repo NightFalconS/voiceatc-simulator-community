@@ -20,14 +20,35 @@ def valid_payload(airports: object = None) -> dict[str, object]:
         "line_sections": [
             {
                 "color": "STAR",
+                "configs": ["NORTH", " south "],
                 "dash_length": 1.0,
                 "gap_length": 0.0,
                 "points": [[40.4, -3.7], [40.5, -3.6]],
             }
         ],
-        "filled_polygons": [],
-        "labels": [{"text": "TEST", "lat": 40.45, "lon": -3.65}],
+        "filled_polygons": [
+            {
+                "configs": [],
+                "points": [[40.4, -3.7], [40.5, -3.6], [40.4, -3.5]],
+            }
+        ],
+        "labels": [
+            {
+                "text": "TEST",
+                "lat": 40.45,
+                "lon": -3.65,
+                "configs": ["NORTH"],
+            }
+        ],
     }
+
+
+def validate_payload(payload: dict[str, object]) -> dict[str, object]:
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        root = Path(tmp_dir)
+        path = root / "misc_drawings.json"
+        path.write_text(json.dumps(payload), encoding="utf-8")
+        return MODULE.validate_misc_drawings_file(path, root)
 
 
 class MiscDrawingsManifestTests(unittest.TestCase):
@@ -82,6 +103,35 @@ class MiscDrawingsManifestTests(unittest.TestCase):
                 manifest["airports"]["LEMD"]["repo_path"],
                 manifest["airports"]["LETO"]["repo_path"],
             )
+
+    def test_validate_misc_drawings_accepts_config_arrays(self) -> None:
+        entry = validate_payload(valid_payload())
+        self.assertEqual(["LEMD"], entry["airports"])
+
+    def test_validate_misc_drawings_accepts_empty_config_arrays(self) -> None:
+        payload = valid_payload()
+        payload["line_sections"][0]["configs"] = []
+        payload["labels"][0]["configs"] = []
+        entry = validate_payload(payload)
+        self.assertEqual(["LEMD"], entry["airports"])
+
+    def test_validate_misc_drawings_rejects_scalar_configs(self) -> None:
+        payload = valid_payload()
+        payload["line_sections"][0]["configs"] = "NORTH"
+        with self.assertRaisesRegex(ValueError, r"line_sections\[0\]\.configs.*array"):
+            validate_payload(payload)
+
+    def test_validate_misc_drawings_rejects_blank_config_entries(self) -> None:
+        payload = valid_payload()
+        payload["filled_polygons"][0]["configs"] = ["   "]
+        with self.assertRaisesRegex(ValueError, r"filled_polygons\[0\]\.configs\[0\].*empty"):
+            validate_payload(payload)
+
+    def test_validate_misc_drawings_rejects_non_string_config_entries(self) -> None:
+        payload = valid_payload()
+        payload["labels"][0]["configs"] = [2]
+        with self.assertRaisesRegex(ValueError, r"labels\[0\]\.configs\[0\].*string"):
+            validate_payload(payload)
 
 
 if __name__ == "__main__":

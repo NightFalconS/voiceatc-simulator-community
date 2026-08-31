@@ -94,12 +94,23 @@ def _parse_airports_metadata(payload: dict[str, object], path: Path) -> list[str
     raise ValueError(f"{path}: missing 'airport' or 'airports' metadata")
 
 
+def _validate_configs_filter(item: dict[str, object], item_label: str, path: Path) -> None:
+    if "configs" not in item:
+        return
+    configs = item["configs"]
+    if not isinstance(configs, list):
+        raise ValueError(f"{path}: '{item_label}.configs' must be an array")
+    for config_index, config in enumerate(configs):
+        ensure_text_field(config, f"{item_label}.configs[{config_index}]", path)
+
+
 def _validate_line_sections(value: object, dataset_label: str, path: Path) -> None:
     if not isinstance(value, list):
         raise ValueError(f"{path}: '{dataset_label}.line_sections' must be an array")
     for section_index, section in enumerate(value):
         if not isinstance(section, dict):
             raise ValueError(f"{path}: '{dataset_label}.line_sections[{section_index}]' must be an object")
+        _validate_configs_filter(section, f"{dataset_label}.line_sections[{section_index}]", path)
         points = section.get("points", [])
         if not isinstance(points, list) or len(points) < 2:
             raise ValueError(f"{path}: '{dataset_label}.line_sections[{section_index}].points' must contain at least 2 points")
@@ -118,6 +129,7 @@ def _validate_filled_polygons(value: object, dataset_label: str, path: Path) -> 
     for polygon_index, polygon in enumerate(value):
         if not isinstance(polygon, dict):
             raise ValueError(f"{path}: '{dataset_label}.filled_polygons[{polygon_index}]' must be an object")
+        _validate_configs_filter(polygon, f"{dataset_label}.filled_polygons[{polygon_index}]", path)
         points = polygon.get("points", [])
         if not isinstance(points, list) or len(points) < 3:
             raise ValueError(f"{path}: '{dataset_label}.filled_polygons[{polygon_index}].points' must contain at least 3 points")
@@ -133,6 +145,7 @@ def _validate_labels(value: object, dataset_label: str, path: Path) -> None:
     for label_index, label in enumerate(value):
         if not isinstance(label, dict):
             raise ValueError(f"{path}: '{dataset_label}.labels[{label_index}]' must be an object")
+        _validate_configs_filter(label, f"{dataset_label}.labels[{label_index}]", path)
         ensure_text_field(label.get("text", label.get("label", "")), "text", path)
         ensure_point(label, f"{dataset_label}.labels[{label_index}]", path)
         if "color" in label and not isinstance(label["color"], str):
