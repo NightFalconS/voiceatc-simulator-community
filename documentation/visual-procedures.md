@@ -148,39 +148,34 @@ CC BY-NC-SA 4.0 contribution licence. Keep the source URL and effective date
 in the JSON so maintainers can re-check the current chart immediately before
 merge.
 
-## Formatting, manifest, and checks
+## Checks
 
-Normalise only the file being contributed, then generate the raw-file manifest
-from the same bytes:
+Run these on the file you are contributing:
 
 ```text
-npx prettier --write <airport>/visual_procedures.json
-python tools/visual_procedures_manifest.py --write
-python tools/visual_procedures_manifest.py --validate-only
-python tools/visual_go_arounds_manifest.py --write
-python tools/visual_go_arounds_manifest.py --validate-only
+python tools/visual_procedures_manifest.py --validate-sources
+python tools/visual_go_arounds_manifest.py --validate-sources
 python tools/content_hierarchy.py --validate-only
 python -m unittest discover -s tests -p "test_*.py"
 ```
 
-The automatic JSON formatter runs the manifest writer with
-`--preserve-published-at`. Formatting changes protected bytes and therefore
-refreshes hashes and sizes, but it is not a new data publication. Daily release
-generation continues to mint the actual publication timestamp.
+Commit `visual_procedures.json`, and `visual_go_arounds.json` when a sourced
+go-around is present. Do not run Prettier and do not commit anything under
+`.voiceatc/`.
 
-Commit `visual_procedures.json` and
-`.voiceatc/visual_procedures_manifest.json`. When a sourced go-around is
-present, also commit `visual_go_arounds.json` and
-`.voiceatc/visual_go_arounds_manifest.json`. Each manifest maps its ICAO to
-the repository path, canonical LF-byte SHA-256, and byte size. It is a direct
-raw-file index: it is not a release archive and must not cause a visual-
-procedure ZIP to be added. The daily release refreshes this manifest and
-commits it when its source mapping changes.
+## The raw-file index
 
-Do not hand-edit the generated manifest. If validation reports drift, rerun
-`--write` after the JSON has been formatted. The checked-in manifest is
-required on a review pull request so a stale or missing hash cannot reach the
-nightly sync.
+`.voiceatc/visual_procedures_manifest.json` and its go-around counterpart map
+each ICAO to the repository path, canonical LF-byte SHA-256, and byte size. They
+are direct raw-file indexes: neither is a release archive, and neither may cause
+a visual-procedure ZIP to be added.
+
+Both are written by CI, never by hand. `format-all-json.yml` rebuilds them after
+every merge with `--preserve-published-at`, because formatting changes the
+protected bytes without being a new publication, and `daily-release.yml` mints
+the actual publication timestamp nightly. Each writer verifies its own output
+with `--validate-only` immediately afterwards, so drift is caught where it can
+be repaired rather than on a contributor's pull request.
 
 ## Maintainer review checklist
 

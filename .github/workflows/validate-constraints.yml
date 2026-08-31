@@ -21,4 +21,4 @@ jobs:
       - name: Run tests
         run: python -m unittest discover -s tests -p "test_*.py"
       - name: Validate constraints files
-        run: python tools/constraints_manifest.py --validate-only
+        run: python tools/constraints_manifest.py --validate-sources

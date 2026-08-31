@@ -21,4 +21,4 @@ jobs:
       - name: Run tests
         run: python -m unittest discover -s tests -p "test_*.py"
       - name: Validate procedure options files
-        run: python tools/procedure_options_manifest.py --validate-only
+        run: python tools/procedure_options_manifest.py --validate-sources

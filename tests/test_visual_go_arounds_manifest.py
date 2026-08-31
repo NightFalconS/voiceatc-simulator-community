@@ -222,10 +222,13 @@ class VisualGoAroundManifestTests(unittest.TestCase):
         required = (ROOT / ".github" / "workflows" / "validate-content-hierarchy.yml").read_text()
         daily = (ROOT / ".github" / "workflows" / "daily-release.yml").read_text()
         formatter = (ROOT / ".github" / "workflows" / "format-all-json.yml").read_text()
-        command = "python tools/visual_go_arounds_manifest.py --validate-only"
-        self.assertIn(command, required)
-        self.assertIn(command, daily)
-        self.assertIn(command, formatter)
+        strict = "python tools/visual_go_arounds_manifest.py --validate-only"
+        # The pull-request gate checks the sidecar files themselves. The index they
+        # feed is CI-owned, so asserting it here would fail a valid contribution.
+        self.assertIn("python tools/visual_go_arounds_manifest.py --validate-sources", required)
+        self.assertNotIn(strict, required)
+        self.assertIn(strict, daily)
+        self.assertIn(strict, formatter)
         self.assertIn("python tools/visual_go_arounds_manifest.py --write", daily)
         self.assertIn("--write --preserve-published-at", formatter)
 

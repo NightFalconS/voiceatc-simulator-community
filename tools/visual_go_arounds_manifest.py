@@ -349,6 +349,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true")
     parser.add_argument("--validate-only", action="store_true")
+    parser.add_argument("--validate-sources", action="store_true")
     parser.add_argument("--preserve-published-at", action="store_true")
     args = parser.parse_args()
     if args.preserve_published_at and not args.write:
@@ -366,6 +367,8 @@ def main() -> int:
         print(f"Wrote {MANIFEST_PATH.relative_to(ROOT).as_posix()}")
     elif args.validate_only:
         print(f"Validated {len(manifest['airports'])} visual go-around files and {count} manifest entries.")
+    elif args.validate_sources:
+        print(f"Validated {len(manifest['airports'])} visual go-around files.")
     else:
         print(json.dumps(manifest, indent=2, sort_keys=True))
     return 0

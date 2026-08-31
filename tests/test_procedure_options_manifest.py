@@ -402,5 +402,22 @@ class ProcedureOptionsManifestTests(unittest.TestCase):
             self.assertEqual(2, MODULE.validate_existing_manifest_entries(root, manifest_path))
 
 
+    def test_new_airport_passes_source_validation_while_the_index_lags(self) -> None:
+        """A contribution CI has not indexed yet is valid; only the index is behind."""
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            root = Path(tmp_dir)
+            self._write(root, "RCTP")
+            manifest_path = write_manifest(
+                root, MODULE.build_manifest(root, published_at="2026-04-21T00:00:00Z")
+            )
+            self._write(root, "RCSS")
+
+            rebuilt = MODULE.build_manifest(root, published_at="2026-04-21T00:00:00Z")
+            self.assertEqual(["RCSS", "RCTP"], sorted(rebuilt["airports"]))
+
+            with self.assertRaisesRegex(ValueError, "missing entries: RCSS"):
+                MODULE.validate_existing_manifest_entries(root, manifest_path=manifest_path)
+
+
 if __name__ == "__main__":
     unittest.main()

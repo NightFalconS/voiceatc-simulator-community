@@ -56,13 +56,13 @@ jobs:
       - name: Validate color profile files
         run: python tools/color_profiles_manifest.py --validate-only
       - name: Validate constraints files
-        run: python tools/constraints_manifest.py --validate-only
+        run: python tools/constraints_manifest.py --validate-sources
       - name: Validate procedure options files
-        run: python tools/procedure_options_manifest.py --validate-only
+        run: python tools/procedure_options_manifest.py --validate-sources
       - name: Validate visual procedure files
-        run: python tools/visual_procedures_manifest.py --validate-only
+        run: python tools/visual_procedures_manifest.py --validate-sources
       - name: Validate visual go-around files
-        run: python tools/visual_go_arounds_manifest.py --validate-only
+        run: python tools/visual_go_arounds_manifest.py --validate-sources
       - name: Validate player route files
         run: python tools/player_routes_manifest.py --validate-only
       - name: Compute route lane cycles
@@ -544,6 +544,13 @@ jobs:
           PY
           python tools/constraints_manifest.py --write
           python tools/procedure_options_manifest.py --write
+          # Strict verification belongs after the write, never before it. The
+          # preflight used to run these, so a manifest that lagged main failed the
+          # release at the step before the one that would have repaired it.
+          python tools/constraints_manifest.py --validate-only
+          python tools/procedure_options_manifest.py --validate-only
+          python tools/visual_procedures_manifest.py --validate-only
+          python tools/visual_go_arounds_manifest.py --validate-only
           python tools/player_routes_manifest.py --write-manifests --summary build/release/player_summary.json
       - name: Publish routes to Cloudflare R2
         if: steps.meta.outputs.should_publish == 'true'

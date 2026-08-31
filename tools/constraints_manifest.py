@@ -25,9 +25,10 @@ IGNORED_PARTS = {
     "logs",
 }
 VALIDATION_REPAIR_HINT = (
-    "Repair: normalize changed constraints.json files with Prettier; run "
-    "`python tools/constraints_manifest.py --write`; commit the changed JSON and manifest; "
-    "then rerun `python tools/constraints_manifest.py --validate-only`."
+    "This manifest is CI-owned: format-all-json.yml refreshes it after every merge and "
+    "daily-release.yml rebuilds it nightly, both with --write. A failure here means the "
+    "writer and the checker disagree, which is a tooling bug rather than a contribution "
+    "problem. Contributions are gated on --validate-sources, which ignores this manifest."
 )
 
 
@@ -70,6 +71,20 @@ def validate_constraints_file(path: Path, root: Path = ROOT) -> dict[str, object
         "sha256": hashlib.sha256(raw_bytes).hexdigest(),
         "size_bytes": len(raw_bytes),
     }
+
+
+def existing_published_at(path: Path = MANIFEST_PATH) -> str:
+    """Read the stable publication time for byte-only maintenance rewrites."""
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        raise ValueError(f"{path}: invalid or missing manifest ({exc})") from exc
+    value = str(payload.get("published_at", "")) if isinstance(payload, dict) else ""
+    try:
+        datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ")
+    except ValueError as exc:
+        raise ValueError(f"{path}: published_at must be an ISO-8601 UTC timestamp") from exc
+    return value
 
 
 def build_manifest(
@@ -190,11 +205,16 @@ def validate_existing_manifest_entries(
 def main() -> int:
     parser = argparse.ArgumentParser(description="Validate constraints.json files and generate the community constraints manifest.")
     parser.add_argument("--write", action="store_true", help="Write .voiceatc/constraints_manifest.json")
-    parser.add_argument("--validate-only", action="store_true", help="Validate source files and checked-in manifest entries")
+    parser.add_argument("--validate-only", action="store_true", help="Validate source files and the checked-in manifest (run this after --write)")
+    parser.add_argument("--validate-sources", action="store_true", help="Validate source files only; the manifest is CI-owned")
+    parser.add_argument("--preserve-published-at", action="store_true", help="Retain published_at while refreshing hashes after formatting")
     args = parser.parse_args()
+    if args.preserve_published_at and not args.write:
+        parser.error("--preserve-published-at requires --write")
 
     try:
-        manifest = build_manifest()
+        published_at = existing_published_at() if args.preserve_published_at else None
+        manifest = build_manifest(published_at=published_at)
         validated_entries = 0
         if args.validate_only:
             validated_entries = validate_existing_manifest_entries(expected_airports=set(manifest["airports"]))
@@ -207,10 +227,12 @@ def main() -> int:
 
     if args.write:
         MANIFEST_PATH.parent.mkdir(parents=True, exist_ok=True)
-        MANIFEST_PATH.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        MANIFEST_PATH.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
         print(f"Wrote {MANIFEST_PATH.relative_to(ROOT).as_posix()}")
     elif args.validate_only:
         print(f"Validated {len(manifest['airports'])} constraints files and {validated_entries} manifest entries.")
+    elif args.validate_sources:
+        print(f"Validated {len(manifest['airports'])} constraints files.")
     else:
         print(json.dumps(manifest, indent=2, sort_keys=True))
 

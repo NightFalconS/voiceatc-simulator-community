@@ -29,6 +29,6 @@ jobs:
       - name: Validate content hierarchy
         run: python tools/content_hierarchy.py --validate-only
       - name: Validate visual procedure files
-        run: python tools/visual_procedures_manifest.py --validate-only
+        run: python tools/visual_procedures_manifest.py --validate-sources
       - name: Validate visual go-around files
-        run: python tools/visual_go_arounds_manifest.py --validate-only
+        run: python tools/visual_go_arounds_manifest.py --validate-sources

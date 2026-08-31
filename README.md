@@ -51,21 +51,22 @@ tree: [the content hierarchy guide](documentation/CONTENT_HIERARCHY.md).
 4. Say where the data comes from. Automatic checks run first, then a maintainer
    reviews the data itself.
 
-`procedure_options.json`, `constraints.json`, and `visual_procedures.json` are
-indexed by byte hash. Prepare either file in this order: normalize the changed JSON with
-`npx prettier --write <path>`, run the matching manifest tool with `--write`, run
-that tool again with `--validate-only`, then commit both the data file and the
-generated `.voiceatc/*_manifest.json`. For example:
+`procedure_options.json`, `constraints.json`, `visual_procedures.json`, and
+`visual_go_arounds.json` are also listed in an index under `.voiceatc/` that
+records each file's byte hash and size, so the game can verify what it
+downloads. You do not maintain that index. CI rebuilds it after your pull
+request merges and again in the nightly release, and a pull request that leaves
+it out of date is still correct and still merges.
+
+Validate only the file you contributed:
 
 ```text
-npx prettier --write E/ES/ESAA/ESOS_Y/ESOS_APP/ESSA/procedure_options.json
-python tools/procedure_options_manifest.py --write
-python tools/procedure_options_manifest.py --validate-only
+python tools/procedure_options_manifest.py --validate-sources
 ```
 
-Use `tools/constraints_manifest.py` for `constraints.json`. Do not reformat
-unrelated JSON just to satisfy review style; ordinary formatting is still
-normalised automatically after merge.
+Use `tools/constraints_manifest.py` for `constraints.json`. Do not run Prettier
+and do not commit anything under `.voiceatc/`; ordinary formatting is normalised
+automatically after merge.
 
 For a named charted visual approach, use
 `tools/visual_procedures_manifest.py` and read the full source, licensing,

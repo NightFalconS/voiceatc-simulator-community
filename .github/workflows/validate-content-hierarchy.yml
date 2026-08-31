@@ -39,12 +39,12 @@ jobs:
       - name: Validate color profile files
         run: python tools/color_profiles_manifest.py --validate-only
       - name: Validate constraints files
-        run: python tools/constraints_manifest.py --validate-only
+        run: python tools/constraints_manifest.py --validate-sources
       - name: Validate procedure options files
-        run: python tools/procedure_options_manifest.py --validate-only
+        run: python tools/procedure_options_manifest.py --validate-sources
       - name: Validate visual procedure files
-        run: python tools/visual_procedures_manifest.py --validate-only
+        run: python tools/visual_procedures_manifest.py --validate-sources
       - name: Validate visual go-around files
-        run: python tools/visual_go_arounds_manifest.py --validate-only
+        run: python tools/visual_go_arounds_manifest.py --validate-sources
       - name: Validate player route files
         run: python tools/player_routes_manifest.py --validate-only
