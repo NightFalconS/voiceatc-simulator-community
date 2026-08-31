@@ -10,6 +10,11 @@
       "sha256": "0e2ba0c510197009ed0a26f6f6501bc774a59eb95c4161333d73a98465307b0d",
       "size_bytes": 462
     },
+    "EDDN": {
+      "repo_path": "E/ED/EDMM/EDDN_TMA/EDDN/procedure_options.json",
+      "sha256": "ba35756cba73c6194420f80fbe4dc85f73703eab366860dc337d5a9f8edc6e8c",
+      "size_bytes": 1868
+    },
     "EDDS": {
       "repo_path": "E/ED/EDGG/EDDS_TMA/EDDS/procedure_options.json",
       "sha256": "d2c1cd570c31c4198fe063914fa78cec79c68cd5cba1e0d00c79dcd155507802",
