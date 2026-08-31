@@ -16,14 +16,6 @@
         "airac": "2608",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "ceiling_ft": 3000,
-        "visibility": {
-          "value": 4,
-          "unit": "SM"
-        },
-        "notes": "Radar required; Amdt 4A 14MAY26. Avoid P-56; R-185 or ILS/LOC joins at BADDN, then follow the river to the airport."
-      },
       "variants": [
         {
           "id": "MOUNT_VERNON_FORWARD_RIVER",
@@ -94,14 +86,6 @@
         "effective_date": "2026-08-06",
         "airac": "2608",
         "checked_date": "2026-08-24"
-      },
-      "availability": {
-        "ceiling_ft": 3500,
-        "visibility": {
-          "value": 3,
-          "unit": "SM"
-        },
-        "notes": "Radar required; Amdt 6 11JUL24. River via American Legion/David W. Taylor; joins at GREYZ/RORRK. Avoid P-56. Bridges checked against DDOT GIS."
       },
       "variants": [
         {

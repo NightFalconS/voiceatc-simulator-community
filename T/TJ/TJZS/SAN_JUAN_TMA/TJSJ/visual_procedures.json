@@ -16,12 +16,6 @@
         "airac": "2608",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "ceiling_ft": 2500,
-        "visibility": { "value": 5, "unit": "SM" },
-        "daylight_required": true,
-        "notes": "Daylight only; not jets or four-engine props. Base east of Moscoso Bridge. Chart not to scale; route points are traces."
-      },
       "variants": [
         {
           "id": "BRIDGE_MAIN",

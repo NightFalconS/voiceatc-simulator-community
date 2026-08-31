@@ -20,14 +20,6 @@
         "airac": "2608",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "ceiling_ft": 2500,
-        "visibility": {
-          "value": 3,
-          "unit": "SM"
-        },
-        "notes": "Amdt 1 29MAY14. Route-side landmark cues and the runway-specific Canarsie/Twin Stacks descent sequence are retained."
-      },
       "variants": [
         {
           "id": "PARKWAY_13L",

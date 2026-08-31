@@ -20,12 +20,6 @@
         "airac": "2608",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "ceiling_ft": 3500,
-        "visibility": { "value": 5, "unit": "SM" },
-        "daylight_required": true,
-        "notes": "Amdt 3 02MAY13. CNFLU is navdata-backed; Sauvie/Scappoose/Columbia River and bridge geometry are chart-traced."
-      },
       "variants": [
         {
           "id": "SAUVIE_10L",

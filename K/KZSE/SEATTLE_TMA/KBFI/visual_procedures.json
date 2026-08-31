@@ -16,11 +16,6 @@
         "airac": "2608",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "ceiling_ft": 3100,
-        "visibility": { "value": 4, "unit": "SM" },
-        "notes": "Amdt 4 24MAY18. Three branches (NW Hood Canal/SEA R-310, North Lake Washington, South Vashon) converge via Elliott Bay/Harbor Island."
-      },
       "variants": [
         {
           "id": "NORTHWEST_HOOD_CANAL",

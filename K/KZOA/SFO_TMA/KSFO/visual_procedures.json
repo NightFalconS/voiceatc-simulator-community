@@ -16,14 +16,6 @@
         "airac": "2608",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "ceiling_ft": 2500,
-        "visibility": {
-          "value": 5,
-          "unit": "SM"
-        },
-        "notes": "Orig 09JUL26. Radar required. Eastern quadrant alternate is 1000/3 with 5 SM; parallel 28L visual approaches may be in progress."
-      },
       "variants": [
         {
           "id": "SOUTH_ENTRY",
@@ -213,14 +205,6 @@
         "effective_date": "2026-08-06",
         "airac": "2608",
         "checked_date": "2026-08-24"
-      },
-      "availability": {
-        "ceiling_ft": 2500,
-        "visibility": {
-          "value": 5,
-          "unit": "SM"
-        },
-        "notes": "Amdt 3 24MAR22. Radar required. Recommended: 2300 at SFO 9.2 DME; 1500 at 6.9 DME. Eastern alternate/AWOS apply."
       },
       "variants": [
         {

@@ -23,6 +23,13 @@ class VisualProceduresPortfolioTests(unittest.TestCase):
         self.assertEqual(30, len(procedures))
         self.assertEqual(54, len(variants))
 
+    def test_published_procedures_omit_retired_availability_data(self) -> None:
+        files = list(ROOT.glob("**/visual_procedures.json"))
+        payloads = [json.loads(path.read_text(encoding="utf-8")) for path in files]
+        procedures = [procedure for payload in payloads for procedure in payload["procedures"]]
+        self.assertTrue(procedures)
+        self.assertTrue(all("availability" not in procedure for procedure in procedures))
+
     def test_washington_has_one_forward_river_route_per_procedure(self) -> None:
         procedures = {item["id"]: item for item in airport_file("KDCA")["procedures"]}
         self.assertEqual({"MOUNT_VERNON_VISUAL_01", "RIVER_VISUAL_19"}, set(procedures))

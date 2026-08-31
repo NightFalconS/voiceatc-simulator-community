@@ -15,9 +15,6 @@
         "effective_date": "2026-07-09",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "notes": "Current Cyprus AMDT003/26 effective 09 JUL 2026; page edition 14 MAY 2026. ADLAS RNAV1; LK505 is the charted visual point."
-      },
       "variants": [
         {
           "id": "LCLK_RWY22_ADLAS",

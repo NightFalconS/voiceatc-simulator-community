@@ -15,9 +15,6 @@
         "effective_date": "2026-08-06",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "notes": "Current Israel eAIP AIRAC 08/26; chart native 02 NOV 2023. RNAV1; pilot request or ATC visual proposal; visual terrain reference at GAVRI."
-      },
       "variants": [
         {
           "id": "LLBG_RWY30_GAVRI",
@@ -131,9 +128,6 @@
         "url": "https://e-aip.azurefd.net/2026-08-06-AIRAC/graphics/eAIP/LL_AD_2_LLBG_VAC_21NAMIM_V1_en.pdf",
         "effective_date": "2026-08-06",
         "checked_date": "2026-08-24"
-      },
-      "availability": {
-        "notes": "Current Israel eAIP AIRAC 08/26; chart native 15 MAY 2025. TADOV and GINTU entries prescribe RNAV1 via NAMIM and IBATI to RWY21."
       },
       "variants": [
         {
@@ -320,9 +314,6 @@
         "url": "https://e-aip.azurefd.net/2026-08-06-AIRAC/graphics/eAIP/LL_AD_2_LLBG_VAC_30-3_v1_en.pdf",
         "effective_date": "2026-08-06",
         "checked_date": "2026-08-24"
-      },
-      "availability": {
-        "notes": "Current Israel eAIP AIRAC 08/26; chart native 16 MAY 2024. Chart route is BG304-BG303-BG302-BG301-ROMIE-BG005; VFR limit near ROMIE/BG005 charted."
       },
       "variants": [
         {

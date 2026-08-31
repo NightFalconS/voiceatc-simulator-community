@@ -37,9 +37,10 @@ Each procedure has an uppercase stable `id`, published `name`, at most eight
 spoken `aliases`, `classification: "charted_ifr_visual"`, a `policy_profile`
 (`FAA` or `ICAO`), `source`, and one or more `variants`. The source must name
 the authority and chart, provide an HTTPS URL, an effective date or AIRAC
-cycle, and the date it was checked. `availability` may record published
-ceiling, visibility and daylight/tower facts; those values are advisory in
-simulator 0.6.2.
+cycle, and the date it was checked. Do not publish an `availability` object:
+ceiling, visibility, daylight, tower, and free-form note fields are retired
+because the simulator does not consume them. The validator rejects that legacy
+property while the official source citation remains mandatory.
 
 Each variant has a stable `id`, an exact zero-padded `runway` (`01`–`36`, with
 optional `L`, `C`, or `R`), a `clearance_name`, `entry_point_id`,
@@ -56,14 +57,14 @@ upper bound; do not discard either mandatory limit.
 Two optional fields refine how a published route is acquired without breaking
 existing files. `join_policy` is `entry_required` by default; use
 `forward_route` only when the published procedure permits joining an already
-established route instead of flying back to its first authored anchor. A
-forward join is still accepted only inside the simulator's 0.5 NM corridor at
-no more than a 45-degree intercept. `sight_reference` contains a spoken `name`,
-up to eight `aliases`, and `scope: "point" | "route"`. Point scope uses the
-existing sight-reference leg. Route scope means the crew identifies the
-authored route ahead—such as "the river"—rather than claiming a feeder fix is
-the visual landmark. The required entry and sight point IDs remain stable
-anchors in both cases.
+established route instead of flying back to its first authored anchor. The
+simulator selects the earliest forward TF/CF segment that does not reverse the
+published route or cross protected airspace; it never joins an RF/AF arc in the
+middle. `sight_reference` contains a spoken `name`, up to eight `aliases`, and
+`scope: "point" | "route"`. Point scope uses the existing sight-reference leg.
+Route scope means the crew identifies the authored route ahead—such as "the
+river"—rather than claiming a feeder fix is the visual landmark. The required
+entry and sight point IDs remain stable anchors in both cases.
 
 An optional `final` object may provide `course_deg` and `glidepath_deg`. Do not
 write a runway threshold, missed approach, `approach_visual_segment`, contact
@@ -134,9 +135,9 @@ course or manual terminator.
 ## Sources and licensing
 
 Transcribe operational facts only: fixes or landmarks, tracks, turns, arcs,
-altitude/speed restrictions, runway, effective cycle/date, and published
-availability notes. The reviewer must be able to open the cited official
-chart, AIP, FAA TPP/Order, or authorised ANSP product and compare every leg.
+altitude/speed restrictions, runway, and effective cycle/date. The reviewer
+must be able to open the cited official chart, AIP, FAA TPP/Order, or authorised
+ANSP product and compare every leg.
 Do not submit a route from memory, a simulator screenshot, an unofficial map,
 or a secondary page without an authoritative source behind it.
 
@@ -197,6 +198,9 @@ nightly sync.
 - [ ] TF/CF/RF/AF geometry and turn direction are transcribed from the source.
 - [ ] Every RF/AF direction produces the intended sweep, never more than 300°.
 - [ ] Required constraints are distinguished from recommended values.
+- [ ] No retired `availability` object or free-form source-note field is
+      present; published gameplay facts belong in route geometry or explicit
+      constraints.
 - [ ] The runway resolves in the current playable navdata and the exact
       navdata threshold is used by the simulator preview.
 - [ ] No missed-approach field is embedded in `visual_procedures.json`; any
