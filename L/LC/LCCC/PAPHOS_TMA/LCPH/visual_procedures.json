@@ -15,9 +15,6 @@
         "effective_date": "2026-07-09",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "notes": "Current Cyprus AMDT003/26 effective 09 JUL 2026; page edition 14 MAY 2026, embedded 02 OCT 2025. PHC02 chart center retained; PHC06 shares its coordinate."
-      },
       "variants": [
         {
           "id": "LCPH_RWY29_ESERI",

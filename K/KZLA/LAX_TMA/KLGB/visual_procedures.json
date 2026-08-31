@@ -16,12 +16,6 @@
         "airac": "2608",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "ceiling_ft": 5000,
-        "visibility": { "value": 10, "unit": "SM" },
-        "daylight_required": true,
-        "notes": "Orig 12MAY05. PADDR/ALBAS branches merge at the breakwater, follow the LA River, then turn at the freeway junction; cues are chart-traced."
-      },
       "variants": [
         {
           "id": "PADDR_ENTRY",

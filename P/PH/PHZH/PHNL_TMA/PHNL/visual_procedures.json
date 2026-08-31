@@ -16,15 +16,6 @@
         "airac": "2608",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "ceiling_ft": 5100,
-        "visibility": {
-          "value": 3,
-          "unit": "SM"
-        },
-        "daylight_required": true,
-        "notes": "Amdt 1 27APR17. CAT I/II only; pilots may expect 22R. The route follows Kahe, H1/H2, Ford Island, the Navy/Marine Golf Course, and the charted right pattern."
-      },
       "variants": [
         {
           "id": "KAHE_MAIN",
@@ -114,15 +105,6 @@
         "effective_date": "2026-07-09",
         "airac": "2608",
         "checked_date": "2026-08-24"
-      },
-      "availability": {
-        "ceiling_ft": 5100,
-        "visibility": {
-          "value": 3,
-          "unit": "SM"
-        },
-        "daylight_required": true,
-        "notes": "Amdt 1 27APR17. CAT I/II only; pilots may expect 22R. Punchbowl/Fort Shafter/Waialae coordinates are chart-traced."
       },
       "variants": [
         {

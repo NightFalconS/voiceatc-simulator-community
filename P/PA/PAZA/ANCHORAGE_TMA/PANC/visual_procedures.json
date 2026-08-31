@@ -16,12 +16,6 @@
         "airac": "2608",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "ceiling_ft": 3000,
-        "visibility": { "value": 3, "unit": "SM" },
-        "daylight_required": true,
-        "notes": "Amdt 1 09FEB12. AK cycle 09JUL-03SEP; UHEPU/XIBLY highway gates and TED 3 DME arc are navdata/chart traced."
-      },
       "variants": [
         {
           "id": "LITTLE_SUSITNA_ENTRY",

@@ -36,11 +36,9 @@ DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 TOP_KEYS = {"schema_version", "airport", "procedures"}
 PROCEDURE_KEYS = {
     "id", "name", "aliases", "classification", "policy_profile", "source",
-    "availability", "variants",
+    "variants",
 }
 SOURCE_KEYS = {"authority", "chart_title", "url", "effective_date", "airac", "checked_date"}
-AVAILABILITY_KEYS = {"ceiling_ft", "visibility", "daylight_required", "tower_required", "notes"}
-VISIBILITY_KEYS = {"value", "unit"}
 VARIANT_KEYS = {
     "id", "runway", "clearance_name", "entry_point_id", "sight_reference_point_id",
     "join_policy", "sight_reference", "legs", "final",
@@ -220,26 +218,6 @@ def _validate_source(value: object, where: str, path: Path) -> None:
     if airac and (len(airac) != 4 or not airac.isdigit()):
         raise ValueError(f"{path}: {where}.airac must be a four-digit cycle")
     _date(source.get("checked_date"), f"{where}.checked_date", path)
-
-
-def _validate_availability(value: object, where: str, path: Path) -> None:
-    if value is None:
-        return
-    availability = _object(value, where, path)
-    _strict_keys(availability, AVAILABILITY_KEYS, where, path)
-    if "ceiling_ft" in availability:
-        _number(availability["ceiling_ft"], f"{where}.ceiling_ft", path, 0.0, 60000.0)
-    if "visibility" in availability:
-        visibility = _object(availability["visibility"], f"{where}.visibility", path)
-        _strict_keys(visibility, VISIBILITY_KEYS, f"{where}.visibility", path)
-        _number(visibility.get("value"), f"{where}.visibility.value", path, 0.001, 1000.0)
-        if visibility.get("unit") not in {"SM", "KM", "M"}:
-            raise ValueError(f"{path}: {where}.visibility.unit must be SM, KM, or M")
-    for key in ("daylight_required", "tower_required"):
-        if key in availability and not isinstance(availability[key], bool):
-            raise ValueError(f"{path}: {where}.{key} must be boolean")
-    if "notes" in availability:
-        _text(availability["notes"], f"{where}.notes", path)
 
 
 def _validate_leg(value: object, where: str, path: Path) -> tuple[str, tuple[float, float]]:
@@ -438,7 +416,6 @@ def validate_visual_schema(payload: dict[str, Any], path: Path) -> list[str]:
         if procedure.get("policy_profile") not in {"FAA", "ICAO"}:
             raise ValueError(f"{path}: {where}.policy_profile must be FAA or ICAO")
         _validate_source(procedure.get("source"), f"{where}.source", path)
-        _validate_availability(procedure.get("availability"), f"{where}.availability", path)
         variants = _array(procedure.get("variants"), f"{where}.variants", path)
         if not variants:
             raise ValueError(f"{path}: {where}.variants must not be empty")

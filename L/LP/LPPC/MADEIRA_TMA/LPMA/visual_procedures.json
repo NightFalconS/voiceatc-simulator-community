@@ -15,9 +15,6 @@
         "effective_date": "2026-08-06",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "notes": "Current eAIP AIRAC 006/26 effective 06 AUG 2026; chart 06 OCT 2022. Night RWY05 approach lights required; GELO to ROSARIO (ROSRO) visual sequence."
-      },
       "variants": [
         {
           "id": "LPMA_RWY05",

@@ -20,11 +20,6 @@
         "airac": "2608",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "ceiling_ft": 4500,
-        "visibility": { "value": 3, "unit": "SM" },
-        "notes": "Orig 05MAR92. DQO R-061/5 DME, 9/14-DME gates, and Delaware River are chart-traced; altitude gates are published."
-      },
       "variants": [
         {
           "id": "RIVER_09L",

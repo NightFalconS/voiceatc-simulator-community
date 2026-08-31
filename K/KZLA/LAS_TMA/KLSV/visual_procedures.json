@@ -16,11 +16,6 @@
         "airac": "2608",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "ceiling_ft": 4300,
-        "visibility": { "value": 6, "unit": "SM" },
-        "notes": "Amdt 3 10AUG23. Report the northwest Las Vegas city outline; follow LSV R-277 via HASIL/ONDAE, then the right turn to the 4 DME arc."
-      },
       "variants": [
         {
           "id": "SIN_CITY_03L",

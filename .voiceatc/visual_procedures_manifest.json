@@ -2,123 +2,123 @@
   "airports": {
     "KASE": {
       "repo_path": "K/KZDV/ASPEN_TMA/KASE/visual_procedures.json",
-      "sha256": "75aceb32cc16dd57f9ec47ce8ecab94f5e9c5efe12e67239372766b887068db0",
-      "size_bytes": 8656
+      "sha256": "0f86d07d9c90593260f1f55afb970759557e73a34aa0d4886ad4800831e4393b",
+      "size_bytes": 8313
     },
     "KBFI": {
       "repo_path": "K/KZSE/SEATTLE_TMA/KBFI/visual_procedures.json",
-      "sha256": "ae01d4ba1b7db8bd6c3e50e7b4b972a5ab6bfba080f6252d1e8bce061a70c582",
-      "size_bytes": 6175
+      "sha256": "dc902c91c99199cbe07d16ad4eae191d5d296401c8ac984676ea20bcfdb2eb4d",
+      "size_bytes": 5909
     },
     "KBOS": {
       "repo_path": "K/KZBW/BOSTON_TMA/KBOS/visual_procedures.json",
-      "sha256": "538f7e0cde71982422c2f5e352dad16a76c11f0869f3c17ceab1924f5543db3d",
-      "size_bytes": 2670
+      "sha256": "9f64dde7546d45b65718def4cef2637eb0126899195877807d66e975574908a4",
+      "size_bytes": 2370
     },
     "KDCA": {
       "repo_path": "K/KZDC/WASHINGTON_DCA_TMA/KDCA/visual_procedures.json",
-      "sha256": "a25c51916553d4fd4be11cd9ce2139ec832592cf84177ff986b20135b1805e6b",
-      "size_bytes": 6971
+      "sha256": "792b5287427095786a1631176e43686883df43c17fc2ae08004df2d50874c1b8",
+      "size_bytes": 6392
     },
     "KEWR": {
       "repo_path": "K/KZNY/NEWARK_TMA/KEWR/visual_procedures.json",
-      "sha256": "05729d6a469841ca941215a11472459d5e8bbea2857c6aaba169c4e605b183dd",
-      "size_bytes": 4156
+      "sha256": "2bcb94fc03511e5d63c311da3326eba0a3c7a616798fb51cad9c3b188300ee51",
+      "size_bytes": 3851
     },
     "KJFK": {
       "repo_path": "K/KZNY/JFK_TMA/KJFK/visual_procedures.json",
-      "sha256": "853598f767b94cfd486fab57f5469b1556fed466c68712fe2615d35488f90bff",
-      "size_bytes": 4920
+      "sha256": "926d5f372efc6606c608266f4782b3b8c106f3b1dc9a75b141543d8e83109d73",
+      "size_bytes": 4643
     },
     "KLGA": {
       "repo_path": "K/KZNY/LAGUARDIA_TMA/KLGA/visual_procedures.json",
-      "sha256": "74e9a1c31747a8885f8187595eccda21752fd6978fbaedb12ba68301cbc17743",
-      "size_bytes": 4547
+      "sha256": "eedf0fd70a3b45944c8583931ab3839a40ee097973c9d77716a25202a7b07d3f",
+      "size_bytes": 4246
     },
     "KLGB": {
       "repo_path": "K/KZLA/LAX_TMA/KLGB/visual_procedures.json",
-      "sha256": "b279ec2e4fa4f27a24fc88fe7d4301a2d74575a8ce5c4cf606b89359b7fec6fd",
-      "size_bytes": 4769
+      "sha256": "959192e1f79239f7bee375cfe7626a73526698b077dea36983959adc1b4c321c",
+      "size_bytes": 4462
     },
     "KLSV": {
       "repo_path": "K/KZLA/LAS_TMA/KLSV/visual_procedures.json",
-      "sha256": "034d36b234f05ecafd0cf1829cdd43284eb301813ebbfea3e4477bba91b85f27",
-      "size_bytes": 6206
+      "sha256": "6f32a6dfde4c22a2174078fb78776d3ee3e16b186ad28e93f27a8ae14c96186f",
+      "size_bytes": 5941
     },
     "KPDX": {
       "repo_path": "K/KZSE/PORTLAND_TMA/KPDX/visual_procedures.json",
-      "sha256": "1c2219aa42f08edbf8826aa789d38c9cb9c00048aea2dd9fe6dc1f75c26a989c",
-      "size_bytes": 7227
+      "sha256": "ac4490878a7af16c38bba3fc5a8954b8f6fdb23fae8f986cd3899c76f24b99f7",
+      "size_bytes": 6949
     },
     "KPHL": {
       "repo_path": "K/KZNY/PHILADELPHIA_TMA/KPHL/visual_procedures.json",
-      "sha256": "b147eb74acd0cce976034549bb54db3804d3430f046d3a30c742edf3e329375c",
-      "size_bytes": 4758
+      "sha256": "872e3b60fd44e7cb556691a1560e4febf2b46653904d34a886d8fccd6a975e12",
+      "size_bytes": 4512
     },
     "KSAN": {
       "repo_path": "K/KZLA/SAN_DIEGO_TMA/KSAN/visual_procedures.json",
-      "sha256": "1a15342648b6479e097515d4ac4b15f4a980e4fd6493bccab9844078ed6cc76c",
-      "size_bytes": 4386
+      "sha256": "ff21f7f25ec6e88fd236af113defa94fe59ce03a3eb5aa52865c9134d2a07219",
+      "size_bytes": 4069
     },
     "KSEA": {
       "repo_path": "K/KZSE/SEATTLE_TMA/KSEA/visual_procedures.json",
-      "sha256": "24b3d02d8599c859907ef80825800ec15db4e60284962e9ef6059d5484c6d4ee",
-      "size_bytes": 7254
+      "sha256": "36dc3aaae21d270d769120dfd9e41383486a802d2f9e9cb6da84563377c76aea",
+      "size_bytes": 7009
     },
     "KSFO": {
       "repo_path": "K/KZOA/SFO_TMA/KSFO/visual_procedures.json",
-      "sha256": "17fc532e178474a3a32224b231f40bc79e2f398992b8ca5c7193094c12b2a3c5",
-      "size_bytes": 9739
+      "sha256": "b4ac7c624942beb8ae2d8871ede22b6cb2cb9398edc517f7d43750f0eb9b8760",
+      "size_bytes": 9177
     },
     "LCLK": {
       "repo_path": "L/LC/LCCC/LARNACA_TMA/LCLK/visual_procedures.json",
-      "sha256": "5cf5209ec7db0a9c4556669876b53e4ad64f29e3626c8da7168d6dbbd3053e2c",
-      "size_bytes": 3420
+      "sha256": "3e012ea7f5a331d13abbc79c5ce918fa65a236c226c0365f4df574d4dc69b04d",
+      "size_bytes": 3245
     },
     "LCPH": {
       "repo_path": "L/LC/LCCC/PAPHOS_TMA/LCPH/visual_procedures.json",
-      "sha256": "22653e6564f65cbe101dc3ffcd9e3659dc7dbdd9af406a8bc6d40b2e134ff499",
-      "size_bytes": 3644
+      "sha256": "f26ba4b1d5d0ad3e37fbf0a955c9ccb02b2c41c6c4dc59765eb252ec02d1ea16",
+      "size_bytes": 3437
     },
     "LFMN": {
       "repo_path": "L/LF/LFMM/NICE_TMA/LFMN/visual_procedures.json",
-      "sha256": "f6546aa7c2cf0dc273b5edcaa87ca72e4ca0d0a60246f82a229bd0b52012ec82",
-      "size_bytes": 2256
+      "sha256": "082a53cb7d9d6ff4343e5fe2ca8431fce898997fdeefb2191ce0479b8d5a8c9b",
+      "size_bytes": 2085
     },
     "LLBG": {
       "repo_path": "L/LL/LLLL/TEL_AVIV_TMA/LLBG/visual_procedures.json",
-      "sha256": "aa7e2b6fb8e76449af49185166fd0db3294b2c0fed86c7cf7b56f0f5881d4691",
-      "size_bytes": 13042
+      "sha256": "2e64602a759e4c0d72870164b9e470446b0e42988b2f9d5f135e95f3a1fee665",
+      "size_bytes": 12471
     },
     "LLER": {
       "repo_path": "L/LL/LLLL/EILAT_TMA/LLER/visual_procedures.json",
-      "sha256": "464a3f6c6cb3e1eff7e367493e2a1f043290c058eb3e92ef72c344b97ccb2837",
-      "size_bytes": 6667
+      "sha256": "f3a87f7b854e81876eca82544e4a7041e4fe84cf21a3bfd4d03ae03e99725da6",
+      "size_bytes": 6316
     },
     "LPMA": {
       "repo_path": "L/LP/LPPC/MADEIRA_TMA/LPMA/visual_procedures.json",
-      "sha256": "53e4cce3b0ab7383dfc263752c9f639bb33d9c76827cdf6dc3c6b8a0fa4f61a5",
-      "size_bytes": 1890
+      "sha256": "fa026537925561c0663c343971ad0ec3813587a6baff69819c32b40f436487cd",
+      "size_bytes": 1691
     },
     "PANC": {
       "repo_path": "P/PA/PAZA/ANCHORAGE_TMA/PANC/visual_procedures.json",
-      "sha256": "c46a76a4fc8d214971cf5f9d75f835aafca449ddbfd573b66bebab834116b83d",
-      "size_bytes": 6299
+      "sha256": "39931f95b05f9fe9d3141afb79d0b83496259cc1f4ba82e6e71291c8974f6a32",
+      "size_bytes": 6024
     },
     "PHNL": {
       "repo_path": "P/PH/PHZH/PHNL_TMA/PHNL/visual_procedures.json",
-      "sha256": "a9edcd79c258fbff1a51f0bf3357026505f53ebe36924beac782f074a1c9eaf0",
-      "size_bytes": 5769
+      "sha256": "4e4aac10663d44ddda8b6f01ebf069d7eb608b90adb2c56aa525f3996ff7e448",
+      "size_bytes": 5106
     },
     "PHOG": {
       "repo_path": "P/PH/PHZH/MAUI_TMA/PHOG/visual_procedures.json",
-      "sha256": "5d169c5df45e8a23a1ba1f3ebffbf44e0ad09fec9b64ca0ee7264adbef7eee0e",
-      "size_bytes": 3370
+      "sha256": "d32528e984c653d9625e25b2842e7f1e939332d3091f58a3641ca1a4801e3f34",
+      "size_bytes": 3091
     },
     "TJSJ": {
       "repo_path": "T/TJ/TJZS/SAN_JUAN_TMA/TJSJ/visual_procedures.json",
-      "sha256": "0310d1fd2f3f9e51eb7a7ff5d3965ce011260be0324d0076268fecdd2c9dae38",
-      "size_bytes": 2591
+      "sha256": "bb056bf57fe50329df7a655df9f132a30844a671c83a5ec0e6e83d4fc578b1fa",
+      "size_bytes": 2304
     }
   },
   "published_at": "2026-08-25T09:35:02Z",

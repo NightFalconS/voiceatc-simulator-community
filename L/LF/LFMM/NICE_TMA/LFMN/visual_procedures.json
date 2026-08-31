@@ -15,9 +15,6 @@
         "effective_date": "2026-08-06",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "notes": "Current France AIRAC 08/26; chart 22 JAN 2026. 04L west of R173/R353 <6.9 DME NI; 04R <6.5 DME NA; no land <5000 ASFC."
-      },
       "variants": [
         {
           "id": "LFMN_RWY04L",

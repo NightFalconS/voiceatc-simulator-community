@@ -16,14 +16,6 @@
         "airac": "2608",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "ceiling_ft": 3000,
-        "visibility": {
-          "value": 5,
-          "unit": "SM"
-        },
-        "notes": "Amdt 1A 23FEB23. Radar required. RNAV (GPS) X RWY 31 is an alternate feeder; published sight references are the airport or Twin White Tanks."
-      },
       "variants": [
         {
           "id": "PARKWAY_VISUAL_ROUTE",

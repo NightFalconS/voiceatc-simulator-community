@@ -16,11 +16,6 @@
         "airac": "2608",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "ceiling_ft": 3100,
-        "visibility": { "value": 4, "unit": "SM" },
-        "notes": "Amdt 5 10MAR11. See CONT.1 alignment warning for Taxiway Tango/RWY 16C; the localizer intercept is at SEA 8 DME."
-      },
       "variants": [
         {
           "id": "BAY_16R",

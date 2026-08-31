@@ -16,12 +16,6 @@
         "airac": "2608",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "ceiling_ft": 3000,
-        "visibility": { "value": 3, "unit": "SM" },
-        "daylight_required": true,
-        "notes": "Amdt 1A 30NOV23. PAC cycle 09JUL-03SEP; LANAI/MAKENA branches and KNUI/smokestack coordinates are chart-traced."
-      },
       "variants": [
         {
           "id": "LANAI_ENTRY",

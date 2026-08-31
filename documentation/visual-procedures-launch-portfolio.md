@@ -43,7 +43,7 @@ geometry was inferred from mirrors or incomplete chart cues.
 | 19 | LLBG | GAVRI Visual RWY 30 | RNAV visual track with altitude gates |
 | 20 | LLBG | NAMIM Visual RWY 21 | Multi-fix RNAV visual route |
 | 21 | LLBG | ROMIE Visual RWY 30 | Short alternate route with constraints |
-| 22 | LCPH | ESERI RNAV-to-Visual RWY 29 | RF legs and a defined visual-availability point |
+| 22 | LCPH | ESERI RNAV-to-Visual RWY 29 | RF legs and a defined visual-reference point |
 | 23 | LCLK | ADLAS RNAV-to-Visual RWY 22 | Coast and salt-lake routing |
 | 24 | KSFO | Quiet Bridge Visual RWY 28R | Bridge reference and parallel-arrival geometry |
 | 25 | KJFK | Parkway Visual RWY 13L/R | Belt Parkway and shoreline landmarks |
@@ -66,8 +66,6 @@ For every procedure, the pull request checklist must record:
   checked date;
 - published entry and sight reference, every TF/CF/RF/AF leg, turn, and
   required versus recommended constraint;
-- published availability notes without treating them as 0.6.2 runtime weather
-  gates;
 - successful schema validation and a simulator preview to the exact navdata
   runway threshold.
 
@@ -80,17 +78,18 @@ Belmont Visual KJFK.
 
 Source review completed 24 August 2026. FAA cycle 2608 remains effective
 through 3 September 2026; affected FAA plates require another check after that
-date. `Pass` means route order, branches, schema-v1 constraints, availability
-facts, and the simulator-owned threshold boundary match the authority source.
+date. `Pass` means route order, branches, schema-v1 constraints, official
+provenance, and the simulator-owned threshold boundary match the authority
+source.
 
 | Airport | Official procedure source | Result |
 |---|---|---|
 | KASE | [Roaring Fork RWY 15](https://aeronav.faa.gov/d-tpp/2608/05889ROARINGFORK_VIS15.PDF) | Corrected: seven arms and entry altitudes. |
 | KBFI | [Harbor RWY 14R](https://aeronav.faa.gov/d-tpp/2608/00384HARBOR_VIS14R.PDF) | Pass: three branches. |
-| KBOS | [Light RWY 33L](https://aeronav.faa.gov/d-tpp/2608/00058LIGHT_VIS33L.PDF) | Corrected LYHTT and BOS 10 DME note. |
+| KBOS | [Light RWY 33L](https://aeronav.faa.gov/d-tpp/2608/00058LIGHT_VIS33L.PDF) | Corrected LYHTT and the BOS 10 DME constraint. |
 | KDCA | [Mount Vernon RWY 01](https://aeronav.faa.gov/d-tpp/2608/00443MOUNTVERNON_VIS1.PDF) | Corrected: one forward-join route; BADDN remains the last authored anchor before the simulator-owned threshold. |
 | KDCA | [River RWY 19](https://aeronav.faa.gov/d-tpp/2608/00443RIVER_VIS19.PDF) | Corrected: GREYZ/RORRK river joins, charted 1800/1500/900 profile, and bridge anchors verified against official DDOT lines; route clears P-56. |
-| KEWR | [Stadium RWY 29](https://aeronav.faa.gov/d-tpp/2608/00285STADIUM_VIS29.PDF) | Pass; source cautions retained. |
+| KEWR | [Stadium RWY 29](https://aeronav.faa.gov/d-tpp/2608/00285STADIUM_VIS29.PDF) | Pass; published route constraints verified. |
 | KJFK | [Parkway RWY 13L/R](https://aeronav.faa.gov/d-tpp/2608/00610PARKWAY_VIS13LR.PDF) | Corrected Rockaway abeam cue. |
 | KLGA | [Park RWY 31](https://aeronav.faa.gov/d-tpp/2608/00289PARK_VIS31.PDF) | Corrected recommended profile and sight cue. |
 | KLGB | [LA River RWY 12](https://aeronav.faa.gov/d-tpp/2608/00236LARIVER_VIS12.PDF) | Pass: both entries. |
@@ -99,7 +98,7 @@ facts, and the simulator-owned threshold boundary match the authority source.
 | KPHL | [River RWY 09L/R](https://aeronav.faa.gov/d-tpp/2608/00320RIVER_VIS9LR.PDF) | Pass. |
 | KSAN | [Sweetwater RWY 27](https://aeronav.faa.gov/d-tpp/2608/00373SWEETWATER_VIS27.PDF) | Corrected east-to-west branch; OKAIN retained. |
 | KSEA | [Bay RWY 16R/C/L](https://aeronav.faa.gov/d-tpp/2608/00582BAY_VIS16RCL.PDF) | Pass: three runways. |
-| KSFO | [Quiet Bridge RWY 28R](https://aeronav.faa.gov/d-tpp/2608/00375QUIETBRIDGE_VIS28R.PDF) | Pass; radar/parallel notes retained. |
+| KSFO | [Quiet Bridge RWY 28R](https://aeronav.faa.gov/d-tpp/2608/00375QUIETBRIDGE_VIS28R.PDF) | Pass; parallel-arrival geometry verified. |
 | KSFO | [Tipp Toe RWY 28L/R](https://aeronav.faa.gov/d-tpp/2608/00375TIPPTOE_VIS28LR.PDF) | Pass; Class B profile retained. |
 | LCLK | [ADLAS RWY 22](https://www.mcw.gov.cy/mcw/dca/ais/ais.nsf/All/455773618044F4C9C2257C7E00234503/$file/LC_Amdt_A_2026_003_en.pdf?OpenElement) | Pass. |
 | LCPH | [ESERI RWY 29](https://www.mcw.gov.cy/mcw/dca/ais/ais.nsf/All/455773618044F4C9C2257C7E00234503/$file/LC_Amdt_A_2026_003_en.pdf?OpenElement) | Pass. |

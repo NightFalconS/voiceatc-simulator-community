@@ -16,14 +16,6 @@
         "airac": "2608",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "ceiling_ft": 5000,
-        "visibility": {
-          "value": 10,
-          "unit": "SM"
-        },
-        "notes": "Radar required; Amdt 1 31MAR16. East branch starts on MZB R-084 east of MZB, then Mount Helix/SR125, KLOMN, Stadium, STEPN. Trace points are chart-derived."
-      },
       "variants": [
         {
           "id": "MZB_R084_EAST_BRANCH",

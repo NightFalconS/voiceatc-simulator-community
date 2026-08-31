@@ -16,15 +16,6 @@
         "airac": "2608",
         "checked_date": "2026-08-24"
       },
-      "availability": {
-        "ceiling_ft": 6000,
-        "visibility": {
-          "value": 10,
-          "unit": "SM"
-        },
-        "daylight_required": true,
-        "notes": "Radar required; daylight only; chart not to scale. Seven arms separate; landmark locations are conservative chart traces; altitudes are published."
-      },
       "variants": [
         {
           "id": "DBL_R163_ENTRY",

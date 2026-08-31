@@ -33,13 +33,6 @@ def valid_payload(airport: str = "KDCA") -> dict[str, object]:
                     "airac": "2608",
                     "checked_date": "2026-08-24",
                 },
-                "availability": {
-                    "ceiling_ft": 3500,
-                    "visibility": {"value": 3, "unit": "SM"},
-                    "daylight_required": True,
-                    "tower_required": True,
-                    "notes": "Advisory in 0.6.2.",
-                },
                 "variants": [
                     {
                         "id": "RIVER_19",
@@ -237,6 +230,15 @@ class VisualProceduresManifestTests(unittest.TestCase):
         payload = valid_payload()
         del payload["procedures"][0]["source"]["url"]
         with self.assertRaisesRegex(ValueError, "source.url"):
+            MODULE.validate_visual_schema(payload, Path("visual_procedures.json"))
+
+    def test_rejects_retired_availability_data(self) -> None:
+        payload = valid_payload()
+        payload["procedures"][0]["availability"] = {
+            "visibility": {"value": 3, "unit": "SM"},
+            "notes": "Legacy review-only data.",
+        }
+        with self.assertRaisesRegex(ValueError, "unknown keys.*availability"):
             MODULE.validate_visual_schema(payload, Path("visual_procedures.json"))
 
     def test_requires_entry_and_sight_references(self) -> None:
