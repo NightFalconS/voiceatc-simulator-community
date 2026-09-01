@@ -1,0 +1,17 @@
+{
+  "airport": "KPDK",
+  "runway_configs": [
+    {
+      "id": "NORTH_FLOW",
+      "name": "North Flow",
+      "arr": "03R",
+      "dep": "03R"
+    },
+    {
+      "id": "SOUTH_FLOW",
+      "name": "South Flow",
+      "arr": "21L",
+      "dep": "21L"
+    }
+  ]
+}
