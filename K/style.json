@@ -1,24 +1,18 @@
 {
-  "symbol_size": 0.15,
-  "traildot_size": 0.12,
+  "symbol_size": 0.85,
+  "traildot_size": 0.1,
   "symbol_line_width": 1.0,
-  "forecast_symbol": "stars_asterisk",
-  "incoming_symbol": "stars_asterisk",
-  "assumed_symbol": "stars_asterisk",
-  "of_interest_symbol": "stars_asterisk",
-  "alien_symbol": "stars_asterisk",
-  "released_symbol": "stars_asterisk",
-  "traildot_symbol": "stars_history_dot",
+  "forecast_symbol": "stars_rps",
+  "incoming_symbol": "stars_rps",
+  "assumed_symbol": "stars_rps",
+  "of_interest_symbol": "stars_rps",
+  "alien_symbol": "stars_rps",
+  "released_symbol": "stars_rps",
+  "traildot_symbol": "stars_rps",
   "defined_symbols": {
-    "stars_asterisk": {
-      "type": "wireframe",
-      "height": 0.78,
-      "draw": "M -6 0 L 6 0 M 0 -6 L 0 6 M -4 -4 L 4 4 M -4 4 L 4 -4",
-      "connection_points": [[0, 0]]
-    },
-    "stars_history_dot": {
+    "stars_rps": {
       "type": "filled",
-      "draw": "M -2 -2 L 2 -2 L 2 2 L -2 2",
+      "draw": "M 0 -3.3 L 0.64 -3.23 L 1.26 -3.05 L 1.83 -2.75 L 2.33 -2.33 L 2.75 -1.83 L 3.05 -1.26 L 3.23 -0.64 L 3.3 0 L 3.23 0.64 L 3.05 1.26 L 2.75 1.83 L 2.33 2.33 L 1.83 2.75 L 1.26 3.05 L 0.64 3.23 L 0 3.3 L -0.64 3.23 L -1.26 3.05 L -1.83 2.75 L -2.33 2.33 L -2.75 1.83 L -3.05 1.26 L -3.23 0.64 L -3.3 0 L -3.23 -0.64 L -3.05 -1.26 L -2.75 -1.83 L -2.33 -2.33 L -1.83 -2.75 L -1.26 -3.05 L -0.64 -3.23 L 0 -3.3",
       "connection_points": [[0, 0]]
     }
   },
