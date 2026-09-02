@@ -1,6 +1,6 @@
 {
   "asset_name": "sector-data-2608.zip",
-  "bundle_count": 25,
+  "bundle_count": 26,
   "bundles": {
     "E/ED/EDGG/EDDF_TMA": {
       "files": {
@@ -268,6 +268,25 @@
         }
       }
     },
+    "K/KZTL/ATLANTA_TMA": {
+      "files": {
+        "configs": {
+          "repo_path": "K/KZTL/ATLANTA_TMA/sector_configs.json",
+          "sha256": "5da261a9358d082d07b99f6e9d591b6057ca8ddb0b5efe6fc1832c8266c0ca69",
+          "size_bytes": 266
+        },
+        "definitions": {
+          "repo_path": "K/KZTL/ATLANTA_TMA/sector_definitions.json",
+          "sha256": "bf22347b6a2fbd7bc14c6c1982fe285a0cd59c9b10aae6f39b91569457db9d52",
+          "size_bytes": 933
+        },
+        "influence": {
+          "repo_path": "K/KZTL/ATLANTA_TMA/sector_influence.json",
+          "sha256": "90e79ec99470df816f35562872b89cd8fb79463ac6a84946bbbd39a9b572a342",
+          "size_bytes": 98
+        }
+      }
+    },
     "L/LE/LECB/LECB_E/PALMA_TMA": {
       "files": {
         "configs": {
@@ -478,12 +497,12 @@
       }
     }
   },
-  "commit_sha": "37b6712789408223874921bc663e2f86e662cc11",
+  "commit_sha": "a86b4b1f42d575136809973345bcd16939d02c6a",
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-09-02/sector-data-2608.zip",
-  "published_at": "2026-09-02T05:48:08Z",
+  "published_at": "2026-09-02T08:23:58Z",
   "release_tag": "daily-2026-09-02",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "442d13c274790c56a18a11f30db4fadf506ab063b57ca7be70d2aace86751cac",
-  "size_bytes": 47577
+  "sha256": "31d6ec17725e972b34ca4a360114aa4309a15fb375969b23f6dc8b5102ff4883",
+  "size_bytes": 48581
 }
