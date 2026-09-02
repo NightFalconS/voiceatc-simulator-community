@@ -22,3 +22,17 @@ manifests deliberately keep the legacy asset in the existing root fields and exp
 the rich asset under `rich_routes_tsv`; contributors must update both through the
 route projection tool, never edit the legacy copy independently. The daily release
 publishes both assets with unchanged manifest schema versions.
+
+## Generated-route evidence boundary
+
+The private generator may use licensed-planner comparisons to correct its
+`LainoaSoftware` base rows. Only the final accepted five-column Generated rows and
+their normal projection/release artifacts belong in this repository. Capture
+journals, written-authorization records, account details, source-record ids,
+inferred-policy files, exception proofs, and private conformance certificates must
+never be committed here or included in release assets.
+
+This boundary does not change route precedence: a valid current-cycle player route
+still overlays the Generated row, and any player-overlay failure falls back to that
+Generated row. Rich and legacy tables must retain identical OD coverage and remain
+deterministic projections of the same accepted route data.
