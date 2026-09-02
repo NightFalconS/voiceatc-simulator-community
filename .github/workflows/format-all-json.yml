@@ -38,6 +38,8 @@ jobs:
       - run: python tools/visual_procedures_manifest.py --validate-only
       - run: python tools/visual_go_arounds_manifest.py --write --preserve-published-at
       - run: python tools/visual_go_arounds_manifest.py --validate-only
+      - run: python tools/visual_sight_references_manifest.py --write --preserve-published-at
+      - run: python tools/visual_sight_references_manifest.py --validate-only
       - run: python tools/constraints_manifest.py --write --preserve-published-at
       - run: python tools/constraints_manifest.py --validate-only
       - run: python tools/procedure_options_manifest.py --write --preserve-published-at

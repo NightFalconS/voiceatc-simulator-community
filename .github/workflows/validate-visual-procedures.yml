@@ -7,10 +7,13 @@ on:
     paths:
       - "**/visual_procedures.json"
       - "**/visual_go_arounds.json"
+      - "**/visual_sight_references.json"
       - "tools/visual_procedures_manifest.py"
       - "tools/visual_go_arounds_manifest.py"
+      - "tools/visual_sight_references_manifest.py"
       - "tests/test_visual_procedures_manifest.py"
       - "tests/test_visual_go_arounds_manifest.py"
+      - "tests/test_visual_sight_references_manifest.py"
       - ".github/workflows/validate-visual-procedures.yml"
 
 permissions:
@@ -32,3 +35,5 @@ jobs:
         run: python tools/visual_procedures_manifest.py --validate-sources
       - name: Validate visual go-around files
         run: python tools/visual_go_arounds_manifest.py --validate-sources
+      - name: Validate visual sight-reference files
+        run: python tools/visual_sight_references_manifest.py --validate-sources

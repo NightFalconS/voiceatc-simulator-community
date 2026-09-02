@@ -25,7 +25,7 @@
           "sight_reference_point_id": "GACAR",
           "sight_reference": {
             "name": "the Twin White Tanks",
-            "aliases": ["Twin White Tanks", "the airport", "LaGuardia airport"],
+            "aliases": ["Twin White Tanks"],
             "scope": "point"
           },
           "legs": [

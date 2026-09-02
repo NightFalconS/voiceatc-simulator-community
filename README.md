@@ -51,12 +51,12 @@ tree: [the content hierarchy guide](documentation/CONTENT_HIERARCHY.md).
 4. Say where the data comes from. Automatic checks run first, then a maintainer
    reviews the data itself.
 
-`procedure_options.json`, `constraints.json`, `visual_procedures.json`, and
-`visual_go_arounds.json` are also listed in an index under `.voiceatc/` that
-records each file's byte hash and size, so the game can verify what it
-downloads. You do not maintain that index. CI rebuilds it after your pull
-request merges and again in the nightly release, and a pull request that leaves
-it out of date is still correct and still merges.
+`procedure_options.json`, `constraints.json`, `visual_procedures.json`,
+`visual_go_arounds.json`, and `visual_sight_references.json` are also listed in
+an index under `.voiceatc/` that records each file's byte hash and size, so the
+game can verify what it downloads. You do not maintain that index. CI rebuilds
+it after your pull request merges and again in the nightly release, and a pull
+request that leaves it out of date is still correct and still merges.
 
 Validate only the file you contributed:
 
@@ -69,8 +69,9 @@ and do not commit anything under `.voiceatc/`; ordinary formatting is normalised
 automatically after merge.
 
 For a named charted visual approach, use
-`tools/visual_procedures_manifest.py` and read the full source, licensing,
-schema, and review checklist in
+`tools/visual_procedures_manifest.py` and, when publishing its reportable sight
+objects, `tools/visual_sight_references_manifest.py`. Read the full source,
+licensing, schema, and review checklist in
 [`documentation/visual-procedures.md`](documentation/visual-procedures.md).
 The visual manifest is a direct JSON index; it does not create a release ZIP.
 

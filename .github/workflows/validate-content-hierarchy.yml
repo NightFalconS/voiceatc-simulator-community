@@ -46,5 +46,7 @@ jobs:
         run: python tools/visual_procedures_manifest.py --validate-sources
       - name: Validate visual go-around files
         run: python tools/visual_go_arounds_manifest.py --validate-sources
+      - name: Validate visual sight-reference files
+        run: python tools/visual_sight_references_manifest.py --validate-sources
       - name: Validate player route files
         run: python tools/player_routes_manifest.py --validate-only
