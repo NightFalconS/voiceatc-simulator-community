@@ -18,6 +18,7 @@ AIRPORT_FILE_NAMES = {
     "procedure_options.json",
     "visual_procedures.json",
     "visual_go_arounds.json",
+    "visual_sight_references.json",
 }
 TERMINAL_FILE_NAMES = {
     "mva.json",

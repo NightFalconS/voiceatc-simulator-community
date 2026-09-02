@@ -32,8 +32,8 @@
     },
     "KLGA": {
       "repo_path": "K/KZNY/LAGUARDIA_TMA/KLGA/visual_procedures.json",
-      "sha256": "eedf0fd70a3b45944c8583931ab3839a40ee097973c9d77716a25202a7b07d3f",
-      "size_bytes": 4246
+      "sha256": "8d92f544c857e6853f1624d21a26632b0ef391bd5187f3ea9d44e304cfdbbb2c",
+      "size_bytes": 4210
     },
     "KLGB": {
       "repo_path": "K/KZLA/LAX_TMA/KLGB/visual_procedures.json",
@@ -121,7 +121,7 @@
       "size_bytes": 2304
     }
   },
-  "published_at": "2026-08-25T09:35:02Z",
+  "published_at": "2026-09-02T20:08:46Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }

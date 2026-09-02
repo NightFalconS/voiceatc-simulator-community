@@ -1,6 +1,6 @@
 """A contribution is never gated on a manifest that CI owns.
 
-Four datasets keep a hash-and-size index under `.voiceatc/`. Those indexes are
+Five datasets keep a hash-and-size index under `.voiceatc/`. Those indexes are
 written by CI - `format-all-json.yml` after every merge, `daily-release.yml`
 nightly - so a pull request is gated on its own source files and nothing else.
 
@@ -23,6 +23,7 @@ CI_OWNED_TOOLS = (
     "procedure_options_manifest",
     "visual_procedures_manifest",
     "visual_go_arounds_manifest",
+    "visual_sight_references_manifest",
 )
 CONTRIBUTOR_GATES = (
     "validate-content-hierarchy.yml",

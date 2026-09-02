@@ -64,7 +64,10 @@ middle. `sight_reference` contains a spoken `name`, up to eight `aliases`, and
 `scope: "point" | "route"`. Point scope uses the existing sight-reference leg.
 Route scope means the crew identifies the authored route ahead—such as "the
 river"—rather than claiming a feeder fix is the visual landmark. The required
-entry and sight point IDs remain stable anchors in both cases.
+entry and sight point IDs remain stable anchors in both cases. These fields are
+the schema-v1 compatibility cue for older clients. New clients expose a named
+variant only when its independently sourced sight-reference sidecar is also
+available; they never turn this display label into sight geometry.
 
 An optional `final` object may provide `course_deg` and `glidepath_deg`. Do not
 write a runway threshold, missed approach, `approach_visual_segment`, contact
@@ -86,6 +89,57 @@ Geometry beyond 40 NM from the entry is a review advisory; beyond 100 NM is a
 hard error. Runway existence is checked against playable navdata by the game
 review tooling; this repository validator checks identifier shape and airport
 placement because navdata is not shipped here.
+
+## Published sight references
+
+`visual_sight_references.json` is an optional sibling of
+`visual_procedures.json`. It gives each playable named variant one or more
+source-backed objects the pilot can actually report in sight. It is separate
+so schema-v1 procedure files remain byte-contract compatible with older game
+builds, which never request the new manifest.
+
+The top level is:
+
+```json
+{
+  "schema_version": 1,
+  "airport": "KLGA",
+  "variants": []
+}
+```
+
+Each variant entry names an existing `procedure_id` and `variant_id`, declares
+one `default_reference_id`, and contains one to eight references. Every
+reference has a stable uppercase `id`, canonical spoken `name`, zero to sixteen
+case-insensitively unique `aliases`, one geometry object, and its own current
+authoritative `source`. The default must name exactly one entry in the same
+reference array.
+
+Supported static geometry is deliberately narrow:
+
+- `{"kind": "point", "leg_id": "GACAR"}` uses exactly one existing leg,
+  while a point independent of the route uses one finite latitude/longitude
+  pair.
+- `{"kind": "route", "leg_ids": [...]}` uses at least two existing legs in
+  their original source order, while an independent visible route uses two to
+  sixty-four coordinate points.
+- `{"kind": "airport"}` uses the session airport reference point.
+- `{"kind": "runway"}` uses the exact threshold of that variant's runway.
+
+An object passes review only when the current official chart, AIP, or applicable
+ATC rule supports reporting that object for that procedure. A route-leg label,
+fix name, nearby landmark, or plausible map feature is not evidence. Preceding
+traffic is dynamic and is not part of this static sidecar. If a variant has no
+defensible reference, omit it from the sidecar and record the reason in the
+launch portfolio; current clients will withhold that named variant while
+generic visual approaches remain available.
+
+The validator rejects an airport's entire sidecar for unknown keys, duplicate
+IDs or phrases, invalid or non-finite coordinates, a missing default, a
+procedure/variant mismatch, a missing leg, route legs out of source order, an
+invalid source, files over 128 KiB, more than 64 variants, or any configured
+array limit. Never infer a target from `sight_reference_point_id` to repair a
+rejection.
 
 ## Published visual go-arounds
 
@@ -155,20 +209,23 @@ Run these on the file you are contributing:
 ```text
 python tools/visual_procedures_manifest.py --validate-sources
 python tools/visual_go_arounds_manifest.py --validate-sources
+python tools/visual_sight_references_manifest.py --validate-sources
 python tools/content_hierarchy.py --validate-only
 python -m unittest discover -s tests -p "test_*.py"
 ```
 
 Commit `visual_procedures.json`, and `visual_go_arounds.json` when a sourced
-go-around is present. Do not run Prettier and do not commit anything under
-`.voiceatc/`.
+go-around is present. Commit `visual_sight_references.json` only for variants
+that pass the sight-object evidence gate. Do not run Prettier and do not commit
+anything under `.voiceatc/`.
 
 ## The raw-file index
 
-`.voiceatc/visual_procedures_manifest.json` and its go-around counterpart map
-each ICAO to the repository path, canonical LF-byte SHA-256, and byte size. They
-are direct raw-file indexes: neither is a release archive, and neither may cause
-a visual-procedure ZIP to be added.
+`.voiceatc/visual_procedures_manifest.json`, its go-around counterpart, and
+`.voiceatc/visual_sight_references_manifest.json` map each ICAO to the
+repository path, canonical LF-byte SHA-256, and byte size. They are direct
+raw-file indexes: none is a release archive, and none may cause a visual-
+procedure ZIP to be added.
 
 Both are written by CI, never by hand. `format-all-json.yml` rebuilds them after
 every merge with `--preserve-published-at`, because formatting changes the
@@ -185,6 +242,10 @@ be repaired rather than on a contributor's pull request.
       inaccessible procedures are replaced before submission.
 - [ ] Every variant has one explicit entry and one sight reference; no nearest
       entry or runway is inferred by the simulator.
+- [ ] Every variant intended for current clients has a sidecar entry with one
+      authored default; each spoken object is supported by a current official
+      source and its geometry locates that object rather than a nearby route
+      label. Unsupported variants are explicitly recorded as withheld.
 - [ ] Any `forward_route` policy is supported by the official procedure and
       its route-scope sight wording is faithfully transcribed; it is not used
       to turn a feeder method into a separate clearance.
@@ -202,8 +263,8 @@ be repaired rather than on a contributor's pull request.
       sourced go-around is in the additive sidecar and exactly matches its
       official chart. Unsourced visuals have no sidecar entry.
 - [ ] No chart artwork, invented fixture, or `Z` approach marker is present.
-- [ ] `content_hierarchy.py`, the visual validator, and the full test suite
-      pass; the generated manifest is committed with the data.
+- [ ] `content_hierarchy.py`, all three visual validators, and the full test
+      suite pass; the generated manifests are committed with the data.
 - [ ] A simulator preview confirms the requested sight report, clearance,
       named path, final capture, and threshold landing.
 

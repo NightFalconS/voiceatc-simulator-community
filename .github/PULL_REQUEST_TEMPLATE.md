@@ -21,6 +21,7 @@ facility SOP, or published noise procedure. A link is ideal. "From memory" or
 - [ ] Changed `procedure_options.json`? Ran Prettier on the changed file, then `python tools/procedure_options_manifest.py --write`, then `--validate-only`, and committed the data file plus generated manifest
 - [ ] Changed `constraints.json`? Ran Prettier on the changed file, then `python tools/constraints_manifest.py --write`, then `--validate-only`, and committed the data file plus generated manifest
 - [ ] Changed `visual_procedures.json`? Verified every leg against a current official chart, ran Prettier on the changed file, then `python tools/visual_procedures_manifest.py --write`, then `--validate-only`, and committed the data file plus generated manifest
+- [ ] Changed `visual_sight_references.json`? Verified every named object against a current official source, ran Prettier, then `python tools/visual_sight_references_manifest.py --write`, then `--validate-only`, and committed the sidecar plus generated manifest
 - [ ] Visual procedure source is factual operational data only — no chart raster, screenshot, copied artwork, invented geometry, missed-approach field, or `Z` marker
 - [ ] Visual procedure has one explicit entry and sight reference per variant, a current source/effective date, and a playable runway; any `forward_route` / route-scope sight is supported by the official procedure
 - [ ] New terminal area or airport? Its entry is in `documentation/content_hierarchy.json` (`--register <scope>` writes it)
@@ -29,7 +30,7 @@ facility SOP, or published noise procedure. A link is ideal. "From memory" or
 - [ ] Checked in game, if you were able to
 
 Do not reformat unrelated JSON merely for review style. CI still normalises
-ordinary JSON formatting after merge; the two manifest-tracked files above are
+ordinary JSON formatting after merge; manifest-tracked files are
 the exception because their final bytes must be indexed before merge.
 
 New here? The [modding wiki](https://github.com/lainoa-software/voiceatc-simulator-community/wiki)

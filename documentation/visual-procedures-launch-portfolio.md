@@ -120,6 +120,82 @@ advice: the official plate is explicitly not to scale and publishes direct
 landmark arms without authoritative intermediate coordinates. They remain
 visible rather than being hidden with invented turn points.
 
+## Sight-reference audit (2 September 2026)
+
+All 54 variants were checked independently for a static object that current
+clients can ask the pilot to report. The audit used the official procedure
+products listed above and, for FAA charted visual procedures, the reporting
+rule in [FAA JO 7110.65 7-4-5](https://www.faa.gov/air_traffic/publications/atpubs/atc_html/chap7_section_4.html).
+FAA cycle 2608 was current on the check date and expires 3 September 2026, so
+these entries require the normal cycle recheck before a later merge or release.
+
+`Published` means the sidecar deliberately maps the cited object to its own
+airport, runway, point, or visible-route geometry. `Withheld` means the route
+data remains in schema v1 for older clients, but current clients do not expose
+that named variant. A label, nearby fix, or approximate point was never promoted
+to evidence.
+
+| Airport | Procedure / variant | Result |
+|---|---|---|
+| KBOS | Light / `LIGHT_VISUAL_MAIN` | **Published:** Boston Light at `LYHTT`. |
+| KDCA | Mount Vernon / `MOUNT_VERNON_FORWARD_RIVER` | **Published:** Potomac River abeam Mount Vernon at the chart-traced point. |
+| KDCA | River / `FORWARD_RIVER_ROUTE` | **Published:** ordered Potomac River route. |
+| KASE | Roaring Fork / `DBL_R163_ENTRY` | **Published:** Aspen. |
+| KASE | Roaring Fork / `CARBONDALE_BASALT_ENTRY` | **Published:** Carbondale. |
+| KASE | Roaring Fork / `MT_SOPRIS_ENTRY` | **Published:** Mount Sopris. |
+| KASE | Roaring Fork / `CAPITAL_PEAK_ENTRY` | **Published:** Capital Peak. |
+| KASE | Roaring Fork / `CASTLE_PEAK_ENTRY` | **Published:** Castle Peak. |
+| KASE | Roaring Fork / `INDEPENDENCE_PASS_ENTRY` | **Published:** Independence Pass. |
+| KASE | Roaring Fork / `HOLY_CROSS_RUEDI_ENTRY` | **Published:** Mount of the Holy Cross. |
+| KLSV | Sin City / `SIN_CITY_03L` | **Published:** northwest Las Vegas city outline, the plate's required report. |
+| KLSV | Sin City / `SIN_CITY_03R` | **Published:** northwest Las Vegas city outline, the plate's required report. |
+| KLGB | LA River / `PADDR_ENTRY` | **Published:** Vincent Thomas Bridge. |
+| KLGB | LA River / `ALBAS_ENTRY` | **Published:** Queen Mary. |
+| KSAN | Sweetwater / `MZB_R084_EAST_BRANCH` | **Published:** Mount Helix. |
+| KSAN | Sweetwater / `OKAIN_ENTRY` | **Withheld:** the authored branch contains only OKAIN and CIJHI fixes; no independently located static sight object is supported. |
+| KJFK | Parkway / `PARKWAY_13L` | **Published:** Twin Stacks. |
+| KJFK | Parkway / `PARKWAY_13R` | **Published:** Canarsie Pier. |
+| KLGA | Park / `PARKWAY_VISUAL_ROUTE` | **Published:** Twin White Tanks by default, plus the separately located airport. Preceding traffic is excluded. |
+| KEWR | Stadium / `STADIUM_MAIN` | **Published:** Meadowlands Sports Complex at `GIMEE`. |
+| KPHL | River / `RIVER_09L` | **Published:** Delaware River. |
+| KPHL | River / `RIVER_09R` | **Published:** Delaware River. |
+| KSFO | Quiet Bridge / `SOUTH_ENTRY` | **Withheld:** RAACL is charted 0.1 NM southeast of the San Mateo Bridge, not at the bridge itself. |
+| KSFO | Quiet Bridge / `EAST_ENTRY` | **Withheld:** RAACL is charted 0.1 NM southeast of the San Mateo Bridge, not at the bridge itself. |
+| KSFO | Tipp Toe / `TIPP_TOE_28L` | **Withheld:** the route has no authored landmark leg or independent official coordinate for either charted bridge. |
+| KSFO | Tipp Toe / `TIPP_TOE_28R` | **Withheld:** the route has no authored landmark leg or independent official coordinate for either charted bridge. |
+| KPDX | Columbia / `SAUVIE_10L` | **Published:** Interstate Five Bridge. |
+| KPDX | Columbia / `SAUVIE_10R` | **Published:** Interstate Five Bridge. |
+| KPDX | Columbia / `SCAPPOOSE_10L` | **Published:** Interstate Five Bridge. |
+| KPDX | Columbia / `SCAPPOOSE_10R` | **Published:** Interstate Five Bridge. |
+| KBFI | Harbor / `NORTHWEST_HOOD_CANAL` | **Published:** Harbor Island. |
+| KBFI | Harbor / `NORTH_LAKE_WASHINGTON` | **Published:** Harbor Island. |
+| KBFI | Harbor / `SOUTH_VASHON` | **Published:** Harbor Island. |
+| KSEA | Bay / `BAY_16R` | **Published:** middle Elliott Bay. |
+| KSEA | Bay / `BAY_16C` | **Published:** middle Elliott Bay. |
+| KSEA | Bay / `BAY_16L` | **Published:** middle Elliott Bay. |
+| LCLK | ADLAS / `LCLK_RWY22_ADLAS` | **Withheld:** the linked amendment does not publish a reportable static object for this visual segment. |
+| LCPH | ESERI / `LCPH_RWY29_ESERI` | **Withheld:** the linked amendment does not publish a reportable static object for this visual segment. |
+| LFMN | Environment / `LFMN_RWY04L` | **Withheld:** the environment chart defines operating limits but no reportable named object. |
+| LFMN | Environment / `LFMN_RWY04R` | **Withheld:** the environment chart defines operating limits but no reportable named object. |
+| LLER | ADIVI / `LLER_RWY01_ADIVI` | **Withheld:** the AIP requires visual reference to terrain but identifies no reportable static object. |
+| LLER | NURIT / `LLER_RWY19_NURIT` | **Withheld:** the AIP requires visual reference to terrain but identifies no reportable static object. |
+| LLBG | GAVRI / `LLBG_RWY30_GAVRI` | **Withheld:** the AIP requires visual reference to terrain at GAVRI, not sight of a named object. |
+| LLBG | NAMIM / `LLBG_RWY21_NAMIM_TADOV` | **Withheld:** the AIP requires visual reference to terrain at NAMIM, not sight of a named object. |
+| LLBG | NAMIM / `LLBG_RWY21_NAMIM_GINTU` | **Withheld:** the AIP requires visual reference to terrain at NAMIM, not sight of a named object. |
+| LLBG | ROMIE / `LLBG_RWY30_ROMIE` | **Withheld:** the AIP requires visual reference to terrain at ROMIE, not sight of a named object. |
+| LPMA | Visual RWY 05 / `LPMA_RWY05` | **Withheld:** the visual landing chart provides terrain and pattern guidance but no reportable sight object. |
+| PANC | Highway / `LITTLE_SUSITNA_ENTRY` | **Published:** mouth of the Little Susitna River at `OSPUF`. |
+| PANC | Highway / `POINT_POSSESSION_ENTRY` | **Published:** Point Possession at `MOPMY`. |
+| PHOG | Smoke Stack / `LANAI_ENTRY` | **Published:** Sugar Mill Smoke Stacks. |
+| PHOG | Smoke Stack / `MAKENA_ENTRY` | **Published:** Sugar Mill Smoke Stacks. |
+| PHNL | Kahe Power Plant / `KAHE_MAIN` | **Published:** Kahe Power Plant. |
+| PHNL | Waialae Golf Course / `WAIALAE_MAIN` | **Published:** Waialae Golf Course. |
+| TJSJ | Bridge / `BRIDGE_MAIN` | **Withheld:** the authored point is the base east of Moscoso Bridge, not the bridge's own location. |
+
+Audit total: **37 published, 17 withheld, 54 reviewed**. Route-data
+discrepancies remain separate work; no schema-v1 route was silently moved to
+make a sight target pass.
+
 Do not substitute retired Kai Tak procedures, scenic ordinary visuals, VFR or
 AFIS landing routes, contact or circling approaches, traffic-following visual
 separation, or an instrument procedure that merely ends visually.

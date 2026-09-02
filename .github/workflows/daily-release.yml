@@ -63,6 +63,8 @@ jobs:
         run: python tools/visual_procedures_manifest.py --validate-sources
       - name: Validate visual go-around files
         run: python tools/visual_go_arounds_manifest.py --validate-sources
+      - name: Validate visual sight-reference files
+        run: python tools/visual_sight_references_manifest.py --validate-sources
       - name: Validate player route files
         run: python tools/player_routes_manifest.py --validate-only
       - name: Compute route lane cycles
@@ -369,6 +371,39 @@ jobs:
               != generated_visual_go_around_manifest["airports"]
           )
 
+          visual_sight_reference_spec = importlib.util.spec_from_file_location(
+              "visual_sight_references_manifest",
+              Path("tools/visual_sight_references_manifest.py"),
+          )
+          if visual_sight_reference_spec is None or visual_sight_reference_spec.loader is None:
+              raise RuntimeError("unable to load tools/visual_sight_references_manifest.py")
+          visual_sight_reference_module = importlib.util.module_from_spec(visual_sight_reference_spec)
+          visual_sight_reference_spec.loader.exec_module(visual_sight_reference_module)
+          generated_visual_sight_reference_manifest = visual_sight_reference_module.build_manifest(
+              Path("."), published_at=""
+          )
+          visual_sight_reference_manifest_path = Path(
+              ".voiceatc/visual_sight_references_manifest.json"
+          )
+          current_visual_sight_reference_manifest: object = {}
+          if visual_sight_reference_manifest_path.exists():
+              try:
+                  current_visual_sight_reference_manifest = json.loads(
+                      visual_sight_reference_manifest_path.read_text(encoding="utf-8")
+                  )
+              except Exception:
+                  current_visual_sight_reference_manifest = {}
+          current_visual_sight_reference_airports = (
+              current_visual_sight_reference_manifest.get("airports", {})
+              if isinstance(current_visual_sight_reference_manifest, dict)
+              else {}
+          )
+          visual_sight_references_changed = (
+              not visual_sight_reference_manifest_path.is_file()
+              or current_visual_sight_reference_airports
+              != generated_visual_sight_reference_manifest["airports"]
+          )
+
           # Player route status drift (deprecation flips, revalidation stamps) must
           # commit even when the overlay bytes are unchanged — the website badges
           # read the committed status file. The player manifest itself embeds the
@@ -392,6 +427,7 @@ jobs:
               or procedure_options_changed
               or visual_procedures_changed
               or visual_go_arounds_changed
+              or visual_sight_references_changed
               or player_status_changed
           )
           should_publish = release_assets_changed or os.environ.get("IS_MANUAL", "").strip() == "true"
@@ -403,6 +439,7 @@ jobs:
               handle.write(f"procedure_options_changed={'true' if procedure_options_changed else 'false'}\n")
               handle.write(f"visual_procedures_changed={'true' if visual_procedures_changed else 'false'}\n")
               handle.write(f"visual_go_arounds_changed={'true' if visual_go_arounds_changed else 'false'}\n")
+              handle.write(f"visual_sight_references_changed={'true' if visual_sight_references_changed else 'false'}\n")
               handle.write(f"player_status_changed={'true' if player_status_changed else 'false'}\n")
               handle.write(f"should_publish={'true' if should_publish else 'false'}\n")
               handle.write(f"airac={summary['airac']}\n")
@@ -439,6 +476,9 @@ jobs:
       - name: Refresh visual go-around manifest
         if: steps.meta.outputs.visual_go_arounds_changed == 'true'
         run: python tools/visual_go_arounds_manifest.py --write
+      - name: Refresh visual sight-reference manifest
+        if: steps.meta.outputs.visual_sight_references_changed == 'true'
+        run: python tools/visual_sight_references_manifest.py --write
       - name: Stop when nothing changed
         if: steps.meta.outputs.should_publish != 'true'
         run: echo "No release-managed community artifacts changed."
@@ -551,6 +591,7 @@ jobs:
           python tools/procedure_options_manifest.py --validate-only
           python tools/visual_procedures_manifest.py --validate-only
           python tools/visual_go_arounds_manifest.py --validate-only
+          python tools/visual_sight_references_manifest.py --validate-only
           python tools/player_routes_manifest.py --write-manifests --summary build/release/player_summary.json
       - name: Publish routes to Cloudflare R2
         if: steps.meta.outputs.should_publish == 'true'
@@ -700,6 +741,7 @@ jobs:
             .voiceatc/procedure_options_manifest.json
             .voiceatc/visual_procedures_manifest.json
             .voiceatc/visual_go_arounds_manifest.json
+            .voiceatc/visual_sight_references_manifest.json
             .voiceatc/release_manifest.json
             .voiceatc/player_routes_manifest.json
             .voiceatc/player_routes_status.json
