@@ -88,7 +88,7 @@
     },
     "KJFK": {
       "repo_path": "K/KZNY/JFK_TMA/misc_drawings.json",
-      "sha256": "65625adc7e5fa4eac7835a23cc10e05fa127b0d05dc83d36de8d574c81652046",
+      "sha256": "86190c0690ad5ce69bdc7093ab3793ec4dbc43bffa050828176725e749e73d0c",
       "size_bytes": 479038
     },
     "KMKE": {
@@ -138,12 +138,12 @@
     }
   },
   "asset_name": "misc-drawings-2608.zip",
-  "commit_sha": "6e7b53591753cc09a3e4be95a3a65d6aa1b11583",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-09-02-b/misc-drawings-2608.zip",
-  "published_at": "2026-09-02T17:10:18Z",
-  "release_tag": "daily-2026-09-02-b",
+  "commit_sha": "bf577557eeb3130927453c10ecc217a0e7bcd0c5",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-09-03/misc-drawings-2608.zip",
+  "published_at": "2026-09-03T05:45:46Z",
+  "release_tag": "daily-2026-09-03",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "e6b3728e36a4e1a38ca075065b33303d3e6ce1c72612f65936e1987530e4b344",
-  "size_bytes": 190081
+  "sha256": "3d8c6ecf5963b7f92c72d60d04cf0f6923ee478e9bdd34f831df2648d8b6e74b",
+  "size_bytes": 190077
 }
