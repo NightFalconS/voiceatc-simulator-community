@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "origin": "VVCR",
+  "dest": "RKTU",
+  "routes": [
+    {
+      "id": "dd4fb96b",
+      "route": "VVCR DCT KOPOM DCT NITOM M771 DAMEL L628 ARESI L625 ABVAR M646 POTIB M646 HCN B591 SANAS M750 MOLKA M750 MAMOD Y759 IGMON Z401 POTET Y579 RUGMA Y572 CJU Y722 OLMEN DCT OSPOT DCT RKTU",
+      "created_at": "2026-09-13T16:40:08Z",
+      "creation_airac": "2609"
+    }
+  ]
+}

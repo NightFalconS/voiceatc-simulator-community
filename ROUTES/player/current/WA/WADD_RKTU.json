@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "origin": "WADD",
+  "dest": "RKTU",
+  "routes": [
+    {
+      "id": "23015955",
+      "route": "WADD DCT BLI DCT DOBMA M522 ELANG M522 VJN M646 TOKON DCT LUBAN B591 SANRO M646 POTIB Q11 TACLE B591 APU DCT DRAKE Q11 WP900 L4 LIPLO Y741 ATOTI Y722 OLMEN DCT OSPOT DCT RKTU",
+      "created_at": "2026-09-13T16:40:08Z",
+      "creation_airac": "2609"
+    }
+  ]
+}

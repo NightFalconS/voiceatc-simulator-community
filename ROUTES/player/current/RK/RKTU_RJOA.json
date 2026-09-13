@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "origin": "RKTU",
+  "dest": "RJOA",
+  "routes": [
+    {
+      "id": "dac130a5",
+      "route": "RKTU DCT VASLI Y782 TGU Y659 KPO Y685 SAPRA Y599 KABKI DCT STAGE DCT OPERA DCT AKANA DCT MIYOS DCT HGE DCT RJOA",
+      "created_at": "2026-09-13T16:40:08Z",
+      "creation_airac": "2609"
+    }
+  ]
+}
