@@ -598,6 +598,13 @@
           "status": "ok"
         }
       },
+      "RCTP_RKTU": {
+        "e22d2c46": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "RCYU_RKSI": {
         "d1528909": {
           "checked_airac": "2609",
@@ -626,8 +633,22 @@
           "status": "ok"
         }
       },
+      "RJAA_RKTU": {
+        "d0b33de6": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "RJAH_RKSI": {
         "ab5fc63d": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJAH_RKTU": {
+        "6da00a6e": {
           "checked_airac": "2609",
           "reasons": [],
           "status": "ok"
@@ -661,6 +682,13 @@
           "status": "ok"
         }
       },
+      "RJBB_RKTU": {
+        "4126f9bb": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "RJBE_RKSI": {
         "91a5b03e": {
           "checked_airac": "2609",
@@ -682,6 +710,13 @@
           "status": "ok"
         }
       },
+      "RJCC_RKTU": {
+        "fdf36e23": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "RJFF_RKPC": {
         "6edfc330": {
           "checked_airac": "2609",
@@ -691,6 +726,13 @@
       },
       "RJFF_RKSI": {
         "628267cd": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJFF_RKTU": {
+        "43e2cf49": {
           "checked_airac": "2609",
           "reasons": [],
           "status": "ok"
@@ -719,6 +761,13 @@
       },
       "RJFR_RKSI": {
         "fbbfdf04": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJFR_RKTU": {
+        "a59ab291": {
           "checked_airac": "2609",
           "reasons": [],
           "status": "ok"
@@ -773,6 +822,13 @@
           "status": "ok"
         }
       },
+      "RJGG_RKTU": {
+        "4218d178": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "RJNK_RKSI": {
         "1b526770": {
           "checked_airac": "2609",
@@ -796,6 +852,13 @@
       },
       "RJOA_RKSI": {
         "232a297f": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RJOA_RKTU": {
+        "7bde5e5f": {
           "checked_airac": "2609",
           "reasons": [],
           "status": "ok"
@@ -2796,8 +2859,113 @@
           "status": "ok"
         }
       },
+      "RKTU_RCTP": {
+        "361b6346": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTU_RJAA": {
+        "87c72f7b": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTU_RJAH": {
+        "1b0c95b1": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTU_RJBB": {
+        "70f3c104": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTU_RJCC": {
+        "81823f93": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTU_RJFF": {
+        "858d0c08": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTU_RJFR": {
+        "5edc7042": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTU_RJGG": {
+        "4d42f20b": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTU_RJOA": {
+        "dac130a5": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "RKTU_RKPC": {
         "30fb7eb5": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTU_ROAH": {
+        "b575ea85": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTU_RPLC": {
+        "980a2843": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTU_VVCR": {
+        "be47d86c": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTU_VVDN": {
+        "1d591a46": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTU_WADD": {
+        "9f7ac344": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RKTU_ZSQD": {
+        "b15a1010": {
           "checked_airac": "2609",
           "reasons": [],
           "status": "ok"
@@ -2812,6 +2980,13 @@
       },
       "ROAH_RKSI": {
         "de99deef": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ROAH_RKTU": {
+        "02cd24ed": {
           "checked_airac": "2609",
           "reasons": [],
           "status": "ok"
@@ -2847,6 +3022,13 @@
       },
       "RPLC_RKSI": {
         "1edf8ec0": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "RPLC_RKTU": {
+        "3b1611a4": {
           "checked_airac": "2609",
           "reasons": [],
           "status": "ok"
@@ -3097,6 +3279,13 @@
           "status": "ok"
         }
       },
+      "VVCR_RKTU": {
+        "dd4fb96b": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "VVDN_RKPK": {
         "5094b08c": {
           "checked_airac": "2609",
@@ -3106,6 +3295,13 @@
       },
       "VVDN_RKSI": {
         "c415d31f": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "VVDN_RKTU": {
+        "d40d26f6": {
           "checked_airac": "2609",
           "reasons": [],
           "status": "ok"
@@ -3169,6 +3365,13 @@
       },
       "WADD_RKSI": {
         "3e440409": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "WADD_RKTU": {
+        "23015955": {
           "checked_airac": "2609",
           "reasons": [],
           "status": "ok"
@@ -3247,7 +3450,9 @@
       "YSSY_RKSI": {
         "bc299822": {
           "checked_airac": "2609",
-          "reasons": ["airway_disconnect: YSSY->RKSI: RIC not on airway H530"],
+          "reasons": [
+            "airway_disconnect: YSSY->RKSI: RIC not on airway H530"
+          ],
           "status": "deprecated"
         }
       },
@@ -3580,6 +3785,13 @@
           "status": "ok"
         }
       },
+      "ZSQD_RKTU": {
+        "2d3a74f2": {
+          "checked_airac": "2609",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "ZSSS_RKSS": {
         "35526e02": {
           "checked_airac": "2609",
@@ -3729,7 +3941,7 @@
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-09-13T06:06:33Z",
+  "generated_at": "2026-09-13T17:21:08Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
