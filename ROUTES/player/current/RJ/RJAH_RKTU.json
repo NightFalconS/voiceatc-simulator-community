@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "origin": "RJAH",
+  "dest": "RKTU",
+  "routes": [
+    {
+      "id": "6da00a6e",
+      "route": "RJAH DCT OGITU Y887 DAIGO Y88 TEPEX Y16 SAPRA Y685 BASEM DCT RKTU",
+      "created_at": "2026-09-13T16:40:08Z",
+      "creation_airac": "2609"
+    }
+  ]
+}

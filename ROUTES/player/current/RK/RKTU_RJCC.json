@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "origin": "RKTU",
+  "dest": "RJCC",
+  "routes": [
+    {
+      "id": "81823f93",
+      "route": "RKTU DCT VASLI Y782 TGU Y659 KPO Y685 SAPRA Y599 KABKI Y597 MIHOU Y14 GOLDO Y19 MRE Y13 SIRAO Y139 NAVER DCT RJCC",
+      "created_at": "2026-09-13T16:40:08Z",
+      "creation_airac": "2609"
+    }
+  ]
+}

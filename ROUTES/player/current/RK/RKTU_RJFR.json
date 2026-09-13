@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "origin": "RKTU",
+  "dest": "RJFR",
+  "routes": [
+    {
+      "id": "5edc7042",
+      "route": "RKTU DCT VASLI Y782 TGU Y781 BESNA Y209 IKE A595 DGC V28 SWE DCT RJFR",
+      "created_at": "2026-09-13T16:40:08Z",
+      "creation_airac": "2609"
+    }
+  ]
+}
