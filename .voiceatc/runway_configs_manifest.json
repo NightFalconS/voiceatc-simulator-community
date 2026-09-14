@@ -43,7 +43,7 @@
     },
     "EDFH": {
       "repo_path": "E/ED/EDGG/EDFH_APP/EDFH/runway_configs.json",
-      "sha256": "f4889f846c16634152dad059a143dfadbd17dbaacc5188fac9fa45f68b9bb3f9",
+      "sha256": "a1f00a315269bf3fc49502b9d345d0f6d3fe7c53d160d99b716a33afe8f41fd3",
       "size_bytes": 256
     },
     "EDHI": {
@@ -678,12 +678,12 @@
     }
   },
   "asset_name": "runway-configs-2609.zip",
-  "commit_sha": "ceaa8e2d706c2a38a9f79c607a50744020302963",
+  "commit_sha": "f797ca154ea6e6390d5ecd665180145a3c138b6d",
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-09-14/runway-configs-2609.zip",
-  "published_at": "2026-09-14T06:15:03Z",
+  "published_at": "2026-09-14T13:11:10Z",
   "release_tag": "daily-2026-09-14",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "5b51ecc6819ec7a950afefe6e8a37cb6e27927f774168eceeb9d0268b546f206",
-  "size_bytes": 42608
+  "sha256": "b1358f644a1c71740aab83b3e5f42e16b2809968dc8001b0f1ad0df0a2e50ead",
+  "size_bytes": 42607
 }
