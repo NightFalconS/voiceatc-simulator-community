@@ -507,6 +507,32 @@
           "status": "ok"
         }
       },
+      "PHNL_PHTO": {
+        "893a4c59": {
+          "checked_airac": "2609",
+          "reasons": [
+            "point_missing: PHNL->PHTO: point MKK5 missing from navdata"
+          ],
+          "status": "deprecated"
+        },
+        "eee97bdc": {
+          "checked_airac": "2609",
+          "reasons": [
+            "point_missing: PHNL->PHTO: point DCT missing from navdata",
+            "point_missing: PHNL->PHTO: point MKK5 missing from navdata",
+            "point_missing: PHNL->PHTO: point V15 missing from navdata"
+          ],
+          "status": "deprecated"
+        },
+        "f6eeb090": {
+          "checked_airac": "2609",
+          "reasons": [
+            "point_missing: PHNL->PHTO: point LYCHI1 missing from navdata",
+            "point_missing: PHNL->PHTO: point MKK5 missing from navdata"
+          ],
+          "status": "deprecated"
+        }
+      },
       "PHNL_RKSI": {
         "611ecabc": {
           "checked_airac": "2609",
@@ -3460,7 +3486,9 @@
       "YSSY_RKSI": {
         "bc299822": {
           "checked_airac": "2609",
-          "reasons": ["airway_disconnect: YSSY->RKSI: RIC not on airway H530"],
+          "reasons": [
+            "airway_disconnect: YSSY->RKSI: RIC not on airway H530"
+          ],
           "status": "deprecated"
         }
       },
@@ -3949,7 +3977,7 @@
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-09-29T06:52:44Z",
+  "generated_at": "2026-09-29T08:15:40Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
