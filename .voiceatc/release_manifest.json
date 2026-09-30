@@ -70,8 +70,8 @@
       "size_bytes": 48587
     }
   },
-  "commit_sha": "30578bbcec46d8c537c4d6bf8ed785569cef9020",
-  "published_at": "2026-09-30T02:41:58Z",
+  "commit_sha": "18f3aa3a870e4ed0ca68bd073089ae7fd9f134fc",
+  "published_at": "2026-09-30T06:40:40Z",
   "release_tag": "daily-2026-09-30",
   "release_title": "Daily Community Release - Wednesday 2026-09-30",
   "repo": "lainoa-software/voiceatc-simulator-community",
