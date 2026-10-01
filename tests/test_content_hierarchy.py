@@ -226,14 +226,14 @@ class ContentHierarchyTests(unittest.TestCase):
 
 
     def test_the_skins_catalog_is_not_a_content_scope(self) -> None:
-        self.write_json("SKINS/harbour-blue/panels.json", {"name": "Harbour Blue", "bar_color": "000000"})
+        self.write_json("SKINS/harbour-blue/panels.json", {"name": "Harbour Blue", "tokens": {"colors": {"bar": "000000"}}})
         self.assertEqual([], self.errors())
 
     def test_panels_file_follows_the_profile_scope_rules(self) -> None:
         self.write_json("K/colors.json", {"bg_color": "000000"})
-        self.write_json("K/panels.json", {"bar_color": "000000"})
+        self.write_json("K/panels.json", {"tokens": {"colors": {"bar": "000000"}}})
         self.assertEqual([], self.errors())
-        self.write_json("K/NOWHERE_X/panels.json", {"bar_color": "000000"})
+        self.write_json("K/NOWHERE_X/panels.json", {"tokens": {"colors": {"bar": "000000"}}})
         self.assertTrue(any("panels.json" in error for error in self.errors()))
 
     def test_rejects_panels_in_a_release_alias_directory_in_source(self) -> None:
@@ -243,7 +243,7 @@ class ContentHierarchyTests(unittest.TestCase):
         }
         self.write_registry(registry)
         self.write_json("K/colors.json", {"bg_color": "000000"})
-        self.write_json("K/KA/panels.json", {"bar_color": "000000"})
+        self.write_json("K/KA/panels.json", {"tokens": {"colors": {"bar": "000000"}}})
         self.assertTrue(
             any("release-only compatibility alias must not exist in source: K/KA/panels.json" in error for error in self.errors())
         )

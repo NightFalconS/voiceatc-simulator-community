@@ -38,15 +38,15 @@ def valid_style() -> dict[str, object]:
 
 def valid_panels() -> dict[str, object]:
     return {
-        "frame_style": "sacta",
-        "bar_style": "cells",
-        "strip_style": "paper_es",
-        "text_case": "upper",
-        "bevel": 2,
-        "bar_color": "1F2535",
-        "edge_color": "394258cc",
-        "text_font": "barlow_semi_condensed",
-        "data_font": "courier_prime",
+        "extends": "generic",
+        "tokens": {
+            "colors": {"bar": "1F2535", "edge": "394258cc"},
+            "fonts": {"text": "barlow_semi_condensed", "data": "courier_prime"},
+            "case": "upper",
+            "bevel": {"width": 2},
+        },
+        "primitives": {"window": {"top_strip": "bar", "close": "cell"}},
+        "components": {"tfc": {"mode": "paper_es"}},
     }
 
 
@@ -393,19 +393,8 @@ class PanelsFileTests(unittest.TestCase):
         self.assertGreater(entry["size_bytes"], 0)
 
     def test_accepts_a_partial_panels_file(self) -> None:
-        self.assertIn("panels", self.build({"bar_color": "102030"})["profiles"]["L/LE"]["files"])
-
-    def test_accepts_every_documented_value(self) -> None:
-        for key, values in MODULE.PANELS_ENUM_VALUES.items():
-            for value in values:
-                with self.subTest(key=key, value=value):
-                    self.build({key: value})
-        for font in ("noto_sans", "courier_prime", "barlow_semi_condensed"):
-            with self.subTest(font=font):
-                self.build({"text_font": font})
-        for bevel in (0, 8):
-            with self.subTest(bevel=bevel):
-                self.build({"bevel": bevel})
+        recolour = {"tokens": {"colors": {"bar": "102030"}}}
+        self.assertIn("panels", self.build(recolour)["profiles"]["L/LE"]["files"])
 
     def test_rejects_an_empty_panels_file(self) -> None:
         with self.assertRaisesRegex(ValueError, "panels.json must not be empty"):
@@ -413,47 +402,28 @@ class PanelsFileTests(unittest.TestCase):
 
     def test_rejects_non_object_and_invalid_json(self) -> None:
         with self.assertRaisesRegex(ValueError, "must be a JSON object"):
-            self.build(["bar_color"])
+            self.build(["tokens"])
         with self.assertRaisesRegex(ValueError, "invalid JSON"):
             self.build(None, raw="{not json")
 
-    def test_rejects_an_unknown_key_and_says_a_skin_cannot_add_features(self) -> None:
-        for key in ("show_radar", "bar_colour", "label", "defined_symbols", "extra_font_size"):
-            with self.subTest(key=key), self.assertRaisesRegex(ValueError, "cannot add features"):
-                self.build({key: "x"})
+    def test_rejects_the_old_switch_keys_with_their_path(self) -> None:
+        for key in ("frame_style", "bar_color", "show_radar"):
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, f"{key}: unknown key"):
+                self.build({key: "x", "tokens": {"case": "upper"}})
 
-    def test_rejects_a_key_that_only_ends_like_a_known_one(self) -> None:
-        # Unlike colors.json, any "*_color" key is not accepted: the key set is fixed.
-        with self.assertRaisesRegex(ValueError, "'assumed_tfc_color'.*cannot add features"):
-            self.build({"assumed_tfc_color": "3bf451"})
-
-    def test_rejects_invalid_enum_values(self) -> None:
-        bad = {
-            "frame_style": "tabs",
-            "bar_style": "Bars",
-            "strip_style": "paper",
-            "text_case": "lower",
+    def test_rejects_what_the_game_strict_mode_rejects(self) -> None:
+        cases = {
+            "tokens.colors.bar: '#1F2535' is not a valid value": {"tokens": {"colors": {"bar": "#1F2535"}}},
+            "tokens.fonts.text: 'arial' is not one of": {"tokens": {"fonts": {"text": "arial"}}},
+            "tokens.bevel.width: 9 is outside 0..8": {"tokens": {"bevel": {"width": 9}}},
+            "components.wpt.mode: dock_strip needs components.top.mode dcb_grid":
+                {"components": {"wpt": {"mode": "dock_strip"}}},
+            "primitives.list.row_heigth: unknown key \\(did you mean 'row_height'\\?\\)":
+                {"primitives": {"list": {"row_heigth": 30}}},
         }
-        for key, value in bad.items():
-            with self.subTest(key=key), self.assertRaisesRegex(ValueError, f"'{key}' must be one of"):
-                self.build({key: value})
-        with self.assertRaisesRegex(ValueError, "'frame_style' must be one of"):
-            self.build({"frame_style": 1})
-
-    def test_rejects_invalid_bevel(self) -> None:
-        for bevel in (-1, 9, 1.5, 2.0, True, "2", None):
-            with self.subTest(bevel=bevel), self.assertRaisesRegex(ValueError, "'bevel' must be a whole number from 0 to 8"):
-                self.build({"bevel": bevel})
-
-    def test_rejects_invalid_colours(self) -> None:
-        for value in ("#1F2535", "1F253", "1F25355", "1F2535AAB", "GG2535", " 1F2535", "1F2535 ", "", 123456, None):
-            with self.subTest(value=value), self.assertRaisesRegex(ValueError, "'bar_color' must be RRGGBB or RRGGBBAA hex"):
-                self.build({"bar_color": value})
-
-    def test_rejects_invalid_fonts(self) -> None:
-        for value in ("Noto Sans", "arial", "pixel_mono", "", 3, None):
-            with self.subTest(value=value), self.assertRaisesRegex(ValueError, "'text_font' must be one of"):
-                self.build({"text_font": value})
+        for message, panels in cases.items():
+            with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
+                self.build(panels)
 
     def test_rejects_panels_without_colors(self) -> None:
         with self.assertRaisesRegex(ValueError, "missing color profile files: colors"):
@@ -487,44 +457,20 @@ class PanelsFileTests(unittest.TestCase):
                 MODULE.build_manifest(root, commit_sha="x")["profiles"]["L/LE"]["files"]["panels"]["sha256"],
             )
 
-    def test_accepts_the_session_skin_colour_keys(self) -> None:
-        keys = (
-            "bevel_light_color",
-            "bevel_dark_color",
-            "selection_color",
-            "selection_text_color",
-            "field_color",
-            "field_text_color",
-            "inactive_color",
-            "ok_color",
-            "warn_color",
-            "alert_color",
-            "clock_color",
-            "hover_text_color",
-            "strip_text_color",
-            "scope_color",
-        )
-        self.assertEqual(14, len(keys))
-        for key in keys:
-            with self.subTest(key=key):
-                self.assertIn(key, MODULE.PANELS_COLOR_KEYS)
-                self.build({key: "A6228E"})
-                with self.assertRaisesRegex(ValueError, f"'{key}' must be RRGGBB or RRGGBBAA hex"):
-                    self.build({key: "#A6228E"})
-
     def test_accepts_the_optional_catalog_metadata_keys(self) -> None:
-        self.build({"name": "Spain (SACTA)", "author": "Lainoa Software", "description": "The SACTA look.", "bevel": 1})
+        self.build({"name": "Spain (SACTA)", "author": "Lainoa Software", "description": "The SACTA look.",
+                    "tokens": {"case": "upper"}})
         self.assertEqual(("name", "author", "description"), MODULE.PANELS_META_KEYS)
 
     def test_metadata_keys_are_text_with_length_limits_and_are_not_skin_values(self) -> None:
         for key, limit in (("name", 40), ("author", 60), ("description", 200)):
             with self.subTest(key=key):
-                self.build({key: "x" * limit, "bevel": 1})
+                self.build({key: "x" * limit, "tokens": {"case": "upper"}})
                 for bad in ("x" * (limit + 1), "", " lead", "two\nlines", 5):
                     with self.assertRaisesRegex(ValueError, f"'{key}'"):
-                        self.build({key: bad, "bevel": 1})
-        with self.assertRaisesRegex(ValueError, "does not accept 'title'"):
-            self.build({"title": "x", "bevel": 1})
+                        self.build({key: bad, "tokens": {"case": "upper"}})
+        with self.assertRaisesRegex(ValueError, "title: unknown key"):
+            self.build({"title": "x", "tokens": {"case": "upper"}})
         # Metadata alone is not a skin: the file must set at least one look key.
         with self.assertRaisesRegex(ValueError, "no skin keys"):
             self.build({"name": "Only a name"})
@@ -544,25 +490,28 @@ class PanelsFileTests(unittest.TestCase):
             skin = root / "SKINS" / "harbour-blue"
             skin.mkdir(parents=True)
             (skin / "panels.json").write_text(
-                json.dumps({"name": "Harbour Blue", "bar_color": "000000"}), encoding="utf-8"
+                json.dumps({"name": "Harbour Blue", "tokens": {"colors": {"bar": "000000"}}}), encoding="utf-8"
             )
             manifest = MODULE.build_manifest(root, commit_sha="test-commit")
             self.assertEqual(["L/LE"], list(manifest["profiles"]))
 
     def test_repository_skins_are_complete_and_valid(self) -> None:
         expected = {
-            "L/LE": {"frame_style": "sacta", "bar_style": "cells", "strip_style": "paper_es"},
-            "K": {"frame_style": "none", "bar_style": "dcb", "strip_style": "paper_us"},
+            "L/LE": {"top": "cell_row", "tfc": "paper_es", "top_strip": "bar"},
+            "K": {"top": "dcb_grid", "tfc": "paper_us", "top_strip": "none"},
         }
         manifest = MODULE.build_manifest(REPO_ROOT, commit_sha="test-commit")
         for scope, facts in expected.items():
             with self.subTest(scope=scope):
                 self.assertIn("panels", manifest["profiles"][scope]["files"])
                 payload = json.loads((REPO_ROOT / scope / "panels.json").read_text(encoding="utf-8"))
-                self.assertEqual(set(MODULE.PANELS_KEYS) | {"name"}, set(payload))
-                for key, value in facts.items():
-                    self.assertEqual(value, payload[key])
-                self.assertEqual("upper", payload["text_case"])
+                self.assertEqual("generic", payload["extends"])
+                components = payload["components"]
+                self.assertEqual(facts["top"], components.get("top", {}).get("mode", "cell_row"))
+                self.assertEqual(facts["tfc"], components["tfc"]["mode"])
+                window = payload["primitives"]["window"]
+                self.assertEqual(facts["top_strip"], window.get("top_strip", "none"))
+                self.assertEqual("upper", payload["tokens"]["case"])
 
     def test_repository_panels_files_sit_beside_colors(self) -> None:
         manifest = MODULE.build_manifest(REPO_ROOT, commit_sha="test-commit")

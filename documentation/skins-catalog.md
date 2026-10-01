@@ -12,16 +12,17 @@ popups and the traffic strip. Skins reach players in two ways:
 - A **catalog skin** is not tied to a place. It lives in `SKINS/<id>/panels.json` and a player picks it in
   Settings, Skin, either for every airport or for one airport.
 
-This page is about catalog skins. The keys, values and the rule that **a skin changes the look, never the
-features** are the ones in [session skins](session-skins-panels-json.md); read that page for the full key table.
+This page is about catalog skins. How a `panels.json` is written (tokens, primitives, components, `extends`) and
+the rule that **a skin changes the look, never the features** are in the [skins modding guide](skins-modding.md);
+every key is in the [skin key reference](skins-reference.md).
 
 ## Make one
 
 1. Pick an id: a lowercase slug of letters, digits and single hyphens, at most 40 characters, for example
    `harbour-blue`. `generic` and `realistic` are taken by the game.
-2. Create `SKINS/<id>/panels.json`. The easiest start is to copy the Generic skin's keys (the table in
-   [session skins](session-skins-panels-json.md) lists every key and its Generic value) and change what you want.
-   A skin does not have to set every key: a missing key keeps the Generic value.
+2. Create `SKINS/<id>/panels.json` with `"extends": "generic"` (or another skin: `scope:L/LE`, `skin:<id>`)
+   and write only what you change; everything else keeps the base's value. The
+   [cookbook](skins-modding.md#cookbook) has small starting points.
 3. Add the metadata the picker shows:
 
    | Key | Required | Rule |
@@ -39,44 +40,42 @@ features** are the ones in [session skins](session-skins-panels-json.md); read t
   "name": "Harbour Blue",
   "author": "Jane Modder",
   "description": "Cool blue bevelled cells with upper-case chrome.",
-  "bar_style": "cells",
-  "text_case": "upper",
-  "bevel": 2,
-  "bar_color": "1F3555",
-  "edge_color": "35527D",
-  "text_font": "barlow_semi_condensed"
+  "extends": "generic",
+  "tokens": {
+    "colors": { "bar": "1F3555", "edge": "35527D" },
+    "fonts": { "text": "barlow_semi_condensed" },
+    "case": "upper",
+    "bevel": { "width": 2 }
+  },
+  "primitives": {
+    "bar_cell": { "states": { "normal": { "box": { "kind": "bevel", "fill": "bar" } } } }
+  }
 }
 ```
 
 ## What you can and cannot change
 
-- **Colours**: every `*_color` key, plain hex `RRGGBB` or `RRGGBBAA`, without a `#`.
-  Players can recolour a skin in game. They cannot change its structure.
-- **Fonts**: `text_font` and `data_font`, one of `noto_sans`, `courier_prime`, `barlow_semi_condensed`.
-  A skin cannot bring its own font files.
-- **Structure**, changed only here, in the repository (a player cannot change these in game):
-
-  | Key | Allowed values |
-  |---|---|
-  | `frame_style` | `window`, `sacta`, `none` |
-  | `bar_style` | `bars`, `cells`, `dcb` |
-  | `strip_style` | `dark`, `paper_es`, `paper_us` |
-  | `text_case` | `as_written`, `upper` |
-  | `bevel` | a whole number from `0` to `8` |
-
-- **Nothing else.** Any other key is rejected, and so is any other file in the folder (only `panels.json` and an
-  optional `README.md`). A skin cannot add a feature, rename one, or imitate a field of a real system the game
-  does not simulate. A file may not exceed 16 KiB, and must set at least one look key, not only metadata.
+- **Tokens**: colour roles (plain hex `RRGGBB` or `RRGGBBAA`, without a `#`; a skin may add its own roles),
+  font roles (`noto_sans`, `courier_prime`, `barlow_semi_condensed`; no font files), type sizes, case and bevel.
+  Players can recolour any role in game. They cannot change the structure.
+- **Primitives and components**: how each control is drawn and which layout mode each part of the screen uses,
+  with every feature placed exactly once ([slots and parity](skins-modding.md#slots-and-parity)).
+- **Nothing else.** An unknown key is rejected with a "did you mean" hint, and so is any other file in the folder
+  (only `panels.json` and an optional `README.md`). A skin cannot add a feature, rename one, or imitate a field of
+  a real system the game does not simulate. A file may not exceed 16 KiB, and must set at least one of `extends`,
+  `tokens`, `primitives` or `components`, not only metadata.
 
 ## Preview before you submit
 
 Put the skin in a local clone, then check it in two places:
 
-1. `python tools/skins_manifest.py --validate-only` must pass (it is also part of the required `validate` check).
+1. `python tools/validate_skin.py SKINS/<id>/panels.json` and `python tools/skins_manifest.py --validate-only`
+   must pass (both run on the pull request). [Live reload](skins-modding.md#live-reload) shows each save in a
+   running session.
 2. Look at it in the game. Open a session and choose your skin in Settings, Skin, then check the top bar, a
    window, a datablock popup and the traffic strip, in both a short and a long callsign list. Text must stay
-   readable on every surface it sits on: `text_color` on `panel_color`, `strip_text_color` on `strip_color`,
-   `selection_text_color` on `selection_color`, `field_text_color` on `field_color`.
+   readable on every surface it sits on: the `text` role on `panel`, `strip_text` on `strip`, `selection_text`
+   on `selection`, `field_text` on `field`.
 
 Add one screenshot of the session with the skin to the pull request. Reviewers decide by looking at it.
 

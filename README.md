@@ -88,6 +88,9 @@ approval and a green required check are necessary before merge.
   tables are produced. Maintainer and website territory.
 - [Skins catalog](documentation/skins-catalog.md) — how to make and submit a session
   interface skin that players pick in Settings.
+- [Skins modding guide](documentation/skins-modding.md) — write a `panels.json`
+  (tokens, primitives, components, `extends`), check it with `tools/validate_skin.py`
+  and try it live; every key in the [skin key reference](documentation/skins-reference.md).
 - [Channel gates](documentation/channel-gates.md) — how new kinds of content reach
   one game channel first without breaking older builds. Maintainers only.
 
