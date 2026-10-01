@@ -36,6 +36,20 @@ def valid_style() -> dict[str, object]:
     }
 
 
+def valid_panels() -> dict[str, object]:
+    return {
+        "frame_style": "sacta",
+        "bar_style": "cells",
+        "strip_style": "paper_es",
+        "text_case": "upper",
+        "bevel": 2,
+        "bar_color": "1F2535",
+        "edge_color": "394258cc",
+        "text_font": "barlow_semi_condensed",
+        "data_font": "pixel_mono",
+    }
+
+
 def legacy_us_aliases() -> list[str]:
     return [f"K/K{chr(letter)}" for letter in range(ord("A"), ord("Z") + 1)]
 
@@ -149,7 +163,8 @@ class ColorProfilesManifestTests(unittest.TestCase):
             self.assertNotIn("K", projection["profiles"])
             self.assertEqual(set(aliases), set(projection["profiles"]))
             for alias in aliases:
-                for kind, file_name in MODULE.PROFILE_FILE_NAMES.items():
+                for kind in canonical["profiles"]["K"]["files"]:
+                    file_name = MODULE.PROFILE_FILE_NAMES[kind]
                     public_entry = projection["profiles"][alias]["files"][kind]
                     source_entry = canonical["profiles"]["K"]["files"][kind]
                     self.assertEqual(source_entry["sha256"], public_entry["sha256"])
@@ -352,6 +367,131 @@ class ColorProfilesManifestTests(unittest.TestCase):
             (scope_dir / "style.json").write_text(json.dumps(legacy_style), encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "legacy bitmap format"):
                 MODULE.build_manifest(root, commit_sha="test-commit")
+
+
+class PanelsFileTests(unittest.TestCase):
+    def build(self, panels: object, *, with_colors: bool = True, raw: str | None = None) -> dict[str, object]:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            root = Path(tmp_dir)
+            scope_dir = root / "L" / "LE"
+            scope_dir.mkdir(parents=True, exist_ok=True)
+            if with_colors:
+                (scope_dir / "colors.json").write_text(json.dumps(valid_colors()), encoding="utf-8")
+            text = raw if raw is not None else json.dumps(panels)
+            (scope_dir / "panels.json").write_text(text, encoding="utf-8")
+            return MODULE.build_manifest(root, commit_sha="test-commit")
+
+    def test_panels_kind_is_registered(self) -> None:
+        self.assertEqual("panels.json", MODULE.PROFILE_FILE_NAMES["panels"])
+        self.assertEqual(("colors", "style", "panels"), MODULE.FILE_KIND_ORDER)
+
+    def test_accepts_a_valid_panels_file_and_lists_it_in_the_manifest(self) -> None:
+        manifest = self.build(valid_panels())
+        entry = manifest["profiles"]["L/LE"]["files"]["panels"]
+        self.assertEqual("L/LE/panels.json", entry["repo_path"])
+        self.assertEqual(64, len(entry["sha256"]))
+        self.assertGreater(entry["size_bytes"], 0)
+
+    def test_accepts_a_partial_panels_file(self) -> None:
+        self.assertIn("panels", self.build({"bar_color": "102030"})["profiles"]["L/LE"]["files"])
+
+    def test_accepts_every_documented_value(self) -> None:
+        for key, values in MODULE.PANELS_ENUM_VALUES.items():
+            for value in values:
+                with self.subTest(key=key, value=value):
+                    self.build({key: value})
+        for font in ("noto_sans", "courier_prime", "barlow_semi_condensed", "pixel_mono"):
+            with self.subTest(font=font):
+                self.build({"text_font": font})
+        for bevel in (0, 8):
+            with self.subTest(bevel=bevel):
+                self.build({"bevel": bevel})
+
+    def test_rejects_an_empty_panels_file(self) -> None:
+        with self.assertRaisesRegex(ValueError, "panels.json must not be empty"):
+            self.build({})
+
+    def test_rejects_non_object_and_invalid_json(self) -> None:
+        with self.assertRaisesRegex(ValueError, "must be a JSON object"):
+            self.build(["bar_color"])
+        with self.assertRaisesRegex(ValueError, "invalid JSON"):
+            self.build(None, raw="{not json")
+
+    def test_rejects_an_unknown_key_and_says_a_skin_cannot_add_features(self) -> None:
+        for key in ("show_radar", "bar_colour", "label", "defined_symbols", "extra_font_size"):
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, "cannot add features"):
+                self.build({key: "x"})
+
+    def test_rejects_a_key_that_only_ends_like_a_known_one(self) -> None:
+        # Unlike colors.json, any "*_color" key is not accepted: the key set is fixed.
+        with self.assertRaisesRegex(ValueError, "'assumed_tfc_color'.*cannot add features"):
+            self.build({"assumed_tfc_color": "3bf451"})
+
+    def test_rejects_invalid_enum_values(self) -> None:
+        bad = {
+            "frame_style": "tabs",
+            "bar_style": "Bars",
+            "strip_style": "paper",
+            "text_case": "lower",
+        }
+        for key, value in bad.items():
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, f"'{key}' must be one of"):
+                self.build({key: value})
+        with self.assertRaisesRegex(ValueError, "'frame_style' must be one of"):
+            self.build({"frame_style": 1})
+
+    def test_rejects_invalid_bevel(self) -> None:
+        for bevel in (-1, 9, 1.5, 2.0, True, "2", None):
+            with self.subTest(bevel=bevel), self.assertRaisesRegex(ValueError, "'bevel' must be a whole number from 0 to 8"):
+                self.build({"bevel": bevel})
+
+    def test_rejects_invalid_colours(self) -> None:
+        for value in ("#1F2535", "1F253", "1F25355", "1F2535AAB", "GG2535", " 1F2535", "1F2535 ", "", 123456, None):
+            with self.subTest(value=value), self.assertRaisesRegex(ValueError, "'bar_color' must be RRGGBB or RRGGBBAA hex"):
+                self.build({"bar_color": value})
+
+    def test_rejects_invalid_fonts(self) -> None:
+        for value in ("Noto Sans", "arial", "", 3, None):
+            with self.subTest(value=value), self.assertRaisesRegex(ValueError, "'text_font' must be one of"):
+                self.build({"text_font": value})
+
+    def test_rejects_panels_without_colors(self) -> None:
+        with self.assertRaisesRegex(ValueError, "missing color profile files: colors"):
+            self.build(valid_panels(), with_colors=False)
+
+    def test_panels_is_optional_beside_colors(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            root = Path(tmp_dir)
+            (root / "L" / "LE").mkdir(parents=True)
+            (root / "L" / "LE" / "colors.json").write_text(json.dumps(valid_colors()), encoding="utf-8")
+            manifest = MODULE.build_manifest(root, commit_sha="test-commit")
+            self.assertEqual({"colors"}, set(manifest["profiles"]["L/LE"]["files"]))
+
+    def test_release_projection_ships_panels_and_copies_it_to_the_us_aliases(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            root = Path(tmp_dir)
+            for scope in (Path("K"), Path("L") / "LE"):
+                (root / scope).mkdir(parents=True)
+                (root / scope / "colors.json").write_text(json.dumps(valid_colors()), encoding="utf-8")
+                (root / scope / "panels.json").write_text(json.dumps(valid_panels()), encoding="utf-8")
+            write_compatibility_registry(root, {"K": legacy_us_aliases()})
+
+            projection = MODULE.build_release_projection(root, commit_sha="test-commit")
+
+            self.assertEqual({"colors", "panels"}, set(projection["profiles"]["L/LE"]["files"]))
+            self.assertEqual("L/LE/panels.json", projection["archive_sources"]["L/LE/panels.json"])
+            self.assertEqual("K/panels.json", projection["archive_sources"]["K/KA/panels.json"])
+            self.assertEqual("K/panels.json", projection["archive_sources"]["K/KZ/panels.json"])
+            self.assertEqual(
+                projection["profiles"]["L/LE"]["files"]["panels"]["sha256"],
+                MODULE.build_manifest(root, commit_sha="x")["profiles"]["L/LE"]["files"]["panels"]["sha256"],
+            )
+
+    def test_repository_panels_files_sit_beside_colors(self) -> None:
+        manifest = MODULE.build_manifest(REPO_ROOT, commit_sha="test-commit")
+        for scope, profile in manifest["profiles"].items():
+            if "panels" in profile["files"]:
+                self.assertIn("colors", profile["files"], scope)
 
 
 if __name__ == "__main__":

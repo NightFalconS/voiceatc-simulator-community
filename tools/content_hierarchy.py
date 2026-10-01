@@ -27,7 +27,7 @@ TERMINAL_FILE_NAMES = {
     "sector_definitions.json",
     "sector_influence.json",
 }
-PROFILE_FILE_NAMES = {"colors.json", "style.json"}
+PROFILE_FILE_NAMES = {"colors.json", "style.json", "panels.json"}
 CONTENT_FILE_NAMES = AIRPORT_FILE_NAMES | TERMINAL_FILE_NAMES | PROFILE_FILE_NAMES
 PLACEHOLDER_RE = re.compile(r"^[A-Z]{1,2}X{2,3}$")
 AIRPORT_RE = re.compile(r"^[A-Z0-9]{4}$")

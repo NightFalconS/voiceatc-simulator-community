@@ -225,6 +225,26 @@ class ContentHierarchyTests(unittest.TestCase):
         self.assertTrue(any("release-only compatibility alias must not exist" in error for error in self.errors()))
 
 
+    def test_panels_file_follows_the_profile_scope_rules(self) -> None:
+        self.write_json("K/colors.json", {"bg_color": "000000"})
+        self.write_json("K/panels.json", {"bar_color": "000000"})
+        self.assertEqual([], self.errors())
+        self.write_json("K/NOWHERE_X/panels.json", {"bar_color": "000000"})
+        self.assertTrue(any("panels.json" in error for error in self.errors()))
+
+    def test_rejects_panels_in_a_release_alias_directory_in_source(self) -> None:
+        registry = fixture_registry()
+        registry["release_compatibility"]["color_profile_aliases"] = {
+            "K": sorted(MODULE.EXPECTED_US_COLOR_ALIASES)
+        }
+        self.write_registry(registry)
+        self.write_json("K/colors.json", {"bg_color": "000000"})
+        self.write_json("K/KA/panels.json", {"bar_color": "000000"})
+        self.assertTrue(
+            any("release-only compatibility alias must not exist in source: K/KA/panels.json" in error for error in self.errors())
+        )
+
+
 class LaunchPortfolioHierarchyTests(unittest.TestCase):
     def test_every_visual_launch_airport_has_a_review_target(self) -> None:
         portfolio = LAUNCH_PORTFOLIO_PATH.read_text(encoding="utf-8")
