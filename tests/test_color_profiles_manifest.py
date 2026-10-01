@@ -517,7 +517,7 @@ class PanelsFileTests(unittest.TestCase):
         self.assertEqual(("name", "author", "description"), MODULE.PANELS_META_KEYS)
 
     def test_metadata_keys_are_text_with_length_limits_and_are_not_skin_values(self) -> None:
-        for key, limit in (("name", 40), ("author", 60), ("description", 280)):
+        for key, limit in (("name", 40), ("author", 60), ("description", 200)):
             with self.subTest(key=key):
                 self.build({key: "x" * limit, "bevel": 1})
                 for bad in ("x" * (limit + 1), "", " lead", "two\nlines", 5):

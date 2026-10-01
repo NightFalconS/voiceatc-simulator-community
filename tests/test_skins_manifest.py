@@ -98,7 +98,7 @@ class SkinsManifestTests(unittest.TestCase):
             {"name": "two\nlines"},
             {"name": 7},
             {"author": "y" * 61},
-            {"description": "z" * 281},
+            {"description": "z" * 201},
             {"description": ""},
         ]
         for override in bad:

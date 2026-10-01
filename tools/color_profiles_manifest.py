@@ -81,7 +81,7 @@ PANELS_HEX_RE = re.compile(r"[0-9A-Fa-f]{6}(?:[0-9A-Fa-f]{2})?")
 # people, never skin values, so the game does not apply them. The maximum lengths are
 # characters; one line, no leading or trailing space.
 PANELS_META_KEYS = ("name", "author", "description")
-PANELS_META_MAX_LENGTH = {"name": 40, "author": 60, "description": 280}
+PANELS_META_MAX_LENGTH = {"name": 40, "author": 60, "description": 200}
 PANELS_ALL_KEYS = (*PANELS_KEYS, *PANELS_META_KEYS)
 SKINS_DIR_NAME = "SKINS"
 

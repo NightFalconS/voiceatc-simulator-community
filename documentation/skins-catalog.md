@@ -28,7 +28,7 @@ features** are the ones in [session skins](session-skins-panels-json.md); read t
    |---|---|---|
    | `name` | yes | the name in the list, 1 to 40 characters, one line, unique among catalog skins ignoring case |
    | `author` | yes | who made it, 1 to 60 characters, one line |
-   | `description` | no | one sentence about the look, up to 280 characters |
+   | `description` | no | one sentence about the look, up to 200 characters |
 
    Metadata is text for people. It is never a skin value and the game never applies it.
 4. Optionally add `SKINS/<id>/README.md` with notes (what it is based on, credits). It is for reviewers and

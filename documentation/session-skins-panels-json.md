@@ -87,7 +87,7 @@ text, never skin values, and the game does not apply them:
 |---|---|
 | `name` | one line of text, 1 to 40 characters, no space at either end. Without it the game names the skin from its folder, for example `L/LE` |
 | `author` | one line of text, 1 to 60 characters |
-| `description` | one line of text, 1 to 280 characters |
+| `description` | one line of text, 1 to 200 characters |
 
 The file must still set at least one look key above. The Spain and US skins are named `Spain (SACTA)` and
 `US (STARS)`. The [skins catalog](skins-catalog.md) (`SKINS/<id>/panels.json`, picked by the player instead of
