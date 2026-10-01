@@ -195,7 +195,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     text = render()
     if args.stdout:
-        sys.stdout.write(text)
+        sys.stdout.buffer.write(text.encode("utf-8"))
         return 0
     if args.check:
         current = PAGE.read_text(encoding="utf-8") if PAGE.exists() else ""
