@@ -55,6 +55,8 @@ jobs:
         run: python tools/misc_drawings_manifest.py --validate-only
       - name: Validate color profile files
         run: python tools/color_profiles_manifest.py --validate-only
+      - name: Validate skins catalog files
+        run: python tools/skins_manifest.py --validate-only
       - name: Validate constraints files
         run: python tools/constraints_manifest.py --validate-sources
       - name: Validate procedure options files
@@ -776,6 +778,7 @@ jobs:
             .voiceatc/v3/sector_data_manifest.json
             .voiceatc/v3/misc_drawings_manifest.json
             .voiceatc/v3/color_profiles_manifest.json
+            .voiceatc/v3/skins_manifest.json
           )
           if git diff --quiet -- "${MANIFESTS[@]}" && [[ -z "$(git status --porcelain -- "${MANIFESTS[@]}")" ]]; then
             exit 0

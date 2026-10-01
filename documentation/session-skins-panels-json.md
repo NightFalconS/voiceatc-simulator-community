@@ -78,6 +78,21 @@ Rules for the values:
 
 The traffic strip's flight-type holder colours are the same in every skin and are not keys.
 
+## Name, author and description
+
+Three more optional keys describe the skin to people. The Skin section of the game lists a skin by them. They are
+text, never skin values, and the game does not apply them:
+
+| Key | Accepts |
+|---|---|
+| `name` | one line of text, 1 to 40 characters, no space at either end. Without it the game names the skin from its folder, for example `L/LE` |
+| `author` | one line of text, 1 to 60 characters |
+| `description` | one line of text, 1 to 280 characters |
+
+The file must still set at least one look key above. The Spain and US skins are named `Spain (SACTA)` and
+`US (STARS)`. The [skins catalog](skins-catalog.md) (`SKINS/<id>/panels.json`, picked by the player instead of
+by airport) requires `name` and `author`.
+
 ## Minimal example
 
 A skin that keeps Generic and only makes the bars bevelled cells in upper case:

@@ -336,7 +336,7 @@ def _validate_content_file(path: Path, root: Path, registry: dict[str, Any]) -> 
 def collect_findings(root: Path = ROOT, registry_path: Path | None = None) -> list[Finding]:
     registry = load_registry(registry_path or (root / REGISTRY_RELATIVE))
     findings = [Finding(message) for message in _validate_registry(registry)]
-    ignored_parts = {".git", ".voiceatc", "node_modules"}
+    ignored_parts = {".git", ".voiceatc", "node_modules", "SKINS"}
     paths = sorted(
         path
         for path in root.rglob("*.json")

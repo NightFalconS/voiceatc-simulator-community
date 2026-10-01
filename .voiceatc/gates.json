@@ -5,6 +5,11 @@
       "dataset": "color_profiles",
       "kind": "panels",
       "min_game_version": "0.6.2.380"
+    },
+    {
+      "dataset": "skins",
+      "path": "SKINS/*",
+      "min_game_version": "0.6.2.380"
     }
   ]
 }

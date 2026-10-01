@@ -32,7 +32,8 @@ GATES_SCHEMA_VERSION = 1
 V3_SCHEMA_VERSION = 3
 CHANNELS = ("stable", "open-beta", "closed-beta")
 # Datasets whose default output this producer filters (the release zips).
-FILTERED_DATASETS = ("mva", "runway_configs", "sector_data", "misc_drawings", "color_profiles")
+# ``skins`` has no default output at all (v3 only), so a gate on it only annotates its v3 entries.
+FILTERED_DATASETS = ("mva", "runway_configs", "sector_data", "misc_drawings", "color_profiles", "skins")
 # Datasets served by lane (the API worker); a lane gate never touches a default path.
 LANE_DATASETS = ("routes", "voice_priors", "snapshots")
 GATE_SELECTORS = ("kind", "path", "lane")

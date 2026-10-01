@@ -33,8 +33,13 @@ and at least one rule:
   to allow every channel.
 
 Gateable datasets: `mva`, `runway_configs`, `sector_data`, `misc_drawings`,
-`color_profiles` (kind and path gates); `routes`, `voice_priors`, `snapshots` (lane gates,
-read by the API worker, never by this release).
+`color_profiles` (kind and path gates); `skins` (path gates; see below); `routes`, `voice_priors`,
+`snapshots` (lane gates, read by the API worker, never by this release).
+
+`skins` is the [skins catalog](skins-catalog.md) and is **v3 only**: it has no default manifest or
+zip at all (old builds never read it), so a gate on it only annotates its v3 entries. The committed
+`skins` gate matches the `panels` kind gate. `stable_contract_guard.py` fails the release if a default
+skins manifest, zip or release-manifest asset ever appears.
 
 `release/live_versions.json` lists the game version live on each channel:
 

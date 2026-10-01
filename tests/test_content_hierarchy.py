@@ -225,6 +225,10 @@ class ContentHierarchyTests(unittest.TestCase):
         self.assertTrue(any("release-only compatibility alias must not exist" in error for error in self.errors()))
 
 
+    def test_the_skins_catalog_is_not_a_content_scope(self) -> None:
+        self.write_json("SKINS/harbour-blue/panels.json", {"name": "Harbour Blue", "bar_color": "000000"})
+        self.assertEqual([], self.errors())
+
     def test_panels_file_follows_the_profile_scope_rules(self) -> None:
         self.write_json("K/colors.json", {"bg_color": "000000"})
         self.write_json("K/panels.json", {"bar_color": "000000"})

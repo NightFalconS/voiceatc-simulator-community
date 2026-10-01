@@ -118,6 +118,41 @@ class StableContractGuardTests(unittest.TestCase):
         extra_entry["airports"]["KASE"]["min_game_version"] = "0.6.2.380"
         self.assertTrue(GUARD.check_file_manifest("visual_procedures", extra_entry))
 
+    def test_skins_have_no_default_path(self) -> None:
+        summary = {
+            "assets": {"skins_full_zip": {"asset_name": "skins-full.zip"}},
+            "manifests": {"release": {"assets": {"mva_zip": {}}}},
+        }
+        self.assertEqual(GUARD.check_no_default_skins(self.root, summary), [])
+        for broken in (
+            {"assets": {"skins_zip": {"asset_name": "skins-2609.zip"}}, "manifests": {"release": {"assets": {}}}},
+            {"assets": {}, "manifests": {"skins": {}, "release": {"assets": {}}}},
+            {"assets": {}, "manifests": {"release": {"assets": {"skins_zip": {}}}}},
+            {"assets": {"extra": {"asset_name": "skins-2609.zip"}}, "manifests": {"release": {"assets": {}}}},
+        ):
+            with self.subTest(broken=broken):
+                self.assertTrue(GUARD.check_no_default_skins(self.root, broken))
+
+    def test_the_real_release_summary_has_no_default_skins(self) -> None:
+        self.assertEqual(GUARD.check_no_default_skins(self.root, self.bundle), [])
+
+    def test_a_committed_default_skins_manifest_fails(self) -> None:
+        (self.root / ".voiceatc").mkdir(exist_ok=True)
+        (self.root / ".voiceatc" / "skins_manifest.json").write_text("{}", encoding="utf-8")
+        errors = GUARD.check_repo_manifests(self.root)
+        self.assertTrue(any("skins_manifest.json" in error for error in errors), errors)
+
+    def test_a_skin_in_the_default_colour_zip_fails(self) -> None:
+        zip_path = Path(self.bundle["assets"]["color_profiles_zip"]["path"])
+        with zipfile.ZipFile(zip_path, "a") as archive:
+            archive.writestr("SKINS/harbour-blue/panels.json", "{}")
+        manifest = dict(self.bundle["manifests"]["color_profiles"])
+        raw = zip_path.read_bytes()
+        manifest["sha256"] = GUARD._sha256(raw)
+        manifest["size_bytes"] = len(raw)
+        errors = GUARD.check_zip_dataset("color_profiles", manifest, zip_path)
+        self.assertTrue(any("not listed" in error for error in errors), errors)
+
     def test_committed_per_file_manifests_pass(self) -> None:
         self.assertEqual(GUARD.check_repo_manifests(REPO_ROOT), [])
 
