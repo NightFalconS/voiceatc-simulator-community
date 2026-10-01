@@ -50,7 +50,7 @@ jobs:
         run: python tools/visual_sight_references_manifest.py --validate-sources
       - name: Validate player route files
         run: python tools/player_routes_manifest.py --validate-only
-      - name: Validate channel gates and live versions
+      - name: Validate channel gates
         run: python tools/release_gates.py --validate-only
       # Builds the release locally (nothing is published) and replays the stable
       # 0.6.1.24 rules on the default output, so a pull request that adds a new

@@ -422,28 +422,26 @@ def build_release_bundle(
     color_profiles_projection = color_profiles_manifest.build_release_projection(root, commit_sha=commit_sha)
 
     # Channel gates: the default view (what every live build reads) drops gated
-    # entries the oldest live build would not pass; the v3 view keeps them all.
+    # entries (any `requires`, or channels short of all three); the v3 view keeps them all.
     gates = release_gates.load_gates(root)
-    live_versions = release_gates.load_live_versions(root) if gates else {}
     color_archive_sources = color_profiles_projection["archive_sources"]
     gated = {
         "mva": release_gates.apply_gates(
-            "mva", mva_base_manifest["airports"], gates=gates, live_versions=live_versions
+            "mva", mva_base_manifest["airports"], gates=gates
         ),
         "runway_configs": release_gates.apply_gates(
-            "runway_configs", runway_base_manifest["airports"], gates=gates, live_versions=live_versions
+            "runway_configs", runway_base_manifest["airports"], gates=gates
         ),
         "sector_data": release_gates.apply_gates(
-            "sector_data", sector_data_base_manifest["bundles"], gates=gates, live_versions=live_versions
+            "sector_data", sector_data_base_manifest["bundles"], gates=gates
         ),
         "misc_drawings": release_gates.apply_gates(
-            "misc_drawings", misc_drawings_base_manifest["airports"], gates=gates, live_versions=live_versions
+            "misc_drawings", misc_drawings_base_manifest["airports"], gates=gates
         ),
         "color_profiles": release_gates.apply_gates(
             "color_profiles",
             color_profiles_projection["profiles"],
             gates=gates,
-            live_versions=live_versions,
             archive_sources=color_archive_sources,
             required_kinds=("colors",),
         ),
