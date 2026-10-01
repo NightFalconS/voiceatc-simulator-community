@@ -92,7 +92,7 @@ The catalog is published **only** as a v3 dataset: `.voiceatc/v3/skins_manifest.
 release asset, written by `tools/community_release_manifest.py` beside the other v3 datasets. There is no default
 manifest, no default zip and no entry in the release manifest, so game builds that predate skins never read it.
 `tools/stable_contract_guard.py` fails the release if any of those default paths appears. `.voiceatc/gates.json`
-holds a `skins` path gate with the same `min_game_version` as the `panels` kind gate, copied onto each v3 entry;
+holds a `skins` path gate that requires the `skins.catalog` capability, copied onto each v3 entry as `requires`;
 see [channel gates](channel-gates.md).
 
 Each v3 entry has the skin's `id` (the folder name), `repo_path`, `sha256`, `size_bytes`, `name`, `author` and,

@@ -79,7 +79,7 @@ class StableContractGuardTests(unittest.TestCase):
 
     def test_new_top_level_or_entry_key_fails(self) -> None:
         manifest = json.loads(json.dumps(self.bundle["manifests"]["runway_configs"]))
-        manifest["min_game_version"] = "0.6.2.380"
+        manifest["requires"] = ["color_profiles.panels"]
         first = next(iter(manifest["airports"]))
         manifest["airports"][first]["channels"] = ["closed-beta"]
         errors = GUARD.check_zip_dataset(
@@ -115,7 +115,7 @@ class StableContractGuardTests(unittest.TestCase):
         extra_top = {**good, "airport_count": 1}
         self.assertTrue(GUARD.check_file_manifest("visual_procedures", extra_top))
         extra_entry = json.loads(json.dumps(good))
-        extra_entry["airports"]["KASE"]["min_game_version"] = "0.6.2.380"
+        extra_entry["airports"]["KASE"]["requires"] = ["color_profiles.panels"]
         self.assertTrue(GUARD.check_file_manifest("visual_procedures", extra_entry))
 
     def test_skins_have_no_default_path(self) -> None:

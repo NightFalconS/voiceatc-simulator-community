@@ -5,7 +5,11 @@ Every game build reads the same community feed, whatever its Steam channel. Stab
 entry their manifest does not list, fails the whole dataset for those players. Gates let
 new content reach the builds that can use it, and only those.
 
-## The two files
+## The rule: content declares, builds declare
+
+Content declares what it needs (`requires`); builds declare what they can do (their
+capabilities). No version number appears in a gate, a manifest or a rule, so nothing has to
+be tracked or bumped when a build ships.
 
 `.voiceatc/gates.json` (edited by maintainers, never by CI):
 
@@ -13,7 +17,7 @@ new content reach the builds that can use it, and only those.
 {
   "schema_version": 1,
   "gates": [
-    { "dataset": "color_profiles", "kind": "panels", "min_game_version": "0.6.2.380" }
+    { "dataset": "color_profiles", "kind": "panels", "requires": ["color_profiles.panels"] }
   ]
 }
 ```
@@ -28,7 +32,10 @@ A gate names a `dataset` and exactly one selector:
 
 and at least one rule:
 
-- `min_game_version`: the four-part game version that first understands the content.
+- `requires`: a non-empty list of capability names the game build must have to use the content
+  (see the registry below). Names are lowercase and dotted, matching
+  `[a-z0-9_]+(\.[a-z0-9_]+)+`, at most 64 characters, no duplicates. When several gates match
+  one file or entry, their `requires` lists are merged.
 - `channels`: the Steam channels allowed (`stable`, `open-beta`, `closed-beta`). Leave it out
   to allow every channel.
 
@@ -38,33 +45,45 @@ Gateable datasets: `mva`, `runway_configs`, `sector_data`, `misc_drawings`,
 
 `skins` is the [skins catalog](skins-catalog.md) and is **v3 only**: it has no default manifest or
 zip at all (old builds never read it), so a gate on it only annotates its v3 entries. The committed
-`skins` gate matches the `panels` kind gate. `stable_contract_guard.py` fails the release if a default
+`skins` gate requires `skins.catalog` (the `panels` kind gate requires `color_profiles.panels`). `stable_contract_guard.py` fails the release if a default
 skins manifest, zip or release-manifest asset ever appears.
 
-`release/live_versions.json` lists the game version live on each channel:
+There is no `min_game_version` and no per-channel version list. Old gate files that use
+`min_game_version` are rejected by the validator.
 
-```json
-{ "stable": "0.6.1.24", "open-beta": "0.6.2.204", "closed-beta": "0.6.2.374",
-  "updated_at": "2026-10-01T00:00:00Z" }
-```
+## Capability registry
 
-Update it whenever a Steam build goes live on a channel.
+A capability is a named thing a build can do. Builds that read v3 feeds report the names they
+support; the table says which game build line first supports each name, for maintainers
+only. The release never reads that column.
+
+| Capability | Meaning | First supported by |
+|---|---|---|
+| `color_profiles.panels` | Reads the `panels` file of a color profile (the session skin's panel layout). | closed beta (0.6.2 line) |
+| `skins.catalog` | Reads the `SKINS/<id>` skin catalog dataset and its name/author/description metadata. | closed beta (0.6.2 line) |
+| `community.v3_feeds` | Reads the v3 manifests under `.voiceatc/v3/` and filters entries by `requires` and `channels`. | closed beta (0.6.2 line) |
+
+To add a capability, add a row here in the same pull request that adds the gate or the game
+code that uses it. Names are permanent: never rename one, add a new name instead.
 
 ## What the daily release does with them
 
 For each zip dataset the release writes two outputs:
 
 1. **Default** (`.voiceatc/<dataset>_manifest.json` and `<asset>.zip`): exactly today's
-   format. An entry stays when it has no gate, or when every live channel passes its gate.
-   A gated file that some live build would not pass is left out of the manifest and the zip.
+   format. An entry stays when it has no gate, or when its gate has no `requires` and its
+   `channels` is absent or lists all three channels. Old builds know no capabilities, so
+   anything that requires one stays out. A gated file that does not stay is left out of the
+   manifest and the zip.
    When that removes a required file (a profile's `colors`, any sector-data file), the whole
    entry is left out. With no gates, the default output is byte-identical to before.
 2. **v3** (`.voiceatc/v3/<dataset>_manifest.json` and `<asset>-full.zip`): everything, with
    the gate fields copied onto the gated entry (path gates on single-file entries) or file
    (`files.<kind>`). `schema_version` is 3 and `entries` is a list; each entry has an `id`
-   (the airport, bundle or scope key) plus today's entry fields. Game builds that read v3
-   keep an entry or file when `min_game_version` ≤ their version and `channels` is absent
-   or contains their channel. Old builds never read v3 paths.
+   (the airport, bundle or scope key) plus today's entry fields. `requires` and `channels` stay on
+   entries and files exactly as written in the gate. Game builds that read v3 keep an entry
+   or file when they have every capability in `requires` and `channels` is absent or contains
+   their channel. Old builds never read v3 paths.
 
 Before anything is published, `tools/stable_contract_guard.py` replays the stable 0.6.1.24
 parser rules on every default manifest and zip (schema 2, exact top-level and entry keys,
@@ -73,12 +92,15 @@ beta exact-key rule on the visual manifests. A failure stops the release.
 
 ## Recipes
 
-- **New content for closed beta only:** add a gate with `"channels": ["closed-beta"]`
-  (plus `min_game_version` if older closed-beta builds cannot read it).
+- **New content for closed beta only:** add a gate with `"channels": ["closed-beta"]`, and a
+  `requires` entry when older closed-beta builds cannot read it.
 - **Promote to open beta:** add `open-beta` to `channels`.
-- **Everyone can read it:** once every channel's live version is at or above
-  `min_game_version` (check `release/live_versions.json`), remove the gate. The content then
-  appears in the default output on the next release.
+- **New file kind or field:** pick a capability name, add a registry row, and gate the kind
+  with `"requires": ["<name>"]`. Builds that have the capability read it from v3; the default
+  feed never carries it.
+- **Everyone can read it:** content that requires a capability stays out of the default feed
+  for good, because old builds cannot know the capability. To serve it to everyone, ship the
+  old-build-safe form of the data in the default format and drop the gate.
 
 Check your edit locally:
 

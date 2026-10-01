@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """Channel gates for community releases.
 
-Two maintainer-edited files decide what each live game build may download:
-
-- ``.voiceatc/gates.json`` marks new content (a file kind, a repo path glob or a
-  route lane) with ``min_game_version`` and/or ``channels``.
-- ``release/live_versions.json`` lists the game version live on each Steam
-  channel.
+Content declares what it needs; builds declare what they can do. There are no
+version numbers anywhere. The maintainer-edited ``.voiceatc/gates.json`` marks
+new content (a file kind, a repo path glob or a route lane) with ``requires``
+(dotted capability names such as ``color_profiles.panels``) and/or ``channels``.
 
 The default manifests and zips (the paths every build already reads) keep an
-entry only when every live channel passes its gate, so they never carry
-anything the oldest live build would reject. The v3 manifests under
-``.voiceatc/v3/`` keep everything plus the gate fields; only builds that read
-v3 filter entries themselves.
+entry only when it has no ``requires`` and its ``channels`` is absent or lists
+all three channels: a build that predates the capability system knows no
+capability, so anything that requires one stays out of the default feed. The v3
+manifests under ``.voiceatc/v3/`` keep everything plus the gate fields; builds
+that read v3 keep an entry when they have every required capability and their
+channel is listed.
 """
 from __future__ import annotations
 
@@ -26,7 +26,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 GATES_PATH = Path(".voiceatc") / "gates.json"
-LIVE_VERSIONS_PATH = Path("release") / "live_versions.json"
 V3_DIR = Path(".voiceatc") / "v3"
 GATES_SCHEMA_VERSION = 1
 V3_SCHEMA_VERSION = 3
@@ -37,18 +36,21 @@ FILTERED_DATASETS = ("mva", "runway_configs", "sector_data", "misc_drawings", "c
 # Datasets served by lane (the API worker); a lane gate never touches a default path.
 LANE_DATASETS = ("routes", "voice_priors", "snapshots")
 GATE_SELECTORS = ("kind", "path", "lane")
-GATE_RULES = ("min_game_version", "channels")
-VERSION_RE = re.compile(r"^\d+\.\d+\.\d+\.\d+$")
-TIMESTAMP_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
+GATE_RULES = ("requires", "channels")
+CAPABILITY_RE = re.compile(r"^[a-z0-9_]+(\.[a-z0-9_]+)+$")
+CAPABILITY_MAX_LENGTH = 64
 KIND_RE = re.compile(r"^[a-z][a-z0-9_]*$")
 LANE_RE = re.compile(r"^[a-z][a-z0-9_-]*$")
 
 
-def parse_version(text: object) -> tuple[int, int, int, int]:
-    if not isinstance(text, str) or not VERSION_RE.fullmatch(text.strip()):
-        raise ValueError(f"version must be four dot-separated numbers, got {text!r}")
-    major, minor, patch, build = (int(part) for part in text.strip().split("."))
-    return major, minor, patch, build
+def validate_capability(name: object, label: str = "capability") -> str:
+    """A capability name is lowercase dotted (``color_profiles.panels``), at most 64 characters."""
+    if not isinstance(name, str) or len(name) > CAPABILITY_MAX_LENGTH or not CAPABILITY_RE.fullmatch(name):
+        raise ValueError(
+            f"{label}: {name!r} must be a lowercase dotted capability name such as 'color_profiles.panels'"
+            f" (at most {CAPABILITY_MAX_LENGTH} characters)"
+        )
+    return name
 
 
 def _read_json(path: Path) -> object:
@@ -96,9 +98,15 @@ def validate_gates(payload: object, label: str = str(GATES_PATH)) -> list[dict[s
                 if not isinstance(value, str) or not value.strip() or value.startswith("/") or ".." in value:
                     raise ValueError(f"{where}: path must be a repo-relative path or glob")
         if not any(key in gate for key in GATE_RULES):
-            raise ValueError(f"{where} needs min_game_version and/or channels")
-        if "min_game_version" in gate:
-            parse_version(gate["min_game_version"])
+            raise ValueError(f"{where} needs requires and/or channels")
+        if "requires" in gate:
+            requires = gate["requires"]
+            if not isinstance(requires, list) or not requires:
+                raise ValueError(f"{where}: requires must be a non-empty array of capability names")
+            for name in requires:
+                validate_capability(name, f"{where}: requires")
+            if len(set(requires)) != len(requires):
+                raise ValueError(f"{where}: duplicate capability in requires")
         if "channels" in gate:
             channels = gate["channels"]
             if not isinstance(channels, list) or not channels:
@@ -112,18 +120,6 @@ def validate_gates(payload: object, label: str = str(GATES_PATH)) -> list[dict[s
     return result
 
 
-def validate_live_versions(payload: object, label: str = str(LIVE_VERSIONS_PATH)) -> dict[str, str]:
-    if not isinstance(payload, dict):
-        raise ValueError(f"{label}: must be a JSON object")
-    if set(payload) != {*CHANNELS, "updated_at"}:
-        raise ValueError(f"{label}: keys must be exactly {', '.join(CHANNELS)} and updated_at")
-    for channel in CHANNELS:
-        parse_version(payload[channel])
-    if not isinstance(payload["updated_at"], str) or not TIMESTAMP_RE.fullmatch(payload["updated_at"]):
-        raise ValueError(f"{label}: updated_at must be YYYY-MM-DDTHH:MM:SSZ")
-    return {channel: str(payload[channel]) for channel in CHANNELS}
-
-
 def load_gates(root: Path = ROOT) -> list[dict[str, object]]:
     path = root / GATES_PATH
     if not path.is_file():
@@ -131,31 +127,29 @@ def load_gates(root: Path = ROOT) -> list[dict[str, object]]:
     return validate_gates(_read_json(path), str(path))
 
 
-def load_live_versions(root: Path = ROOT) -> dict[str, str]:
-    path = root / LIVE_VERSIONS_PATH
-    return validate_live_versions(_read_json(path), str(path))
+def is_default_visible(rule: dict[str, object]) -> bool:
+    """True when a build that knows no capabilities, on any channel, keeps this entry.
 
-
-def passes_every_live_channel(rule: dict[str, object], live_versions: dict[str, str]) -> bool:
-    """True when every live build, on its own channel, would keep this entry."""
-    for channel, version in live_versions.items():
-        channels = rule.get("channels")
-        if isinstance(channels, list) and channel not in channels:
-            return False
-        minimum = rule.get("min_game_version")
-        if minimum is not None and parse_version(version) < parse_version(minimum):
-            return False
+    Old builds know no capabilities, so any ``requires`` keeps the entry out of the
+    default feed. A ``channels`` list keeps it only when it names all three channels.
+    """
+    if rule.get("requires"):
+        return False
+    channels = rule.get("channels")
+    if isinstance(channels, list) and any(channel not in channels for channel in CHANNELS):
+        return False
     return True
 
 
 def _merge_rules(gates: list[dict[str, object]]) -> dict[str, object]:
-    """Several gates on one item: the highest minimum and the common channels."""
+    """Several gates on one item: every required capability and the common channels."""
     merged: dict[str, object] = {}
     for gate in gates:
-        if "min_game_version" in gate:
-            current = merged.get("min_game_version")
-            if current is None or parse_version(gate["min_game_version"]) > parse_version(current):
-                merged["min_game_version"] = gate["min_game_version"]
+        if "requires" in gate:
+            current_requires = list(merged.get("requires", []))
+            merged["requires"] = current_requires + [
+                name for name in gate["requires"] if name not in current_requires
+            ]
         if "channels" in gate:
             current_channels = merged.get("channels")
             allowed = list(gate["channels"])
@@ -185,7 +179,6 @@ def apply_gates(
     entries: dict[str, object],
     *,
     gates: list[dict[str, object]],
-    live_versions: dict[str, str],
     archive_sources: dict[str, str] | None = None,
     required_kinds: tuple[str, ...] | None = None,
 ) -> dict[str, object]:
@@ -193,7 +186,7 @@ def apply_gates(
 
     ``entries`` is the manifest's entry map (airports, bundles or profiles). An
     entry is either one file (``repo_path``) or a ``files`` map by kind. A gated
-    file the live builds do not all pass leaves the default entry; when that
+    file whose rule is not default-visible leaves the default entry; when that
     removes a required kind (``required_kinds``; ``None`` means every kind the
     entry has) or the last file, the whole entry leaves. Ungated data returns
     ``default`` equal to ``entries`` (same objects, same order).
@@ -216,7 +209,7 @@ def apply_gates(
                 paths = [repo_path, sources.get(repo_path, repo_path)]
                 rule = _merge_rules(_matching_gates(dataset_gates, kind=kind, paths=paths))
                 v3_files[kind] = {**file_entry, **rule} if rule else file_entry
-                if rule and not passes_every_live_channel(rule, live_versions):
+                if rule and not is_default_visible(rule):
                     dropped_kinds.append(kind)
                 else:
                     kept_files[kind] = file_entry
@@ -229,7 +222,7 @@ def apply_gates(
             repo_path = str(entry.get("repo_path", ""))
             paths = [repo_path, sources.get(repo_path, repo_path)]
             rule = _merge_rules(_matching_gates(dataset_gates, kind=None, paths=paths))
-            if not rule or passes_every_live_channel(rule, live_versions):
+            if not rule or is_default_visible(rule):
                 default[key] = entry
             v3_entry.update({**entry, **rule})
         v3_entries.append(v3_entry)
@@ -284,17 +277,15 @@ def v3_manifest_path(dataset: str, root: Path = ROOT) -> Path:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Validate .voiceatc/gates.json and release/live_versions.json.")
-    parser.add_argument("--validate-only", action="store_true", help="Validate both files (the default action)")
+    parser = argparse.ArgumentParser(description="Validate .voiceatc/gates.json.")
+    parser.add_argument("--validate-only", action="store_true", help="Validate the gates file (the default action)")
     parser.parse_args()
     try:
         gates = load_gates(ROOT)
-        live_versions = load_live_versions(ROOT)
     except Exception as exc:
         print(str(exc), file=sys.stderr)
         return 1
-    oldest = min(live_versions.values(), key=parse_version)
-    print(f"Validated {len(gates)} gates; live versions {live_versions} (oldest {oldest}).")
+    print(f"Validated {len(gates)} gates.")
     return 0
 
 

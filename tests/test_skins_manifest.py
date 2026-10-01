@@ -252,26 +252,17 @@ class SkinsReleaseTests(unittest.TestCase):
         write_skin(self.root, "harbour-blue", valid_skin())
         RELEASE_TESTS.write_json(
             self.root / ".voiceatc" / "gates.json",
-            {"schema_version": 1, "gates": [{"dataset": "skins", "path": "SKINS/*", "min_game_version": "0.6.2.380"}]},
-        )
-        RELEASE_TESTS.write_json(
-            self.root / "release" / "live_versions.json",
-            {
-                "stable": "0.6.1.24",
-                "open-beta": "0.6.2.204",
-                "closed-beta": "0.6.2.374",
-                "updated_at": "2026-10-01T00:00:00Z",
-            },
+            {"schema_version": 1, "gates": [{"dataset": "skins", "path": "SKINS/*", "requires": ["skins.catalog"]}]},
         )
         entry = self.bundle()["v3_manifests"]["skins"]["entries"][0]
-        self.assertEqual("0.6.2.380", entry["min_game_version"])
+        self.assertEqual(["skins.catalog"], entry["requires"])
 
-    def test_the_committed_skin_gate_matches_the_panels_gate(self) -> None:
+    def test_the_committed_gates_require_the_capability_that_reads_each_content(self) -> None:
         gates = json.loads((REPO_ROOT / ".voiceatc" / "gates.json").read_text(encoding="utf-8"))["gates"]
         panels = next(gate for gate in gates if gate.get("kind") == "panels")
         skins = next(gate for gate in gates if gate.get("dataset") == "skins")
-        self.assertEqual(panels["min_game_version"], skins["min_game_version"])
-        self.assertEqual("SKINS/*", skins["path"])
+        self.assertEqual({"dataset": "color_profiles", "kind": "panels", "requires": ["color_profiles.panels"]}, panels)
+        self.assertEqual({"dataset": "skins", "path": "SKINS/*", "requires": ["skins.catalog"]}, skins)
 
 
 if __name__ == "__main__":
