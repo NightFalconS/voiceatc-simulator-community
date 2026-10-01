@@ -12,11 +12,16 @@ from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
 from typing import Any
 
+TOOLS_DIR = Path(__file__).resolve().parent
+if str(TOOLS_DIR) not in sys.path:
+    sys.path.insert(0, str(TOOLS_DIR))
+
+from legacy_contract import LEGACY_VISUAL_SCHEMA_VERSION
+
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST_PATH = ROOT / ".voiceatc" / "visual_go_arounds_manifest.json"
 REPO_NAME = "lainoa-software/voiceatc-simulator-community"
-SCHEMA_VERSION = 1
 MAX_FILE_BYTES = 128 * 1024
 MAX_GO_AROUNDS = 64
 MAX_LEGS = 32
@@ -221,8 +226,8 @@ def _visual_keys(path: Path) -> dict[tuple[str, str], str]:
 
 def validate_go_around_schema(payload: dict[str, Any], path: Path) -> None:
     _strict_keys(payload, TOP_KEYS, "root", path)
-    if payload.get("schema_version") != SCHEMA_VERSION:
-        raise ValueError(f"{path}: schema_version must be {SCHEMA_VERSION}")
+    if payload.get("schema_version") != LEGACY_VISUAL_SCHEMA_VERSION:
+        raise ValueError(f"{path}: schema_version must be {LEGACY_VISUAL_SCHEMA_VERSION}")
     airport = _text(payload.get("airport"), "airport", path, 4).upper()
     if not AIRPORT_RE.fullmatch(airport):
         raise ValueError(f"{path}: airport must be a four-character ICAO")
@@ -297,7 +302,7 @@ def build_manifest(root: Path = ROOT, published_at: str | None = None) -> dict[s
             "size_bytes": result["size_bytes"],
         }
     return {
-        "schema_version": SCHEMA_VERSION,
+        "schema_version": LEGACY_VISUAL_SCHEMA_VERSION,
         "repo": REPO_NAME,
         "airports": dict(sorted(airports.items())),
         "published_at": published_at or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -322,7 +327,7 @@ def validate_existing_manifest(root: Path = ROOT) -> int:
     if not isinstance(payload, dict):
         raise ValueError(f"{path}: manifest must be an object")
     _strict_keys(payload, MANIFEST_KEYS, "manifest", path)
-    if payload.get("schema_version") != SCHEMA_VERSION or payload.get("repo") != REPO_NAME:
+    if payload.get("schema_version") != LEGACY_VISUAL_SCHEMA_VERSION or payload.get("repo") != REPO_NAME:
         raise ValueError(f"{path}: invalid schema or repo")
     airports = _object(payload.get("airports"), "manifest.airports", path)
     published_at = str(payload.get("published_at", ""))

@@ -88,12 +88,12 @@ game build.
 
 ## How it ships (maintainers)
 
-The catalog is published **only** as a v3 dataset: `.voiceatc/v3/skins_manifest.json` and the `skins-full.zip`
-release asset, written by `tools/community_release_manifest.py` beside the other v3 datasets. There is no default
+The catalog is published **only** in the full feed: `.voiceatc/full/skins_manifest.json` and the `skins-full.zip`
+release asset, written by `tools/community_release_manifest.py` beside the other full-feed datasets. There is no default
 manifest, no default zip and no entry in the release manifest, so game builds that predate skins never read it.
 `tools/stable_contract_guard.py` fails the release if any of those default paths appears. `.voiceatc/gates.json`
-holds a `skins` path gate that requires the `skins.catalog` capability, copied onto each v3 entry as `requires`;
+holds a `skins` path gate that requires the `skins.catalog` capability, copied onto each full-feed entry as `requires`;
 see [channel gates](channel-gates.md).
 
-Each v3 entry has the skin's `id` (the folder name), `repo_path`, `sha256`, `size_bytes`, `name`, `author` and,
+Each full-feed entry has the skin's `id` (the folder name), `repo_path`, `sha256`, `size_bytes`, `name`, `author` and,
 when set, `description`, so the picker can list the catalog without opening the zip.

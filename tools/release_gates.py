@@ -9,10 +9,14 @@ new content (a file kind, a repo path glob or a route lane) with ``requires``
 The default manifests and zips (the paths every build already reads) keep an
 entry only when it has no ``requires`` and its ``channels`` is absent or lists
 all three channels: a build that predates the capability system knows no
-capability, so anything that requires one stays out of the default feed. The v3
-manifests under ``.voiceatc/v3/`` keep everything plus the gate fields; builds
-that read v3 keep an entry when they have every required capability and their
-channel is listed.
+capability, so anything that requires one stays out of the default feed. The full
+manifests under ``.voiceatc/full/`` keep everything plus the gate fields; builds
+that read the full feed keep an entry when they have every required capability
+and their channel is listed.
+
+Contracts here carry no version keys. A file is identified by its path (and a
+full manifest by its ``dataset``); readers ignore keys they do not know, and new
+meaning arrives as new optional keys gated with ``requires``.
 """
 from __future__ import annotations
 
@@ -26,12 +30,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 GATES_PATH = Path(".voiceatc") / "gates.json"
-V3_DIR = Path(".voiceatc") / "v3"
-GATES_SCHEMA_VERSION = 1
-V3_SCHEMA_VERSION = 3
+FULL_DIR = Path(".voiceatc") / "full"
 CHANNELS = ("stable", "open-beta", "closed-beta")
 # Datasets whose default output this producer filters (the release zips).
-# ``skins`` has no default output at all (v3 only), so a gate on it only annotates its v3 entries.
+# ``skins`` has no default output at all (full feed only), so a gate on it only annotates its full-feed entries.
 FILTERED_DATASETS = ("mva", "runway_configs", "sector_data", "misc_drawings", "color_profiles", "skins")
 # Datasets served by lane (the API worker); a lane gate never touches a default path.
 LANE_DATASETS = ("routes", "voice_priors", "snapshots")
@@ -63,10 +65,9 @@ def _read_json(path: Path) -> object:
 def validate_gates(payload: object, label: str = str(GATES_PATH)) -> list[dict[str, object]]:
     if not isinstance(payload, dict):
         raise ValueError(f"{label}: must be a JSON object")
-    if set(payload) != {"schema_version", "gates"}:
-        raise ValueError(f"{label}: keys must be exactly schema_version and gates")
-    if payload["schema_version"] != GATES_SCHEMA_VERSION:
-        raise ValueError(f"{label}: schema_version must be {GATES_SCHEMA_VERSION}")
+    # Tolerant reader: only "gates" is read; other top-level keys are ignored.
+    if "gates" not in payload:
+        raise ValueError(f"{label}: needs a gates array")
     gates = payload["gates"]
     if not isinstance(gates, list):
         raise ValueError(f"{label}: gates must be an array")
@@ -182,7 +183,7 @@ def apply_gates(
     archive_sources: dict[str, str] | None = None,
     required_kinds: tuple[str, ...] | None = None,
 ) -> dict[str, object]:
-    """Split one dataset's entries into the default view and the annotated v3 list.
+    """Split one dataset's entries into the default view and the annotated full-feed list.
 
     ``entries`` is the manifest's entry map (airports, bundles or profiles). An
     entry is either one file (``repo_path``) or a ``files`` map by kind. A gated
@@ -194,21 +195,21 @@ def apply_gates(
     dataset_gates = [gate for gate in gates if gate.get("dataset") == dataset and "lane" not in gate]
     sources = archive_sources or {}
     default: dict[str, object] = {}
-    v3_entries: list[dict[str, object]] = []
+    full_entries: list[dict[str, object]] = []
     for key, entry in entries.items():
         if not isinstance(entry, dict):
             raise ValueError(f"{dataset}: entry '{key}' must be an object")
-        v3_entry: dict[str, object] = {"id": key}
+        full_entry: dict[str, object] = {"id": key}
         files = entry.get("files")
         if isinstance(files, dict):
             kept_files: dict[str, object] = {}
-            v3_files: dict[str, object] = {}
+            full_files: dict[str, object] = {}
             dropped_kinds: list[str] = []
             for kind, file_entry in files.items():
                 repo_path = str(file_entry.get("repo_path", "")) if isinstance(file_entry, dict) else ""
                 paths = [repo_path, sources.get(repo_path, repo_path)]
                 rule = _merge_rules(_matching_gates(dataset_gates, kind=kind, paths=paths))
-                v3_files[kind] = {**file_entry, **rule} if rule else file_entry
+                full_files[kind] = {**file_entry, **rule} if rule else file_entry
                 if rule and not is_default_visible(rule):
                     dropped_kinds.append(kind)
                 else:
@@ -217,16 +218,16 @@ def apply_gates(
             entry_survives = bool(kept_files) and not any(kind in required for kind in dropped_kinds)
             if entry_survives:
                 default[key] = entry if not dropped_kinds else {**entry, "files": kept_files}
-            v3_entry.update({**entry, "files": v3_files})
+            full_entry.update({**entry, "files": full_files})
         else:
             repo_path = str(entry.get("repo_path", ""))
             paths = [repo_path, sources.get(repo_path, repo_path)]
             rule = _merge_rules(_matching_gates(dataset_gates, kind=None, paths=paths))
             if not rule or is_default_visible(rule):
                 default[key] = entry
-            v3_entry.update({**entry, **rule})
-        v3_entries.append(v3_entry)
-    return {"default": default, "v3_entries": v3_entries}
+            full_entry.update({**entry, **rule})
+        full_entries.append(full_entry)
+    return {"default": default, "full_entries": full_entries}
 
 
 def entry_repo_paths(entries: dict[str, object]) -> list[str]:
@@ -242,10 +243,10 @@ def entry_repo_paths(entries: dict[str, object]) -> list[str]:
     return sorted(paths)
 
 
-def build_v3_manifest(
+def build_full_manifest(
     *,
     dataset: str,
-    v3_entries: list[dict[str, object]],
+    full_entries: list[dict[str, object]],
     repo: str,
     release_tag: str,
     commit_sha: str,
@@ -254,15 +255,14 @@ def build_v3_manifest(
     download_url: str = "",
 ) -> dict[str, object]:
     manifest: dict[str, object] = {
-        "schema_version": V3_SCHEMA_VERSION,
         "dataset": dataset,
         "repo": repo,
         "release_tag": release_tag.strip(),
         "commit_sha": commit_sha.strip(),
         "published_at": published_at.strip(),
         "generated_at": published_at.strip(),
-        "entry_count": len(v3_entries),
-        "entries": v3_entries,
+        "entry_count": len(full_entries),
+        "entries": full_entries,
     }
     if asset is not None:
         manifest["asset_name"] = str(asset["asset_name"])
@@ -272,8 +272,8 @@ def build_v3_manifest(
     return manifest
 
 
-def v3_manifest_path(dataset: str, root: Path = ROOT) -> Path:
-    return root / V3_DIR / f"{dataset}_manifest.json"
+def full_manifest_path(dataset: str, root: Path = ROOT) -> Path:
+    return root / FULL_DIR / f"{dataset}_manifest.json"
 
 
 def main() -> int:

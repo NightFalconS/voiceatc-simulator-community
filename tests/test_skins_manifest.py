@@ -62,7 +62,7 @@ class SkinsManifestTests(unittest.TestCase):
     def test_no_catalog_is_an_empty_manifest(self) -> None:
         manifest = self.build()
         self.assertEqual({}, manifest["skins"])
-        self.assertEqual(1, manifest["schema_version"])
+        self.assertNotIn("schema_version", manifest)
 
     def test_accepts_a_skin_and_lists_its_metadata_and_hash(self) -> None:
         path = write_skin(self.root, "harbour-blue", valid_skin())
@@ -194,25 +194,29 @@ class SkinsReleaseTests(unittest.TestCase):
             root=self.root,
         )
 
-    def test_skins_ship_only_as_v3_with_a_full_zip(self) -> None:
+    def test_skins_ship_only_in_the_full_feed_with_a_full_zip(self) -> None:
         write_skin(self.root, "harbour-blue", valid_skin())
         write_skin(self.root, "amber", valid_skin(name="Amber Night", author="Sam"))
         bundle = self.bundle()
 
-        v3 = bundle["v3_manifests"]["skins"]
-        self.assertEqual(3, v3["schema_version"])
-        self.assertEqual("skins", v3["dataset"])
-        self.assertEqual("skins-full.zip", v3["asset_name"])
+        full = bundle["full_manifests"]["skins"]
+        self.assertNotIn("schema_version", full)
+        self.assertEqual(
+            self.root / ".voiceatc" / "full" / "skins_manifest.json",
+            RELEASE.release_gates.full_manifest_path("skins", self.root),
+        )
+        self.assertEqual("skins", full["dataset"])
+        self.assertEqual("skins-full.zip", full["asset_name"])
         self.assertEqual(
             "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-01/skins-full.zip",
-            v3["download_url"],
+            full["download_url"],
         )
-        self.assertEqual(2, v3["entry_count"])
-        self.assertEqual(["amber", "harbour-blue"], sorted(entry["id"] for entry in v3["entries"]))
-        entry = next(item for item in v3["entries"] if item["id"] == "harbour-blue")
+        self.assertEqual(2, full["entry_count"])
+        self.assertEqual(["amber", "harbour-blue"], sorted(entry["id"] for entry in full["entries"]))
+        entry = next(item for item in full["entries"] if item["id"] == "harbour-blue")
         self.assertEqual("Harbour Blue", entry["name"])
         self.assertEqual("SKINS/harbour-blue/panels.json", entry["repo_path"])
-        self.assertEqual(bundle["assets"]["skins_full_zip"]["sha256"], v3["sha256"])
+        self.assertEqual(bundle["assets"]["skins_full_zip"]["sha256"], full["sha256"])
         with zipfile.ZipFile(bundle["assets"]["skins_full_zip"]["path"]) as archive:
             self.assertEqual(
                 ["SKINS/amber/panels.json", "SKINS/harbour-blue/panels.json"], sorted(archive.namelist())
@@ -243,18 +247,18 @@ class SkinsReleaseTests(unittest.TestCase):
                 Path(before["assets"][key]["path"]).read_bytes(), Path(after["assets"][key]["path"]).read_bytes()
             )
 
-    def test_an_empty_catalog_still_writes_an_empty_v3_manifest(self) -> None:
-        v3 = self.bundle()["v3_manifests"]["skins"]
-        self.assertEqual(0, v3["entry_count"])
-        self.assertEqual([], v3["entries"])
+    def test_an_empty_catalog_still_writes_an_empty_full_manifest(self) -> None:
+        full = self.bundle()["full_manifests"]["skins"]
+        self.assertEqual(0, full["entry_count"])
+        self.assertEqual([], full["entries"])
 
-    def test_skins_can_be_gated_and_the_gate_reaches_v3(self) -> None:
+    def test_skins_can_be_gated_and_the_gate_reaches_the_full_feed(self) -> None:
         write_skin(self.root, "harbour-blue", valid_skin())
         RELEASE_TESTS.write_json(
             self.root / ".voiceatc" / "gates.json",
-            {"schema_version": 1, "gates": [{"dataset": "skins", "path": "SKINS/*", "requires": ["skins.catalog"]}]},
+            {"gates": [{"dataset": "skins", "path": "SKINS/*", "requires": ["skins.catalog"]}]},
         )
-        entry = self.bundle()["v3_manifests"]["skins"]["entries"][0]
+        entry = self.bundle()["full_manifests"]["skins"]["entries"][0]
         self.assertEqual(["skins.catalog"], entry["requires"])
 
     def test_the_committed_gates_require_the_capability_that_reads_each_content(self) -> None:

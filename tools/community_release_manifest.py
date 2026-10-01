@@ -24,17 +24,16 @@ import sector_data_manifest
 import color_profiles_manifest
 import release_gates
 import skins_manifest
+from legacy_contract import LEGACY_DATASET_MANIFEST_SCHEMA_VERSION, LEGACY_RELEASE_MANIFEST_SCHEMA_VERSION
 
 
 REPO_NAME = "lainoa-software/voiceatc-simulator-community"
-RELEASE_MANIFEST_SCHEMA_VERSION = 4
-DATASET_MANIFEST_SCHEMA_VERSION = 2
 RELEASE_MANIFEST_PATH = ROOT / ".voiceatc" / "release_manifest.json"
 RELEASE_MANIFEST_ASSET_NAME = "release-manifest.json"
 RELEASE_TITLE_PREFIX = "Daily Community Release"
 ZIP_TIMESTAMP = (2024, 1, 1, 0, 0, 0)
 ZIP_FILE_MODE = 0o100644 << 16
-# The skins catalog is v3 only (no default manifest, no default zip), so its asset has a fixed
+# The skins catalog is in the full feed only (no default manifest, no default zip), so its asset has a fixed
 # name: skins do not follow the AIRAC cycle.
 SKINS_FULL_ASSET_NAME = "skins-full.zip"
 
@@ -77,7 +76,7 @@ def _build_release_title(release_tag: str) -> str:
 
 
 def _full_asset_name(asset_name: str) -> str:
-    """The v3 asset beside a default zip: ``mva-2609.zip`` -> ``mva-2609-full.zip``."""
+    """The full-feed asset beside a default zip: ``mva-2609.zip`` -> ``mva-2609-full.zip``."""
     stem, dot, suffix = asset_name.rpartition(".")
     return f"{stem}-full.{suffix}" if dot else f"{asset_name}-full"
 
@@ -157,7 +156,7 @@ def build_mva_release_manifest(
         base_manifest = mva_manifest.build_manifest(root, commit_sha=commit_sha)
         airports = base_manifest["airports"]
     return {
-        "schema_version": DATASET_MANIFEST_SCHEMA_VERSION,
+        "schema_version": LEGACY_DATASET_MANIFEST_SCHEMA_VERSION,
         "repo": REPO_NAME,
         "release_tag": release_tag.strip(),
         "commit_sha": commit_sha.strip(),
@@ -187,7 +186,7 @@ def build_runway_release_manifest(
         base_manifest = runway_configs_manifest.build_manifest(root, commit_sha=commit_sha)
         airports = base_manifest["airports"]
     return {
-        "schema_version": DATASET_MANIFEST_SCHEMA_VERSION,
+        "schema_version": LEGACY_DATASET_MANIFEST_SCHEMA_VERSION,
         "repo": REPO_NAME,
         "release_tag": release_tag.strip(),
         "commit_sha": commit_sha.strip(),
@@ -217,7 +216,7 @@ def build_sector_data_release_manifest(
         base_manifest = sector_data_manifest.build_manifest(root, commit_sha=commit_sha)
         bundles = base_manifest["bundles"]
     return {
-        "schema_version": DATASET_MANIFEST_SCHEMA_VERSION,
+        "schema_version": LEGACY_DATASET_MANIFEST_SCHEMA_VERSION,
         "repo": REPO_NAME,
         "release_tag": release_tag.strip(),
         "commit_sha": commit_sha.strip(),
@@ -247,7 +246,7 @@ def build_misc_drawings_release_manifest(
         base_manifest = misc_drawings_manifest.build_manifest(root, commit_sha=commit_sha)
         airports = base_manifest["airports"]
     return {
-        "schema_version": DATASET_MANIFEST_SCHEMA_VERSION,
+        "schema_version": LEGACY_DATASET_MANIFEST_SCHEMA_VERSION,
         "repo": REPO_NAME,
         "release_tag": release_tag.strip(),
         "commit_sha": commit_sha.strip(),
@@ -278,7 +277,7 @@ def build_color_profiles_release_manifest(
         projection = color_profiles_manifest.build_release_projection(root, commit_sha=commit_sha)
         resolved_profiles = projection["profiles"]
     return {
-        "schema_version": DATASET_MANIFEST_SCHEMA_VERSION,
+        "schema_version": LEGACY_DATASET_MANIFEST_SCHEMA_VERSION,
         "repo": REPO_NAME,
         "release_tag": release_tag.strip(),
         "commit_sha": commit_sha.strip(),
@@ -377,7 +376,7 @@ def build_release_manifest(
             "content_type": "text/tab-separated-values; charset=utf-8",
         }
     return {
-        "schema_version": RELEASE_MANIFEST_SCHEMA_VERSION,
+        "schema_version": LEGACY_RELEASE_MANIFEST_SCHEMA_VERSION,
         "repo": REPO_NAME,
         "release_tag": release_tag,
         "release_title": resolved_release_title,
@@ -427,7 +426,7 @@ def build_release_bundle(
     skins_base_manifest = skins_manifest.build_manifest(root, commit_sha=commit_sha)
 
     # Channel gates: the default view (what every live build reads) drops gated
-    # entries (any `requires`, or channels short of all three); the v3 view keeps them all.
+    # entries (any `requires`, or channels short of all three); the full view keeps them all.
     gates = release_gates.load_gates(root)
     color_archive_sources = color_profiles_projection["archive_sources"]
     gated = {
@@ -450,7 +449,7 @@ def build_release_bundle(
             archive_sources=color_archive_sources,
             required_kinds=("colors",),
         ),
-        # Only the v3 entries of this are used: the catalog has no default view.
+        # Only the full-feed entries of this are used: the catalog has no default view.
         "skins": release_gates.apply_gates(
             "skins", skins_base_manifest["skins"], gates=gates
         ),
@@ -517,10 +516,10 @@ def build_release_bundle(
             output_dir / SKINS_FULL_ASSET_NAME,
         ),
     }
-    v3_manifests = {
-        dataset: release_gates.build_v3_manifest(
+    full_manifests = {
+        dataset: release_gates.build_full_manifest(
             dataset=dataset,
-            v3_entries=gated[dataset]["v3_entries"],
+            full_entries=gated[dataset]["full_entries"],
             repo=REPO_NAME,
             release_tag=release_tag,
             commit_sha=commit_sha,
@@ -622,8 +621,8 @@ def build_release_bundle(
         _write_json(misc_drawings_manifest.MANIFEST_PATH, misc_drawings_release_manifest)
         _write_json(color_profiles_manifest.MANIFEST_PATH, color_profiles_release_manifest)
         _write_json(RELEASE_MANIFEST_PATH, release_manifest)
-        for dataset, v3_manifest in v3_manifests.items():
-            _write_json(release_gates.v3_manifest_path(dataset, root), v3_manifest)
+        for dataset, full_manifest in full_manifests.items():
+            _write_json(release_gates.full_manifest_path(dataset, root), full_manifest)
 
     return {
         "airac": airac,
@@ -662,7 +661,7 @@ def build_release_bundle(
             "color_profiles": color_profiles_release_manifest,
             "release": release_manifest,
         },
-        "v3_manifests": v3_manifests,
+        "full_manifests": full_manifests,
     }
 
 

@@ -6,7 +6,7 @@ from the Skin section instead of getting it by airport. It follows the same key 
 as a regional ``panels.json`` (``color_profiles_manifest.validate_panels_file``), plus
 a required ``name`` and ``author``.
 
-The catalog is published **only** as a v3 dataset (``.voiceatc/v3/skins_manifest.json``
+The catalog is published **only** in the full feed (``.voiceatc/full/skins_manifest.json``
 and ``skins-full.zip``), written by ``community_release_manifest.py``. There is no
 default manifest and no default zip, so builds that predate skins never read it.
 """
@@ -31,7 +31,6 @@ import color_profiles_manifest
 ROOT = Path(__file__).resolve().parent.parent
 REPO_NAME = "lainoa-software/voiceatc-simulator-community"
 BRANCH_NAME = "main"
-SCHEMA_VERSION = 1
 SKINS_DIR_NAME = color_profiles_manifest.SKINS_DIR_NAME
 SKIN_FILE_NAME = "panels.json"
 README_FILE_NAME = "README.md"
@@ -117,7 +116,6 @@ def build_manifest(root: Path = ROOT, commit_sha: str | None = None) -> dict[str
             names_seen[name_key] = folder.name
             skins[folder.name] = entry
     return {
-        "schema_version": SCHEMA_VERSION,
         "repo": REPO_NAME,
         "branch": BRANCH_NAME,
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
