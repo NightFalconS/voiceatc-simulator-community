@@ -27,7 +27,6 @@ import color_profiles_manifest
 REPO_NAME = "lainoa-software/voiceatc-simulator-community"
 RELEASE_MANIFEST_SCHEMA_VERSION = 4
 DATASET_MANIFEST_SCHEMA_VERSION = 2
-RELEASE_MANIFEST_PATH = ROOT / ".voiceatc" / "release_manifest.json"
 RELEASE_MANIFEST_ASSET_NAME = "release-manifest.json"
 RELEASE_TITLE_PREFIX = "Daily Community Release"
 ZIP_TIMESTAMP = (2024, 1, 1, 0, 0, 0)
@@ -378,7 +377,6 @@ def build_release_bundle(
     download_repo: str,
     release_title: str | None = None,
     root: Path = ROOT,
-    write_manifests: bool = False,
 ) -> dict[str, object]:
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -503,15 +501,6 @@ def build_release_bundle(
     release_manifest_asset_path = output_dir / RELEASE_MANIFEST_ASSET_NAME
     _write_json(release_manifest_asset_path, release_manifest)
 
-    if write_manifests:
-        _write_json(routes_release_manifest.ROUTES_MANIFEST_PATH, routes_manifest)
-        _write_json(mva_manifest.MANIFEST_PATH, mva_release_manifest)
-        _write_json(runway_configs_manifest.MANIFEST_PATH, runway_release_manifest)
-        _write_json(sector_data_manifest.MANIFEST_PATH, sector_data_release_manifest)
-        _write_json(misc_drawings_manifest.MANIFEST_PATH, misc_drawings_release_manifest)
-        _write_json(color_profiles_manifest.MANIFEST_PATH, color_profiles_release_manifest)
-        _write_json(RELEASE_MANIFEST_PATH, release_manifest)
-
     return {
         "airac": airac,
         "assets": {
@@ -559,7 +548,6 @@ def main() -> int:
     parser.add_argument("--published-at", required=True, help="Release timestamp in UTC")
     parser.add_argument("--commit-sha", default="", help="Source commit SHA for the published release")
     parser.add_argument("--download-repo", default=REPO_NAME, help="GitHub repo used in release asset URLs")
-    parser.add_argument("--write-manifests", action="store_true", help="Write .voiceatc manifests in-place")
     args = parser.parse_args()
 
     try:
@@ -572,7 +560,6 @@ def main() -> int:
             download_repo=args.download_repo.strip() or REPO_NAME,
             release_title=args.release_title.strip() or None,
             root=ROOT,
-            write_manifests=args.write_manifests,
         )
     except Exception as exc:
         print(str(exc), file=sys.stderr)
