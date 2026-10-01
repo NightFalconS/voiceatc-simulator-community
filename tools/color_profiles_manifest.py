@@ -18,15 +18,64 @@ BRANCH_NAME = "main"
 PROFILE_FILE_NAMES = {
     "colors": "colors.json",
     "style": "style.json",
+    "panels": "panels.json",
 }
 FILE_KIND_BY_NAME = {file_name: kind for kind, file_name in PROFILE_FILE_NAMES.items()}
-FILE_KIND_ORDER = ("colors", "style")
+FILE_KIND_ORDER = ("colors", "style", "panels")
 ALLOWED_SCOPE_DEPTHS = {1, 2, 3, 4, 5}
 LEGACY_ALLOWED_SCOPE_DEPTHS = {2, 3, 4, 5}
 HIERARCHY_REGISTRY_PATH = Path("documentation") / "content_hierarchy.json"
 EXPECTED_US_RELEASE_ALIASES = {f"K/K{chr(letter)}" for letter in range(ord("A"), ord("Z") + 1)}
 HEX_COLOR_RE = re.compile(r"^[0-9A-Fa-f]{6}(?:[0-9A-Fa-f]{2})?$")
 ALLOWED_NUMERIC_KEYS = {"symbol_size", "traildot_size", "symbol_line_width"}
+# panels.json is the session-interface skin: the game's SessionSkin accepts exactly
+# these keys (resources/session_skins/generic/panels.json in the game repo), and a
+# skin changes the look only, so no other key is ever valid.
+PANELS_ENUM_VALUES = {
+    "frame_style": ("window", "sacta", "none"),
+    "bar_style": ("bars", "cells", "dcb"),
+    "strip_style": ("dark", "paper_es", "paper_us"),
+    "text_case": ("as_written", "upper"),
+}
+PANELS_COLOR_KEYS = (
+    "bar_color",
+    "edge_color",
+    "panel_color",
+    "title_color",
+    "accent_color",
+    "well_color",
+    "button_color",
+    "text_color",
+    "dim_color",
+    "on_color",
+    "value_color",
+    "strip_color",
+    "bevel_light_color",
+    "bevel_dark_color",
+    "selection_color",
+    "selection_text_color",
+    "field_color",
+    "field_text_color",
+    "inactive_color",
+    "ok_color",
+    "warn_color",
+    "alert_color",
+    "clock_color",
+    "hover_text_color",
+    "strip_text_color",
+    "scope_color",
+)
+PANELS_FONT_KEYS = ("text_font", "data_font")
+PANELS_FONT_IDS = ("noto_sans", "courier_prime", "barlow_semi_condensed")
+PANELS_BEVEL_KEY = "bevel"
+PANELS_MAX_BEVEL = 8
+PANELS_KEYS = (
+    *PANELS_ENUM_VALUES,
+    PANELS_BEVEL_KEY,
+    *PANELS_COLOR_KEYS,
+    *PANELS_FONT_KEYS,
+)
+PANELS_HEX_RE = re.compile(r"[0-9A-Fa-f]{6}(?:[0-9A-Fa-f]{2})?")
 
 
 def _tracked_profile_files(root: Path) -> list[Path]:
@@ -150,6 +199,44 @@ def validate_style_file(path: Path, root: Path = ROOT) -> dict[str, object]:
     }
 
 
+def _validate_panels_value(key: str, value: object, path: Path) -> None:
+    if key in PANELS_ENUM_VALUES:
+        allowed = PANELS_ENUM_VALUES[key]
+        if not isinstance(value, str) or value not in allowed:
+            raise ValueError(f"{path}: '{key}' must be one of {', '.join(allowed)}")
+    elif key == PANELS_BEVEL_KEY:
+        if isinstance(value, bool) or not isinstance(value, int) or not 0 <= value <= PANELS_MAX_BEVEL:
+            raise ValueError(f"{path}: '{key}' must be a whole number from 0 to {PANELS_MAX_BEVEL}")
+    elif key in PANELS_COLOR_KEYS:
+        if not isinstance(value, str) or not PANELS_HEX_RE.fullmatch(value):
+            raise ValueError(f"{path}: '{key}' must be RRGGBB or RRGGBBAA hex, without a '#'")
+    elif key in PANELS_FONT_KEYS:
+        if not isinstance(value, str) or value not in PANELS_FONT_IDS:
+            raise ValueError(f"{path}: '{key}' must be one of {', '.join(PANELS_FONT_IDS)}")
+
+
+def validate_panels_file(path: Path, root: Path = ROOT) -> dict[str, object]:
+    payload, raw_bytes = _load_json_object(path)
+    if not payload:
+        raise ValueError(f"{path}: panels.json must not be empty")
+
+    unknown = [key for key in payload if key not in PANELS_KEYS]
+    if unknown:
+        raise ValueError(
+            f"{path}: panels.json does not accept {', '.join(repr(key) for key in unknown)}. "
+            "A skin cannot add features: it only sets the look, using the documented keys "
+            f"({', '.join(PANELS_KEYS)})"
+        )
+    for key, value in payload.items():
+        _validate_panels_value(key, value, path)
+
+    return {
+        "repo_path": safe_repo_path(path, root),
+        "sha256": hashlib.sha256(raw_bytes).hexdigest(),
+        "size_bytes": len(raw_bytes),
+    }
+
+
 def validate_profile_directory(profile_dir: Path, profile_files: dict[str, Path], root: Path = ROOT) -> dict[str, object]:
     scope_path = safe_repo_path(profile_dir, root)
     _validate_scope_depth(scope_path, profile_dir)
@@ -162,6 +249,8 @@ def validate_profile_directory(profile_dir: Path, profile_files: dict[str, Path]
     }
     if "style" in profile_files:
         files["style"] = validate_style_file(profile_files["style"], root)
+    if "panels" in profile_files:
+        files["panels"] = validate_panels_file(profile_files["panels"], root)
     return {
         "scope_path": scope_path,
         "files": files,
