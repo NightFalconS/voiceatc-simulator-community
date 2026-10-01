@@ -12,7 +12,7 @@ How to build a skin: [skins modding guide](skins-modding.md).
 
 | Key | Type | Default | Allowed | What it does |
 |---|---|---|---|---|
-| `name` | string | `Generic` | ≤ 40 characters | The skin's name in Settings > Skin. |
+| `name` | string |  | ≤ 40 characters | The skin's name in Settings > Skin. |
 | `author` | string |  | ≤ 60 characters | Who made the skin. |
 | `description` | string |  | ≤ 200 characters | One line about the skin. |
 | `extends` | string | `generic` |  | The skin this one starts from: `generic`, or an installed skin id (`skin:<id>` from the catalog, `scope:<path>` for a regional skin). Objects merge key by key; arrays and plain values replace. An unknown base starts from Generic. |
@@ -265,7 +265,6 @@ Features: `rx`, `tx`, `blocked`, `parsing`, `sent`, `undo`.
 
 ### value_popup
 
-
 | Key | Type | Default | Allowed | What it does |
 |---|---|---|---|---|
 | `components.value_popup.mode` | string | `list_window` | `list_window`, `split_windows`, `dock_strip`; capability `interface.value_popup.<value>` | CFL and speed: a window with its list, split windows, or a strip docked under a top dcb_grid. |
@@ -281,7 +280,6 @@ Features: `dct`, `dct_field`, `hdg`, `hdg_field`, `turn`, `present`, `hold`, `af
 | `components.wpt.mode` | string | `window` | `window`, `split_windows`, `dock_strip`; capability `interface.wpt.<value>` |  |
 
 ### menus
-
 
 | Key | Type | Default | Allowed | What it does |
 |---|---|---|---|---|

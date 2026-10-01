@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -110,7 +111,7 @@ def _rows(node: dict[str, Any], path: str, defs: dict[str, Any], rows: list[str]
           top: str = "") -> None:
     rule, shared = _resolve(node, defs)
     if path and path != top:
-        generic = _generic_value(path)
+        generic = None if path in ("name", "author", "description") else _generic_value(path)
         if generic is not None and not isinstance(generic, dict) and len(json.dumps(generic)) <= 40:
             default = _code(generic)
         else:
@@ -185,7 +186,7 @@ def render() -> str:
         out += [*rows, ""]
     out += ["## Capabilities the game supports", "",
             ", ".join(f"`{name}`" for name in contract["capabilities"]), ""]
-    return "\n".join(line.rstrip() for line in out).replace("\n\n\n", "\n\n").rstrip() + "\n"
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(line.rstrip() for line in out)).rstrip() + "\n"
 
 
 def main(argv: list[str] | None = None) -> int:
