@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import argparse
+import json
+import math
 import re
 import sqlite3
 import sys
@@ -154,11 +156,21 @@ class GraphIndex:
 
 
 class NavdataIndex:
-    def __init__(self, db_path: Path) -> None:
+    def __init__(self, db_path: Path, *, airport_aliases: dict[str, str] | None = None) -> None:
         self.db_path = db_path
         self.airports = self._load_values(
             "SELECT DISTINCT airport_identifier FROM tbl_pa_airports WHERE airport_identifier IS NOT NULL AND airport_identifier != ''"
         )
+        us_local = self._load_values(
+            "SELECT airport_identifier FROM tbl_pa_airports WHERE country = 'UNITED STATES'"
+        )
+        self.airport_aliases = {f"K{ident}": ident for ident in us_local
+                                if len(ident) == 3 and f"K{ident}" not in self.airports}
+        for alias, active in (airport_aliases or {}).items():
+            if active not in self.airports:
+                raise ValueError(f"Airport alias {alias} targets absent airport {active}")
+            if alias not in self.airports:
+                self.airport_aliases[alias] = active
         self.waypoints = self._load_values(
             "SELECT DISTINCT waypoint_identifier FROM tbl_ea_enroute_waypoints WHERE waypoint_identifier IS NOT NULL AND waypoint_identifier != ''"
         )
@@ -250,7 +262,8 @@ class NavdataIndex:
             return set()
 
     def has_airport(self, ident: str) -> bool:
-        return ident.strip().upper() in self.airports
+        normalized = ident.strip().upper()
+        return self.airport_aliases.get(normalized, normalized) in self.airports
 
     def has_point(self, ident: str) -> bool:
         normalized = ident.strip().upper()
@@ -260,7 +273,7 @@ class NavdataIndex:
             or normalized in self.vhfs
             or normalized in self.ndbs
             or normalized in self.terminal_ndbs
-            or normalized in self.airports
+            or self.has_airport(normalized)
         )
 
     def has_point_excluding_airports(self, ident: str) -> bool:
@@ -318,10 +331,38 @@ class NavdataIndex:
         player routes are read by builds that cannot fly an approach-fix arrival end.
         """
         apt = airport.strip().upper()
+        apt = self.airport_aliases.get(apt, apt)
         ident = fix.strip().upper()
         if apt not in self.star_airports or ident in self.star_waypoints.get(apt, set()):
             return True
         return accept_approach_entries and ident in self.approach_entries.get(apt, set())
+
+
+def load_airport_aliases(path: Path | None, airac: str) -> dict[str, str]:
+    """Load reviewed same-site names only for the explicit validation cycle."""
+    if path is None:
+        return {}
+    document = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(document, dict) or document.get("airac") != airac:
+        raise ValueError("Airport alias manifest does not match validation AIRAC")
+    entries = document.get("aliases")
+    if not isinstance(entries, dict):
+        raise ValueError("Airport alias manifest must contain an aliases object")
+    aliases: dict[str, str] = {}
+    for alias, entry in entries.items():
+        if not isinstance(entry, dict):
+            raise ValueError(f"Malformed airport alias: {alias}")
+        active = entry.get("active_ident", "")
+        distance = entry.get("distance_nm")
+        if (not isinstance(alias, str) or len(alias) != 4 or not alias.isalnum()
+                or not isinstance(active, str) or len(active) != 4 or not active.isalnum()
+                or alias == active or alias != alias.upper() or active != active.upper()
+                or entry.get("reason") not in {"same_site_alias", "same_site_rename_candidate"}
+                or not isinstance(distance, (int, float)) or isinstance(distance, bool)
+                or not math.isfinite(distance) or not 0 <= distance <= 0.01):
+            raise ValueError(f"Unproven same-site airport alias: {alias}")
+        aliases[alias] = active
+    return aliases
 
 
 def parse_routes_file(routes_path: Path) -> tuple[str, list[RouteRow]]:
@@ -456,6 +497,7 @@ def validate_routes(
     *,
     strict_dct: bool,
     max_findings: int,
+    airport_aliases: dict[str, str] | None = None,
     accept_approach_entries: bool = False,
 ) -> ValidationSummary:
     """Validate contributed routes the way the game resolves them.
@@ -471,7 +513,7 @@ def validate_routes(
     """
     airac, rows = parse_routes_file(routes_path)
     graph = GraphIndex(graph_db) if graph_db else None
-    navdata = NavdataIndex(navdata_db) if navdata_db else None
+    navdata = NavdataIndex(navdata_db, airport_aliases=airport_aliases) if navdata_db else None
     # Navdata answers airway questions only when it actually carries the airway
     # table; a navdata file without it must not deprecate every airway hop.
     airway_source = navdata if navdata and navdata.airway_sequences else None
@@ -627,6 +669,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--routes-path", default=str(DEFAULT_ROUTES_PATH), help="Path to ROUTES/routes.tsv")
     parser.add_argument("--graph-db", default="", help="Optional path to compacted_route_graph.s3db (FRA DCT warnings only)")
     parser.add_argument("--navdata-db", default="", help="Path to navigraph_data.s3db — decides route acceptance")
+    parser.add_argument("--airport-aliases", type=Path, help="Reviewed same-site aliases for this AIRAC")
     parser.add_argument("--strict-dct", action="store_true", help="Fail DCT segments not present in FRA DCT graph")
     parser.add_argument("--max-findings", type=int, default=50, help="Stop after this many errors")
     parser.add_argument(
@@ -656,6 +699,7 @@ def main() -> int:
             navdata_db,
             strict_dct=bool(args.strict_dct),
             max_findings=max(1, int(args.max_findings)),
+            airport_aliases=load_airport_aliases(args.airport_aliases, airac),
             accept_approach_entries=bool(args.accept_approach_entries),
         )
     except Exception as exc:
