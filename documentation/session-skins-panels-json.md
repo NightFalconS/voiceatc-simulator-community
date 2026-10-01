@@ -24,7 +24,8 @@ ACC group or terminal folder (see the [content hierarchy](CONTENT_HIERARCHY.md))
   takes the `panels.json` **next to that `colors.json`**. A terminal area without its own colour profile
   therefore takes its parent's skin, exactly as it takes its parent's colours. A player's local override of a
   scope wins over the downloaded one.
-- The Spain (`L/LE/`) and US (`K/`) skins, the SACTA and STARS looks, will ship in this file at those folders.
+- The Spain (`L/LE/panels.json`, the SACTA look) and US (`K/panels.json`, the legacy STARS look) skins ship in
+  this file at those folders. They are complete examples of every key.
 
 ## Keys
 
@@ -50,13 +51,27 @@ repository check (and ignored by the game, which keeps Generic for it).
 | `on_color` | `9DB0DA` | current-value mark, toggle underline, focused field |
 | `value_color` | `FFFFFF` | values and titles |
 | `strip_color` | `23262E` | the dark traffic strip |
+| `bevel_light_color` | `394258` | the lit edge of a raised bevel |
+| `bevel_dark_color` | `141926` | the shaded edge of a raised bevel |
+| `selection_color` | `4B546D` | selection bar behind the picked row |
+| `selection_text_color` | `FFFFFF` | text on the selection bar |
+| `field_color` | `141926` | background of edit fields |
+| `field_text_color` | `FFFFFF` | text typed in edit fields |
+| `inactive_color` | `333B50` | an unfocused window's title or bar |
+| `ok_color` | `9FE0B8` | status text: all good |
+| `warn_color` | `F2C14E` | status text: caution |
+| `alert_color` | `FF7A7A` | status text: alert |
+| `clock_color` | `FFFFFF` | the clock |
+| `hover_text_color` | `FFFFFF` | text of the row under the pointer |
+| `strip_text_color` | `CDD3E0` | text on the dark traffic strip |
+| `scope_color` | `0E131C` | the radar scope background |
 | `text_font` | `noto_sans` | chrome text |
 | `data_font` | `courier_prime` | data such as idents and numbers |
 
 Rules for the values:
 
 - Every `*_color` is plain hex, `RRGGBB` or `RRGGBBAA`, **without** a `#`, like `colors.json`. No spaces.
-- `text_font` and `data_font` are one of `noto_sans`, `courier_prime`, `barlow_semi_condensed`, `pixel_mono`.
+- `text_font` and `data_font` are one of `noto_sans`, `courier_prime`, `barlow_semi_condensed`.
   A skin cannot load its own font files.
 - `bevel` is an integer written without a decimal point (`2`, not `2.0`).
 - The file is a JSON object and cannot be empty.
@@ -82,5 +97,6 @@ Every pull request that touches a `panels.json` runs the same check as `colors.j
 release then lists `panels.json` in the colour-profiles manifest for that scope, with its hash and size, and
 packs it in the colour-profiles archive that the game downloads. Do not edit the generated manifest by hand.
 The game reads `panels.json` from the archive only from the simulator version that introduced session
-skins. Maintainers: do not add the first `panels.json` content file until that version is the minimum
-supported one, because older versions reject a colour-profiles archive that contains a file they do not list.
+skins. Maintainers: do not merge the pull request that adds the first `panels.json` content files (the Spain
+and US skins) until that version is the minimum supported one and the game build that renders those skins has
+shipped, because older versions reject a colour-profiles archive that contains a file they do not list.

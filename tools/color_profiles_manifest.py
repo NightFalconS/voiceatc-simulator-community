@@ -51,9 +51,23 @@ PANELS_COLOR_KEYS = (
     "on_color",
     "value_color",
     "strip_color",
+    "bevel_light_color",
+    "bevel_dark_color",
+    "selection_color",
+    "selection_text_color",
+    "field_color",
+    "field_text_color",
+    "inactive_color",
+    "ok_color",
+    "warn_color",
+    "alert_color",
+    "clock_color",
+    "hover_text_color",
+    "strip_text_color",
+    "scope_color",
 )
 PANELS_FONT_KEYS = ("text_font", "data_font")
-PANELS_FONT_IDS = ("noto_sans", "courier_prime", "barlow_semi_condensed", "pixel_mono")
+PANELS_FONT_IDS = ("noto_sans", "courier_prime", "barlow_semi_condensed")
 PANELS_BEVEL_KEY = "bevel"
 PANELS_MAX_BEVEL = 8
 PANELS_KEYS = (

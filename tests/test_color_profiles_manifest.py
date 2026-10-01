@@ -46,7 +46,7 @@ def valid_panels() -> dict[str, object]:
         "bar_color": "1F2535",
         "edge_color": "394258cc",
         "text_font": "barlow_semi_condensed",
-        "data_font": "pixel_mono",
+        "data_font": "courier_prime",
     }
 
 
@@ -400,7 +400,7 @@ class PanelsFileTests(unittest.TestCase):
             for value in values:
                 with self.subTest(key=key, value=value):
                     self.build({key: value})
-        for font in ("noto_sans", "courier_prime", "barlow_semi_condensed", "pixel_mono"):
+        for font in ("noto_sans", "courier_prime", "barlow_semi_condensed"):
             with self.subTest(font=font):
                 self.build({"text_font": font})
         for bevel in (0, 8):
@@ -451,7 +451,7 @@ class PanelsFileTests(unittest.TestCase):
                 self.build({"bar_color": value})
 
     def test_rejects_invalid_fonts(self) -> None:
-        for value in ("Noto Sans", "arial", "", 3, None):
+        for value in ("Noto Sans", "arial", "pixel_mono", "", 3, None):
             with self.subTest(value=value), self.assertRaisesRegex(ValueError, "'text_font' must be one of"):
                 self.build({"text_font": value})
 
@@ -486,6 +486,46 @@ class PanelsFileTests(unittest.TestCase):
                 projection["profiles"]["L/LE"]["files"]["panels"]["sha256"],
                 MODULE.build_manifest(root, commit_sha="x")["profiles"]["L/LE"]["files"]["panels"]["sha256"],
             )
+
+    def test_accepts_the_session_skin_colour_keys(self) -> None:
+        keys = (
+            "bevel_light_color",
+            "bevel_dark_color",
+            "selection_color",
+            "selection_text_color",
+            "field_color",
+            "field_text_color",
+            "inactive_color",
+            "ok_color",
+            "warn_color",
+            "alert_color",
+            "clock_color",
+            "hover_text_color",
+            "strip_text_color",
+            "scope_color",
+        )
+        self.assertEqual(14, len(keys))
+        for key in keys:
+            with self.subTest(key=key):
+                self.assertIn(key, MODULE.PANELS_COLOR_KEYS)
+                self.build({key: "A6228E"})
+                with self.assertRaisesRegex(ValueError, f"'{key}' must be RRGGBB or RRGGBBAA hex"):
+                    self.build({key: "#A6228E"})
+
+    def test_repository_skins_are_complete_and_valid(self) -> None:
+        expected = {
+            "L/LE": {"frame_style": "sacta", "bar_style": "cells", "strip_style": "paper_es"},
+            "K": {"frame_style": "none", "bar_style": "dcb", "strip_style": "paper_us"},
+        }
+        manifest = MODULE.build_manifest(REPO_ROOT, commit_sha="test-commit")
+        for scope, facts in expected.items():
+            with self.subTest(scope=scope):
+                self.assertIn("panels", manifest["profiles"][scope]["files"])
+                payload = json.loads((REPO_ROOT / scope / "panels.json").read_text(encoding="utf-8"))
+                self.assertEqual(set(MODULE.PANELS_KEYS), set(payload))
+                for key, value in facts.items():
+                    self.assertEqual(value, payload[key])
+                self.assertEqual("upper", payload["text_case"])
 
     def test_repository_panels_files_sit_beside_colors(self) -> None:
         manifest = MODULE.build_manifest(REPO_ROOT, commit_sha="test-commit")
