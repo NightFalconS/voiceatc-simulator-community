@@ -76,6 +76,13 @@ PANELS_KEYS = (
     *PANELS_FONT_KEYS,
 )
 PANELS_HEX_RE = re.compile(r"[0-9A-Fa-f]{6}(?:[0-9A-Fa-f]{2})?")
+# Optional catalog metadata: the skin picker lists a skin by these. They are text for
+# people, never skin values, so the game does not apply them. The maximum lengths are
+# characters; one line, no leading or trailing space.
+PANELS_META_KEYS = ("name", "author", "description")
+PANELS_META_MAX_LENGTH = {"name": 40, "author": 60, "description": 200}
+PANELS_ALL_KEYS = (*PANELS_KEYS, *PANELS_META_KEYS)
+SKINS_DIR_NAME = "SKINS"
 
 
 def _tracked_profile_files(root: Path) -> list[Path]:
@@ -84,7 +91,9 @@ def _tracked_profile_files(root: Path) -> list[Path]:
         paths.extend(
             path
             for path in root.rglob(file_name)
-            if ".git" not in path.parts and ".voiceatc" not in path.parts
+            if ".git" not in path.parts
+            and ".voiceatc" not in path.parts
+            and path.relative_to(root).parts[0] != SKINS_DIR_NAME
         )
     return sorted(paths)
 
@@ -199,8 +208,25 @@ def validate_style_file(path: Path, root: Path = ROOT) -> dict[str, object]:
     }
 
 
+def _validate_panels_meta(key: str, value: object, path: Path) -> None:
+    limit = PANELS_META_MAX_LENGTH[key]
+    if (
+        not isinstance(value, str)
+        or not value
+        or value != value.strip()
+        or len(value) > limit
+        or any(ord(char) < 32 or ord(char) == 127 for char in value)
+    ):
+        raise ValueError(
+            f"{path}: '{key}' must be one line of text, 1 to {limit} characters, "
+            "with no space at either end"
+        )
+
+
 def _validate_panels_value(key: str, value: object, path: Path) -> None:
-    if key in PANELS_ENUM_VALUES:
+    if key in PANELS_META_KEYS:
+        _validate_panels_meta(key, value, path)
+    elif key in PANELS_ENUM_VALUES:
         allowed = PANELS_ENUM_VALUES[key]
         if not isinstance(value, str) or value not in allowed:
             raise ValueError(f"{path}: '{key}' must be one of {', '.join(allowed)}")
@@ -215,20 +241,33 @@ def _validate_panels_value(key: str, value: object, path: Path) -> None:
             raise ValueError(f"{path}: '{key}' must be one of {', '.join(PANELS_FONT_IDS)}")
 
 
-def validate_panels_file(path: Path, root: Path = ROOT) -> dict[str, object]:
+def validate_panels_file(
+    path: Path,
+    root: Path = ROOT,
+    *,
+    required_meta: tuple[str, ...] = (),
+) -> dict[str, object]:
+    """Validate one panels.json. ``required_meta`` names the metadata keys that must be present
+    (the skins catalog requires name and author; a regional skin may omit them)."""
     payload, raw_bytes = _load_json_object(path)
     if not payload:
         raise ValueError(f"{path}: panels.json must not be empty")
 
-    unknown = [key for key in payload if key not in PANELS_KEYS]
+    unknown = [key for key in payload if key not in PANELS_ALL_KEYS]
     if unknown:
         raise ValueError(
             f"{path}: panels.json does not accept {', '.join(repr(key) for key in unknown)}. "
             "A skin cannot add features: it only sets the look, using the documented keys "
-            f"({', '.join(PANELS_KEYS)})"
+            f"({', '.join(PANELS_ALL_KEYS)})"
         )
+    for key in required_meta:
+        if key not in payload:
+            raise ValueError(f"{path}: '{key}' is required")
     for key, value in payload.items():
         _validate_panels_value(key, value, path)
+    if not any(key in PANELS_KEYS for key in payload):
+        raise ValueError(f"{path}: panels.json has no skin keys; set at least one look key, not only "
+                         f"{', '.join(PANELS_META_KEYS)}")
 
     return {
         "repo_path": safe_repo_path(path, root),

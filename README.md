@@ -86,6 +86,8 @@ approval and a green required check are necessary before merge.
   the shipped US preferential configurations came from.
 - [Route publication](documentation/routes-publication.md) — how the `ROUTES/`
   tables are produced. Maintainer and website territory.
+- [Skins catalog](documentation/skins-catalog.md) — how to make and submit a session
+  interface skin that players pick in Settings.
 - [Channel gates](documentation/channel-gates.md) — how new kinds of content reach
   one game channel first without breaking older builds. Maintainers only.
 

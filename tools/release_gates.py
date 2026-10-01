@@ -34,7 +34,8 @@ GATES_PATH = Path(".voiceatc") / "gates.json"
 FULL_DIR = Path(".voiceatc") / "full"
 CHANNELS = ("stable", "open-beta", "closed-beta")
 # Datasets whose default output this producer filters (the release zips).
-FILTERED_DATASETS = ("mva", "runway_configs", "sector_data", "misc_drawings", "color_profiles")
+# ``skins`` has no default output at all (full feed only), so a gate on it only annotates its full-feed entries.
+FILTERED_DATASETS = ("mva", "runway_configs", "sector_data", "misc_drawings", "color_profiles", "skins")
 # Datasets served by lane (the API worker); a lane gate never touches a default path.
 LANE_DATASETS = ("routes", "voice_priors", "snapshots")
 # Routes also takes path gates, but only on the gated overlays under ROUTES/full/

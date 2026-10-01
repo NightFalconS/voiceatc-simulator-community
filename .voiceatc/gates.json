@@ -9,6 +9,11 @@
       "dataset": "routes",
       "path": "ROUTES/full/starless_arrivals.tsv",
       "requires": ["routes.starless_arrivals"]
+    },
+    {
+      "dataset": "skins",
+      "path": "SKINS/*",
+      "requires": ["skins.catalog"]
     }
   ]
 }

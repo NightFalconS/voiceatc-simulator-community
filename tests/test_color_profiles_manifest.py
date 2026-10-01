@@ -512,6 +512,43 @@ class PanelsFileTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, f"'{key}' must be RRGGBB or RRGGBBAA hex"):
                     self.build({key: "#A6228E"})
 
+    def test_accepts_the_optional_catalog_metadata_keys(self) -> None:
+        self.build({"name": "Spain (SACTA)", "author": "Lainoa Software", "description": "The SACTA look.", "bevel": 1})
+        self.assertEqual(("name", "author", "description"), MODULE.PANELS_META_KEYS)
+
+    def test_metadata_keys_are_text_with_length_limits_and_are_not_skin_values(self) -> None:
+        for key, limit in (("name", 40), ("author", 60), ("description", 200)):
+            with self.subTest(key=key):
+                self.build({key: "x" * limit, "bevel": 1})
+                for bad in ("x" * (limit + 1), "", " lead", "two\nlines", 5):
+                    with self.assertRaisesRegex(ValueError, f"'{key}'"):
+                        self.build({key: bad, "bevel": 1})
+        with self.assertRaisesRegex(ValueError, "does not accept 'title'"):
+            self.build({"title": "x", "bevel": 1})
+        # Metadata alone is not a skin: the file must set at least one look key.
+        with self.assertRaisesRegex(ValueError, "no skin keys"):
+            self.build({"name": "Only a name"})
+
+    def test_shipped_regional_skins_are_named(self) -> None:
+        names = {
+            scope: json.loads((REPO_ROOT / scope / "panels.json").read_text(encoding="utf-8")).get("name")
+            for scope in ("L/LE", "K")
+        }
+        self.assertEqual({"L/LE": "Spain (SACTA)", "K": "US (STARS)"}, names)
+
+    def test_the_skins_catalog_is_not_a_colour_profile_scope(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            root = Path(tmp_dir)
+            (root / "L" / "LE").mkdir(parents=True)
+            (root / "L" / "LE" / "colors.json").write_text(json.dumps(valid_colors()), encoding="utf-8")
+            skin = root / "SKINS" / "harbour-blue"
+            skin.mkdir(parents=True)
+            (skin / "panels.json").write_text(
+                json.dumps({"name": "Harbour Blue", "bar_color": "000000"}), encoding="utf-8"
+            )
+            manifest = MODULE.build_manifest(root, commit_sha="test-commit")
+            self.assertEqual(["L/LE"], list(manifest["profiles"]))
+
     def test_repository_skins_are_complete_and_valid(self) -> None:
         expected = {
             "L/LE": {"frame_style": "sacta", "bar_style": "cells", "strip_style": "paper_es"},
@@ -522,7 +559,7 @@ class PanelsFileTests(unittest.TestCase):
             with self.subTest(scope=scope):
                 self.assertIn("panels", manifest["profiles"][scope]["files"])
                 payload = json.loads((REPO_ROOT / scope / "panels.json").read_text(encoding="utf-8"))
-                self.assertEqual(set(MODULE.PANELS_KEYS), set(payload))
+                self.assertEqual(set(MODULE.PANELS_KEYS) | {"name"}, set(payload))
                 for key, value in facts.items():
                     self.assertEqual(value, payload[key])
                 self.assertEqual("upper", payload["text_case"])

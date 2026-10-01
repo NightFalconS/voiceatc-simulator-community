@@ -45,8 +45,13 @@ and at least one rule:
 
 Gateable datasets: `mva`, `runway_configs`, `sector_data`, `misc_drawings`,
 `color_profiles` (kind and path gates); `routes` (path gates on overlays under `ROUTES/full/`,
-always with `requires`; see "Route overlays" below); `routes`, `voice_priors`, `snapshots`
-(lane gates, read by the API worker, never by this release).
+always with `requires`; see "Route overlays" below); `skins` (path gates; see below); `routes`,
+`voice_priors`, `snapshots` (lane gates, read by the API worker, never by this release).
+
+`skins` is the [skins catalog](skins-catalog.md) and is **full feed only**: it has no default manifest or
+zip at all (old builds never read it), so a gate on it only annotates its full-feed entries. The committed
+`skins` gate requires `skins.catalog` (the `panels` kind gate requires `color_profiles.panels`). `stable_contract_guard.py` fails the release if a default
+skins manifest, zip or release-manifest asset ever appears.
 
 There is no `min_game_version` and no per-channel version list. Old gate files that use
 `min_game_version` are rejected by the validator.
