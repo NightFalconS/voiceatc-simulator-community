@@ -23,14 +23,7 @@
       "pause",
       "settings"
     ],
-    "radio": [
-      "rx",
-      "tx",
-      "blocked",
-      "parsing",
-      "sent",
-      "undo"
-    ],
+    "radio": ["rx", "tx", "blocked", "parsing", "sent", "undo"],
     "bottom": [
       "maps",
       "procs",
@@ -41,16 +34,8 @@
       "clr_qdm",
       "clr_routes"
     ],
-    "com": [
-      "who",
-      "said",
-      "cmd",
-      "heard"
-    ],
-    "tl": [
-      "tl_list",
-      "tl_cur"
-    ],
+    "com": ["who", "said", "cmd", "heard"],
+    "tl": ["tl_list", "tl_cur"],
     "level": [
       "cfl_list",
       "cfl_now",
@@ -148,12 +133,7 @@
       "wpt",
       "route"
     ],
-    "vprof": [
-      "plot",
-      "pan",
-      "zoom",
-      "reset"
-    ]
+    "vprof": ["plot", "pan", "zoom", "reset"]
   },
   "capabilities": [
     "interface.bottom.merged_into_top",
