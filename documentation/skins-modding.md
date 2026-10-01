@@ -137,8 +137,9 @@ Work on a skin while a session runs:
 
 When the saved file has an error, the game **keeps the last good skin** and lists the errors (the same messages
 as the validator) in a small panel in the corner of the screen; fix the file and save again and the panel goes
-away. The panel only appears for a local-override skin (or with the game's developer toggle); players never see
-it.
+away. The game checks the file twice a second, and only for a local-override skin (a `local_override.json` in
+its scope folder or any parent, including `community\local_override.json`) or a debug build started with
+`-- --skin-live-reload`; players with downloaded skins never pay for it or see the panel.
 
 ## Cookbook
 
