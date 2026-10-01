@@ -268,11 +268,11 @@ jobs:
               and previous_hash(".voiceatc/color_profiles_manifest.json") == str(assets["color_profiles_zip"]["sha256"]).strip()
               and previous_player_overlay_hash("current") == str(player_assets["player_routes_tsv"]["sha256"]).strip()
               and previous_player_overlay_hash("default") == str(player_assets["player_routes_default_tsv"]["sha256"]).strip()
-              # v3 full zips (gated content): a gate change alone must publish.
+              # Full-feed zips (gated content): a gate change alone must publish.
               and all(
-                  previous_hash(f".voiceatc/v3/{dataset}_manifest.json")
+                  previous_hash(f".voiceatc/full/{dataset}_manifest.json")
                   == str(assets[f"{dataset}_full_zip"]["sha256"]).strip()
-                  for dataset in summary["v3_manifests"]
+                  for dataset in summary["full_manifests"]
               )
           )
 
@@ -471,10 +471,10 @@ jobs:
               handle.write(f"release_manifest_asset_path={assets['release_manifest']['path']}\n")
               handle.write(f"player_routes_asset_path={player_assets['player_routes_tsv']['path']}\n")
               handle.write(f"player_routes_default_asset_path={player_assets['player_routes_default_tsv']['path']}\n")
-              # v3 full zips, as "path#name" upload arguments (paths have no spaces).
+              # Full-feed zips, as "path#name" upload arguments (paths have no spaces).
               full_zips = " ".join(
                   f"{assets[f'{dataset}_full_zip']['path']}#{assets[f'{dataset}_full_zip']['asset_name']}"
-                  for dataset in summary["v3_manifests"]
+                  for dataset in summary["full_manifests"]
               )
               handle.write(f"full_zip_upload_args={full_zips}\n")
           PY
@@ -602,8 +602,8 @@ jobs:
               path.parent.mkdir(parents=True, exist_ok=True)
               payload = summary["manifests"][key]
               path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-          for dataset, payload in summary["v3_manifests"].items():
-              path = Path(".voiceatc/v3") / f"{dataset}_manifest.json"
+          for dataset, payload in summary["full_manifests"].items():
+              path = Path(".voiceatc/full") / f"{dataset}_manifest.json"
               path.parent.mkdir(parents=True, exist_ok=True)
               path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
           PY
@@ -771,11 +771,11 @@ jobs:
             .voiceatc/release_manifest.json
             .voiceatc/player_routes_manifest.json
             .voiceatc/player_routes_status.json
-            .voiceatc/v3/mva_manifest.json
-            .voiceatc/v3/runway_configs_manifest.json
-            .voiceatc/v3/sector_data_manifest.json
-            .voiceatc/v3/misc_drawings_manifest.json
-            .voiceatc/v3/color_profiles_manifest.json
+            .voiceatc/full/mva_manifest.json
+            .voiceatc/full/runway_configs_manifest.json
+            .voiceatc/full/sector_data_manifest.json
+            .voiceatc/full/misc_drawings_manifest.json
+            .voiceatc/full/color_profiles_manifest.json
           )
           if git diff --quiet -- "${MANIFESTS[@]}" && [[ -z "$(git status --porcelain -- "${MANIFESTS[@]}")" ]]; then
             exit 0

@@ -13,11 +13,16 @@ from pathlib import Path
 from pathlib import PurePosixPath
 from typing import Any
 
+TOOLS_DIR = Path(__file__).resolve().parent
+if str(TOOLS_DIR) not in sys.path:
+    sys.path.insert(0, str(TOOLS_DIR))
+
+from legacy_contract import LEGACY_VISUAL_SCHEMA_VERSION
+
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST_PATH = ROOT / ".voiceatc" / "visual_procedures_manifest.json"
 REPO_NAME = "lainoa-software/voiceatc-simulator-community"
-SCHEMA_VERSION = 1
 MAX_FILE_BYTES = 256 * 1024
 MAX_PROCEDURES = 64
 MAX_LEGS = 128
@@ -381,8 +386,8 @@ def _validate_variant(value: object, where: str, path: Path, advisories: list[st
 
 def validate_visual_schema(payload: dict[str, Any], path: Path) -> list[str]:
     _strict_keys(payload, TOP_KEYS, "root", path)
-    if payload.get("schema_version") != SCHEMA_VERSION:
-        raise ValueError(f"{path}: schema_version must be {SCHEMA_VERSION}")
+    if payload.get("schema_version") != LEGACY_VISUAL_SCHEMA_VERSION:
+        raise ValueError(f"{path}: schema_version must be {LEGACY_VISUAL_SCHEMA_VERSION}")
     airport = _text(payload.get("airport"), "airport", path, maximum=4).upper()
     if not AIRPORT_RE.fullmatch(airport):
         raise ValueError(f"{path}: airport must be a four-character ICAO")
@@ -467,7 +472,7 @@ def build_manifest(root: Path = ROOT, published_at: str | None = None) -> dict[s
     if published_at is None:
         published_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     return {
-        "schema_version": SCHEMA_VERSION,
+        "schema_version": LEGACY_VISUAL_SCHEMA_VERSION,
         "repo": REPO_NAME,
         "airports": dict(sorted(airports.items())),
         "published_at": published_at,
@@ -510,8 +515,8 @@ def validate_existing_manifest(root: Path = ROOT, manifest_path: Path | None = N
     if not isinstance(payload, dict):
         raise ValueError(f"{target}: manifest must be an object")
     _strict_keys(payload, MANIFEST_KEYS, "manifest", target)
-    if payload.get("schema_version") != SCHEMA_VERSION:
-        raise ValueError(f"{target}: schema_version must be {SCHEMA_VERSION}")
+    if payload.get("schema_version") != LEGACY_VISUAL_SCHEMA_VERSION:
+        raise ValueError(f"{target}: schema_version must be {LEGACY_VISUAL_SCHEMA_VERSION}")
     if payload.get("repo") != REPO_NAME or not isinstance(payload.get("airports"), dict):
         raise ValueError(f"{target}: invalid repo or airports mapping")
     _date(str(payload.get("published_at", ""))[:10], "manifest.published_at", target)

@@ -15,7 +15,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 REPO_NAME = "lainoa-software/voiceatc-simulator-community"
 BRANCH_NAME = "main"
-SCHEMA_VERSION = 1
 PROFILE_FILE_NAMES = {
     "colors": "colors.json",
     "style": "style.json",
@@ -194,7 +193,6 @@ def build_manifest(root: Path = ROOT, commit_sha: str | None = None) -> dict[str
         profiles[scope_path] = {"files": validated_profile["files"]}
 
     return {
-        "schema_version": SCHEMA_VERSION,
         "repo": REPO_NAME,
         "branch": BRANCH_NAME,
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),

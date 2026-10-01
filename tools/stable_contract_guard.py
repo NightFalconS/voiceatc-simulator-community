@@ -11,7 +11,9 @@ does not have, open beta 0.6.2.204 (commit 08523f152, exact-key manifests).
 
 It is deliberately stricter than the old builds in one way: the top-level and
 entry key sets must be exactly today's, so nothing new ever reaches a default
-path. New fields and kinds belong in the v3 manifests (``.voiceatc/v3/``).
+path. New fields and kinds belong in the full manifests (``.voiceatc/full/``).
+The ``schema_version`` values checked here are frozen labels (``tools/legacy_contract.py``);
+this guard keeps its own copy on purpose so a producer change cannot move both.
 """
 from __future__ import annotations
 

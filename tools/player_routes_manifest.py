@@ -34,14 +34,13 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import routes_connectivity_check  # noqa: E402
+from legacy_contract import LEGACY_PLAYER_ROUTES_MANIFEST_SCHEMA_VERSION, LEGACY_PLAYER_ROUTES_STATUS_SCHEMA_VERSION
 
 ROOT = Path(__file__).resolve().parent.parent
 STATUS_PATH = ROOT / ".voiceatc" / "player_routes_status.json"
 REPO_NAME = "lainoa-software/voiceatc-simulator-community"
 
 FILE_SCHEMA_VERSION = 2
-MANIFEST_SCHEMA_VERSION = 1
-STATUS_SCHEMA_VERSION = 1
 
 LANES = ("current", "default")
 MAX_VARIANTS_PER_PAIR = 8
@@ -405,7 +404,7 @@ def build_bundle(
     assets: dict[str, dict[str, object]] = {}
     manifest_tiers: dict[str, dict[str, object]] = {}
     status_payload: dict[str, object] = {
-        "schema_version": STATUS_SCHEMA_VERSION,
+        "schema_version": LEGACY_PLAYER_ROUTES_STATUS_SCHEMA_VERSION,
         "repo": REPO_NAME,
         "generated_at": published_at,
     }
@@ -444,7 +443,7 @@ def build_bundle(
         }
 
     manifest = {
-        "schema_version": MANIFEST_SCHEMA_VERSION,
+        "schema_version": LEGACY_PLAYER_ROUTES_MANIFEST_SCHEMA_VERSION,
         "repo": REPO_NAME,
         "release_tag": release_tag,
         "commit_sha": commit_sha,

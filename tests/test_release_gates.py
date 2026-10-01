@@ -26,14 +26,13 @@ RELEASE = _load("community_release_manifest", TOOLS_DIR / "community_release_man
 RELEASE_TESTS = _load("test_community_release_manifest", REPO_ROOT / "tests" / "test_community_release_manifest.py")
 
 SPEC_GATES = {
-    "schema_version": 1,
     "gates": [
         {"dataset": "color_profiles", "kind": "panels", "requires": ["color_profiles.panels"]},
         {"dataset": "routes", "lane": "next", "channels": ["closed-beta"]},
         {
             "dataset": "mva",
             "path": "E/ED/EDDM/mva.json",
-            "requires": ["community.v3_feeds", "color_profiles.panels"],
+            "requires": ["community.full_feed", "color_profiles.panels"],
             "channels": ["closed-beta", "open-beta"],
         },
     ],
@@ -47,7 +46,7 @@ def _file(repo_path: str) -> dict[str, object]:
 class GateFileValidationTests(unittest.TestCase):
     def test_spec_example_and_empty_list_are_valid(self) -> None:
         self.assertEqual(len(GATES.validate_gates(SPEC_GATES)), 3)
-        self.assertEqual(GATES.validate_gates({"schema_version": 1, "gates": []}), [])
+        self.assertEqual(GATES.validate_gates({"gates": []}), [])
 
     def test_rejects_malformed_gates(self) -> None:
         bad_gates = [
@@ -71,14 +70,20 @@ class GateFileValidationTests(unittest.TestCase):
         ]
         for gate in bad_gates:
             with self.subTest(gate=gate), self.assertRaises(ValueError):
-                GATES.validate_gates({"schema_version": 1, "gates": [gate]})
-        with self.assertRaises(ValueError):
-            GATES.validate_gates({"schema_version": 2, "gates": []})
-        with self.assertRaises(ValueError):
-            GATES.validate_gates({"schema_version": 1, "gates": [], "extra": 1})
+                GATES.validate_gates({"gates": [gate]})
+        for bad_file in ([], {}, {"gates": {}}, {"gate": []}):
+            with self.subTest(file=bad_file), self.assertRaises(ValueError):
+                GATES.validate_gates(bad_file)
+
+    def test_gates_file_carries_no_version_and_ignores_unknown_top_level_keys(self) -> None:
+        self.assertEqual(GATES.validate_gates({"gates": []}), [])
+        self.assertEqual(GATES.validate_gates({"gates": [], "note": "added later"}), [])
+        self.assertEqual(len(GATES.validate_gates({"gates": SPEC_GATES["gates"], "schema_version": 7})), 3)
+        committed = json.loads((REPO_ROOT / ".voiceatc" / "gates.json").read_text(encoding="utf-8"))
+        self.assertNotIn("schema_version", committed)
 
     def test_capability_names_are_lowercase_dotted_and_at_most_64_characters(self) -> None:
-        for good in ("color_profiles.panels", "skins.catalog", "community.v3_feeds", "a.b.c", "x1.y_2", "a." + "b" * 62):
+        for good in ("color_profiles.panels", "skins.catalog", "community.full_feed", "a.b.c", "x1.y_2", "a." + "b" * 62):
             with self.subTest(name=good):
                 self.assertEqual(GATES.validate_capability(good), good)
         for bad in ("panels", "A.b", "a.B", "a-b.c", "a..b", ".a.b", "a.b.", "a b.c", "", 3, None, "a." + "b" * 63):
@@ -93,6 +98,11 @@ class GateFileValidationTests(unittest.TestCase):
         self.assertFalse(hasattr(GATES, "parse_version"))
         self.assertFalse(hasattr(GATES, "load_live_versions"))
         self.assertNotIn("min_game_version", GATES.GATE_RULES)
+        self.assertFalse([name for name in dir(GATES) if "VERSION" in name.upper() or "V3" in name.upper()])
+
+    def test_full_manifests_live_under_voiceatc_full(self) -> None:
+        root = Path("repo")
+        self.assertEqual(GATES.full_manifest_path("mva", root), root / ".voiceatc" / "full" / "mva_manifest.json")
 
 
 class GateDecisionTests(unittest.TestCase):
@@ -110,18 +120,18 @@ class GateDecisionTests(unittest.TestCase):
         entries = {"LEMD": _file("L/LE/LEMD/mva.json"), "EHAM": _file("E/EH/EHAM/mva.json")}
         result = GATES.apply_gates("mva", entries, gates=[])
         self.assertEqual(result["default"], entries)
-        self.assertEqual([entry["id"] for entry in result["v3_entries"]], ["LEMD", "EHAM"])
+        self.assertEqual([entry["id"] for entry in result["full_entries"]], ["LEMD", "EHAM"])
 
-    def test_path_gate_removes_the_entry_from_default_and_marks_v3(self) -> None:
+    def test_path_gate_removes_the_entry_from_default_and_marks_the_full_feed(self) -> None:
         gates = GATES.validate_gates(SPEC_GATES)
         entries = {"EDDM": _file("E/ED/EDDM/mva.json"), "LEMD": _file("L/LE/LEMD/mva.json")}
         result = GATES.apply_gates("mva", entries, gates=gates)
         self.assertEqual(list(result["default"]), ["LEMD"])
-        eddm = result["v3_entries"][0]
+        eddm = result["full_entries"][0]
         self.assertEqual(eddm["id"], "EDDM")
-        self.assertEqual(eddm["requires"], ["community.v3_feeds", "color_profiles.panels"])
+        self.assertEqual(eddm["requires"], ["community.full_feed", "color_profiles.panels"])
         self.assertEqual(eddm["channels"], ["open-beta", "closed-beta"])
-        self.assertNotIn("requires", result["v3_entries"][1])
+        self.assertNotIn("requires", result["full_entries"][1])
 
     def test_kind_gate_drops_only_that_file_including_alias_copies(self) -> None:
         gates = GATES.validate_gates(SPEC_GATES)
@@ -134,8 +144,8 @@ class GateDecisionTests(unittest.TestCase):
         )
         self.assertEqual(result["default"]["K/KA"], {"files": {"colors": _file("K/KA/colors.json")}})
         self.assertIs(result["default"]["L/LE"], profiles["L/LE"])
-        v3_panels = result["v3_entries"][0]["files"]["panels"]
-        self.assertEqual(v3_panels["requires"], ["color_profiles.panels"])
+        full_panels = result["full_entries"][0]["files"]["panels"]
+        self.assertEqual(full_panels["requires"], ["color_profiles.panels"])
         self.assertEqual(GATES.entry_repo_paths(result["default"]), ["K/KA/colors.json", "L/LE/colors.json"])
 
     def test_gating_a_required_kind_removes_the_whole_entry(self) -> None:
@@ -145,7 +155,7 @@ class GateDecisionTests(unittest.TestCase):
             "color_profiles", profiles, gates=gates, required_kinds=("colors",)
         )
         self.assertEqual(result["default"], {})
-        self.assertEqual(len(result["v3_entries"]), 1)
+        self.assertEqual(len(result["full_entries"]), 1)
 
     def test_path_gate_matches_the_alias_source(self) -> None:
         gates = [{"dataset": "color_profiles", "path": "K/panels.json", "requires": ["color_profiles.panels"]}]
@@ -164,7 +174,7 @@ class GateDecisionTests(unittest.TestCase):
         entries = {"LEMD": _file("L/LE/LEMD/mva.json")}
         result = GATES.apply_gates("mva", entries, gates=gates)
         self.assertEqual(result["default"], entries)
-        self.assertEqual(result["v3_entries"][0]["channels"], ["stable", "open-beta", "closed-beta"])
+        self.assertEqual(result["full_entries"][0]["channels"], ["stable", "open-beta", "closed-beta"])
 
     def test_requirements_from_several_gates_are_merged_without_duplicates(self) -> None:
         gates = [
@@ -174,7 +184,7 @@ class GateDecisionTests(unittest.TestCase):
         entries = {"LEMD": _file("L/LE/LEMD/mva.json")}
         result = GATES.apply_gates("mva", entries, gates=gates)
         self.assertEqual(result["default"], {})
-        self.assertEqual(result["v3_entries"][0]["requires"], ["skins.catalog", "color_profiles.panels"])
+        self.assertEqual(result["full_entries"][0]["requires"], ["skins.catalog", "color_profiles.panels"])
 
 
 class ProducerGateTests(unittest.TestCase):
@@ -189,7 +199,7 @@ class ProducerGateTests(unittest.TestCase):
         )
 
     def _gate(self, root: Path, gates: list[dict[str, object]]) -> None:
-        RELEASE_TESTS.write_json(root / ".voiceatc" / "gates.json", {"schema_version": 1, "gates": gates})
+        RELEASE_TESTS.write_json(root / ".voiceatc" / "gates.json", {"gates": gates})
 
     def test_empty_gate_list_output_is_byte_identical_to_no_gates(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -205,7 +215,7 @@ class ProducerGateTests(unittest.TestCase):
                     Path(after["assets"][key]["path"]).read_bytes(),
                 )
 
-    def test_gated_entries_leave_default_but_stay_in_v3_and_full_zip(self) -> None:
+    def test_gated_entries_leave_default_but_stay_in_the_full_feed_and_zip(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             RELEASE_TESTS.build_fixture_repo(root)
@@ -213,7 +223,7 @@ class ProducerGateTests(unittest.TestCase):
             self._gate(
                 root,
                 [
-                    {"dataset": "mva", "path": "L/LE/LECB/*", "requires": ["community.v3_feeds"]},
+                    {"dataset": "mva", "path": "L/LE/LECB/*", "requires": ["community.full_feed"]},
                     {"dataset": "color_profiles", "kind": "style", "channels": ["closed-beta"]},
                 ],
             )
@@ -225,12 +235,13 @@ class ProducerGateTests(unittest.TestCase):
                 self.assertEqual(archive.namelist(), ["L/LE/LECM/LECM_R2/MADRID_TMA/mva.json"])
             with zipfile.ZipFile(bundle["assets"]["mva_full_zip"]["path"]) as archive:
                 self.assertEqual(len(archive.namelist()), 2)
-            v3_mva = bundle["v3_manifests"]["mva"]
-            self.assertEqual(v3_mva["schema_version"], 3)
-            self.assertEqual(v3_mva["asset_name"], "mva-2602-full.zip")
-            self.assertEqual(v3_mva["sha256"], bundle["assets"]["mva_full_zip"]["sha256"])
-            lebl = next(entry for entry in v3_mva["entries"] if entry["id"] == "LEBL")
-            self.assertEqual(lebl["requires"], ["community.v3_feeds"])
+            full_mva = bundle["full_manifests"]["mva"]
+            self.assertNotIn("schema_version", full_mva)
+            self.assertEqual(full_mva["dataset"], "mva")
+            self.assertEqual(full_mva["asset_name"], "mva-2602-full.zip")
+            self.assertEqual(full_mva["sha256"], bundle["assets"]["mva_full_zip"]["sha256"])
+            lebl = next(entry for entry in full_mva["entries"] if entry["id"] == "LEBL")
+            self.assertEqual(lebl["requires"], ["community.full_feed"])
 
             colors = bundle["manifests"]["color_profiles"]["profiles"]
             self.assertTrue(all(set(profile["files"]) == {"colors"} for profile in colors.values()))
@@ -245,7 +256,7 @@ class ProducerGateTests(unittest.TestCase):
             RELEASE_TESTS.build_fixture_repo(root)
             RELEASE_TESTS.write_json(
                 root / ".voiceatc" / "gates.json",
-                {"schema_version": 1, "gates": [{"dataset": "mva", "path": "L/*", "channels": ["closed-beta"]}]},
+                {"gates": [{"dataset": "mva", "path": "L/*", "channels": ["closed-beta"]}]},
             )
             bundle = self._bundle(root, "a")
             self.assertEqual(bundle["manifests"]["mva"]["airports"], {})

@@ -9,18 +9,21 @@ new content reach the builds that can use it, and only those.
 
 Content declares what it needs (`requires`); builds declare what they can do (their
 capabilities). No version number appears in a gate, a manifest or a rule, so nothing has to
-be tracked or bumped when a build ships.
+be tracked or bumped when a build ships. New contracts carry no version keys at all: a file is
+identified by its path, readers ignore keys they do not know, and new meaning arrives as new
+optional keys gated with `requires`.
 
 `.voiceatc/gates.json` (edited by maintainers, never by CI):
 
 ```json
 {
-  "schema_version": 1,
   "gates": [
     { "dataset": "color_profiles", "kind": "panels", "requires": ["color_profiles.panels"] }
   ]
 }
 ```
+
+The validator reads only `gates` and ignores any other top-level key.
 
 A gate names a `dataset` and exactly one selector:
 
@@ -48,7 +51,7 @@ There is no `min_game_version` and no per-channel version list. Old gate files t
 
 ## Capability registry
 
-A capability is a named thing a build can do. Builds that read v3 feeds report the names they
+A capability is a named thing a build can do. Builds that read the full feed report the names they
 support; the table says which game build line first supports each name, for maintainers
 only. The release never reads that column.
 
@@ -56,7 +59,7 @@ only. The release never reads that column.
 |---|---|---|
 | `color_profiles.panels` | Reads the `panels` file of a color profile (the session skin's panel layout). | closed beta (0.6.2 line) |
 | `skins.catalog` | Reads the `SKINS/<id>` skin catalog dataset and its name/author/description metadata. | closed beta (0.6.2 line) |
-| `community.v3_feeds` | Reads the v3 manifests under `.voiceatc/v3/` and filters entries by `requires` and `channels`. | closed beta (0.6.2 line) |
+| `community.full_feed` | Reads the full manifests under `.voiceatc/full/` and filters entries by `requires` and `channels`. | closed beta (0.6.2 line) |
 
 To add a capability, add a row here in the same pull request that adds the gate or the game
 code that uses it. Names are permanent: never rename one, add a new name instead.
@@ -72,18 +75,39 @@ For each zip dataset the release writes two outputs:
    manifest and the zip.
    When that removes a required file (a profile's `colors`, any sector-data file), the whole
    entry is left out. With no gates, the default output is byte-identical to before.
-2. **v3** (`.voiceatc/v3/<dataset>_manifest.json` and `<asset>-full.zip`): everything, with
+2. **Full** (`.voiceatc/full/<dataset>_manifest.json` and `<asset>-full.zip`): everything, with
    the gate fields copied onto the gated entry (path gates on single-file entries) or file
-   (`files.<kind>`). `schema_version` is 3 and `entries` is a list; each entry has an `id`
+   (`files.<kind>`). There is no version key: the path and the `dataset` key identify the
+   manifest, and `entries` is a list; each entry has an `id`
    (the airport, bundle or scope key) plus today's entry fields. `requires` and `channels` stay on
-   entries and files exactly as written in the gate. Game builds that read v3 keep an entry
+   entries and files exactly as written in the gate. Game builds that read the full feed keep an entry
    or file when they have every capability in `requires` and `channels` is absent or contains
-   their channel. Old builds never read v3 paths.
+   their channel, and ignore keys they do not know. Old builds never read full-feed paths.
 
 Before anything is published, `tools/stable_contract_guard.py` replays the stable 0.6.1.24
 parser rules on every default manifest and zip (schema 2, exact top-level and entry keys,
 known file kinds only, every zip entry listed and hash-matched, counts equal) and the open
 beta exact-key rule on the visual manifests. A failure stops the release.
+
+## Frozen legacy labels
+
+The default feed keeps the version labels shipped builds already check, because stable
+0.6.1.24 and open beta 0.6.2.204 reject a manifest whose `schema_version` differs. They are
+frozen in one place, `tools/legacy_contract.py` (the `LEGACY_*` constants), and never change:
+
+| Default-feed file | `schema_version` |
+|---|---|
+| `.voiceatc/{mva,runway_configs,sector_data,misc_drawings,color_profiles}_manifest.json` | 2 |
+| `.voiceatc/release_manifest.json` | 4 |
+| `.voiceatc/routes_manifest.json` | 2 |
+| routes release manifest asset, `ROUTES/routes_default_manifest.json` | 1 |
+| `.voiceatc/constraints_manifest.json`, `.voiceatc/procedure_options_manifest.json` | 1 |
+| `.voiceatc/player_routes_manifest.json`, `.voiceatc/player_routes_status.json` | 1 |
+| `.voiceatc/visual_{procedures,go_arounds,sight_references}_manifest.json` and their files | 1 |
+
+`tools/stable_contract_guard.py` checks these values independently. The rule for everything
+new (`gates.json`, the full feed, the skins catalog, any future dataset): no version keys;
+gate new content with `requires`.
 
 ## Recipes
 
@@ -91,7 +115,7 @@ beta exact-key rule on the visual manifests. A failure stops the release.
   `requires` entry when older closed-beta builds cannot read it.
 - **Promote to open beta:** add `open-beta` to `channels`.
 - **New file kind or field:** pick a capability name, add a registry row, and gate the kind
-  with `"requires": ["<name>"]`. Builds that have the capability read it from v3; the default
+  with `"requires": ["<name>"]`. Builds that have the capability read it from the full feed; the default
   feed never carries it.
 - **Everyone can read it:** content that requires a capability stays out of the default feed
   for good, because old builds cannot know the capability. To serve it to everyone, ship the
