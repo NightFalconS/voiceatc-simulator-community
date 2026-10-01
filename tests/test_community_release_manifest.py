@@ -1,9 +1,14 @@
+import contextlib
 import importlib.util
+import io
 import json
+import subprocess
+import sys
 import tempfile
 import unittest
 import zipfile
 from pathlib import Path
+from unittest import mock
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -473,6 +478,59 @@ class CommunityReleaseManifestTests(unittest.TestCase):
                 for alias in aliases:
                     self.assertEqual(canonical_colors, archive.read(f"{alias}/colors.json"))
                     self.assertEqual(canonical_style, archive.read(f"{alias}/style.json"))
+
+    def test_cli_writes_summary_and_leaves_voiceatc_manifests_untouched(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            root = Path(tmp_dir) / "repo"
+            build_fixture_repo(root)
+            output_dir = root / "build" / "release"
+            argv = [
+                "community_release_manifest.py",
+                "--output-dir",
+                str(output_dir),
+                "--release-tag",
+                "daily-2026-03-18",
+                "--published-at",
+                "2026-03-18T01:15:00Z",
+                "--commit-sha",
+                "test-commit",
+            ]
+            stdout = io.StringIO()
+            with mock.patch.object(MODULE, "ROOT", root), mock.patch.object(sys, "argv", argv):
+                with contextlib.redirect_stdout(stdout):
+                    exit_code = MODULE.main()
+
+            self.assertEqual(0, exit_code)
+            summary = json.loads(stdout.getvalue())
+            self.assertEqual("2602", summary["airac"])
+            self.assertEqual(
+                summary["assets"]["release_manifest"]["sha256"],
+                MODULE._hash_bytes((output_dir / "release-manifest.json").read_bytes()),
+            )
+            self.assertFalse((root / ".voiceatc").exists())
+
+    def test_cli_rejects_removed_write_manifests_flag(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(MODULE_PATH),
+                    "--output-dir",
+                    tmp_dir,
+                    "--release-tag",
+                    "daily-2026-03-18",
+                    "--published-at",
+                    "2026-03-18T01:15:00Z",
+                    "--write-manifests",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(2, result.returncode)
+            self.assertIn("unrecognized arguments: --write-manifests", result.stderr)
+            self.assertEqual([], list(Path(tmp_dir).iterdir()))
 
 
 if __name__ == "__main__":
