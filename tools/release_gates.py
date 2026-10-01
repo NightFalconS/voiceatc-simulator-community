@@ -3,7 +3,8 @@
 
 Content declares what it needs; builds declare what they can do. There are no
 version numbers anywhere. The maintainer-edited ``.voiceatc/gates.json`` marks
-new content (a file kind, a repo path glob or a route lane) with ``requires``
+new content (a file kind, a repo path glob, a route overlay under ``ROUTES/full/``
+or a route lane) with ``requires``
 (dotted capability names such as ``color_profiles.panels``) and/or ``channels``.
 
 The default manifests and zips (the paths every build already reads) keep an
@@ -36,6 +37,9 @@ CHANNELS = ("stable", "open-beta", "closed-beta")
 FILTERED_DATASETS = ("mva", "runway_configs", "sector_data", "misc_drawings", "color_profiles")
 # Datasets served by lane (the API worker); a lane gate never touches a default path.
 LANE_DATASETS = ("routes", "voice_priors", "snapshots")
+# Routes also takes path gates, but only on the gated overlays under ROUTES/full/
+# (tools/routes_full_feed.py). The default route tables are never gated.
+ROUTES_OVERLAY_PREFIX = "ROUTES/full/"
 GATE_SELECTORS = ("kind", "path", "lane")
 GATE_RULES = ("requires", "channels")
 CAPABILITY_RE = re.compile(r"^[a-z0-9_]+(\.[a-z0-9_]+)+$")
@@ -88,6 +92,14 @@ def validate_gates(payload: object, label: str = str(GATES_PATH)) -> list[dict[s
                 raise ValueError(f"{where}: lane gates apply to {', '.join(LANE_DATASETS)}")
             if not isinstance(gate["lane"], str) or not LANE_RE.fullmatch(gate["lane"]):
                 raise ValueError(f"{where}: lane must be a lowercase name")
+        elif dataset == "routes":
+            value = gate[selector]
+            if selector != "path":
+                raise ValueError(f"{where}: routes takes a path gate (an overlay under {ROUTES_OVERLAY_PREFIX}) or a lane gate")
+            if not isinstance(value, str) or not value.startswith(ROUTES_OVERLAY_PREFIX) or ".." in value:
+                raise ValueError(f"{where}: a routes path gate selects an overlay under {ROUTES_OVERLAY_PREFIX}")
+            if "requires" not in gate:
+                raise ValueError(f"{where}: a routes overlay gate needs requires")
         else:
             if dataset not in FILTERED_DATASETS:
                 raise ValueError(f"{where}: dataset must be one of {', '.join(FILTERED_DATASETS)}")

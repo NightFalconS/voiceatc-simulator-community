@@ -177,6 +177,8 @@ class NavdataIndex:
         self.star_airports: set[str] = set()
         self.star_waypoints: dict[str, set[str]] = {}
         self._load_star_waypoints()
+        self.approach_entries: dict[str, set[str]] = {}
+        self._load_approach_entries()
         self.airway_sequences: dict[str, list[str]] = {}
         self._load_airway_sequences()
 
@@ -286,11 +288,40 @@ class NavdataIndex:
         """
         return fix.strip().upper() in self.airway_sequences.get(airway.strip().upper(), ())
 
-    def is_valid_star_entry_point(self, airport: str, fix: str) -> bool:
+    def _load_approach_entries(self) -> None:
+        """First fixes of approach transitions (route_type A, IF leg).
+
+        Only the gated overlays under ``ROUTES/full/`` may end a route at one of these
+        (``accept_approach_entries=True``): the generator files to one when every STAR entry
+        lies behind the aircraft, and only builds with ``routes.starless_arrivals`` fly it.
+        """
+        try:
+            with closing(sqlite3.connect(self.db_path)) as con:
+                query = (
+                    "SELECT airport_identifier, waypoint_identifier FROM tbl_pf_iaps "
+                    "WHERE route_type = 'A' AND path_termination = 'IF'"
+                )
+                for row in con.execute(query):
+                    apt = str(row[0] or "").strip().upper()
+                    wpt = str(row[1] or "").strip().upper()
+                    if apt and wpt:
+                        self.approach_entries.setdefault(apt, set()).add(wpt)
+        except sqlite3.OperationalError:
+            pass  # table absent in mock/older navdata — only STAR entries then qualify
+
+    def is_valid_star_entry_point(self, airport: str, fix: str, *, accept_approach_entries: bool = False) -> bool:
         """Return True if fix is a published STAR entry point for airport, or if the
-        airport has no STAR data (so the check is skipped for airports without procedures)."""
+        airport has no STAR data (so the check is skipped for airports without procedures).
+
+        With ``accept_approach_entries`` an approach transition's first fix also qualifies.
+        That is opt-in for the gated ``ROUTES/full/*`` overlays only; the default table and
+        player routes are read by builds that cannot fly an approach-fix arrival end.
+        """
         apt = airport.strip().upper()
-        return apt not in self.star_airports or fix.strip().upper() in self.star_waypoints.get(apt, set())
+        ident = fix.strip().upper()
+        if apt not in self.star_airports or ident in self.star_waypoints.get(apt, set()):
+            return True
+        return accept_approach_entries and ident in self.approach_entries.get(apt, set())
 
 
 def parse_routes_file(routes_path: Path) -> tuple[str, list[RouteRow]]:
@@ -425,8 +456,12 @@ def validate_routes(
     *,
     strict_dct: bool,
     max_findings: int,
+    accept_approach_entries: bool = False,
 ) -> ValidationSummary:
     """Validate contributed routes the way the game resolves them.
+
+    ``accept_approach_entries`` (opt-in, for ``ROUTES/full/*`` overlays only) lets a route
+    end at an approach transition's first fix as well as at a STAR entry.
 
     Navdata is the authority: the game expands a contributed route by name against
     tbl_er_enroute_airways, never against the compacted graph, which exists for
@@ -562,11 +597,14 @@ def validate_routes(
                     last_fix = candidate
                 break
             if last_fix:
-                if not navdata.is_valid_star_entry_point(row.dest, last_fix):
+                if not navdata.is_valid_star_entry_point(
+                    row.dest, last_fix, accept_approach_entries=accept_approach_entries
+                ):
+                    entry_kind = "STAR or approach entry point" if accept_approach_entries else "STAR entry point"
                     errors.append(Finding(
                         row.line_number, "error", "star_entry_not_in_procedure",
                         f"{row.origin}->{row.dest}: last fix '{last_fix}' is not a published "
-                        f"STAR entry point for {row.dest} — possible proximity substitution",
+                        f"{entry_kind} for {row.dest} — possible proximity substitution",
                     ))
 
         if len(errors) >= max_findings:
@@ -582,7 +620,7 @@ def validate_routes(
     )
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Validate community routes against the AIRAC navigation database.",
     )
@@ -591,7 +629,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--navdata-db", default="", help="Path to navigraph_data.s3db — decides route acceptance")
     parser.add_argument("--strict-dct", action="store_true", help="Fail DCT segments not present in FRA DCT graph")
     parser.add_argument("--max-findings", type=int, default=50, help="Stop after this many errors")
-    return parser.parse_args()
+    parser.add_argument(
+        "--accept-approach-entries",
+        action="store_true",
+        help="Also accept an approach transition's first fix as the arrival end (ROUTES/full/* overlays only)",
+    )
+    return parser.parse_args(argv)
 
 
 def main() -> int:
@@ -613,6 +656,7 @@ def main() -> int:
             navdata_db,
             strict_dct=bool(args.strict_dct),
             max_findings=max(1, int(args.max_findings)),
+            accept_approach_entries=bool(args.accept_approach_entries),
         )
     except Exception as exc:
         print(str(exc), file=sys.stderr)

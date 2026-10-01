@@ -23,6 +23,7 @@ import runway_configs_manifest
 import sector_data_manifest
 import color_profiles_manifest
 import release_gates
+import routes_full_feed
 from legacy_contract import LEGACY_DATASET_MANIFEST_SCHEMA_VERSION, LEGACY_RELEASE_MANIFEST_SCHEMA_VERSION
 
 
@@ -515,8 +516,24 @@ def build_release_bundle(
         )
         for dataset, asset in full_assets.items()
     }
+    # Gated route overlays (ROUTES/full/*.tsv): full-feed variants only. The default
+    # routes tables, manifests and assets below never see them.
+    routes_full_entries, routes_full_assets = routes_full_feed.build_full_routes(
+        root=root,
+        output_dir=output_dir,
+        download_url_for=lambda name: _download_url(download_repo, release_tag, name),
+    )
+    full_manifests["routes"] = release_gates.build_full_manifest(
+        dataset="routes",
+        full_entries=routes_full_entries,
+        repo=REPO_NAME,
+        release_tag=release_tag,
+        commit_sha=commit_sha,
+        published_at=published_at,
+        asset=None,
+    )
 
-    routes_manifest = routes_release_manifest.build_routes_manifest(
+    routes_manifest =routes_release_manifest.build_routes_manifest(
         release_tag=release_tag,
         asset_name=routes_asset_name,
         download_url=_download_url(download_repo, release_tag, routes_asset_name),
@@ -648,6 +665,11 @@ def build_release_bundle(
             "release": release_manifest,
         },
         "full_manifests": full_manifests,
+        # Every full-feed asset to upload, by dataset (zip datasets: one; routes: one per variant).
+        "full_assets": {
+            **{dataset: [asset] for dataset, asset in full_assets.items()},
+            "routes": routes_full_assets,
+        },
     }
 
 
