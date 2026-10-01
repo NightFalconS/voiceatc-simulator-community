@@ -1,0 +1,11 @@
+{
+  "gates": [
+    {
+      "dataset": "color_profiles",
+      "kind": "panels",
+      "requires": [
+        "color_profiles.panels"
+      ]
+    }
+  ]
+}

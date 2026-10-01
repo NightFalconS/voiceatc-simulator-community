@@ -29,11 +29,16 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+TOOLS_DIR = Path(__file__).resolve().parent
+if str(TOOLS_DIR) not in sys.path:
+    sys.path.insert(0, str(TOOLS_DIR))
+
+from legacy_contract import LEGACY_PROCEDURE_OPTIONS_MANIFEST_SCHEMA_VERSION
+
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST_PATH = ROOT / ".voiceatc" / "procedure_options_manifest.json"
 REPO_NAME = "lainoa-software/voiceatc-simulator-community"
-SCHEMA_VERSION = 1
 OPTIONS_FILENAME = "procedure_options.json"
 BUCKETS = ("stars", "sids", "iaps")
 CLIMB_RULE_KINDS = ("route_contains", "aircraft_type", "utc_window", "fallback")
@@ -386,7 +391,7 @@ def build_manifest(
         published_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     return {
-        "schema_version": SCHEMA_VERSION,
+        "schema_version": LEGACY_PROCEDURE_OPTIONS_MANIFEST_SCHEMA_VERSION,
         "repo": REPO_NAME,
         "airports": dict(sorted(airports.items())),
         "published_at": published_at,
@@ -418,8 +423,8 @@ def validate_existing_manifest_entries(
     if not isinstance(payload, dict):
         raise ValueError(f"{manifest_path}: manifest must be a JSON object")
 
-    if int(payload.get("schema_version", -1)) != SCHEMA_VERSION:
-        raise ValueError(f"{manifest_path}: schema_version must be {SCHEMA_VERSION}")
+    if int(payload.get("schema_version", -1)) != LEGACY_PROCEDURE_OPTIONS_MANIFEST_SCHEMA_VERSION:
+        raise ValueError(f"{manifest_path}: schema_version must be {LEGACY_PROCEDURE_OPTIONS_MANIFEST_SCHEMA_VERSION}")
 
     repo = str(payload.get("repo", "")).strip()
     if repo != REPO_NAME:

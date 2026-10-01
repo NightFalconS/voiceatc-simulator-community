@@ -10,6 +10,12 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+TOOLS_DIR = Path(__file__).resolve().parent
+if str(TOOLS_DIR) not in sys.path:
+    sys.path.insert(0, str(TOOLS_DIR))
+
+from legacy_contract import LEGACY_ROUTES_DEFAULT_MANIFEST_SCHEMA_VERSION, LEGACY_ROUTES_MANIFEST_SCHEMA_VERSION, LEGACY_ROUTES_RELEASE_MANIFEST_SCHEMA_VERSION
+
 
 ROOT = Path(__file__).resolve().parent.parent
 ROUTES_PATH = ROOT / "ROUTES" / "routes.tsv"
@@ -20,11 +26,8 @@ ROUTES_DEFAULT_MANIFEST_PATH = ROOT / "ROUTES" / "routes_default_manifest.json"
 ROUTES_MANIFEST_PATH = ROOT / ".voiceatc" / "routes_manifest.json"
 RELEASE_MANIFEST_PATH = ROOT / ".voiceatc" / "release_manifest.json"
 REPO_NAME = "lainoa-software/voiceatc-simulator-community"
-ROUTES_MANIFEST_SCHEMA_VERSION = 2
-RELEASE_MANIFEST_SCHEMA_VERSION = 1
 RELEASE_TITLE_PREFIX = "Daily Community Release"
 BUNDLED_DEFAULT_AIRAC = "2503"
-BUNDLED_DEFAULT_MANIFEST_SCHEMA_VERSION = 1
 RUNWAY_THRESHOLD_IDENT_RE = re.compile(r"^RW(?:0[1-9]|[12][0-9]|3[0-6])[LCR]?$")
 
 
@@ -149,7 +152,7 @@ def validate_routes_default_file(root: Path = ROOT) -> dict[str, object]:
 def build_default_routes_manifest(root: Path = ROOT) -> dict[str, object]:
     routes = validate_routes_default_file(root)
     manifest = {
-        "schema_version": BUNDLED_DEFAULT_MANIFEST_SCHEMA_VERSION,
+        "schema_version": LEGACY_ROUTES_DEFAULT_MANIFEST_SCHEMA_VERSION,
         "airac": BUNDLED_DEFAULT_AIRAC,
         "navdata_cycle": BUNDLED_DEFAULT_AIRAC,
         "navdata_revision": "bundled",
@@ -263,7 +266,7 @@ def build_routes_manifest(
         if not rich_asset_name.strip() or not rich_download_url.strip():
             raise ValueError("rich route asset name and URL are required")
     manifest = {
-        "schema_version": ROUTES_MANIFEST_SCHEMA_VERSION,
+        "schema_version": LEGACY_ROUTES_MANIFEST_SCHEMA_VERSION,
         "repo": REPO_NAME,
         "release_tag": release_tag.strip(),
         "commit_sha": commit_sha.strip(),
@@ -385,7 +388,7 @@ def build_release_manifest(
             "content_type": "text/tab-separated-values; charset=utf-8",
         }
     return {
-        "schema_version": RELEASE_MANIFEST_SCHEMA_VERSION,
+        "schema_version": LEGACY_ROUTES_RELEASE_MANIFEST_SCHEMA_VERSION,
         "repo": REPO_NAME,
         "release_tag": release_tag,
         "release_title": resolved_release_title,
