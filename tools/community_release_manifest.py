@@ -22,6 +22,7 @@ import routes_release_manifest
 import runway_configs_manifest
 import sector_data_manifest
 import color_profiles_manifest
+import release_gates
 
 
 REPO_NAME = "lainoa-software/voiceatc-simulator-community"
@@ -69,6 +70,12 @@ def _build_release_title(release_tag: str) -> str:
     if suffix:
         title = f"{title} {suffix}"
     return title
+
+
+def _full_asset_name(asset_name: str) -> str:
+    """The v3 asset beside a default zip: ``mva-2609.zip`` -> ``mva-2609-full.zip``."""
+    stem, dot, suffix = asset_name.rpartition(".")
+    return f"{stem}-full.{suffix}" if dot else f"{asset_name}-full"
 
 
 def _write_json(path: Path, payload: dict[str, object]) -> None:
@@ -139,10 +146,12 @@ def build_mva_release_manifest(
     commit_sha: str,
     asset_sha256: str,
     asset_size_bytes: int,
+    airports: dict[str, object] | None = None,
     root: Path = ROOT,
 ) -> dict[str, object]:
-    base_manifest = mva_manifest.build_manifest(root, commit_sha=commit_sha)
-    airports = base_manifest["airports"]
+    if airports is None:
+        base_manifest = mva_manifest.build_manifest(root, commit_sha=commit_sha)
+        airports = base_manifest["airports"]
     return {
         "schema_version": DATASET_MANIFEST_SCHEMA_VERSION,
         "repo": REPO_NAME,
@@ -167,10 +176,12 @@ def build_runway_release_manifest(
     commit_sha: str,
     asset_sha256: str,
     asset_size_bytes: int,
+    airports: dict[str, object] | None = None,
     root: Path = ROOT,
 ) -> dict[str, object]:
-    base_manifest = runway_configs_manifest.build_manifest(root, commit_sha=commit_sha)
-    airports = base_manifest["airports"]
+    if airports is None:
+        base_manifest = runway_configs_manifest.build_manifest(root, commit_sha=commit_sha)
+        airports = base_manifest["airports"]
     return {
         "schema_version": DATASET_MANIFEST_SCHEMA_VERSION,
         "repo": REPO_NAME,
@@ -195,10 +206,12 @@ def build_sector_data_release_manifest(
     commit_sha: str,
     asset_sha256: str,
     asset_size_bytes: int,
+    bundles: dict[str, object] | None = None,
     root: Path = ROOT,
 ) -> dict[str, object]:
-    base_manifest = sector_data_manifest.build_manifest(root, commit_sha=commit_sha)
-    bundles = base_manifest["bundles"]
+    if bundles is None:
+        base_manifest = sector_data_manifest.build_manifest(root, commit_sha=commit_sha)
+        bundles = base_manifest["bundles"]
     return {
         "schema_version": DATASET_MANIFEST_SCHEMA_VERSION,
         "repo": REPO_NAME,
@@ -223,10 +236,12 @@ def build_misc_drawings_release_manifest(
     commit_sha: str,
     asset_sha256: str,
     asset_size_bytes: int,
+    airports: dict[str, object] | None = None,
     root: Path = ROOT,
 ) -> dict[str, object]:
-    base_manifest = misc_drawings_manifest.build_manifest(root, commit_sha=commit_sha)
-    airports = base_manifest["airports"]
+    if airports is None:
+        base_manifest = misc_drawings_manifest.build_manifest(root, commit_sha=commit_sha)
+        airports = base_manifest["airports"]
     return {
         "schema_version": DATASET_MANIFEST_SCHEMA_VERSION,
         "repo": REPO_NAME,
@@ -406,23 +421,103 @@ def build_release_bundle(
     misc_drawings_base_manifest = misc_drawings_manifest.build_manifest(root, commit_sha=commit_sha)
     color_profiles_projection = color_profiles_manifest.build_release_projection(root, commit_sha=commit_sha)
 
-    mva_repo_paths = sorted({str(entry["repo_path"]) for entry in mva_base_manifest["airports"].values()})
-    runway_repo_paths = [str(entry["repo_path"]) for entry in runway_base_manifest["airports"].values()]
+    # Channel gates: the default view (what every live build reads) drops gated
+    # entries the oldest live build would not pass; the v3 view keeps them all.
+    gates = release_gates.load_gates(root)
+    live_versions = release_gates.load_live_versions(root) if gates else {}
+    color_archive_sources = color_profiles_projection["archive_sources"]
+    gated = {
+        "mva": release_gates.apply_gates(
+            "mva", mva_base_manifest["airports"], gates=gates, live_versions=live_versions
+        ),
+        "runway_configs": release_gates.apply_gates(
+            "runway_configs", runway_base_manifest["airports"], gates=gates, live_versions=live_versions
+        ),
+        "sector_data": release_gates.apply_gates(
+            "sector_data", sector_data_base_manifest["bundles"], gates=gates, live_versions=live_versions
+        ),
+        "misc_drawings": release_gates.apply_gates(
+            "misc_drawings", misc_drawings_base_manifest["airports"], gates=gates, live_versions=live_versions
+        ),
+        "color_profiles": release_gates.apply_gates(
+            "color_profiles",
+            color_profiles_projection["profiles"],
+            gates=gates,
+            live_versions=live_versions,
+            archive_sources=color_archive_sources,
+            required_kinds=("colors",),
+        ),
+    }
+    mva_airports = gated["mva"]["default"]
+    runway_airports = gated["runway_configs"]["default"]
+    sector_data_bundles = gated["sector_data"]["default"]
+    misc_drawings_airports = gated["misc_drawings"]["default"]
+    color_profiles = gated["color_profiles"]["default"]
+    color_default_paths = set(release_gates.entry_repo_paths(color_profiles))
+    color_default_sources = {
+        archive_path: source_path
+        for archive_path, source_path in color_archive_sources.items()
+        if archive_path in color_default_paths
+    }
+
+    mva_repo_paths = sorted({str(entry["repo_path"]) for entry in mva_airports.values()})
+    runway_repo_paths = [str(entry["repo_path"]) for entry in runway_airports.values()]
     sector_data_repo_paths = [
         str(file_entry["repo_path"])
-        for bundle in sector_data_base_manifest["bundles"].values()
+        for bundle in sector_data_bundles.values()
         for file_entry in bundle["files"].values()
     ]
-    misc_drawings_repo_paths = sorted({str(entry["repo_path"]) for entry in misc_drawings_base_manifest["airports"].values()})
+    misc_drawings_repo_paths = sorted({str(entry["repo_path"]) for entry in misc_drawings_airports.values()})
     mva_asset = build_deterministic_zip(root, mva_repo_paths, output_dir / mva_asset_name)
     runway_asset = build_deterministic_zip(root, runway_repo_paths, output_dir / runway_asset_name)
     sector_data_asset = build_deterministic_zip(root, sector_data_repo_paths, output_dir / sector_data_asset_name)
     misc_drawings_asset = build_deterministic_zip(root, misc_drawings_repo_paths, output_dir / misc_drawings_asset_name)
     color_profiles_asset = build_deterministic_zip_from_sources(
         root,
-        color_profiles_projection["archive_sources"],
+        color_default_sources,
         output_dir / color_profiles_asset_name,
     )
+
+    full_assets = {
+        "mva": build_deterministic_zip(
+            root,
+            sorted({str(entry["repo_path"]) for entry in mva_base_manifest["airports"].values()}),
+            output_dir / _full_asset_name(mva_asset_name),
+        ),
+        "runway_configs": build_deterministic_zip(
+            root,
+            release_gates.entry_repo_paths(runway_base_manifest["airports"]),
+            output_dir / _full_asset_name(runway_asset_name),
+        ),
+        "sector_data": build_deterministic_zip(
+            root,
+            release_gates.entry_repo_paths(sector_data_base_manifest["bundles"]),
+            output_dir / _full_asset_name(sector_data_asset_name),
+        ),
+        "misc_drawings": build_deterministic_zip(
+            root,
+            release_gates.entry_repo_paths(misc_drawings_base_manifest["airports"]),
+            output_dir / _full_asset_name(misc_drawings_asset_name),
+        ),
+        "color_profiles": build_deterministic_zip_from_sources(
+            root,
+            color_archive_sources,
+            output_dir / _full_asset_name(color_profiles_asset_name),
+        ),
+    }
+    v3_manifests = {
+        dataset: release_gates.build_v3_manifest(
+            dataset=dataset,
+            v3_entries=gated[dataset]["v3_entries"],
+            repo=REPO_NAME,
+            release_tag=release_tag,
+            commit_sha=commit_sha,
+            published_at=published_at,
+            asset=asset,
+            download_url=_download_url(download_repo, release_tag, str(asset["asset_name"])),
+        )
+        for dataset, asset in full_assets.items()
+    }
 
     routes_manifest = routes_release_manifest.build_routes_manifest(
         release_tag=release_tag,
@@ -446,6 +541,7 @@ def build_release_bundle(
         commit_sha=commit_sha,
         asset_sha256=str(mva_asset["sha256"]),
         asset_size_bytes=int(mva_asset["size_bytes"]),
+        airports=mva_airports,
         root=root,
     )
     runway_release_manifest = build_runway_release_manifest(
@@ -456,6 +552,7 @@ def build_release_bundle(
         commit_sha=commit_sha,
         asset_sha256=str(runway_asset["sha256"]),
         asset_size_bytes=int(runway_asset["size_bytes"]),
+        airports=runway_airports,
         root=root,
     )
     sector_data_release_manifest = build_sector_data_release_manifest(
@@ -466,6 +563,7 @@ def build_release_bundle(
         commit_sha=commit_sha,
         asset_sha256=str(sector_data_asset["sha256"]),
         asset_size_bytes=int(sector_data_asset["size_bytes"]),
+        bundles=sector_data_bundles,
         root=root,
     )
     misc_drawings_release_manifest = build_misc_drawings_release_manifest(
@@ -476,6 +574,7 @@ def build_release_bundle(
         commit_sha=commit_sha,
         asset_sha256=str(misc_drawings_asset["sha256"]),
         asset_size_bytes=int(misc_drawings_asset["size_bytes"]),
+        airports=misc_drawings_airports,
         root=root,
     )
     color_profiles_release_manifest = build_color_profiles_release_manifest(
@@ -486,7 +585,7 @@ def build_release_bundle(
         commit_sha=commit_sha,
         asset_sha256=str(color_profiles_asset["sha256"]),
         asset_size_bytes=int(color_profiles_asset["size_bytes"]),
-        profiles=color_profiles_projection["profiles"],
+        profiles=color_profiles,
         root=root,
     )
     release_manifest = build_release_manifest(
@@ -511,6 +610,8 @@ def build_release_bundle(
         _write_json(misc_drawings_manifest.MANIFEST_PATH, misc_drawings_release_manifest)
         _write_json(color_profiles_manifest.MANIFEST_PATH, color_profiles_release_manifest)
         _write_json(RELEASE_MANIFEST_PATH, release_manifest)
+        for dataset, v3_manifest in v3_manifests.items():
+            _write_json(release_gates.v3_manifest_path(dataset, root), v3_manifest)
 
     return {
         "airac": airac,
@@ -532,6 +633,7 @@ def build_release_bundle(
             "sector_data_zip": sector_data_asset,
             "misc_drawings_zip": misc_drawings_asset,
             "color_profiles_zip": color_profiles_asset,
+            **{f"{dataset}_full_zip": asset for dataset, asset in full_assets.items()},
             "release_manifest": {
                 "asset_name": RELEASE_MANIFEST_ASSET_NAME,
                 "path": str(release_manifest_asset_path),
@@ -548,6 +650,7 @@ def build_release_bundle(
             "color_profiles": color_profiles_release_manifest,
             "release": release_manifest,
         },
+        "v3_manifests": v3_manifests,
     }
 
 

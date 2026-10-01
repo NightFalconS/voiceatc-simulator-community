@@ -67,6 +67,8 @@ jobs:
         run: python tools/visual_sight_references_manifest.py --validate-sources
       - name: Validate player route files
         run: python tools/player_routes_manifest.py --validate-only
+      - name: Validate channel gates and live versions
+        run: python tools/release_gates.py --validate-only
       - name: Compute route lane cycles
         id: lanes
         shell: bash
@@ -266,6 +268,12 @@ jobs:
               and previous_hash(".voiceatc/color_profiles_manifest.json") == str(assets["color_profiles_zip"]["sha256"]).strip()
               and previous_player_overlay_hash("current") == str(player_assets["player_routes_tsv"]["sha256"]).strip()
               and previous_player_overlay_hash("default") == str(player_assets["player_routes_default_tsv"]["sha256"]).strip()
+              # v3 full zips (gated content): a gate change alone must publish.
+              and all(
+                  previous_hash(f".voiceatc/v3/{dataset}_manifest.json")
+                  == str(assets[f"{dataset}_full_zip"]["sha256"]).strip()
+                  for dataset in summary["v3_manifests"]
+              )
           )
 
           constraints_spec = importlib.util.spec_from_file_location(
@@ -463,6 +471,12 @@ jobs:
               handle.write(f"release_manifest_asset_path={assets['release_manifest']['path']}\n")
               handle.write(f"player_routes_asset_path={player_assets['player_routes_tsv']['path']}\n")
               handle.write(f"player_routes_default_asset_path={player_assets['player_routes_default_tsv']['path']}\n")
+              # v3 full zips, as "path#name" upload arguments (paths have no spaces).
+              full_zips = " ".join(
+                  f"{assets[f'{dataset}_full_zip']['path']}#{assets[f'{dataset}_full_zip']['asset_name']}"
+                  for dataset in summary["v3_manifests"]
+              )
+              handle.write(f"full_zip_upload_args={full_zips}\n")
           PY
           echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
           echo "title=${TITLE}" >> "$GITHUB_OUTPUT"
@@ -479,6 +493,10 @@ jobs:
       - name: Refresh visual sight-reference manifest
         if: steps.meta.outputs.visual_sight_references_changed == 'true'
         run: python tools/visual_sight_references_manifest.py --write
+      # Every default manifest and zip must still parse in the oldest live build
+      # (stable 0.6.1.24 rules). Runs before anything is published.
+      - name: Guard the stable contract
+        run: python tools/stable_contract_guard.py --summary build/release/summary.json
       - name: Stop when nothing changed
         if: steps.meta.outputs.should_publish != 'true'
         run: echo "No release-managed community artifacts changed."
@@ -503,6 +521,7 @@ jobs:
               "${{ steps.meta.outputs.player_routes_asset_path }}#${{ steps.meta.outputs.player_routes_asset_name }}" \
               "${{ steps.meta.outputs.player_routes_default_asset_path }}#${{ steps.meta.outputs.player_routes_default_asset_name }}" \
               "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
+              ${{ steps.meta.outputs.full_zip_upload_args }} \
               --clobber
           else
             gh release create "${TAG}" \
@@ -516,6 +535,7 @@ jobs:
               "${{ steps.meta.outputs.player_routes_asset_path }}#${{ steps.meta.outputs.player_routes_asset_name }}" \
               "${{ steps.meta.outputs.player_routes_default_asset_path }}#${{ steps.meta.outputs.player_routes_default_asset_name }}" \
               "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
+              ${{ steps.meta.outputs.full_zip_upload_args }} \
               --target "${TARGET}" \
               --latest=false \
               --title "${TITLE}" \
@@ -554,6 +574,7 @@ jobs:
             "${{ steps.meta.outputs.player_routes_asset_path }}#${{ steps.meta.outputs.player_routes_asset_name }}" \
             "${{ steps.meta.outputs.player_routes_default_asset_path }}#${{ steps.meta.outputs.player_routes_default_asset_name }}" \
             "${{ steps.meta.outputs.release_manifest_asset_path }}#${{ steps.meta.outputs.release_manifest_asset_name }}" \
+            ${{ steps.meta.outputs.full_zip_upload_args }} \
             --target "${TARGET}" \
             --title "${TITLE}" \
             --notes-file "${NOTES_FILE}" \
@@ -581,6 +602,10 @@ jobs:
               path.parent.mkdir(parents=True, exist_ok=True)
               payload = summary["manifests"][key]
               path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+          for dataset, payload in summary["v3_manifests"].items():
+              path = Path(".voiceatc/v3") / f"{dataset}_manifest.json"
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
           PY
           python tools/constraints_manifest.py --write
           python tools/procedure_options_manifest.py --write
@@ -593,6 +618,7 @@ jobs:
           python tools/visual_go_arounds_manifest.py --validate-only
           python tools/visual_sight_references_manifest.py --validate-only
           python tools/player_routes_manifest.py --write-manifests --summary build/release/player_summary.json
+          python tools/stable_contract_guard.py
       - name: Publish routes to Cloudflare R2
         if: steps.meta.outputs.should_publish == 'true'
         continue-on-error: true
@@ -745,6 +771,11 @@ jobs:
             .voiceatc/release_manifest.json
             .voiceatc/player_routes_manifest.json
             .voiceatc/player_routes_status.json
+            .voiceatc/v3/mva_manifest.json
+            .voiceatc/v3/runway_configs_manifest.json
+            .voiceatc/v3/sector_data_manifest.json
+            .voiceatc/v3/misc_drawings_manifest.json
+            .voiceatc/v3/color_profiles_manifest.json
           )
           if git diff --quiet -- "${MANIFESTS[@]}" && [[ -z "$(git status --porcelain -- "${MANIFESTS[@]}")" ]]; then
             exit 0
