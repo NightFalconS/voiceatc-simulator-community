@@ -156,6 +156,32 @@ class StableContractGuardTests(unittest.TestCase):
     def test_committed_per_file_manifests_pass(self) -> None:
         self.assertEqual(GUARD.check_repo_manifests(REPO_ROOT), [])
 
+    def test_default_routes_feed_never_names_a_full_overlay_or_asset(self) -> None:
+        manifests = self.bundle["manifests"]
+        self.assertEqual(GUARD.check_default_routes_references(manifests), [])
+        leaked_asset = json.loads(json.dumps(manifests))
+        leaked_asset["release"]["assets"]["routes_rich_tsv"]["asset_name"] = "routes-rich-2602-full.tsv"
+        errors = GUARD.check_default_routes_references(leaked_asset)
+        self.assertEqual(len(errors), 1)
+        self.assertIn("release", errors[0])
+        leaked_path = json.loads(json.dumps(manifests))
+        leaked_path["routes"]["rich_routes_tsv"]["repo_path"] = "ROUTES/full/starless_arrivals.tsv"
+        self.assertTrue(GUARD.check_default_routes_references(leaked_path))
+        leaked_url = json.loads(json.dumps(manifests))
+        leaked_url["routes"]["download_url"] = "https://x/routes-rich-2602-full-second.tsv"
+        self.assertTrue(GUARD.check_default_routes_references(leaked_url))
+
+    def test_release_summary_check_reads_the_release_manifest_asset(self) -> None:
+        summary_path = self.root / "summary.json"
+        summary_path.write_text(json.dumps(self.bundle), encoding="utf-8")
+        self.assertEqual(GUARD.check_release_summary(summary_path), [])
+        asset_path = Path(self.bundle["assets"]["release_manifest"]["path"])
+        payload = json.loads(asset_path.read_text(encoding="utf-8"))
+        payload["assets"]["routes_full_tsv"] = {"repo_path": "ROUTES/full/starless_arrivals.tsv"}
+        asset_path.write_text(json.dumps(payload), encoding="utf-8")
+        errors = GUARD.check_release_summary(summary_path)
+        self.assertTrue(any("ROUTES/full/" in error for error in errors))
+
 
 if __name__ == "__main__":
     unittest.main()

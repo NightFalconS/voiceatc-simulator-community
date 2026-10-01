@@ -71,6 +71,8 @@ jobs:
         run: python tools/player_routes_manifest.py --validate-only
       - name: Validate channel gates
         run: python tools/release_gates.py --validate-only
+      - name: Validate gated route overlays
+        run: python tools/routes_full_feed.py --validate-only
       - name: Compute route lane cycles
         id: lanes
         shell: bash
@@ -238,6 +240,24 @@ jobs:
                   return ""
               return str(payload.get("sha256", "")).strip()
 
+          def previous_full_hashes(dataset: str) -> list[str]:
+              # Zip datasets carry one asset hash at the top; routes carries one per
+              # variant entry (most capable first) and no top-level hash.
+              manifest_path = Path(f".voiceatc/full/{dataset}_manifest.json")
+              if not manifest_path.exists():
+                  return []
+              try:
+                  payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+              except Exception:
+                  return [""]
+              if "sha256" in payload:
+                  return [str(payload.get("sha256", "")).strip()]
+              return [
+                  str(entry.get("sha256", "")).strip()
+                  for entry in payload.get("entries", [])
+                  if isinstance(entry, dict) and "asset_name" in entry
+              ]
+
           def previous_rich_routes_hash(path: str) -> str:
               manifest_path = Path(path)
               if not manifest_path.exists():
@@ -270,11 +290,11 @@ jobs:
               and previous_hash(".voiceatc/color_profiles_manifest.json") == str(assets["color_profiles_zip"]["sha256"]).strip()
               and previous_player_overlay_hash("current") == str(player_assets["player_routes_tsv"]["sha256"]).strip()
               and previous_player_overlay_hash("default") == str(player_assets["player_routes_default_tsv"]["sha256"]).strip()
-              # Full-feed zips (gated content): a gate change alone must publish.
+              # Full-feed assets (gated content): a gate change alone must publish.
               and all(
-                  previous_hash(f".voiceatc/full/{dataset}_manifest.json")
-                  == str(assets[f"{dataset}_full_zip"]["sha256"]).strip()
-                  for dataset in summary["full_manifests"]
+                  previous_full_hashes(dataset)
+                  == [str(asset["sha256"]).strip() for asset in summary["full_assets"][dataset]]
+                  for dataset in summary["full_assets"]
               )
           )
 
@@ -473,10 +493,12 @@ jobs:
               handle.write(f"release_manifest_asset_path={assets['release_manifest']['path']}\n")
               handle.write(f"player_routes_asset_path={player_assets['player_routes_tsv']['path']}\n")
               handle.write(f"player_routes_default_asset_path={player_assets['player_routes_default_tsv']['path']}\n")
-              # Full-feed zips, as "path#name" upload arguments (paths have no spaces).
+              # Full-feed assets (the -full zips and the -full routes tables), as
+              # "path#name" upload arguments (paths have no spaces).
               full_zips = " ".join(
-                  f"{assets[f'{dataset}_full_zip']['path']}#{assets[f'{dataset}_full_zip']['asset_name']}"
-                  for dataset in summary["full_manifests"]
+                  f"{asset['path']}#{asset['asset_name']}"
+                  for dataset_assets in summary["full_assets"].values()
+                  for asset in dataset_assets
               )
               handle.write(f"full_zip_upload_args={full_zips}\n")
           PY
@@ -779,6 +801,7 @@ jobs:
             .voiceatc/full/misc_drawings_manifest.json
             .voiceatc/full/color_profiles_manifest.json
             .voiceatc/full/skins_manifest.json
+            .voiceatc/full/routes_manifest.json
           )
           if git diff --quiet -- "${MANIFESTS[@]}" && [[ -z "$(git status --porcelain -- "${MANIFESTS[@]}")" ]]; then
             exit 0
