@@ -31,11 +31,12 @@ def valid_skin(**overrides: object) -> dict[str, object]:
         "name": "Harbour Blue",
         "author": "Jane Modder",
         "description": "Cool blue bars with bevelled cells.",
-        "bar_style": "cells",
-        "text_case": "upper",
-        "bevel": 2,
-        "bar_color": "1F3555",
-        "text_font": "barlow_semi_condensed",
+        "tokens": {
+            "colors": {"bar": "1F3555"},
+            "fonts": {"text": "barlow_semi_condensed"},
+            "case": "upper",
+            "bevel": {"width": 2},
+        },
     }
     skin.update(overrides)
     return skin
@@ -110,10 +111,12 @@ class SkinsManifestTests(unittest.TestCase):
     def test_same_key_rules_as_panels_json(self) -> None:
         bad = [
             {"unknown_key": "x"},
-            {"bar_color": "#1F3555"},
-            {"bevel": 9},
-            {"frame_style": "floating"},
-            {"text_font": "comic_sans"},
+            {"tokens": {"colors": {"bar": "#1F3555"}}},
+            {"tokens": {"bevel": {"width": 9}}},
+            {"bar_style": "cells"},
+            {"tokens": {"fonts": {"text": "comic_sans"}}},
+            {"components": {"menus": {"mode": "dock_strip"}}},
+            {"extends": "skin:not-here"},
         ]
         for override in bad:
             with self.subTest(override=override):
