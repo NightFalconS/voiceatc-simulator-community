@@ -64,6 +64,11 @@ class GateFileValidationTests(unittest.TestCase):
             {"dataset": "mva", "path": "X/mva.json", "requires": ["a.b", "a.b"]},
             {"dataset": "mva", "lane": "next", "channels": ["closed-beta"]},
             {"dataset": "routes", "path": "ROUTES/x.tsv", "channels": ["closed-beta"]},
+            # Routes path gates select overlays under ROUTES/full/ and always carry requires.
+            {"dataset": "routes", "path": "ROUTES/x.tsv", "requires": ["routes.starless_arrivals"]},
+            {"dataset": "routes", "path": "ROUTES/full/starless_arrivals.tsv", "channels": ["closed-beta"]},
+            {"dataset": "routes", "kind": "starless", "requires": ["routes.starless_arrivals"]},
+            {"dataset": "voice_priors", "path": "ROUTES/full/x.tsv", "requires": ["routes.starless_arrivals"]},
             {"dataset": "mva", "path": "../x", "channels": ["stable"]},
             {"dataset": "mva", "path": "X/mva.json", "channels": ["stable"], "note": "x"},
             {"dataset": "color_profiles", "kind": "Panels", "channels": ["stable"]},
@@ -74,6 +79,27 @@ class GateFileValidationTests(unittest.TestCase):
         for bad_file in ([], {}, {"gates": {}}, {"gate": []}):
             with self.subTest(file=bad_file), self.assertRaises(ValueError):
                 GATES.validate_gates(bad_file)
+
+    def test_routes_accepts_overlay_path_gates_and_keeps_lane_gates(self) -> None:
+        gates = GATES.validate_gates(
+            {
+                "gates": [
+                    {
+                        "dataset": "routes",
+                        "path": "ROUTES/full/starless_arrivals.tsv",
+                        "requires": ["routes.starless_arrivals"],
+                    },
+                    {
+                        "dataset": "routes",
+                        "path": "ROUTES/full/*.tsv",
+                        "requires": ["routes.starless_arrivals"],
+                        "channels": ["closed-beta"],
+                    },
+                    {"dataset": "routes", "lane": "next", "channels": ["closed-beta"]},
+                ]
+            }
+        )
+        self.assertEqual(len(gates), 3)
 
     def test_gates_file_carries_no_version_and_ignores_unknown_top_level_keys(self) -> None:
         self.assertEqual(GATES.validate_gates({"gates": []}), [])

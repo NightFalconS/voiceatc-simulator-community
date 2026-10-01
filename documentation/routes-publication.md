@@ -32,6 +32,33 @@ the rich asset under `rich_routes_tsv`; contributors must update both through th
 route projection tool, never edit the legacy copy independently. The daily release
 publishes both assets with unchanged manifest schema versions.
 
+## Gated overlays (`ROUTES/full/`)
+
+Some generated routes only suit builds that have a capability. The first is
+`routes.starless_arrivals`: when every STAR entry for a pair lies behind the aircraft, the
+generator files the arrival to an approach transition's first fix instead, and only builds
+that fly that fix as the clearance limit may receive it. Such rows never enter
+`routes.tsv`; they go in an overlay, `ROUTES/full/<id>.tsv`, that holds only the replacement
+rows (same header, `airac` and five columns as `routes.tsv`) and is gated in
+`.voiceatc/gates.json` with `requires`.
+
+- `python tools/routes_full_feed.py --validate-only` checks the overlays (it runs in the
+  required pull-request gate and before every daily release).
+- `python tools/routes_connectivity_check.py --routes-path ROUTES/full/<id>.tsv
+  --navdata-db <navdata> --accept-approach-entries` checks overlay rows against navdata.
+  Accepting an approach-entry arrival end is opt-in and used only for `ROUTES/full/*`: the
+  default table and player routes stay on the strict STAR-entry rule, because the
+  builds that read them cannot fly an approach-fix arrival end.
+- The daily release splices the overlays into full-feed tables
+  (`routes-rich-<airac>-full*.tsv`) listed in `.voiceatc/full/routes_manifest.json`.
+  The default tables, `.voiceatc/routes_manifest.json`, `.voiceatc/release_manifest.json`
+  and the R2 mirror stay byte-identical, and `tools/stable_contract_guard.py` fails a release
+  whose default feed names an overlay or a full routes asset.
+- An overlay belongs to one cycle. Regenerate it with each new `routes.tsv` cycle; until
+  then the release leaves it out and capable builds read the default table.
+
+Contract, variants and the manifest shape: [`channel-gates.md`](channel-gates.md#route-overlays).
+
 ## Generated-route evidence boundary
 
 The private generator may use licensed-planner comparisons to correct its

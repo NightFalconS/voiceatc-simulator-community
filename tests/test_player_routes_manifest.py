@@ -285,6 +285,51 @@ class PlayerRoutesManifestTests(unittest.TestCase):
         self.assertNotIn(good["id"], deprecated)
         self.assertIn(bad["id"], deprecated)
 
+    def test_an_approach_end_player_route_is_still_rejected(self) -> None:
+        """Approach-entry arrival ends are accepted only for the gated ROUTES/full/* overlays. The player
+        overlay is a default-feed file that stable builds read, so its check keeps the strict STAR rule."""
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            navdata_db = root / "navdata.s3db"
+            create_navdata_db(navdata_db)
+            con = sqlite3.connect(navdata_db)
+            con.executescript(
+                """
+                CREATE TABLE tbl_pe_stars (
+                    airport_identifier TEXT, procedure_identifier TEXT, transition_identifier TEXT,
+                    route_type TEXT, seqno INTEGER, waypoint_identifier TEXT
+                );
+                CREATE TABLE tbl_pf_iaps (
+                    airport_identifier TEXT, procedure_identifier TEXT, transition_identifier TEXT,
+                    route_type TEXT, seqno INTEGER, path_termination TEXT, waypoint_identifier TEXT
+                );
+                INSERT INTO tbl_pe_stars VALUES ('KDDD', 'P1', 'E1', '1', 10, 'BBB');
+                INSERT INTO tbl_pf_iaps VALUES ('KDDD', 'I09', 'CCC', 'A', 10, 'IF', 'CCC');
+                """
+            )
+            con.commit()
+            con.close()
+            approach_end = make_route_entry("KAAA", "KDDD", "AAA Y1 CCC")
+            write_player_file(root, "current", "KAAA", "KDDD", [approach_end])
+            rows = MODULE.load_lane("current", root)
+            calls: list[tuple[dict, object]] = []
+            original = MODULE.routes_connectivity_check.validate_routes
+
+            def spy(*args, **kwargs):
+                summary = original(*args, **kwargs)
+                calls.append((kwargs, summary))
+                return summary
+
+            MODULE.routes_connectivity_check.validate_routes = spy
+            try:
+                MODULE.deep_validate_lane(rows, None, navdata_db)
+            finally:
+                MODULE.routes_connectivity_check.validate_routes = original
+        self.assertEqual(len(calls), 1)
+        kwargs, summary = calls[0]
+        self.assertFalse(kwargs.get("accept_approach_entries", False))
+        self.assertEqual(["star_entry_not_in_procedure"], [finding.code for finding in summary.errors])
+
     def test_lane_status_carry_forward_without_deep_validation(self) -> None:
         entry = make_route_entry("LEMH", "LEPA", "MAMEB")
         fresh = make_route_entry("LEMH", "LEPA", "PTC")

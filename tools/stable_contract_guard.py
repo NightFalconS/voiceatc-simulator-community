@@ -103,6 +103,15 @@ FILE_MANIFESTS: dict[str, dict[str, object]] = {
 }
 FILE_MANIFEST_KEYS = {"schema_version", "repo", "published_at", "airports"}
 SHA_RE = re.compile(r"^[0-9a-f]{64}$")
+# Gated route overlays and their full-feed tables never appear in the default feed.
+FULL_ROUTES_PATH = "ROUTES/full/"
+FULL_ROUTES_ASSET_RE = re.compile(r"routes[a-z_-]*-\d{4}-full\b")
+DEFAULT_ROUTES_FILES = {
+    "routes": Path(".voiceatc") / "routes_manifest.json",
+    "release": Path(".voiceatc") / "release_manifest.json",
+    "routes_default": Path("ROUTES") / "routes_default_manifest.json",
+    "player_routes": Path(".voiceatc") / "player_routes_manifest.json",
+}
 
 
 def _sha256(raw: bytes) -> str:
@@ -283,12 +292,45 @@ def check_file_manifest(dataset: str, manifest: object) -> list[str]:
     return errors
 
 
+def _strings(value: object, where: str):
+    if isinstance(value, str):
+        yield where, value
+    elif isinstance(value, dict):
+        for key, item in value.items():
+            yield from _strings(item, f"{where}.{key}")
+    elif isinstance(value, list):
+        for index, item in enumerate(value):
+            yield from _strings(item, f"{where}[{index}]")
+
+
+def check_default_routes_references(manifests: dict[str, object]) -> list[str]:
+    """Gated route overlays live only in the full feed (tools/routes_full_feed.py).
+
+    A default manifest or the release manifest naming ``ROUTES/full/`` or a
+    ``routes...-full`` asset would hand STAR-less rows to builds that cannot fly them.
+    """
+    errors: list[str] = []
+    for name, manifest in manifests.items():
+        for where, text in _strings(manifest, str(name)):
+            if FULL_ROUTES_PATH in text or FULL_ROUTES_ASSET_RE.search(text):
+                errors.append(f"{where}: default feed names a gated route overlay or full routes asset ('{text}')")
+    return errors
+
+
 def check_repo_manifests(root: Path = ROOT) -> list[str]:
     errors: list[str] = []
     for dataset in FILE_MANIFESTS:
         path = root / ".voiceatc" / f"{dataset}_manifest.json"
         if path.is_file():
             errors.extend(check_file_manifest(dataset, json.loads(path.read_text(encoding="utf-8"))))
+    default_routes_files = {
+        name: root / relative for name, relative in DEFAULT_ROUTES_FILES.items() if (root / relative).is_file()
+    }
+    errors.extend(
+        check_default_routes_references(
+            {name: json.loads(path.read_text(encoding="utf-8")) for name, path in default_routes_files.items()}
+        )
+    )
     return errors
 
 
@@ -298,6 +340,12 @@ def check_release_summary(summary_path: Path) -> list[str]:
     for dataset, rules in ZIP_DATASETS.items():
         zip_path = Path(summary["assets"][str(rules["asset_key"])]["path"])
         errors.extend(check_zip_dataset(dataset, summary["manifests"][dataset], zip_path))
+    default_manifests = dict(summary["manifests"])
+    release_asset = summary["assets"].get("release_manifest", {})
+    release_asset_path = Path(str(release_asset.get("path", ""))) if isinstance(release_asset, dict) else None
+    if release_asset_path is not None and release_asset_path.is_file():
+        default_manifests["release_manifest_asset"] = json.loads(release_asset_path.read_text(encoding="utf-8"))
+    errors.extend(check_default_routes_references(default_manifests))
     return errors
 
 

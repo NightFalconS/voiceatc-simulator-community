@@ -31,6 +31,7 @@ A gate names a `dataset` and exactly one selector:
 |---|---|---|
 | `kind` | a file kind inside an entry (`panels`, `style`, …) | `{"dataset": "color_profiles", "kind": "panels", …}` |
 | `path` | a repo path; `*` matches anything, including `/` | `{"dataset": "mva", "path": "E/ED/EDDM/*", …}` |
+| `path` (routes) | a route overlay under `ROUTES/full/`; needs `requires` | `{"dataset": "routes", "path": "ROUTES/full/starless_arrivals.tsv", …}` |
 | `lane` | a route lane served by the API worker | `{"dataset": "routes", "lane": "next", …}` |
 
 and at least one rule:
@@ -43,8 +44,9 @@ and at least one rule:
   to allow every channel.
 
 Gateable datasets: `mva`, `runway_configs`, `sector_data`, `misc_drawings`,
-`color_profiles` (kind and path gates); `routes`, `voice_priors`, `snapshots` (lane gates,
-read by the API worker, never by this release).
+`color_profiles` (kind and path gates); `routes` (path gates on overlays under `ROUTES/full/`,
+always with `requires`; see "Route overlays" below); `routes`, `voice_priors`, `snapshots`
+(lane gates, read by the API worker, never by this release).
 
 There is no `min_game_version` and no per-channel version list. Old gate files that use
 `min_game_version` are rejected by the validator.
@@ -60,6 +62,7 @@ only. The release never reads that column.
 | `color_profiles.panels` | Reads the `panels` file of a color profile (the session skin's panel layout). | closed beta (0.6.2 line) |
 | `skins.catalog` | Reads the `SKINS/<id>` skin catalog dataset and its name/author/description metadata. | closed beta (0.6.2 line) |
 | `community.full_feed` | Reads the full manifests under `.voiceatc/full/` and filters entries by `requires` and `channels`. | closed beta (0.6.2 line) |
+| `routes.starless_arrivals` | Flies an arrival filed to an approach transition's first fix (no STAR) and reads `.voiceatc/full/routes_manifest.json`. | closed beta (0.6.2 line) |
 
 To add a capability, add a row here in the same pull request that adds the gate or the game
 code that uses it. Names are permanent: never rename one, add a new name instead.
@@ -84,10 +87,43 @@ For each zip dataset the release writes two outputs:
    or file when they have every capability in `requires` and `channels` is absent or contains
    their channel, and ignore keys they do not know. Old builds never read full-feed paths.
 
+### Route overlays
+
+Routes are not a zip dataset. A gated route overlay (`ROUTES/full/<id>.tsv`) holds whole
+replacement rows for pairs already in `ROUTES/routes.tsv`, with the same header and columns.
+`tools/routes_full_feed.py` checks every overlay (its `airac` equals `routes.tsv`, the column
+line matches, every pair exists in the base, no duplicate pair, no pair in two overlays, and
+a `routes` path gate with `requires`) and the release builds cumulative variants, most capable
+first: variant k is the base table with overlays 1..k spliced in (gates.json order), and its
+`requires` is the union of their capabilities. Each variant is a rich TSV asset
+(`routes-rich-<airac>-full.tsv` for the first, `routes-rich-<airac>-full-<id>.tsv` for the rest)
+listed in `.voiceatc/full/routes_manifest.json`:
+
+```json
+{
+  "dataset": "routes", "repo": "…", "release_tag": "…", "commit_sha": "…",
+  "published_at": "…", "generated_at": "…", "entry_count": 1,
+  "entries": [{
+    "id": "starless_arrivals", "airac": "2609", "source_airac": "2609",
+    "asset_name": "routes-rich-2609-full.tsv", "download_url": "https://github.com/…",
+    "sha256": "…", "size_bytes": 12182449, "route_count": 99856,
+    "projection_id": "rich_route_coordinates_v1",
+    "overlays": ["ROUTES/full/starless_arrivals.tsv"],
+    "requires": ["routes.starless_arrivals"]
+  }]
+}
+```
+
+A build keeps the first entry whose gate it passes and whose `airac` equals its target cycle;
+otherwise it reads the default routes manifest. The default tables, manifests, release manifest
+and R2 mirror never change because of an overlay. At release time an overlay for another cycle
+is left out with a notice; in a pull request it fails validation.
+
 Before anything is published, `tools/stable_contract_guard.py` replays the stable 0.6.1.24
 parser rules on every default manifest and zip (schema 2, exact top-level and entry keys,
 known file kinds only, every zip entry listed and hash-matched, counts equal) and the open
-beta exact-key rule on the visual manifests. A failure stops the release.
+beta exact-key rule on the visual manifests. It also fails when any default manifest or the
+release manifest asset names `ROUTES/full/` or a `-full` routes asset. A failure stops the release.
 
 ## Frozen legacy labels
 
@@ -117,6 +153,11 @@ gate new content with `requires`.
 - **New file kind or field:** pick a capability name, add a registry row, and gate the kind
   with `"requires": ["<name>"]`. Builds that have the capability read it from the full feed; the default
   feed never carries it.
+- **Overlay (different routes for capable builds):** put the replacement rows in
+  `ROUTES/full/<id>.tsv` (same header and `airac` as `routes.tsv`), add a registry row and
+  `{"dataset": "routes", "path": "ROUTES/full/<id>.tsv", "requires": ["<name>"]}`, and run
+  `python tools/routes_full_feed.py --validate-only`. Regenerate the overlay with each new
+  cycle of `routes.tsv`; a stale one is left out of the release.
 - **Everyone can read it:** content that requires a capability stays out of the default feed
   for good, because old builds cannot know the capability. To serve it to everyone, ship the
   old-build-safe form of the data in the default format and drop the gate.
@@ -125,6 +166,7 @@ Check your edit locally:
 
 ```
 python tools/release_gates.py --validate-only
+python tools/routes_full_feed.py --validate-only
 python -m unittest discover -s tests -p "test_*.py"
 ```
 

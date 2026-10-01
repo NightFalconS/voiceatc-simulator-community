@@ -100,3 +100,7 @@ Consequences worth remembering:
   `route_token_pattern` / `token_unknown` codes stayed in `DEPRECATING_CODES` for
   previously stored statuses but are no longer emitted.
 - A route is inspected to the end; one bad token no longer hides later faults.
+- Player routes end at STAR entries. At an airport with STARs the last fix must be a STAR's
+  first fix; anything else is `star_entry_not_in_procedure`. The player overlay is a
+  default-feed file that every build reads, so an approach-fix arrival end (accepted only
+  for the gated `ROUTES/full/` overlays, `--accept-approach-entries`) is never accepted here.
