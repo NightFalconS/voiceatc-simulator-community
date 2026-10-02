@@ -123,6 +123,9 @@ those mistakes never reach players.
 The schema is a pinned copy (`tools/interface_contract/contract.json` names the game commit). Maintainers refresh
 it with `python tools/sync_interface_contract.py --game <game checkout> --ref origin/closed-beta`, then
 `python tools/skin_reference.py` to regenerate the key reference; a test fails if either copy is edited by hand.
+The copies must retain the pinned game's exact bytes, including whitespace. `.prettierignore` excludes
+`tools/interface_contract/`, and the formatting job runs the skin tests before committing. If a formatter
+changes a copy, re-run the sync at the recorded `game_commit`; do not update its hash to accept the changed bytes.
 
 ## Live reload
 

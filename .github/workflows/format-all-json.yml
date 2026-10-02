@@ -31,6 +31,8 @@ jobs:
           python-version: "3.11"
       - run: npm ci
       - run: npm run format:json
+      - name: Validate the pinned interface contract
+        run: python -m unittest discover -s tests -p "test_validate_skin.py"
       # Formatting changes the exact bytes protected by the visual manifest.
       # Refresh it in the same commit so main can never contain formatted data
       # paired with the pre-format hash and size.
