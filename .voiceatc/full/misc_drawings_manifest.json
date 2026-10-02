@@ -1,149 +1,177 @@
 {
-  "airport_count": 27,
-  "airports": {
-    "EDDC": {
+  "asset_name": "misc-drawings-2610-full.zip",
+  "commit_sha": "20acf45a86d481c3033c857d5a91599cc3fb80fa",
+  "dataset": "misc_drawings",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-02/misc-drawings-2610-full.zip",
+  "entries": [
+    {
+      "id": "EDDC",
       "repo_path": "E/ED/EDMM/EDDC_TMA/misc_drawings.json",
       "sha256": "bb02484b3242322accbdd8ada513d3560e7adace8c904deb2ee16e7dfee462ce",
       "size_bytes": 745
     },
-    "EDDF": {
+    {
+      "id": "EDDF",
       "repo_path": "E/ED/EDGG/EDDF_TMA/misc_drawings.json",
       "sha256": "68c12602c6c343922e8736284f90a00a7c498e9cc4d8ed025114c5da9ff8b850",
       "size_bytes": 7229
     },
-    "EDDH": {
+    {
+      "id": "EDDH",
       "repo_path": "E/ED/EDWW/HAMBURG_TMA/misc_drawings.json",
       "sha256": "37a467ebef88af731ff0ed7ab17a14c881b119d0cc5564344352a226d74ab17b",
       "size_bytes": 994
     },
-    "EDDM": {
+    {
+      "id": "EDDM",
       "repo_path": "E/ED/EDMM/EDDM_TMA/misc_drawings.json",
       "sha256": "bb74a84ae7ea3f376ceb03980097e05635e1402219e7fb248e3fea36b4f995bf",
       "size_bytes": 1709
     },
-    "EDDN": {
+    {
+      "id": "EDDN",
       "repo_path": "E/ED/EDMM/EDDN_TMA/misc_drawings.json",
       "sha256": "f6fee453097975b537abb21318a8f56b9a9b318de80cca68b07545db899d33b8",
       "size_bytes": 2166
     },
-    "EDHI": {
+    {
+      "id": "EDHI",
       "repo_path": "E/ED/EDWW/HAMBURG_TMA/misc_drawings.json",
       "sha256": "37a467ebef88af731ff0ed7ab17a14c881b119d0cc5564344352a226d74ab17b",
       "size_bytes": 994
     },
-    "EDHL": {
+    {
+      "id": "EDHL",
       "repo_path": "E/ED/EDWW/HAMBURG_TMA/misc_drawings.json",
       "sha256": "37a467ebef88af731ff0ed7ab17a14c881b119d0cc5564344352a226d74ab17b",
       "size_bytes": 994
     },
-    "EFHK": {
+    {
+      "id": "EFHK",
       "repo_path": "E/EF/EFIN/EFIN_S/HELSINKI_TMA/misc_drawings.json",
       "sha256": "7fcdda24e92de9ebdaf82284179f695fd608b40213b9c5a8ae8f04872e9ffc4c",
       "size_bytes": 93
     },
-    "EGLL": {
+    {
+      "id": "EGLL",
       "repo_path": "E/EG/EGTT/LONDON_TMA/misc_drawings.json",
       "sha256": "5bea4d9901ae0c33e70454e3cf562b0f73018db94b8fb3a64106319ce7d0faac",
       "size_bytes": 58976
     },
-    "ENGM": {
+    {
+      "id": "ENGM",
       "repo_path": "E/EN/ENOR/ENOS/OSLO_TMA/misc_drawings.json",
       "sha256": "585951f4315daabc2b3929df181283d73e76ba117d87c8243ac1a39eae504d5f",
       "size_bytes": 22605
     },
-    "ESGG": {
+    {
+      "id": "ESGG",
       "repo_path": "E/ES/ESAA/ESMM_23W45/ESGG_TMA/misc_drawings.json",
       "sha256": "3d20dedd6c0683d7dff4b3ef3b6892ac1488a5a560fb84dabfe1dfd21946c881",
       "size_bytes": 49455
     },
-    "ESGT": {
+    {
+      "id": "ESGT",
       "repo_path": "E/ES/ESAA/ESMM_23W45/ESGG_TMA/misc_drawings.json",
       "sha256": "3d20dedd6c0683d7dff4b3ef3b6892ac1488a5a560fb84dabfe1dfd21946c881",
       "size_bytes": 49455
     },
-    "ESIB": {
+    {
+      "id": "ESIB",
       "repo_path": "E/ES/ESAA/ESMM_23W45/ESGG_TMA/misc_drawings.json",
       "sha256": "3d20dedd6c0683d7dff4b3ef3b6892ac1488a5a560fb84dabfe1dfd21946c881",
       "size_bytes": 49455
     },
-    "ESOW": {
+    {
+      "id": "ESOW",
       "repo_path": "E/ES/ESAA/ESOS_Y/ESOS_APP/misc_drawings.json",
       "sha256": "ed1d46e32488e680914784856389af2d46997504e5f4e615ed71a303ec037340",
       "size_bytes": 80269
     },
-    "ESSA": {
+    {
+      "id": "ESSA",
       "repo_path": "E/ES/ESAA/ESOS_Y/ESOS_APP/misc_drawings.json",
       "sha256": "ed1d46e32488e680914784856389af2d46997504e5f4e615ed71a303ec037340",
       "size_bytes": 80269
     },
-    "ESSB": {
+    {
+      "id": "ESSB",
       "repo_path": "E/ES/ESAA/ESOS_Y/ESOS_APP/misc_drawings.json",
       "sha256": "ed1d46e32488e680914784856389af2d46997504e5f4e615ed71a303ec037340",
       "size_bytes": 80269
     },
-    "KATL": {
+    {
+      "id": "KATL",
       "repo_path": "K/KZTL/ATLANTA_TMA/misc_drawings.json",
       "sha256": "aaeeeca3abcdb8cafe13e5fcfdffa7f7f72c35c8eabc740d1040da523854669a",
       "size_bytes": 365008
     },
-    "KJFK": {
+    {
+      "id": "KJFK",
       "repo_path": "K/KZNY/JFK_TMA/misc_drawings.json",
       "sha256": "86190c0690ad5ce69bdc7093ab3793ec4dbc43bffa050828176725e749e73d0c",
       "size_bytes": 479038
     },
-    "KMKE": {
+    {
+      "id": "KMKE",
       "repo_path": "K/KZAU/MILWAUKEE_TMA/misc_drawings.json",
       "sha256": "ab3df64285d409745a0e532afc35d5dda8a9d4a92b79fb0db48f757c62a53c1f",
       "size_bytes": 2011
     },
-    "LEMD": {
+    {
+      "id": "LEMD",
       "repo_path": "L/LE/LECM/LECM_R2/MADRID_TMA/misc_drawings.json",
       "sha256": "d9ae59e0995f0140c2a260762e0f28cbcaf7d36760d18ee0c64399c328f30661",
       "size_bytes": 52568
     },
-    "LEMH": {
+    {
+      "id": "LEMH",
       "repo_path": "L/LE/LECB/LECB_E/PALMA_TMA/misc_drawings.json",
       "sha256": "9d2b3f962137221749ec51c41783e4b996256ea60367a5fe86e3bc076ae03e1b",
       "size_bytes": 4526
     },
-    "LTBA": {
+    {
+      "id": "LTBA",
       "repo_path": "L/LT/LTBB/ISTANBUL_TMA/misc_drawings.json",
       "sha256": "d58c1b267a8de0e7b1703ad7a232daed9a4e2e5c9e5d6915db16b784e99e5371",
       "size_bytes": 11224
     },
-    "LTFJ": {
+    {
+      "id": "LTFJ",
       "repo_path": "L/LT/LTBB/ISTANBUL_TMA/misc_drawings.json",
       "sha256": "d58c1b267a8de0e7b1703ad7a232daed9a4e2e5c9e5d6915db16b784e99e5371",
       "size_bytes": 11224
     },
-    "LTFM": {
+    {
+      "id": "LTFM",
       "repo_path": "L/LT/LTBB/ISTANBUL_TMA/misc_drawings.json",
       "sha256": "d58c1b267a8de0e7b1703ad7a232daed9a4e2e5c9e5d6915db16b784e99e5371",
       "size_bytes": 11224
     },
-    "OMDB": {
+    {
+      "id": "OMDB",
       "repo_path": "O/OM/OMAE/DUBAI_TERMINAL/misc_drawings.json",
       "sha256": "7de4ba602527206de20afd3d5bc4d085257eb2e9c96793a405ebc7b1c15d45be",
       "size_bytes": 21639
     },
-    "OMDW": {
+    {
+      "id": "OMDW",
       "repo_path": "O/OM/OMAE/DUBAI_TERMINAL/misc_drawings.json",
       "sha256": "7de4ba602527206de20afd3d5bc4d085257eb2e9c96793a405ebc7b1c15d45be",
       "size_bytes": 21639
     },
-    "OMSJ": {
+    {
+      "id": "OMSJ",
       "repo_path": "O/OM/OMAE/DUBAI_TERMINAL/misc_drawings.json",
       "sha256": "7de4ba602527206de20afd3d5bc4d085257eb2e9c96793a405ebc7b1c15d45be",
       "size_bytes": 21639
     }
-  },
-  "asset_name": "misc-drawings-2610.zip",
-  "commit_sha": "20acf45a86d481c3033c857d5a91599cc3fb80fa",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-02/misc-drawings-2610.zip",
+  ],
+  "entry_count": 27,
+  "generated_at": "2026-10-02T08:14:39Z",
   "published_at": "2026-10-02T08:14:39Z",
   "release_tag": "daily-2026-10-02",
   "repo": "lainoa-software/voiceatc-simulator-community",
-  "schema_version": 2,
   "sha256": "088a2822a7abba1d64379e61feefc9b57908ba8ae3dcc9c7fb266d4dcbaf0b25",
   "size_bytes": 191238
 }

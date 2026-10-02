@@ -1,129 +1,153 @@
 {
-  "airport_count": 23,
-  "airports": {
-    "EHAM": {
+  "asset_name": "mva-2610-full.zip",
+  "commit_sha": "20acf45a86d481c3033c857d5a91599cc3fb80fa",
+  "dataset": "mva",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-02/mva-2610-full.zip",
+  "entries": [
+    {
+      "id": "EHAM",
       "repo_path": "E/EH/EHAA/AMSTERDAM_TMA/mva.json",
       "sha256": "1ea5cdf7e96a7be6bd16811827dc101a9d1e75cd1a6355cca2a3230f0799aa0b",
       "size_bytes": 8527
     },
-    "ENGM": {
+    {
+      "id": "ENGM",
       "repo_path": "E/EN/ENOR/ENOS/OSLO_TMA/mva.json",
       "sha256": "23fcaa2f644e4d33f4055cdf5cd3a2ea592f9571c568b5b2ce3e0b1c96e6dddf",
       "size_bytes": 16556
     },
-    "ESGG": {
+    {
+      "id": "ESGG",
       "repo_path": "E/ES/ESAA/ESMM_23W45/ESGG_TMA/mva.json",
       "sha256": "b1733282386795d6dd24e9af5dfe1be46ee55ae94164be1da99938dc544c5338",
       "size_bytes": 2329
     },
-    "ESOW": {
+    {
+      "id": "ESOW",
       "repo_path": "E/ES/ESAA/ESOS_Y/ESOS_APP/mva.json",
       "sha256": "d9cafe5b0d92c7a2fe5ff14fa7ca64db5d92325ef3aa298beef2dd44b0d2da58",
       "size_bytes": 10292
     },
-    "ESSA": {
+    {
+      "id": "ESSA",
       "repo_path": "E/ES/ESAA/ESOS_Y/ESOS_APP/mva.json",
       "sha256": "d9cafe5b0d92c7a2fe5ff14fa7ca64db5d92325ef3aa298beef2dd44b0d2da58",
       "size_bytes": 10292
     },
-    "ESSB": {
+    {
+      "id": "ESSB",
       "repo_path": "E/ES/ESAA/ESOS_Y/ESOS_APP/mva.json",
       "sha256": "d9cafe5b0d92c7a2fe5ff14fa7ca64db5d92325ef3aa298beef2dd44b0d2da58",
       "size_bytes": 10292
     },
-    "KJFK": {
+    {
+      "id": "KJFK",
       "repo_path": "K/KZNY/JFK_TMA/mva.json",
       "sha256": "c7505325febdf6742b4d8e02efbbff2684c3d239e206c7ec4066b49f816b4b06",
       "size_bytes": 100841
     },
-    "KLGA": {
+    {
+      "id": "KLGA",
       "repo_path": "K/KZNY/LAGUARDIA_TMA/mva.json",
       "sha256": "f0f8493b317c1964e446fbcbd1d3eae58e5630c2dc969dc12c20ec97e0e4d44b",
       "size_bytes": 89587
     },
-    "LEAL": {
+    {
+      "id": "LEAL",
       "repo_path": "L/LE/LECB/LECB_W/VALENCIA_TMA/mva.json",
       "sha256": "30e9573cbac5d8b3a328e79ceb7bc84f2e85c199921d231287e241f43353dae3",
       "size_bytes": 29103
     },
-    "LEBB": {
+    {
+      "id": "LEBB",
       "repo_path": "L/LE/LECM/LECM_R1/BILBAO_TMA/mva.json",
       "sha256": "2ff258e09ebbc0872e2b5ad5ddb36426a04225c8f490dbf6545ce59ae3336e42",
       "size_bytes": 30550
     },
-    "LEBL": {
+    {
+      "id": "LEBL",
       "repo_path": "L/LE/LECB/LECB_W/BARCELONA_TMA/mva.json",
       "sha256": "b60a41d94cb577dd870f59d6ec904550f116854aa7f126ecb28ea2db798cb97e",
       "size_bytes": 38161
     },
-    "LEIB": {
+    {
+      "id": "LEIB",
       "repo_path": "L/LE/LECB/LECB_E/PALMA_TMA/mva.json",
       "sha256": "a6b885eaedf2bb86345a20ce9dc5127d88df3a7edbc245178ba9818bb4f19704",
       "size_bytes": 41095
     },
-    "LEJR": {
+    {
+      "id": "LEJR",
       "repo_path": "L/LE/LECM/LECS/SEVILLA_TMA/mva.json",
       "sha256": "e34c683e0edf66d9d724c620e60d1da3c94cf9e962972d26c076c61fe1bed64e",
       "size_bytes": 442047
     },
-    "LEMD": {
+    {
+      "id": "LEMD",
       "repo_path": "L/LE/LECM/LECM_R2/MADRID_TMA/mva.json",
       "sha256": "e019428e080004c24587c0a9effd35b9afe96f0d3481d535e1c1e0de7c6b392d",
       "size_bytes": 17449
     },
-    "LEMG": {
+    {
+      "id": "LEMG",
       "repo_path": "L/LE/LECM/LECS/MALAGA_TMA/mva.json",
       "sha256": "106cd782ccb2a7c5eeadf1bf6bddc94afdfe1e78cb3be898262ea84325c220e8",
       "size_bytes": 18750
     },
-    "LEMH": {
+    {
+      "id": "LEMH",
       "repo_path": "L/LE/LECB/LECB_E/PALMA_TMA/mva.json",
       "sha256": "a6b885eaedf2bb86345a20ce9dc5127d88df3a7edbc245178ba9818bb4f19704",
       "size_bytes": 41095
     },
-    "LEPA": {
+    {
+      "id": "LEPA",
       "repo_path": "L/LE/LECB/LECB_E/PALMA_TMA/mva.json",
       "sha256": "a6b885eaedf2bb86345a20ce9dc5127d88df3a7edbc245178ba9818bb4f19704",
       "size_bytes": 41095
     },
-    "LEVC": {
+    {
+      "id": "LEVC",
       "repo_path": "L/LE/LECB/LECB_W/VALENCIA_TMA/mva.json",
       "sha256": "30e9573cbac5d8b3a328e79ceb7bc84f2e85c199921d231287e241f43353dae3",
       "size_bytes": 29103
     },
-    "LEZL": {
+    {
+      "id": "LEZL",
       "repo_path": "L/LE/LECM/LECS/SEVILLA_TMA/mva.json",
       "sha256": "e34c683e0edf66d9d724c620e60d1da3c94cf9e962972d26c076c61fe1bed64e",
       "size_bytes": 442047
     },
-    "LTBA": {
+    {
+      "id": "LTBA",
       "repo_path": "L/LT/LTBB/ISTANBUL_TMA/mva.json",
       "sha256": "d0a82d3d3b2d99f0ee66090174198e0e9ddf2decefc7eb8887d5d6104f938881",
       "size_bytes": 8558
     },
-    "LTFJ": {
+    {
+      "id": "LTFJ",
       "repo_path": "L/LT/LTBB/ISTANBUL_TMA/mva.json",
       "sha256": "d0a82d3d3b2d99f0ee66090174198e0e9ddf2decefc7eb8887d5d6104f938881",
       "size_bytes": 8558
     },
-    "LTFM": {
+    {
+      "id": "LTFM",
       "repo_path": "L/LT/LTBB/ISTANBUL_TMA/mva.json",
       "sha256": "d0a82d3d3b2d99f0ee66090174198e0e9ddf2decefc7eb8887d5d6104f938881",
       "size_bytes": 8558
     },
-    "RCTP": {
+    {
+      "id": "RCTP",
       "repo_path": "R/RC/RCAA/TAIPEI_TMA/mva.json",
       "sha256": "acc80c8f6960033be4eb4bfa81abc60351a2002c3178230055df3514d8201e87",
       "size_bytes": 162875
     }
-  },
-  "asset_name": "mva-2610.zip",
-  "commit_sha": "20acf45a86d481c3033c857d5a91599cc3fb80fa",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-02/mva-2610.zip",
+  ],
+  "entry_count": 23,
+  "generated_at": "2026-10-02T08:14:39Z",
   "published_at": "2026-10-02T08:14:39Z",
   "release_tag": "daily-2026-10-02",
   "repo": "lainoa-software/voiceatc-simulator-community",
-  "schema_version": 2,
   "sha256": "c2ca4713364abb7ba758be142fc8d9a6d5a62410a752a7341bb53b1473592d2c",
   "size_bytes": 239743
 }

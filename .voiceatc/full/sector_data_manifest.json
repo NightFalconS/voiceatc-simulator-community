@@ -1,8 +1,10 @@
 {
-  "asset_name": "sector-data-2610.zip",
-  "bundle_count": 26,
-  "bundles": {
-    "E/ED/EDGG/EDDF_TMA": {
+  "asset_name": "sector-data-2610-full.zip",
+  "commit_sha": "20acf45a86d481c3033c857d5a91599cc3fb80fa",
+  "dataset": "sector_data",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-02/sector-data-2610-full.zip",
+  "entries": [
+    {
       "files": {
         "configs": {
           "repo_path": "E/ED/EDGG/EDDF_TMA/sector_configs.json",
@@ -19,9 +21,10 @@
           "sha256": "53c3360c19374bdfe5385012a41fe19c8258867a01f55bacd969ceac947b45bc",
           "size_bytes": 107
         }
-      }
+      },
+      "id": "E/ED/EDGG/EDDF_TMA"
     },
-    "E/ED/EDMM/EDDC_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "E/ED/EDMM/EDDC_TMA/sector_configs.json",
@@ -38,9 +41,10 @@
           "sha256": "e9661ffd90c06a87f81f136c3fbd80dd6f37ebabb552a7caaa28ce6c9d6d01b1",
           "size_bytes": 106
         }
-      }
+      },
+      "id": "E/ED/EDMM/EDDC_TMA"
     },
-    "E/ED/EDMM/EDDM_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "E/ED/EDMM/EDDM_TMA/sector_configs.json",
@@ -57,9 +61,10 @@
           "sha256": "711be999533613145a255d86e347fc404fd28bf41126aed0644732eee459ed17",
           "size_bytes": 468
         }
-      }
+      },
+      "id": "E/ED/EDMM/EDDM_TMA"
     },
-    "E/ED/EDMM/EDDN_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "E/ED/EDMM/EDDN_TMA/sector_configs.json",
@@ -76,9 +81,10 @@
           "sha256": "3e468cb449060d600c16b8f80ee7b99bda58f81879468bb032d154bbde8de665",
           "size_bytes": 174
         }
-      }
+      },
+      "id": "E/ED/EDMM/EDDN_TMA"
     },
-    "E/ED/EDWW/HAMBURG_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "E/ED/EDWW/HAMBURG_TMA/sector_configs.json",
@@ -95,9 +101,10 @@
           "sha256": "c330d29ec7e660c2e24f8738b855c9125227f352483ded50a5e2257f00d45a5d",
           "size_bytes": 114
         }
-      }
+      },
+      "id": "E/ED/EDWW/HAMBURG_TMA"
     },
-    "E/EF/EFIN/EFIN_S/HELSINKI_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "E/EF/EFIN/EFIN_S/HELSINKI_TMA/sector_configs.json",
@@ -114,9 +121,10 @@
           "sha256": "aef01bb9cc0cae162cc1dc0b8bb12db8aa1a53d4d8c4ade7bacbf7595dcaac11",
           "size_bytes": 101
         }
-      }
+      },
+      "id": "E/EF/EFIN/EFIN_S/HELSINKI_TMA"
     },
-    "E/EG/EGTT/LONDON_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "E/EG/EGTT/LONDON_TMA/sector_configs.json",
@@ -133,9 +141,10 @@
           "sha256": "20409c5fdcbfce53e72769f59089987cad4a7ffc86544677008c0fbcc489de36",
           "size_bytes": 112
         }
-      }
+      },
+      "id": "E/EG/EGTT/LONDON_TMA"
     },
-    "E/EN/ENOR/ENOS/OSLO_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "E/EN/ENOR/ENOS/OSLO_TMA/sector_configs.json",
@@ -152,9 +161,10 @@
           "sha256": "f70bbeaba9e8652d658bf2faeb612563d68a7a57f254716441dda0a06553e597",
           "size_bytes": 108
         }
-      }
+      },
+      "id": "E/EN/ENOR/ENOS/OSLO_TMA"
     },
-    "E/ES/ESAA/ESMM_23W45/ESGG_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "E/ES/ESAA/ESMM_23W45/ESGG_TMA/sector_configs.json",
@@ -171,9 +181,10 @@
           "sha256": "d97a0048ab24060721fe6b62042534aa625287049e5f9c763ccaba5189d69569",
           "size_bytes": 113
         }
-      }
+      },
+      "id": "E/ES/ESAA/ESMM_23W45/ESGG_TMA"
     },
-    "E/ES/ESAA/ESOS_Y/ESOS_APP": {
+    {
       "files": {
         "configs": {
           "repo_path": "E/ES/ESAA/ESOS_Y/ESOS_APP/sector_configs.json",
@@ -190,9 +201,10 @@
           "sha256": "881e41a9708c91999c949b53b942a0eb2e97c9271f272717bef346d3cf71425e",
           "size_bytes": 264
         }
-      }
+      },
+      "id": "E/ES/ESAA/ESOS_Y/ESOS_APP"
     },
-    "G/GC/GCCC/GCCC_MAIN/CANARIAS_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "G/GC/GCCC/GCCC_MAIN/CANARIAS_TMA/sector_configs.json",
@@ -209,9 +221,10 @@
           "sha256": "01fbf7fb56377c64a72d4cdd29258e2c31e1d244763dc0fa59cfa474896fe9be",
           "size_bytes": 274
         }
-      }
+      },
+      "id": "G/GC/GCCC/GCCC_MAIN/CANARIAS_TMA"
     },
-    "K/KZAU/MILWAUKEE_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "K/KZAU/MILWAUKEE_TMA/sector_configs.json",
@@ -228,9 +241,10 @@
           "sha256": "8d7f35dd0598e5b07cbe1703bf2d8e7c3d4c80abf54774d37853cf77f4d4824d",
           "size_bytes": 246
         }
-      }
+      },
+      "id": "K/KZAU/MILWAUKEE_TMA"
     },
-    "K/KZNY/JFK_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "K/KZNY/JFK_TMA/sector_configs.json",
@@ -247,9 +261,10 @@
           "sha256": "b50faf20751c9e1c322a3d36c8a6b628105f7ec7178835672c063c36fb6d7b09",
           "size_bytes": 131
         }
-      }
+      },
+      "id": "K/KZNY/JFK_TMA"
     },
-    "K/KZNY/LAGUARDIA_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "K/KZNY/LAGUARDIA_TMA/sector_configs.json",
@@ -266,9 +281,10 @@
           "sha256": "20745cf907a12698d814fd057a5543270228d519e3db8bf94607dc54252c813e",
           "size_bytes": 123
         }
-      }
+      },
+      "id": "K/KZNY/LAGUARDIA_TMA"
     },
-    "K/KZTL/ATLANTA_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "K/KZTL/ATLANTA_TMA/sector_configs.json",
@@ -285,9 +301,10 @@
           "sha256": "90e79ec99470df816f35562872b89cd8fb79463ac6a84946bbbd39a9b572a342",
           "size_bytes": 98
         }
-      }
+      },
+      "id": "K/KZTL/ATLANTA_TMA"
     },
-    "L/LE/LECB/LECB_E/PALMA_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "L/LE/LECB/LECB_E/PALMA_TMA/sector_configs.json",
@@ -304,9 +321,10 @@
           "sha256": "c05b3dbeb0706b77186f79cb44be3ad892626c02b5f14fc7a100984ebd537115",
           "size_bytes": 242
         }
-      }
+      },
+      "id": "L/LE/LECB/LECB_E/PALMA_TMA"
     },
-    "L/LE/LECB/LECB_W/BARCELONA_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "L/LE/LECB/LECB_W/BARCELONA_TMA/sector_configs.json",
@@ -323,9 +341,10 @@
           "sha256": "e187e5b1625d6fe195a4a27e36098352b36fd7943ea779f6ff1d970c49749cf4",
           "size_bytes": 283
         }
-      }
+      },
+      "id": "L/LE/LECB/LECB_W/BARCELONA_TMA"
     },
-    "L/LE/LECB/LECB_W/VALENCIA_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "L/LE/LECB/LECB_W/VALENCIA_TMA/sector_configs.json",
@@ -342,9 +361,10 @@
           "sha256": "d0ca5e05390470f7248948de502fd8a4778d7a24eb1357bc93156f50a89572c9",
           "size_bytes": 180
         }
-      }
+      },
+      "id": "L/LE/LECB/LECB_W/VALENCIA_TMA"
     },
-    "L/LE/LECM/LECM_R1/BILBAO_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "L/LE/LECM/LECM_R1/BILBAO_TMA/sector_configs.json",
@@ -361,9 +381,10 @@
           "sha256": "240c56f4780ffc39aa2d7bdd11cebf0bbe31eb25a6ed8c6e9c6f75005f888be4",
           "size_bytes": 102
         }
-      }
+      },
+      "id": "L/LE/LECM/LECM_R1/BILBAO_TMA"
     },
-    "L/LE/LECM/LECM_R1/GALICIA_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "L/LE/LECM/LECM_R1/GALICIA_TMA/sector_configs.json",
@@ -380,9 +401,10 @@
           "sha256": "e6a110a7917f983f24881d3dbfcf1d1d7a4141cba766cfc4f7fb270cc0f977c8",
           "size_bytes": 118
         }
-      }
+      },
+      "id": "L/LE/LECM/LECM_R1/GALICIA_TMA"
     },
-    "L/LE/LECM/LECM_R2/MADRID_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "L/LE/LECM/LECM_R2/MADRID_TMA/sector_configs.json",
@@ -399,9 +421,10 @@
           "sha256": "060a6b5963d6b2d512954d2757a275700b4ae2beb78737004e7284d792556fa4",
           "size_bytes": 126
         }
-      }
+      },
+      "id": "L/LE/LECM/LECM_R2/MADRID_TMA"
     },
-    "L/LE/LECM/LECS/MALAGA_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "L/LE/LECM/LECS/MALAGA_TMA/sector_configs.json",
@@ -418,9 +441,10 @@
           "sha256": "857cd0017ccc09917010d8087b79db8fd5dd85ae8925181d5164d06f43069997",
           "size_bytes": 102
         }
-      }
+      },
+      "id": "L/LE/LECM/LECS/MALAGA_TMA"
     },
-    "L/LE/LECM/LECS/SEVILLA_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "L/LE/LECM/LECS/SEVILLA_TMA/sector_configs.json",
@@ -437,9 +461,10 @@
           "sha256": "6dadf245fa0927aaa4b6c902e2392aff338e728c305f4b71e2b1562d1abedfcd",
           "size_bytes": 180
         }
-      }
+      },
+      "id": "L/LE/LECM/LECS/SEVILLA_TMA"
     },
-    "L/LT/LTBB/ISTANBUL_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "L/LT/LTBB/ISTANBUL_TMA/sector_configs.json",
@@ -456,9 +481,10 @@
           "sha256": "b2b81426e04777d50f16a5b97a62d70d51a1a652c76197690ce4d61426168765",
           "size_bytes": 114
         }
-      }
+      },
+      "id": "L/LT/LTBB/ISTANBUL_TMA"
     },
-    "O/OM/OMAE/DUBAI_TERMINAL": {
+    {
       "files": {
         "configs": {
           "repo_path": "O/OM/OMAE/DUBAI_TERMINAL/sector_configs.json",
@@ -475,9 +501,10 @@
           "sha256": "0acaea477d1bc2b472f648cbc543ee67831f43d014a145d4de6492e6502e1979",
           "size_bytes": 118
         }
-      }
+      },
+      "id": "O/OM/OMAE/DUBAI_TERMINAL"
     },
-    "R/RC/RCAA/TAIPEI_TMA": {
+    {
       "files": {
         "configs": {
           "repo_path": "R/RC/RCAA/TAIPEI_TMA/sector_configs.json",
@@ -494,15 +521,15 @@
           "sha256": "2407429e5edf479df44b3612a4ddaa9a023905b6c7b0ae88d0883d954a6642f3",
           "size_bytes": 114
         }
-      }
+      },
+      "id": "R/RC/RCAA/TAIPEI_TMA"
     }
-  },
-  "commit_sha": "20acf45a86d481c3033c857d5a91599cc3fb80fa",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-02/sector-data-2610.zip",
+  ],
+  "entry_count": 26,
+  "generated_at": "2026-10-02T08:14:39Z",
   "published_at": "2026-10-02T08:14:39Z",
   "release_tag": "daily-2026-10-02",
   "repo": "lainoa-software/voiceatc-simulator-community",
-  "schema_version": 2,
   "sha256": "59d4a96a8e382ca862394d36ac38608e189811485a2b5dc86c89ef3f110e03cb",
   "size_bytes": 48587
 }
