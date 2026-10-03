@@ -1,5 +1,5 @@
 {
-  "airport_count": 137,
+  "airport_count": 138,
   "airports": {
     "EBBR": {
       "repo_path": "E/EB/EBBU/BRUSSELS_TMA/EBBR/runway_configs.json",
@@ -65,6 +65,11 @@
       "repo_path": "E/ED/EDWW/HAMBURG_TMA/EDHL/runway_configs.json",
       "sha256": "69f39722ebe1683b8c2e7a2384bb1e98624f57077a8d42749772bf1f3b45a87e",
       "size_bytes": 234
+    },
+    "EDXW": {
+      "repo_path": "E/ED/EDWW/SYLT_TMA/EDXW/runway_configs.json",
+      "sha256": "50fc95bf77bd4271aa7f52b6ea51c3a9daa5cd807babce9c2fa618db3edbe499",
+      "size_bytes": 402
     },
     "EFHK": {
       "repo_path": "E/EF/EFIN/EFIN_S/HELSINKI_TMA/EFHK/runway_configs.json",
@@ -688,12 +693,12 @@
     }
   },
   "asset_name": "runway-configs-2610.zip",
-  "commit_sha": "d2d64d8868d7b22887458c798a202830c4b0b15c",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-03/runway-configs-2610.zip",
-  "published_at": "2026-10-03T06:29:53Z",
-  "release_tag": "daily-2026-10-03",
+  "commit_sha": "33efcb8efd123f68c0e71dad558aa346f3ec648e",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-03-b/runway-configs-2610.zip",
+  "published_at": "2026-10-03T09:29:39Z",
+  "release_tag": "daily-2026-10-03-b",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "89e20ffaf16eceded590c54714238ef5392794d33152c8cf370d413db6ca8c9f",
-  "size_bytes": 43163
+  "sha256": "b06121439e9f1235a858afe57e6af030d1df1bd8253bee94854b77937d71a770",
+  "size_bytes": 43460
 }
