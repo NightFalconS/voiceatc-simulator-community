@@ -1,8 +1,8 @@
 {
   "asset_name": "sector-data-2610-full.zip",
-  "commit_sha": "33efcb8efd123f68c0e71dad558aa346f3ec648e",
+  "commit_sha": "38478a9e437fcd2c3dfc0cf83bc9984f25565e45",
   "dataset": "sector_data",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-03-b/sector-data-2610-full.zip",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-03-c/sector-data-2610-full.zip",
   "entries": [
     {
       "files": {
@@ -468,13 +468,13 @@
       "files": {
         "configs": {
           "repo_path": "L/LT/LTBB/ISTANBUL_TMA/sector_configs.json",
-          "sha256": "ad0b28ce500a78f0adb20dccb280f2db3b1677bc3bbffc8fcb98431c772787f9",
-          "size_bytes": 230
+          "sha256": "a13cd0bea59842c2b93dfad3aabc5ceb87a45e4f047a15c08668559a7e3ec51b",
+          "size_bytes": 706
         },
         "definitions": {
           "repo_path": "L/LT/LTBB/ISTANBUL_TMA/sector_definitions.json",
-          "sha256": "4bf3cf455819e388b874d787db78492c55859a7e6a3a761f13751e67dac0b3ff",
-          "size_bytes": 2198
+          "sha256": "182619e37ab5d4211c663cbe47fc7d59a98108d7ebe6e23cc27b18cd4cab6797",
+          "size_bytes": 7318
         },
         "influence": {
           "repo_path": "L/LT/LTBB/ISTANBUL_TMA/sector_influence.json",
@@ -526,10 +526,10 @@
     }
   ],
   "entry_count": 26,
-  "generated_at": "2026-10-03T09:29:39Z",
-  "published_at": "2026-10-03T09:29:39Z",
-  "release_tag": "daily-2026-10-03-b",
+  "generated_at": "2026-10-03T15:55:16Z",
+  "published_at": "2026-10-03T15:55:16Z",
+  "release_tag": "daily-2026-10-03-c",
   "repo": "lainoa-software/voiceatc-simulator-community",
-  "sha256": "59d4a96a8e382ca862394d36ac38608e189811485a2b5dc86c89ef3f110e03cb",
-  "size_bytes": 48587
+  "sha256": "3e10c96ea1b87c0aee8f03cb22fd59654db4c5d138d0943bb873e4a7ed65172c",
+  "size_bytes": 49354
 }
