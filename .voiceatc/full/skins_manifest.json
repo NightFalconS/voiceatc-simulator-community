@@ -1,13 +1,13 @@
 {
   "asset_name": "skins-full.zip",
-  "commit_sha": "20acf45a86d481c3033c857d5a91599cc3fb80fa",
+  "commit_sha": "d2d64d8868d7b22887458c798a202830c4b0b15c",
   "dataset": "skins",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-02/skins-full.zip",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-03/skins-full.zip",
   "entries": [],
   "entry_count": 0,
-  "generated_at": "2026-10-02T08:14:39Z",
-  "published_at": "2026-10-02T08:14:39Z",
-  "release_tag": "daily-2026-10-02",
+  "generated_at": "2026-10-03T06:29:53Z",
+  "published_at": "2026-10-03T06:29:53Z",
+  "release_tag": "daily-2026-10-03",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
   "size_bytes": 22
