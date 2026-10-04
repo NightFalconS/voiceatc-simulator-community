@@ -114,6 +114,7 @@
   "terminal_scopes": {
     "E/EB/EBBU/BRUSSELS_TMA": ["EBBR"],
     "E/ED/EDGG/DUSSELDORF_TMA": ["EDDL"],
+    "E/ED/EDGG/DORTMUND_TMA": ["EDLW"],
     "E/ED/EDGG/EDDF_TMA": ["EDDF", "EDFH"],
     "E/ED/EDGG/EDDS_TMA": ["EDDS"],
     "E/ED/EDMM/EDDC_TMA": ["EDAB", "EDDC"],
