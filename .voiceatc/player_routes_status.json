@@ -3293,6 +3293,13 @@
           "status": "ok"
         }
       },
+      "UMKK_USII": {
+        "36a1d92f": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "UMKK_USSS": {
         "594634ee": {
           "checked_airac": "2610",
@@ -3356,6 +3363,13 @@
           "status": "ok"
         }
       },
+      "UMKK_UWWW": {
+        "c38b4773": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "UMMS_UMKK": {
         "a2c219cb": {
           "checked_airac": "2610",
@@ -3365,6 +3379,13 @@
       },
       "USCC_UMKK": {
         "ec5bb1a7": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "USII_UMKK": {
+        "af2c5fd0": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -3440,6 +3461,13 @@
       },
       "UWUU_UMKK": {
         "7aca1e74": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UWWW_UMKK": {
+        "205fc2bb": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -4287,7 +4315,7 @@
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-10-07T18:01:04Z",
+  "generated_at": "2026-10-07T18:30:37Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
