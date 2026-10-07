@@ -1,8 +1,8 @@
 {
   "asset_name": "mva-2610-full.zip",
-  "commit_sha": "7ded925ebdd96cf2e2a9a6d8442b638974efc330",
+  "commit_sha": "468f3ef2b46d95c246670c4621747bc0dcc3214d",
   "dataset": "mva",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-07-f/mva-2610-full.zip",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-07-g/mva-2610-full.zip",
   "entries": [
     {
       "id": "EHAM",
@@ -144,9 +144,9 @@
     }
   ],
   "entry_count": 23,
-  "generated_at": "2026-10-07T17:50:56Z",
-  "published_at": "2026-10-07T17:50:56Z",
-  "release_tag": "daily-2026-10-07-f",
+  "generated_at": "2026-10-07T18:01:04Z",
+  "published_at": "2026-10-07T18:01:04Z",
+  "release_tag": "daily-2026-10-07-g",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "sha256": "c2ca4713364abb7ba758be142fc8d9a6d5a62410a752a7341bb53b1473592d2c",
   "size_bytes": 239743
