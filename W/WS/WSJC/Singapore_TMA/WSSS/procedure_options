@@ -5,7 +5,7 @@
   "defaults": { "spawn_enabled": true, "init_climb": 3000 },
   "sids": { 
   "VOVO1B": { "spawn_enabled": false },
-  "VOVO1F": { "spawn_enabled": false },
+  "VOVO1F": { "spawn_enabled": false }
   },
   "stars": {
   "ARAM1A": { "spawn_enabled": false},
@@ -15,4 +15,3 @@
   "LEBA3B": { "spawn_enabled": false}
   }
   }
-
