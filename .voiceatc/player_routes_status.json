@@ -464,6 +464,13 @@
           "status": "ok"
         }
       },
+      "LTAI_UMKK": {
+        "059ce609": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "LTFM_RKSI": {
         "913b952a": {
           "checked_airac": "2610",
@@ -3195,6 +3202,13 @@
           "status": "ok"
         }
       },
+      "ULAA_UMKK": {
+        "a8c8f39e": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "ULLI_UMKK": {
         "e3af7eeb": {
           "checked_airac": "2610",
@@ -3202,8 +3216,22 @@
           "status": "ok"
         }
       },
+      "ULWC_UMKK": {
+        "6f3ee1ca": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "UMKK_LTAI": {
         "8cb60faf": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UMKK_ULAA": {
+        "e8407aa7": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -3230,8 +3258,22 @@
           "status": "ok"
         }
       },
+      "UMKK_USCC": {
+        "3857acfc": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "UMKK_USSS": {
         "594634ee": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UMKK_USTR": {
+        "0617c0c9": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -3265,6 +3307,27 @@
           "status": "ok"
         }
       },
+      "USCC_UMKK": {
+        "ec5bb1a7": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "USSS_UMKK": {
+        "e1b8e6b6": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "USTR_UMKK": {
+        "b56c723a": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "UTAA_RKSI": {
         "e5ea62dd": {
           "checked_airac": "2610",
@@ -3273,6 +3336,11 @@
         }
       },
       "UUDD_UMKK": {
+        "1c9dbea8": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        },
         "237e2aae": {
           "checked_airac": "2610",
           "reasons": [],
@@ -3281,6 +3349,20 @@
       },
       "UUEE_UMKK": {
         "5594cb9e": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UWKD_UMKK": {
+        "185857c5": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UWUU_UMKK": {
+        "7aca1e74": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -3639,7 +3721,9 @@
       "YSSY_RKSI": {
         "bc299822": {
           "checked_airac": "2610",
-          "reasons": ["airway_disconnect: YSSY->RKSI: RIC not on airway H530"],
+          "reasons": [
+            "airway_disconnect: YSSY->RKSI: RIC not on airway H530"
+          ],
           "status": "deprecated"
         }
       },
@@ -4128,7 +4212,7 @@
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-10-07T09:41:16Z",
+  "generated_at": "2026-10-07T14:51:26Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
