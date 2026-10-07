@@ -3307,6 +3307,13 @@
           "status": "ok"
         }
       },
+      "UMMS_UMKK": {
+        "a2c219cb": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "USCC_UMKK": {
         "ec5bb1a7": {
           "checked_airac": "2610",
@@ -4210,7 +4217,7 @@
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-10-07T14:51:26Z",
+  "generated_at": "2026-10-07T16:40:42Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
