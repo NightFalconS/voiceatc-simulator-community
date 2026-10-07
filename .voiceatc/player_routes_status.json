@@ -3195,8 +3195,29 @@
           "status": "ok"
         }
       },
+      "ULLI_UMKK": {
+        "e3af7eeb": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UMKK_LTAI": {
+        "8cb60faf": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "UMKK_ULLI": {
         "6e4661e5": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UMKK_ULWC": {
+        "20dff338": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -3209,8 +3230,57 @@
           "status": "ok"
         }
       },
+      "UMKK_USSS": {
+        "594634ee": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UMKK_UUDD": {
+        "96b5f915": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UMKK_UUEE": {
+        "435ca79a": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UMKK_UUWW": {
+        "ea3f7f12": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UMKK_UWKD": {
+        "e11df6b2": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "UTAA_RKSI": {
         "e5ea62dd": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UUDD_UMKK": {
+        "237e2aae": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UUEE_UMKK": {
+        "5594cb9e": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -3342,6 +3412,20 @@
           "status": "ok"
         }
       },
+      "VTCL_VTBD": {
+        "c2759ff6": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "VTCT_VTBD": {
+        "1ed88de9": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "VTSP_RKSI": {
         "3fc9f776": {
           "checked_airac": "2610",
@@ -3351,6 +3435,13 @@
       },
       "VTSP_VTBD": {
         "d3108f4c": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "VTUD_VTBD": {
+        "7d980b47": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -4037,7 +4128,7 @@
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-10-06T20:01:28Z",
+  "generated_at": "2026-10-07T09:41:16Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
