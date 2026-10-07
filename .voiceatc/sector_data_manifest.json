@@ -519,28 +519,28 @@
       "files": {
         "configs": {
           "repo_path": "V/VT/VTBB/Bangkok_TMA/sector_configs.json",
-          "sha256": "109dc30c5d78b82aee8c43d9dff4c0e73215afa645621ecab3c2ad1f7cff3f4b",
-          "size_bytes": 224
+          "sha256": "516414707b045e984d6c2d70e8b809b7b7c51ca202d61fb1ca31533f2dcfce04",
+          "size_bytes": 281
         },
         "definitions": {
           "repo_path": "V/VT/VTBB/Bangkok_TMA/sector_definitions.json",
-          "sha256": "58a65d7a73aeec1a38aaf2128276e132aed8c599ec221211cef747a1362dfc0d",
-          "size_bytes": 12658
+          "sha256": "c33fdc00b8a2ed434e21b5583e9b4ad685efd068bbe16d5d14cb72f7e770c598",
+          "size_bytes": 25291
         },
         "influence": {
           "repo_path": "V/VT/VTBB/Bangkok_TMA/sector_influence.json",
-          "sha256": "0f49ca2384248b9acbce8099cf0deacccd871b0c3493f4afb11bfdd46a42a807",
-          "size_bytes": 98
+          "sha256": "3ce39a416206692f23fe93d10da30eaede915537971dddf966d666f4bafdfb78",
+          "size_bytes": 172
         }
       }
     }
   },
-  "commit_sha": "f171751d11d9a844bcd13cab703f47805c0bfbac",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-07/sector-data-2610.zip",
-  "published_at": "2026-10-07T07:11:59Z",
-  "release_tag": "daily-2026-10-07",
+  "commit_sha": "302e7a7b8f1db0e70a0e2e88e4bbee0badbe6d4f",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-07-b/sector-data-2610.zip",
+  "published_at": "2026-10-07T09:36:58Z",
+  "release_tag": "daily-2026-10-07-b",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "9a0c105e31787e7065ace211d1c5c76cb0163b017924fd6eb8a095c9c72f72f4",
-  "size_bytes": 90831
+  "sha256": "798bee8210b1b0852a612bf57eedebb8cce69538e90a906a8dc948d319db76fc",
+  "size_bytes": 91064
 }
