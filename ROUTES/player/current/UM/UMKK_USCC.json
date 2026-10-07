@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "origin": "UMKK",
+  "dest": "USCC",
+  "routes": [
+    {
+      "id": "3857acfc",
+      "route": "UMKK DCT PELUG OTVOV KEDUX PIVAX PIRUX PISIM PIDIN ARANS PISIS MIGTU P997 OBIBA L256 LEDBA L255 DOKOD M61 DIKIN N993 IMANA L749 LUTAT DCT USCC",
+      "created_at": "2026-10-07T14:42:49Z",
+      "creation_airac": "2610"
+    }
+  ]
+}
