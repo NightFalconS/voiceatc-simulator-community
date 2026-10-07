@@ -254,6 +254,13 @@
           "status": "ok"
         }
       },
+      "HESH_UMKK": {
+        "1cb8a7f4": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "KATL_RKSI": {
         "c97b3b63": {
           "checked_airac": "2610",
@@ -3202,6 +3209,15 @@
           "status": "ok"
         }
       },
+      "UDYZ_UMKK": {
+        "7fb63b8f": {
+          "checked_airac": "2610",
+          "reasons": [
+            "point_missing: UDYZ->UMKK: point T924 missing from navdata"
+          ],
+          "status": "deprecated"
+        }
+      },
       "ULAA_UMKK": {
         "a8c8f39e": {
           "checked_airac": "2610",
@@ -3211,6 +3227,13 @@
       },
       "ULLI_UMKK": {
         "e3af7eeb": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "ULMM_UMKK": {
+        "609040e1": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -3237,8 +3260,22 @@
           "status": "ok"
         }
       },
+      "UMKK_HESH": {
+        "048ebc0e": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "UMKK_LTAI": {
         "8cb60faf": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UMKK_UDYZ": {
+        "bc96afc2": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -3253,6 +3290,13 @@
       },
       "UMKK_ULLI": {
         "6e4661e5": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UMKK_ULMM": {
+        "9fa2d48b": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -3286,6 +3330,20 @@
           "status": "ok"
         }
       },
+      "UMKK_UNNT": {
+        "931c9785": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UMKK_URWW": {
+        "0338e7b3": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "UMKK_USCC": {
         "3857acfc": {
           "checked_airac": "2610",
@@ -3295,6 +3353,20 @@
       },
       "UMKK_USII": {
         "36a1d92f": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UMKK_USKK": {
+        "1b69edf1": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UMKK_USPP": {
+        "be0cf380": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -3363,6 +3435,13 @@
           "status": "ok"
         }
       },
+      "UMKK_UWSG": {
+        "4ae1425e": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "UMKK_UWWW": {
         "c38b4773": {
           "checked_airac": "2610",
@@ -3377,6 +3456,22 @@
           "status": "ok"
         }
       },
+      "UNNT_UMKK": {
+        "f9d0a338": {
+          "checked_airac": "2610",
+          "reasons": [
+            "point_missing: UNNT->UMKK: point GAMA missing from navdata"
+          ],
+          "status": "deprecated"
+        }
+      },
+      "URWW_UMKK": {
+        "f7225b44": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "USCC_UMKK": {
         "ec5bb1a7": {
           "checked_airac": "2610",
@@ -3386,6 +3481,20 @@
       },
       "USII_UMKK": {
         "af2c5fd0": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "USKK_UMKK": {
+        "bc361515": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "USPP_UMKK": {
+        "f1992e85": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -3454,6 +3563,13 @@
       },
       "UWKD_UMKK": {
         "185857c5": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UWSG_UMKK": {
+        "a0e8ca85": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -4315,7 +4431,7 @@
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-10-07T18:30:37Z",
+  "generated_at": "2026-10-07T19:05:38Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
