@@ -8,8 +8,6 @@
   },
   "published_at": "2026-10-07T14:51:46Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
-  "requires": [
-    "community.airac_overrides"
-  ],
+  "requires": ["community.airac_overrides"],
   "schema_version": 1
 }
