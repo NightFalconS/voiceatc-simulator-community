@@ -3216,6 +3216,13 @@
           "status": "ok"
         }
       },
+      "ULOO_UMKK": {
+        "68a5df21": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "ULWC_UMKK": {
         "6f3ee1ca": {
           "checked_airac": "2610",
@@ -3239,6 +3246,13 @@
       },
       "UMKK_ULLI": {
         "6e4661e5": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UMKK_ULOO": {
+        "5a2a06f3": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -3279,6 +3293,13 @@
           "status": "ok"
         }
       },
+      "UMKK_UUBI": {
+        "2ccadf94": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "UMKK_UUDD": {
         "96b5f915": {
           "checked_airac": "2610",
@@ -3295,6 +3316,13 @@
       },
       "UMKK_UUWW": {
         "ea3f7f12": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UMKK_UWGG": {
+        "c2f7e802": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -3342,6 +3370,13 @@
           "status": "ok"
         }
       },
+      "UUBI_UMKK": {
+        "1fec2052": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "UUDD_UMKK": {
         "1c9dbea8": {
           "checked_airac": "2610",
@@ -3356,6 +3391,13 @@
       },
       "UUEE_UMKK": {
         "5594cb9e": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
+      "UWGG_UMKK": {
+        "eca2d307": {
           "checked_airac": "2610",
           "reasons": [],
           "status": "ok"
@@ -4217,7 +4259,7 @@
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-10-07T16:40:42Z",
+  "generated_at": "2026-10-07T17:50:56Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
