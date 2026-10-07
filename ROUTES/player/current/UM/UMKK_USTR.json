@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "origin": "UMKK",
+  "dest": "USTR",
+  "routes": [
+    {
+      "id": "0617c0c9",
+      "route": "UMKK DCT PELUG OTVOV KEDUX PIVAX PIRUX PISIM PIDIN ARANS PISIS MIGTU T73 BEGSI M61 SUMOM P983 GINPA DCT USTR",
+      "created_at": "2026-10-07T14:42:49Z",
+      "creation_airac": "2610"
+    }
+  ]
+}

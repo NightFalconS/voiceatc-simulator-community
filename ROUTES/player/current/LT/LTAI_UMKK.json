@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "origin": "LTAI",
+  "dest": "UMKK",
+  "routes": [
+    {
+      "id": "059ce609",
+      "route": "LTAI DCT EKNUD UQ26 BKZ IBLAL T777 BGS L622 KOMAN KENIN LENOV N133 GRUDA N191 NIKMI M994 GOMED DCT UMKK",
+      "created_at": "2026-10-07T14:42:49Z",
+      "creation_airac": "2610"
+    }
+  ]
+}
