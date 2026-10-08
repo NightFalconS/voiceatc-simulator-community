@@ -3210,6 +3210,11 @@
         }
       },
       "UDYZ_UMKK": {
+        "6b58b293": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        },
         "7fb63b8f": {
           "checked_airac": "2610",
           "reasons": [
@@ -3457,12 +3462,10 @@
         }
       },
       "UNNT_UMKK": {
-        "f9d0a338": {
+        "9c09799a": {
           "checked_airac": "2610",
-          "reasons": [
-            "point_missing: UNNT->UMKK: point GAMA missing from navdata"
-          ],
-          "status": "deprecated"
+          "reasons": [],
+          "status": "ok"
         }
       },
       "URWW_UMKK": {
@@ -4431,7 +4434,7 @@
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-10-07T19:05:38Z",
+  "generated_at": "2026-10-08T07:15:37Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
