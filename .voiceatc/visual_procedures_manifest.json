@@ -57,13 +57,13 @@
     },
     "KSAN": {
       "repo_path": "K/KZLA/SAN_DIEGO_TMA/KSAN/visual_procedures.json",
-      "sha256": "ff21f7f25ec6e88fd236af113defa94fe59ce03a3eb5aa52865c9134d2a07219",
-      "size_bytes": 4069
+      "sha256": "ddc62b41237432aac26e41759ea2530de4b0e610995e8c712b862603ad70f16d",
+      "size_bytes": 4319
     },
     "KSEA": {
       "repo_path": "K/KZSE/SEATTLE_TMA/KSEA/visual_procedures.json",
-      "sha256": "36dc3aaae21d270d769120dfd9e41383486a802d2f9e9cb6da84563377c76aea",
-      "size_bytes": 7009
+      "sha256": "879c8b286db95a8f9526e5414dab9e67f2eb033733e99f5531c9ce016f64ae0c",
+      "size_bytes": 6037
     },
     "KSFO": {
       "repo_path": "K/KZOA/SFO_TMA/KSFO/visual_procedures.json",

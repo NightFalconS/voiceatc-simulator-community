@@ -5,10 +5,7 @@
     {
       "id": "SWEETWATER_VISUAL_27",
       "name": "Sweetwater Visual RWY 27",
-      "aliases": [
-        "sweetwater visual",
-        "sweetwater"
-      ],
+      "aliases": ["sweetwater visual", "sweetwater"],
       "classification": "charted_ifr_visual",
       "policy_profile": "FAA",
       "source": {

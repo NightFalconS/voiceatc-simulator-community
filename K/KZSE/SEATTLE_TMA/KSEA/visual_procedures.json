@@ -5,10 +5,7 @@
     {
       "id": "BAY_VISUAL_16RCL",
       "name": "Bay Visual RWY 16R/C/L",
-      "aliases": [
-        "bay visual",
-        "bay visual sixteen"
-      ],
+      "aliases": ["bay visual", "bay visual sixteen"],
       "classification": "charted_ifr_visual",
       "policy_profile": "FAA",
       "source": {

@@ -10,9 +10,7 @@
         {
           "id": "MOUNT_HELIX",
           "name": "Mount Helix",
-          "aliases": [
-            "Helix"
-          ],
+          "aliases": ["Helix"],
           "geometry": {
             "kind": "point",
             "latitude": 32.76704,
