@@ -1,6 +1,6 @@
 {
   "asset_name": "color-profiles-2610-full.zip",
-  "commit_sha": "f4efcb27f5259dde78d0374ca6c48b7e93b52dbd",
+  "commit_sha": "0d346e2d50c494edcd59922c26c59d3a5474ea41",
   "dataset": "color_profiles",
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-09/color-profiles-2610-full.zip",
   "entries": [
@@ -513,8 +513,8 @@
       "files": {
         "colors": {
           "repo_path": "L/LE/colors.json",
-          "sha256": "d938228c74a37cf112e6d02b5eb534ce4b27e469ca11847d30ea966a962f155b",
-          "size_bytes": 734
+          "sha256": "43f18075b4e2d45f57553889efb0be8f14bdeeae1260a6080f52ea9f3a3a74d1",
+          "size_bytes": 807
         },
         "style": {
           "repo_path": "L/LE/style.json",
@@ -523,6 +523,21 @@
         }
       },
       "id": "L/LE"
+    },
+    {
+      "files": {
+        "colors": {
+          "repo_path": "L/LP/colors.json",
+          "sha256": "36bec017da3d1c56e58a2d0817ed2e1f056d02fe09fcec011844046f1900236a",
+          "size_bytes": 1040
+        },
+        "style": {
+          "repo_path": "L/LP/style.json",
+          "sha256": "d6d3f54129b6dc2a4f831614005533a45c7afc6c793a8380be3ae00a975efae4",
+          "size_bytes": 10562
+        }
+      },
+      "id": "L/LP"
     },
     {
       "files": {
@@ -645,11 +660,11 @@
       "id": "V/VH/VHHK/HONGKONG_TMA"
     }
   ],
-  "entry_count": 43,
-  "generated_at": "2026-10-09T07:21:40Z",
-  "published_at": "2026-10-09T07:21:40Z",
+  "entry_count": 44,
+  "generated_at": "2026-10-09T10:00:43Z",
+  "published_at": "2026-10-09T10:00:43Z",
   "release_tag": "daily-2026-10-09",
   "repo": "lainoa-software/voiceatc-simulator-community",
-  "sha256": "a6b483540b6aadd9736fe127c314574b9cfeef657b06945c945ea682d8bcd866",
-  "size_bytes": 41960
+  "sha256": "2b628eb448360d2e7a5ff5144cef10d8346b3421077c51e69d8ffbbc9d1b0006",
+  "size_bytes": 44067
 }

@@ -1,6 +1,6 @@
 {
   "asset_name": "sector-data-2610-full.zip",
-  "commit_sha": "f4efcb27f5259dde78d0374ca6c48b7e93b52dbd",
+  "commit_sha": "0d346e2d50c494edcd59922c26c59d3a5474ea41",
   "dataset": "sector_data",
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-09/sector-data-2610-full.zip",
   "entries": [
@@ -467,6 +467,166 @@
     {
       "files": {
         "configs": {
+          "repo_path": "L/LP/LPPC/FARO_TMA/sector_configs.json",
+          "sha256": "22a95fb5cad831c724b6f51e3bc761624998a2f56d748f8c299f7564da30482e",
+          "size_bytes": 247
+        },
+        "definitions": {
+          "repo_path": "L/LP/LPPC/FARO_TMA/sector_definitions.json",
+          "sha256": "982e596843d4a4f3d91b362b1aa0f1d86563784a0b31dedd9f79e0dff89cd7c6",
+          "size_bytes": 43040
+        },
+        "influence": {
+          "repo_path": "L/LP/LPPC/FARO_TMA/sector_influence.json",
+          "sha256": "bdf456849bf2dc2ff8867ede5e968f69d2266c61a7044aaeb2ff93c6b50a5545",
+          "size_bytes": 100
+        }
+      },
+      "id": "L/LP/LPPC/FARO_TMA"
+    },
+    {
+      "files": {
+        "configs": {
+          "repo_path": "L/LP/LPPC/LISBOA_TMA/sector_configs.json",
+          "sha256": "296adc8476d65c380be1de510447e47e3c382e1cf75a5a8d608e0657aec6e0b2",
+          "size_bytes": 1423
+        },
+        "definitions": {
+          "repo_path": "L/LP/LPPC/LISBOA_TMA/sector_definitions.json",
+          "sha256": "dcd2555a21939b379b29767a97e06167b66b02f4fd0d190a7e3931a4c42d07aa",
+          "size_bytes": 88288
+        },
+        "influence": {
+          "repo_path": "L/LP/LPPC/LISBOA_TMA/sector_influence.json",
+          "sha256": "e7ade2e04d281a1af33ca3ec300bcb8ff39472f7493319378cb4d7a608771e47",
+          "size_bytes": 520
+        }
+      },
+      "id": "L/LP/LPPC/LISBOA_TMA"
+    },
+    {
+      "files": {
+        "configs": {
+          "repo_path": "L/LP/LPPC/MADEIRA_TMA/sector_configs.json",
+          "sha256": "937b3a1721dba2452698a3776434ce9caeca7ad1ddc6484a95eb60d78d806855",
+          "size_bytes": 272
+        },
+        "definitions": {
+          "repo_path": "L/LP/LPPC/MADEIRA_TMA/sector_definitions.json",
+          "sha256": "c1451d50ecb4699d3d332989c75b242264cbf405dbe8d2f3083abac19314ab3d",
+          "size_bytes": 44655
+        },
+        "influence": {
+          "repo_path": "L/LP/LPPC/MADEIRA_TMA/sector_influence.json",
+          "sha256": "f50fb9698207a16a04b437299853d9cba8dcb7f5d978eda69231b15ae0b9ad0b",
+          "size_bytes": 108
+        }
+      },
+      "id": "L/LP/LPPC/MADEIRA_TMA"
+    },
+    {
+      "files": {
+        "configs": {
+          "repo_path": "L/LP/LPPC/PORTO_TMA/sector_configs.json",
+          "sha256": "6e36c0347f240da41b33b805c7f316c30d3348fef2605d0d66d1f5c99a9fadc1",
+          "size_bytes": 568
+        },
+        "definitions": {
+          "repo_path": "L/LP/LPPC/PORTO_TMA/sector_definitions.json",
+          "sha256": "e097c7363163838e5c68643dea7ec2770cb7c766e97d9b385519c6ac9d4a1078",
+          "size_bytes": 35756
+        },
+        "influence": {
+          "repo_path": "L/LP/LPPC/PORTO_TMA/sector_influence.json",
+          "sha256": "9e7dc3445d49725c6c1407f03c571c3d61785cd7b3561fc9b350fa67ed0fbbf1",
+          "size_bytes": 168
+        }
+      },
+      "id": "L/LP/LPPC/PORTO_TMA"
+    },
+    {
+      "files": {
+        "configs": {
+          "repo_path": "L/LP/LPPO/FLORES_TMA/sector_configs.json",
+          "sha256": "7283fc658261d7e86e2fc664af8c46b35d4c62e6aabdf0129b430a7fbe4fdaf7",
+          "size_bytes": 269
+        },
+        "definitions": {
+          "repo_path": "L/LP/LPPO/FLORES_TMA/sector_definitions.json",
+          "sha256": "3a43c1fcd52de972e9eb2de5a5d9ac53d782680a9c051febdbf5f1eb426d91d9",
+          "size_bytes": 1296
+        },
+        "influence": {
+          "repo_path": "L/LP/LPPO/FLORES_TMA/sector_influence.json",
+          "sha256": "1587d725897f4f0a1c7fbd8977e44e1906ed81224a660ee3976547debfccb58d",
+          "size_bytes": 106
+        }
+      },
+      "id": "L/LP/LPPO/FLORES_TMA"
+    },
+    {
+      "files": {
+        "configs": {
+          "repo_path": "L/LP/LPPO/HORTA_TMA/sector_configs.json",
+          "sha256": "dfed4e80afe62bb5ee0b6fd1c29c7f5ecb5a7b58cdfb317516d04505ce5891d5",
+          "size_bytes": 346
+        },
+        "definitions": {
+          "repo_path": "L/LP/LPPO/HORTA_TMA/sector_definitions.json",
+          "sha256": "bfa594d3068408e5b8aed9581c1aaa6508ceacfba078f0cb80465c7b8ce67585",
+          "size_bytes": 29348
+        },
+        "influence": {
+          "repo_path": "L/LP/LPPO/HORTA_TMA/sector_influence.json",
+          "sha256": "ce548732dc4bc2c27b11c12a5ad340046ccd5e854cd7309f39577917bf6d8536",
+          "size_bytes": 114
+        }
+      },
+      "id": "L/LP/LPPO/HORTA_TMA"
+    },
+    {
+      "files": {
+        "configs": {
+          "repo_path": "L/LP/LPPO/LAJES_TMA/sector_configs.json",
+          "sha256": "d7580932c97de879e0b279bbb5744ce6b79e7bbe9a629df2c84ebbacca5c0e23",
+          "size_bytes": 268
+        },
+        "definitions": {
+          "repo_path": "L/LP/LPPO/LAJES_TMA/sector_definitions.json",
+          "sha256": "252e28b237cfc18e160c67bd6c27e8f368673e231c1f4be95c298a7e981733e9",
+          "size_bytes": 2541
+        },
+        "influence": {
+          "repo_path": "L/LP/LPPO/LAJES_TMA/sector_influence.json",
+          "sha256": "6d1674432a46df439229687e2823e55773a29f4bc8f75d6206863acec87e9f81",
+          "size_bytes": 106
+        }
+      },
+      "id": "L/LP/LPPO/LAJES_TMA"
+    },
+    {
+      "files": {
+        "configs": {
+          "repo_path": "L/LP/LPPO/PONTA_DELGADA_TMA/sector_configs.json",
+          "sha256": "0e1788468183bd4feaf7e279e19a2465c2c9d365b559a2eb73ff31c5df601a1d",
+          "size_bytes": 276
+        },
+        "definitions": {
+          "repo_path": "L/LP/LPPO/PONTA_DELGADA_TMA/sector_definitions.json",
+          "sha256": "60c492892a512d25382c616ab9337726bea9e62728f78b3e7eca84bc8b575572",
+          "size_bytes": 40257
+        },
+        "influence": {
+          "repo_path": "L/LP/LPPO/PONTA_DELGADA_TMA/sector_influence.json",
+          "sha256": "5c83d9853e39d79002249f1e1eaa0ab1d9f01eed851885598982bace2478efb7",
+          "size_bytes": 106
+        }
+      },
+      "id": "L/LP/LPPO/PONTA_DELGADA_TMA"
+    },
+    {
+      "files": {
+        "configs": {
           "repo_path": "L/LT/LTBB/ISTANBUL_TMA/sector_configs.json",
           "sha256": "a13cd0bea59842c2b93dfad3aabc5ceb87a45e4f047a15c08668559a7e3ec51b",
           "size_bytes": 706
@@ -565,11 +725,11 @@
       "id": "V/VT/VTBB/Bangkok_TMA"
     }
   ],
-  "entry_count": 28,
-  "generated_at": "2026-10-09T07:21:40Z",
-  "published_at": "2026-10-09T07:21:40Z",
+  "entry_count": 36,
+  "generated_at": "2026-10-09T10:00:43Z",
+  "published_at": "2026-10-09T10:00:43Z",
   "release_tag": "daily-2026-10-09",
   "repo": "lainoa-software/voiceatc-simulator-community",
-  "sha256": "798bee8210b1b0852a612bf57eedebb8cce69538e90a906a8dc948d319db76fc",
-  "size_bytes": 91064
+  "sha256": "801154c08cc4d87c805398a6505146c5e9e110f13fa2ace4fd2c0bc875fcef4b",
+  "size_bytes": 117826
 }

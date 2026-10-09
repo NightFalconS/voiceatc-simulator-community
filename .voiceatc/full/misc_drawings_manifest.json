@@ -1,6 +1,6 @@
 {
   "asset_name": "misc-drawings-2610-full.zip",
-  "commit_sha": "f4efcb27f5259dde78d0374ca6c48b7e93b52dbd",
+  "commit_sha": "0d346e2d50c494edcd59922c26c59d3a5474ea41",
   "dataset": "misc_drawings",
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-09/misc-drawings-2610-full.zip",
   "entries": [
@@ -131,6 +131,48 @@
       "size_bytes": 4526
     },
     {
+      "id": "LPFR",
+      "repo_path": "L/LP/LPPC/FARO_TMA/misc_drawings.json",
+      "sha256": "5ad78dac9ccfb13aa1cb095771ac0bcecb737619059f035b822cbbe2fa97343e",
+      "size_bytes": 213540
+    },
+    {
+      "id": "LPHR",
+      "repo_path": "L/LP/LPPO/HORTA_TMA/misc_drawings.json",
+      "sha256": "4a9c42633b45897719bf08f9dafca8b7154638045bb1d2de55c6851046ddeb9e",
+      "size_bytes": 17720
+    },
+    {
+      "id": "LPLA",
+      "repo_path": "L/LP/LPPO/LAJES_TMA/misc_drawings.json",
+      "sha256": "01aa60c417ecf83f13917b05ce4252614ed8278f784e134ff7fde27ab213b309",
+      "size_bytes": 53332
+    },
+    {
+      "id": "LPMA",
+      "repo_path": "L/LP/LPPC/MADEIRA_TMA/misc_drawings.json",
+      "sha256": "a883f2b86a4a7b546489e99940807850d0569efd882eaf6f652d1e80777c2b1e",
+      "size_bytes": 212351
+    },
+    {
+      "id": "LPPD",
+      "repo_path": "L/LP/LPPO/PONTA_DELGADA_TMA/misc_drawings.json",
+      "sha256": "f4cc684ad12c03f8e33bbd561d877618e51b01945131279a119a5b15234bf095",
+      "size_bytes": 55701
+    },
+    {
+      "id": "LPPR",
+      "repo_path": "L/LP/LPPC/PORTO_TMA/misc_drawings.json",
+      "sha256": "8c59c535ab04fd77a7d6fefaad051594af9d598b96a5cb5deed44d23ee26c5c9",
+      "size_bytes": 211124
+    },
+    {
+      "id": "LPPT",
+      "repo_path": "L/LP/LPPC/LISBOA_TMA/misc_drawings.json",
+      "sha256": "3b2464a4cddb41d201fd7419fca7e8b31d131e8d29e77e2689185af67a2545b9",
+      "size_bytes": 241357
+    },
+    {
       "id": "LTBA",
       "repo_path": "L/LT/LTBB/ISTANBUL_TMA/misc_drawings.json",
       "sha256": "d58c1b267a8de0e7b1703ad7a232daed9a4e2e5c9e5d6915db16b784e99e5371",
@@ -167,11 +209,11 @@
       "size_bytes": 21639
     }
   ],
-  "entry_count": 27,
-  "generated_at": "2026-10-09T07:21:40Z",
-  "published_at": "2026-10-09T07:21:40Z",
+  "entry_count": 34,
+  "generated_at": "2026-10-09T10:00:43Z",
+  "published_at": "2026-10-09T10:00:43Z",
   "release_tag": "daily-2026-10-09",
   "repo": "lainoa-software/voiceatc-simulator-community",
-  "sha256": "088a2822a7abba1d64379e61feefc9b57908ba8ae3dcc9c7fb266d4dcbaf0b25",
-  "size_bytes": 191238
+  "sha256": "9ad954861560168bb4aa5c8ada6514e7058f3160100df70ef5f6d233b5e67a64",
+  "size_bytes": 287711
 }

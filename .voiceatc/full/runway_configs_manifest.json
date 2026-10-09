@@ -1,6 +1,6 @@
 {
   "asset_name": "runway-configs-2610-full.zip",
-  "commit_sha": "f4efcb27f5259dde78d0374ca6c48b7e93b52dbd",
+  "commit_sha": "0d346e2d50c494edcd59922c26c59d3a5474ea41",
   "dataset": "runway_configs",
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-09/runway-configs-2610-full.zip",
   "entries": [
@@ -779,10 +779,94 @@
       "size_bytes": 368
     },
     {
+      "id": "LPAZ",
+      "repo_path": "L/LP/LPPO/PONTA_DELGADA_TMA/LPAZ/runway_configs.json",
+      "sha256": "988897bb40c037e8b0d7c5862fae0fcada6e9bc5d58fc19c45df90aa4cfbd15d",
+      "size_bytes": 236
+    },
+    {
+      "id": "LPCR",
+      "repo_path": "L/LP/LPPO/FLORES_TMA/LPCR/runway_configs.json",
+      "sha256": "acdfa36fc2c63510413937de94cd26ffd3f2044dd9c7fa19dcb4880c74e81a8a",
+      "size_bytes": 236
+    },
+    {
+      "id": "LPCS",
+      "repo_path": "L/LP/LPPC/LISBOA_TMA/LPCS/runway_configs.json",
+      "sha256": "e1f053dcfebd264f92b857fd83824232a271dea2103bde081f4fd9664a6e8942",
+      "size_bytes": 236
+    },
+    {
+      "id": "LPFL",
+      "repo_path": "L/LP/LPPO/FLORES_TMA/LPFL/runway_configs.json",
+      "sha256": "5934a1c9dcf5e7db18e07522877d1c65c064a1b6ee86d5182cccd18899c7ba25",
+      "size_bytes": 236
+    },
+    {
+      "id": "LPFR",
+      "repo_path": "L/LP/LPPC/FARO_TMA/LPFR/runway_configs.json",
+      "sha256": "194c367de91862dba1228e179651bc9f97aa27b24082e8c74a7161b6293a0fbf",
+      "size_bytes": 236
+    },
+    {
+      "id": "LPGR",
+      "repo_path": "L/LP/LPPO/LAJES_TMA/LPGR/runway_configs.json",
+      "sha256": "2a665b1cfc6a867bbd7ff3bad0832e1a3e587ac5305f6ce6c262f2437470da91",
+      "size_bytes": 236
+    },
+    {
+      "id": "LPHR",
+      "repo_path": "L/LP/LPPO/HORTA_TMA/LPHR/runway_configs.json",
+      "sha256": "7c2870abe14dd85d536fd9f96fefb33d3c38a5e3e8dad3f010bcd5fa2fd88994",
+      "size_bytes": 236
+    },
+    {
+      "id": "LPLA",
+      "repo_path": "L/LP/LPPO/LAJES_TMA/LPLA/runway_configs.json",
+      "sha256": "94d7fe8b9a569c264044f0375d4e287ef83fa55d0dfef94e6a92cc18a6d19199",
+      "size_bytes": 236
+    },
+    {
+      "id": "LPMA",
+      "repo_path": "L/LP/LPPC/MADEIRA_TMA/LPMA/runway_configs.json",
+      "sha256": "c635419701cafdc2be306f13a2df87fd1af17fd3a1d6896ed000ef08e903c05c",
+      "size_bytes": 236
+    },
+    {
+      "id": "LPPD",
+      "repo_path": "L/LP/LPPO/PONTA_DELGADA_TMA/LPPD/runway_configs.json",
+      "sha256": "6b32bb6460cf7b1fae741f2f7f403bd3a4ef7659f15104265ed365393be4ced1",
+      "size_bytes": 236
+    },
+    {
+      "id": "LPPI",
+      "repo_path": "L/LP/LPPO/HORTA_TMA/LPPI/runway_configs.json",
+      "sha256": "9cec1005cb3e2c18545f49fa25a2be938c689f37b75378ea4f9ec0f9cd92d7ca",
+      "size_bytes": 236
+    },
+    {
+      "id": "LPPR",
+      "repo_path": "L/LP/LPPC/PORTO_TMA/LPPR/runway_configs.json",
+      "sha256": "9253377de940998957512c92d5859718ef92305420f2570c5e45155be280e4a4",
+      "size_bytes": 236
+    },
+    {
+      "id": "LPPS",
+      "repo_path": "L/LP/LPPC/MADEIRA_TMA/LPPS/runway_configs.json",
+      "sha256": "b9042191cfcd11687ab83c868b9376102029b1fe871771a480104ce874f1bd7a",
+      "size_bytes": 236
+    },
+    {
       "id": "LPPT",
-      "repo_path": "L/LP/LPPC/LISBON_TMA/LPPT/runway_configs.json",
+      "repo_path": "L/LP/LPPC/LISBOA_TMA/LPPT/runway_configs.json",
       "sha256": "bd088e012d5be852e01c0f539cf1ad11ce50dca71cf850c5a18128cd8e6e19c4",
       "size_bytes": 265
+    },
+    {
+      "id": "LPSJ",
+      "repo_path": "L/LP/LPPO/HORTA_TMA/LPSJ/runway_configs.json",
+      "sha256": "b86188edbaf9e0c52e7bac7b7059576032ce4761c71ccb8f751c1411d9cfca1a",
+      "size_bytes": 236
     },
     {
       "id": "LSZH",
@@ -851,6 +935,12 @@
       "size_bytes": 242
     },
     {
+      "id": "UMKK",
+      "repo_path": "U/UM/UMKK/KALININGRAD_TMA/UMKK/runway_configs.json",
+      "sha256": "3330fb97e9593d34d72d0042852fccec89e6cd5d311429f35dd02386626d5b9a",
+      "size_bytes": 354
+    },
+    {
       "id": "VABB",
       "repo_path": "V/VA/VABF/MUMBAI_TMA/VABB/runway_configs.json",
       "sha256": "e3bf07bbb18c5229e9f4abcf048c08b0cdbfa70a7275ce0402a02a57e6427c87",
@@ -869,11 +959,11 @@
       "size_bytes": 254
     }
   ],
-  "entry_count": 144,
-  "generated_at": "2026-10-09T07:21:40Z",
-  "published_at": "2026-10-09T07:21:40Z",
+  "entry_count": 159,
+  "generated_at": "2026-10-09T10:00:43Z",
+  "published_at": "2026-10-09T10:00:43Z",
   "release_tag": "daily-2026-10-09",
   "repo": "lainoa-software/voiceatc-simulator-community",
-  "sha256": "5c44471de7e3f1b93b920c32959b24368bfb74f308ce7741cc9f2c2bb5552a30",
-  "size_bytes": 45199
+  "sha256": "02c601a1030a650fa97605d714d1db9a7f8c0b2eed2fd4c5e00c505def5c9efd",
+  "size_bytes": 49357
 }
