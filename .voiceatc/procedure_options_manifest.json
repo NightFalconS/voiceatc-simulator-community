@@ -89,6 +89,11 @@
       "repo_path": "V/VT/VTBB/Bangkok_TMA/VTBS/procedure_options.json",
       "sha256": "f67a351342e13cb109ee1cdef894265325f5e60086494f0878c9be7237cf188e",
       "size_bytes": 129
+    },
+    "WSSS": {
+      "repo_path": "W/WS/WSJC/Singapore_TMA/WSSS/procedure_options.json",
+      "sha256": "db318558406286f9ca03729a5db00443d1f41eda3e4d3f6af9dcdeb0101892df",
+      "size_bytes": 456
     }
   },
   "published_at": "2026-10-09T10:01:07Z",
