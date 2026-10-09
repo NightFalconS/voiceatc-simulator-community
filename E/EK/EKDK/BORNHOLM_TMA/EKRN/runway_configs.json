@@ -1,0 +1,17 @@
+{
+  "airport": "EKRN",
+  "runway_configs": [
+    {
+      "id": "EKRN_11",
+      "name": "11",
+      "arr": "11",
+      "dep": "11"
+    },
+    {
+      "id": "EKRN_29",
+      "name": "29",
+      "arr": "29",
+      "dep": "29"
+    }
+  ]
+}

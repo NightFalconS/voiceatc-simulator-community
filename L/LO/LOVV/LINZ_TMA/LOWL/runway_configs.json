@@ -1,0 +1,17 @@
+{
+  "airport": "LOWL",
+  "runway_configs": [
+    {
+      "id": "LOWL_08",
+      "name": "08",
+      "arr": "08",
+      "dep": "08"
+    },
+    {
+      "id": "LOWL_26",
+      "name": "26",
+      "arr": "26",
+      "dep": "26"
+    }
+  ]
+}

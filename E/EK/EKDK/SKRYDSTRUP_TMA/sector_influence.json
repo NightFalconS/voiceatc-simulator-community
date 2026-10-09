@@ -1,0 +1,11 @@
+{
+  "sector_influences": [
+    {
+      "sector_id": "SKRYDSTRUP_TMA_ALL",
+      "airports": [
+        "EKSP",
+        "EKSB"
+      ]
+    }
+  ]
+}

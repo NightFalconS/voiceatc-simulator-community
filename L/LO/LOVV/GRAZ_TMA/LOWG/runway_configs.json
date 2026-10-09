@@ -1,0 +1,17 @@
+{
+  "airport": "LOWG",
+  "runway_configs": [
+    {
+      "id": "LOWG_16C",
+      "name": "16C",
+      "arr": "16C",
+      "dep": "16C"
+    },
+    {
+      "id": "LOWG_34C",
+      "name": "34C",
+      "arr": "34C",
+      "dep": "34C"
+    }
+  ]
+}

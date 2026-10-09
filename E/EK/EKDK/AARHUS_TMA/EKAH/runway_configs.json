@@ -1,0 +1,29 @@
+{
+  "airport": "EKAH",
+  "runway_configs": [
+    {
+      "id": "EKAH_10R",
+      "name": "10R",
+      "arr": "10R",
+      "dep": "10R"
+    },
+    {
+      "id": "EKAH_28L",
+      "name": "28L",
+      "arr": "28L",
+      "dep": "28L"
+    },
+    {
+      "id": "EKAH_10L",
+      "name": "10L",
+      "arr": "10L",
+      "dep": "10L"
+    },
+    {
+      "id": "EKAH_28R",
+      "name": "28R",
+      "arr": "28R",
+      "dep": "28R"
+    }
+  ]
+}
