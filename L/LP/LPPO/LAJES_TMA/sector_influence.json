@@ -2,10 +2,7 @@
   "sector_influences": [
     {
       "sector_id": "LAA",
-      "airports": [
-        "LPLA",
-        "LPGR"
-      ]
+      "airports": ["LPLA", "LPGR"]
     }
   ]
 }

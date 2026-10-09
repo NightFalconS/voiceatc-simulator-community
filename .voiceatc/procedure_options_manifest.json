@@ -55,6 +55,16 @@
       "sha256": "c87a0b08b48731df057a28c4a85e8429b8f06c51596e7d7354484b7c426b7e15",
       "size_bytes": 1379
     },
+    "LPPR": {
+      "repo_path": "L/LP/LPPC/PORTO_TMA/LPPR/procedure_options.json",
+      "sha256": "6c9591208b4f732df09d67a66778a059e80657020d38e1241f83c945d83d77f8",
+      "size_bytes": 113
+    },
+    "LPPT": {
+      "repo_path": "L/LP/LPPC/LISBOA_TMA/LPPT/procedure_options.json",
+      "sha256": "f22625eef00a042d697afc593eeea83742d59290a2de4779deee5f4953d8fee2",
+      "size_bytes": 113
+    },
     "LTFM": {
       "repo_path": "L/LT/LTBB/ISTANBUL_TMA/LTFM/procedure_options.json",
       "sha256": "5b6c23c6eec54cb24f1c66e0c79440fc947e8aed2a669d654ff59128269f64cf",

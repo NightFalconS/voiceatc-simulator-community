@@ -2,10 +2,7 @@
   "sector_influences": [
     {
       "sector_id": "PDA",
-      "airports": [
-        "LPPD",
-        "LPAZ"
-      ]
+      "airports": ["LPPD", "LPAZ"]
     }
   ]
 }

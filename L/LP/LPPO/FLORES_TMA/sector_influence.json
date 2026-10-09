@@ -2,10 +2,7 @@
   "sector_influences": [
     {
       "sector_id": "FLA",
-      "airports": [
-        "LPFL",
-        "LPCR"
-      ]
+      "airports": ["LPFL", "LPCR"]
     }
   ]
 }

@@ -2,10 +2,7 @@
   "sector_influences": [
     {
       "sector_id": "MATMA",
-      "airports": [
-        "LPMA",
-        "LPPS"
-      ]
+      "airports": ["LPMA", "LPPS"]
     }
   ]
 }
