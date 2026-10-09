@@ -1,0 +1,9 @@
+{
+  "airport": "RJTT",
+  "schema_version": 1,
+  "airac_min": 2503,
+  "defaults": {
+    "spawn_enabled": true,
+    "init_climb": 20000
+  }
+}

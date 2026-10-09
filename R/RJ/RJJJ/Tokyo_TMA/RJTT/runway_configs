@@ -1,0 +1,35 @@
+{
+  "airport": "RJTT",
+  "runway_configs": [
+    {
+      "id": "NORTH_WIND_1",
+      "name": "North Wind 1",
+      "arr": "34L 34R",
+      "dep": "34R 05"
+    },
+    {
+      "id": "SOUTH_WIND_1",
+      "name": "South Wind 1",
+      "arr": "23 22",
+      "dep": "16R 16L"
+    },
+    {
+      "id": "NORTH_WIND_2",
+      "name": "North Night",
+      "arr": "34R",
+      "dep": "05"
+    },
+    {
+      "id": "SOUTH_WIND_2",
+      "name": "South Night",
+      "arr": "23",
+      "dep": "16L"
+    },
+    {
+      "id": "AFTERNOON_SOUTH",
+      "name": "South Peak",
+      "arr": "16R 16L",
+      "dep": "16R 16L 22"
+    }
+  ]
+}
