@@ -3,9 +3,7 @@
     {
       "sector_id": "BILLUND_TMA_ALL",
       "airports": [
-        "EKBI",
-        "EKEB",
-        "EKVD"
+        "EKBI"
       ]
     }
   ]
