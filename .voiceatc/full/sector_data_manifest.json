@@ -1,8 +1,8 @@
 {
   "asset_name": "sector-data-2610-full.zip",
-  "commit_sha": "b8a4ea2cda90e429578af31c0034924ea1682749",
+  "commit_sha": "439484d08d1d6ebde7111e32ee06b7d3d9b661e6",
   "dataset": "sector_data",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-09-b/sector-data-2610-full.zip",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-10/sector-data-2610-full.zip",
   "entries": [
     {
       "files": {
@@ -726,9 +726,9 @@
     }
   ],
   "entry_count": 36,
-  "generated_at": "2026-10-09T12:13:23Z",
-  "published_at": "2026-10-09T12:13:23Z",
-  "release_tag": "daily-2026-10-09-b",
+  "generated_at": "2026-10-10T07:03:28Z",
+  "published_at": "2026-10-10T07:03:28Z",
+  "release_tag": "daily-2026-10-10",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "sha256": "801154c08cc4d87c805398a6505146c5e9e110f13fa2ace4fd2c0bc875fcef4b",
   "size_bytes": 117826
