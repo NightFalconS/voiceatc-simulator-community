@@ -1,0 +1,41 @@
+{
+  "airport": "LOXT",
+  "runway_configs": [
+    {
+      "id": "LOXT_08L",
+      "name": "08L",
+      "arr": "08L",
+      "dep": "08L"
+    },
+    {
+      "id": "LOXT_26R",
+      "name": "26R",
+      "arr": "26R",
+      "dep": "26R"
+    },
+    {
+      "id": "LOXT_13",
+      "name": "13",
+      "arr": "13",
+      "dep": "13"
+    },
+    {
+      "id": "LOXT_31",
+      "name": "31",
+      "arr": "31",
+      "dep": "31"
+    },
+    {
+      "id": "LOXT_05",
+      "name": "05",
+      "arr": "05",
+      "dep": "05"
+    },
+    {
+      "id": "LOXT_23",
+      "name": "23",
+      "arr": "23",
+      "dep": "23"
+    }
+  ]
+}

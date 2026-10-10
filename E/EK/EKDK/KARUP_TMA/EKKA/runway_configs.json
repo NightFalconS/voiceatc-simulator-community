@@ -1,0 +1,29 @@
+{
+  "airport": "EKKA",
+  "runway_configs": [
+    {
+      "id": "EKKA_09R",
+      "name": "09R",
+      "arr": "09R",
+      "dep": "09R"
+    },
+    {
+      "id": "EKKA_27L",
+      "name": "27L",
+      "arr": "27L",
+      "dep": "27L"
+    },
+    {
+      "id": "EKKA_09L",
+      "name": "09L",
+      "arr": "09L",
+      "dep": "09L"
+    },
+    {
+      "id": "EKKA_27R",
+      "name": "27R",
+      "arr": "27R",
+      "dep": "27R"
+    }
+  ]
+}

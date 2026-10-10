@@ -1,0 +1,40 @@
+{
+  "sector_configs": [
+    {
+      "sector_config_id": "VIENNA_TMA_WHOLE_DAY_WEST",
+      "runway_configs": [
+        "DAY_WEST"
+      ],
+      "sectors": [
+        {
+          "sector_ids": "VIENNA_TMA_DAY_WEST",
+          "frequency": "134.675"
+        }
+      ]
+    },
+    {
+      "sector_config_id": "VIENNA_TMA_WHOLE_DAY_SE",
+      "runway_configs": [
+        "DAY_SE"
+      ],
+      "sectors": [
+        {
+          "sector_ids": "VIENNA_TMA_DAY_SE",
+          "frequency": "134.675"
+        }
+      ]
+    },
+    {
+      "sector_config_id": "VIENNA_TMA_WHOLE_NIGHT",
+      "runway_configs": [
+        "NIGHT"
+      ],
+      "sectors": [
+        {
+          "sector_ids": "VIENNA_TMA_NIGHT",
+          "frequency": "134.675"
+        }
+      ]
+    }
+  ]
+}
