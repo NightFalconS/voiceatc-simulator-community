@@ -2,9 +2,7 @@
   "sector_configs": [
     {
       "sector_config_id": "ZELTWEG_TMA_WHOLE_LOXZ_08R",
-      "runway_configs": [
-        "LOXZ_08R"
-      ],
+      "runway_configs": ["LOXZ_08R"],
       "sectors": [
         {
           "sector_ids": "ZELTWEG_TMA_LOXZ_08R",
@@ -14,9 +12,7 @@
     },
     {
       "sector_config_id": "ZELTWEG_TMA_WHOLE_LOXZ_26L",
-      "runway_configs": [
-        "LOXZ_26L"
-      ],
+      "runway_configs": ["LOXZ_26L"],
       "sectors": [
         {
           "sector_ids": "ZELTWEG_TMA_LOXZ_26L",
@@ -26,9 +22,7 @@
     },
     {
       "sector_config_id": "ZELTWEG_TMA_WHOLE_LOXZ_08L",
-      "runway_configs": [
-        "LOXZ_08L"
-      ],
+      "runway_configs": ["LOXZ_08L"],
       "sectors": [
         {
           "sector_ids": "ZELTWEG_TMA_LOXZ_08L",
@@ -38,9 +32,7 @@
     },
     {
       "sector_config_id": "ZELTWEG_TMA_WHOLE_LOXZ_26R",
-      "runway_configs": [
-        "LOXZ_26R"
-      ],
+      "runway_configs": ["LOXZ_26R"],
       "sectors": [
         {
           "sector_ids": "ZELTWEG_TMA_LOXZ_26R",
@@ -50,9 +42,7 @@
     },
     {
       "sector_config_id": "ZELTWEG_TMA_WHOLE_LOXZ_02",
-      "runway_configs": [
-        "LOXZ_02"
-      ],
+      "runway_configs": ["LOXZ_02"],
       "sectors": [
         {
           "sector_ids": "ZELTWEG_TMA_LOXZ_02",
@@ -62,9 +52,7 @@
     },
     {
       "sector_config_id": "ZELTWEG_TMA_WHOLE_LOXZ_20",
-      "runway_configs": [
-        "LOXZ_20"
-      ],
+      "runway_configs": ["LOXZ_20"],
       "sectors": [
         {
           "sector_ids": "ZELTWEG_TMA_LOXZ_20",

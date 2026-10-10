@@ -2,39 +2,27 @@
   "sector_influences": [
     {
       "sector_id": "TULLN_TMA_LOXT_08L",
-      "airports": [
-        "LOXT"
-      ]
+      "airports": ["LOXT"]
     },
     {
       "sector_id": "TULLN_TMA_LOXT_26R",
-      "airports": [
-        "LOXT"
-      ]
+      "airports": ["LOXT"]
     },
     {
       "sector_id": "TULLN_TMA_LOXT_13",
-      "airports": [
-        "LOXT"
-      ]
+      "airports": ["LOXT"]
     },
     {
       "sector_id": "TULLN_TMA_LOXT_31",
-      "airports": [
-        "LOXT"
-      ]
+      "airports": ["LOXT"]
     },
     {
       "sector_id": "TULLN_TMA_LOXT_05",
-      "airports": [
-        "LOXT"
-      ]
+      "airports": ["LOXT"]
     },
     {
       "sector_id": "TULLN_TMA_LOXT_23",
-      "airports": [
-        "LOXT"
-      ]
+      "airports": ["LOXT"]
     }
   ]
 }

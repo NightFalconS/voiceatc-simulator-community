@@ -2,15 +2,11 @@
   "sector_influences": [
     {
       "sector_id": "KLAGENFURT_TMA_LOWK_10L",
-      "airports": [
-        "LOWK"
-      ]
+      "airports": ["LOWK"]
     },
     {
       "sector_id": "KLAGENFURT_TMA_LOWK_28R",
-      "airports": [
-        "LOWK"
-      ]
+      "airports": ["LOWK"]
     }
   ]
 }

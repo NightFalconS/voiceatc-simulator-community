@@ -2,10 +2,7 @@
   "sector_configs": [
     {
       "sector_config_id": "BORNHOLM_TMA_WHOLE_ALL",
-      "runway_configs": [
-        "EKRN_11",
-        "EKRN_29"
-      ],
+      "runway_configs": ["EKRN_11", "EKRN_29"],
       "sectors": [
         {
           "sector_ids": "BORNHOLM_TMA_ALL",

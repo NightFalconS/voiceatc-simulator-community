@@ -2,9 +2,7 @@
   "sector_configs": [
     {
       "sector_config_id": "GRAZ_TMA_WHOLE_LOWG_16C",
-      "runway_configs": [
-        "LOWG_16C"
-      ],
+      "runway_configs": ["LOWG_16C"],
       "sectors": [
         {
           "sector_ids": "GRAZ_TMA_LOWG_16C",
@@ -14,9 +12,7 @@
     },
     {
       "sector_config_id": "GRAZ_TMA_WHOLE_LOWG_34C",
-      "runway_configs": [
-        "LOWG_34C"
-      ],
+      "runway_configs": ["LOWG_34C"],
       "sectors": [
         {
           "sector_ids": "GRAZ_TMA_LOWG_34C",

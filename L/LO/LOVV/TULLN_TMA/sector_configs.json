@@ -2,9 +2,7 @@
   "sector_configs": [
     {
       "sector_config_id": "TULLN_TMA_WHOLE_LOXT_08L",
-      "runway_configs": [
-        "LOXT_08L"
-      ],
+      "runway_configs": ["LOXT_08L"],
       "sectors": [
         {
           "sector_ids": "TULLN_TMA_LOXT_08L",
@@ -14,9 +12,7 @@
     },
     {
       "sector_config_id": "TULLN_TMA_WHOLE_LOXT_26R",
-      "runway_configs": [
-        "LOXT_26R"
-      ],
+      "runway_configs": ["LOXT_26R"],
       "sectors": [
         {
           "sector_ids": "TULLN_TMA_LOXT_26R",
@@ -26,9 +22,7 @@
     },
     {
       "sector_config_id": "TULLN_TMA_WHOLE_LOXT_13",
-      "runway_configs": [
-        "LOXT_13"
-      ],
+      "runway_configs": ["LOXT_13"],
       "sectors": [
         {
           "sector_ids": "TULLN_TMA_LOXT_13",
@@ -38,9 +32,7 @@
     },
     {
       "sector_config_id": "TULLN_TMA_WHOLE_LOXT_31",
-      "runway_configs": [
-        "LOXT_31"
-      ],
+      "runway_configs": ["LOXT_31"],
       "sectors": [
         {
           "sector_ids": "TULLN_TMA_LOXT_31",
@@ -50,9 +42,7 @@
     },
     {
       "sector_config_id": "TULLN_TMA_WHOLE_LOXT_05",
-      "runway_configs": [
-        "LOXT_05"
-      ],
+      "runway_configs": ["LOXT_05"],
       "sectors": [
         {
           "sector_ids": "TULLN_TMA_LOXT_05",
@@ -62,9 +52,7 @@
     },
     {
       "sector_config_id": "TULLN_TMA_WHOLE_LOXT_23",
-      "runway_configs": [
-        "LOXT_23"
-      ],
+      "runway_configs": ["LOXT_23"],
       "sectors": [
         {
           "sector_ids": "TULLN_TMA_LOXT_23",

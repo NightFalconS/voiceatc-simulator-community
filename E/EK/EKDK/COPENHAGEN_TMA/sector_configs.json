@@ -2,13 +2,7 @@
   "sector_configs": [
     {
       "sector_config_id": "COPENHAGEN_TMA_WHOLE_04",
-      "runway_configs": [
-        "DAY_04",
-        "EKRK_11",
-        "EKRK_29",
-        "EKRK_03",
-        "EKRK_21"
-      ],
+      "runway_configs": ["DAY_04", "EKRK_11", "EKRK_29", "EKRK_03", "EKRK_21"],
       "sectors": [
         {
           "sector_ids": "COPENHAGEN_TMA_04",
@@ -35,13 +29,7 @@
     },
     {
       "sector_config_id": "COPENHAGEN_TMA_WHOLE_12",
-      "runway_configs": [
-        "EKCH_12",
-        "EKRK_11",
-        "EKRK_29",
-        "EKRK_03",
-        "EKRK_21"
-      ],
+      "runway_configs": ["EKCH_12", "EKRK_11", "EKRK_29", "EKRK_03", "EKRK_21"],
       "sectors": [
         {
           "sector_ids": "COPENHAGEN_TMA_12",
@@ -51,13 +39,7 @@
     },
     {
       "sector_config_id": "COPENHAGEN_TMA_WHOLE_30",
-      "runway_configs": [
-        "EKCH_30",
-        "EKRK_11",
-        "EKRK_29",
-        "EKRK_03",
-        "EKRK_21"
-      ],
+      "runway_configs": ["EKCH_30", "EKRK_11", "EKRK_29", "EKRK_03", "EKRK_21"],
       "sectors": [
         {
           "sector_ids": "COPENHAGEN_TMA_30",

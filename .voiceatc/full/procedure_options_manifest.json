@@ -20,6 +20,41 @@
       "sha256": "d2c1cd570c31c4198fe063914fa78cec79c68cd5cba1e0d00c79dcd155507802",
       "size_bytes": 1748
     },
+    "EKAH": {
+      "repo_path": "E/EK/EKDK/AARHUS_TMA/EKAH/procedure_options.json",
+      "sha256": "169af430a4812585ffa990b2ce3cf11f411410b869922f0dc5b4f98fc36631ce",
+      "size_bytes": 112
+    },
+    "EKBI": {
+      "repo_path": "E/EK/EKDK/BILLUND_TMA/EKBI/procedure_options.json",
+      "sha256": "74205cba0d1e7751bd84c625eff2a4fa94ad9b663484391b1b61097f9a0ad954",
+      "size_bytes": 112
+    },
+    "EKCH": {
+      "repo_path": "E/EK/EKDK/COPENHAGEN_TMA/EKCH/procedure_options.json",
+      "sha256": "a9984c1b260d6eacf3d6d2a82d8f03aebf365932b4723c44662cea28d93e1148",
+      "size_bytes": 355
+    },
+    "EKKA": {
+      "repo_path": "E/EK/EKDK/KARUP_TMA/EKKA/procedure_options.json",
+      "sha256": "f233d707d1bdb6bea4a607c3777ded53d0bf839608ce0f542deba02f46d409d4",
+      "size_bytes": 113
+    },
+    "EKRN": {
+      "repo_path": "E/EK/EKDK/BORNHOLM_TMA/EKRN/procedure_options.json",
+      "sha256": "c1e2aab31ee4b8e174d93a4853d4e076bac453fc49168a94866c5200218cf877",
+      "size_bytes": 112
+    },
+    "EKSP": {
+      "repo_path": "E/EK/EKDK/SKRYDSTRUP_TMA/EKSP/procedure_options.json",
+      "sha256": "66599765e086ded199ece89f72b54c987eb353d9a13daa47fcd9cf036fd3ad96",
+      "size_bytes": 112
+    },
+    "EKYT": {
+      "repo_path": "E/EK/EKDK/AALBORG_TMA/EKYT/procedure_options.json",
+      "sha256": "e795873bf2998a7ffddca9baccab64e6452aeb5ab61f78ff197487aa04d3cf88",
+      "size_bytes": 113
+    },
     "ENGM": {
       "repo_path": "E/EN/ENOR/ENOS/OSLO_TMA/ENGM/procedure_options.json",
       "sha256": "3797dbae1c0e6ddc986e2cd9a80a79b1e1ca907ef4b564f933e3dccae65e75e1",

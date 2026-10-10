@@ -2,39 +2,27 @@
   "sector_influences": [
     {
       "sector_id": "ZELTWEG_TMA_LOXZ_08R",
-      "airports": [
-        "LOXZ"
-      ]
+      "airports": ["LOXZ"]
     },
     {
       "sector_id": "ZELTWEG_TMA_LOXZ_26L",
-      "airports": [
-        "LOXZ"
-      ]
+      "airports": ["LOXZ"]
     },
     {
       "sector_id": "ZELTWEG_TMA_LOXZ_08L",
-      "airports": [
-        "LOXZ"
-      ]
+      "airports": ["LOXZ"]
     },
     {
       "sector_id": "ZELTWEG_TMA_LOXZ_26R",
-      "airports": [
-        "LOXZ"
-      ]
+      "airports": ["LOXZ"]
     },
     {
       "sector_id": "ZELTWEG_TMA_LOXZ_02",
-      "airports": [
-        "LOXZ"
-      ]
+      "airports": ["LOXZ"]
     },
     {
       "sector_id": "ZELTWEG_TMA_LOXZ_20",
-      "airports": [
-        "LOXZ"
-      ]
+      "airports": ["LOXZ"]
     }
   ]
 }

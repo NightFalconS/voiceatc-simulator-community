@@ -13,32 +13,17 @@
     "COOPANS_DAPS": {
       "type": "filled",
       "draw": "M -5 -5 L 5 -5 L 5 5 L -5 5 L -5 -5",
-      "connection_points": [
-        [
-          0,
-          0
-        ]
-      ]
+      "connection_points": [[0, 0]]
     },
     "UNCONTROLLED": {
       "type": "wireframe",
       "draw": "M 5 5 L 5 -5 L -5 -5 L -5 5 L 5 5",
-      "connection_points": [
-        [
-          0,
-          0
-        ]
-      ]
+      "connection_points": [[0, 0]]
     },
     "HISTORY": {
       "type": "filled",
       "draw": "M -1 -1 L 1 -1 L 1 1 L -1 1 L -1 -1",
-      "connection_points": [
-        [
-          0,
-          0
-        ]
-      ]
+      "connection_points": [[0, 0]]
     }
   }
 }
