@@ -1,6 +1,6 @@
 {
   "asset_name": "mva-2610-full.zip",
-  "commit_sha": "ce33a0cb629618e3694b97efb31d3c2b217bd54f",
+  "commit_sha": "5d8861970404bec17387f0b29d4f229295d42552",
   "dataset": "mva",
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-11/mva-2610-full.zip",
   "entries": [
@@ -59,12 +59,6 @@
       "size_bytes": 29103
     },
     {
-      "id": "LEAM",
-      "repo_path": "L/LE/LECM/LECS/MALAGA_TMA/mva.json",
-      "sha256": "c126f5efd3e3e586642dcf6aac727496373dad5f0ca9b2a252e752db4e0c8cb0",
-      "size_bytes": 38465
-    },
-    {
       "id": "LEBB",
       "repo_path": "L/LE/LECM/LECM_R1/BILBAO_TMA/mva.json",
       "sha256": "2ff258e09ebbc0872e2b5ad5ddb36426a04225c8f490dbf6545ce59ae3336e42",
@@ -97,8 +91,8 @@
     {
       "id": "LEMG",
       "repo_path": "L/LE/LECM/LECS/MALAGA_TMA/mva.json",
-      "sha256": "c126f5efd3e3e586642dcf6aac727496373dad5f0ca9b2a252e752db4e0c8cb0",
-      "size_bytes": 38465
+      "sha256": "106cd782ccb2a7c5eeadf1bf6bddc94afdfe1e78cb3be898262ea84325c220e8",
+      "size_bytes": 18750
     },
     {
       "id": "LEMH",
@@ -111,12 +105,6 @@
       "repo_path": "L/LE/LECB/LECB_E/PALMA_TMA/mva.json",
       "sha256": "a6b885eaedf2bb86345a20ce9dc5127d88df3a7edbc245178ba9818bb4f19704",
       "size_bytes": 41095
-    },
-    {
-      "id": "LEST",
-      "repo_path": "L/LE/LECM/LECM_R1/GALICIA_TMA/mva.json",
-      "sha256": "8b918c3c11f61ddfacfea42f7544dc65760281b4810c7499ea6a17a109e0bba8",
-      "size_bytes": 98681
     },
     {
       "id": "LEVC",
@@ -155,11 +143,11 @@
       "size_bytes": 162875
     }
   ],
-  "entry_count": 25,
-  "generated_at": "2026-10-11T07:09:52Z",
-  "published_at": "2026-10-11T07:09:52Z",
+  "entry_count": 23,
+  "generated_at": "2026-10-11T19:39:15Z",
+  "published_at": "2026-10-11T19:39:15Z",
   "release_tag": "daily-2026-10-11",
   "repo": "lainoa-software/voiceatc-simulator-community",
-  "sha256": "1eeccccfdb2acbcaf235fcca7c3e4f1e12cee8f4037491ee8de29a00993e3087",
-  "size_bytes": 265225
+  "sha256": "c2ca4713364abb7ba758be142fc8d9a6d5a62410a752a7341bb53b1473592d2c",
+  "size_bytes": 239743
 }

@@ -1,6 +1,6 @@
 {
   "asset_name": "misc-drawings-2610-full.zip",
-  "commit_sha": "ce33a0cb629618e3694b97efb31d3c2b217bd54f",
+  "commit_sha": "5d8861970404bec17387f0b29d4f229295d42552",
   "dataset": "misc_drawings",
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-11/misc-drawings-2610-full.zip",
   "entries": [
@@ -119,166 +119,16 @@
       "size_bytes": 2011
     },
     {
-      "id": "LEAL",
-      "repo_path": "L/LE/LECB/LECB_W/VALENCIA_TMA/misc_drawings.json",
-      "sha256": "45b253dfc68a5edf361b9ad75d136e8e13a8d1691bd210a512d569dd85019c8b",
-      "size_bytes": 8074
-    },
-    {
-      "id": "LEAM",
-      "repo_path": "L/LE/LECM/LECS/MALAGA_TMA/misc_drawings.json",
-      "sha256": "aafbadc00ca42a993063bae649b7717b0ac149c8bad60ee7cf89edcb3bb335ce",
-      "size_bytes": 15329
-    },
-    {
-      "id": "LEAS",
-      "repo_path": "L/LE/LECM/LECM_R1/ASTURIAS_TMA/misc_drawings.json",
-      "sha256": "ae40d95451b825fb1c0f52f0920e09453f0b9fe3c12564711b1c885f28530562",
-      "size_bytes": 2139
-    },
-    {
-      "id": "LEBB",
-      "repo_path": "L/LE/LECM/LECM_R1/BILBAO_TMA/misc_drawings.json",
-      "sha256": "6b8efd3bf46c3afc2f4953728d70645207b8dc2b363aa3af7dcfc1b91b4572c8",
-      "size_bytes": 60060
-    },
-    {
-      "id": "LEBL",
-      "repo_path": "L/LE/LECB/LECB_W/BARCELONA_TMA/misc_drawings.json",
-      "sha256": "d994d7788c3b3f0843064883b790f5abdb4a0aa559f67d36641a958f69cd9e8e",
-      "size_bytes": 16267
-    },
-    {
-      "id": "LECH",
-      "repo_path": "L/LE/LECB/LECB_W/VALENCIA_TMA/misc_drawings.json",
-      "sha256": "45b253dfc68a5edf361b9ad75d136e8e13a8d1691bd210a512d569dd85019c8b",
-      "size_bytes": 8074
-    },
-    {
-      "id": "LECO",
-      "repo_path": "L/LE/LECM/LECM_R1/GALICIA_TMA/misc_drawings.json",
-      "sha256": "217b9b30f760def87ec9218d90a4130ad8614737826226e5729c1a787bf4a377",
-      "size_bytes": 56048
-    },
-    {
-      "id": "LEDA",
-      "repo_path": "L/LE/LECB/LECB_W/BARCELONA_TMA/misc_drawings.json",
-      "sha256": "d994d7788c3b3f0843064883b790f5abdb4a0aa559f67d36641a958f69cd9e8e",
-      "size_bytes": 16267
-    },
-    {
-      "id": "LEGE",
-      "repo_path": "L/LE/LECB/LECB_W/BARCELONA_TMA/misc_drawings.json",
-      "sha256": "d994d7788c3b3f0843064883b790f5abdb4a0aa559f67d36641a958f69cd9e8e",
-      "size_bytes": 16267
-    },
-    {
-      "id": "LEGR",
-      "repo_path": "L/LE/LECM/LECS/SEVILLA_TMA/misc_drawings.json",
-      "sha256": "67b45b90f2f7452a3f3ce4ddf87bb1da74f9cf6f3ca189ae418363b43ebd3eee",
-      "size_bytes": 3376
-    },
-    {
-      "id": "LEIB",
-      "repo_path": "L/LE/LECB/LECB_E/PALMA_TMA/misc_drawings.json",
-      "sha256": "7f33e0131a055f724ba65392b11e16d68519180a61516b5c5ef6c56d447d4992",
-      "size_bytes": 16773
-    },
-    {
       "id": "LEMD",
       "repo_path": "L/LE/LECM/LECM_R2/MADRID_TMA/misc_drawings.json",
       "sha256": "d9ae59e0995f0140c2a260762e0f28cbcaf7d36760d18ee0c64399c328f30661",
       "size_bytes": 52568
     },
     {
-      "id": "LEMG",
-      "repo_path": "L/LE/LECM/LECS/MALAGA_TMA/misc_drawings.json",
-      "sha256": "aafbadc00ca42a993063bae649b7717b0ac149c8bad60ee7cf89edcb3bb335ce",
-      "size_bytes": 15329
-    },
-    {
       "id": "LEMH",
       "repo_path": "L/LE/LECB/LECB_E/PALMA_TMA/misc_drawings.json",
-      "sha256": "7f33e0131a055f724ba65392b11e16d68519180a61516b5c5ef6c56d447d4992",
-      "size_bytes": 16773
-    },
-    {
-      "id": "LEMI",
-      "repo_path": "L/LE/LECB/LECB_W/VALENCIA_TMA/misc_drawings.json",
-      "sha256": "45b253dfc68a5edf361b9ad75d136e8e13a8d1691bd210a512d569dd85019c8b",
-      "size_bytes": 8074
-    },
-    {
-      "id": "LEPA",
-      "repo_path": "L/LE/LECB/LECB_E/PALMA_TMA/misc_drawings.json",
-      "sha256": "7f33e0131a055f724ba65392b11e16d68519180a61516b5c5ef6c56d447d4992",
-      "size_bytes": 16773
-    },
-    {
-      "id": "LEPP",
-      "repo_path": "L/LE/LECM/LECM_R1/BILBAO_TMA/misc_drawings.json",
-      "sha256": "6b8efd3bf46c3afc2f4953728d70645207b8dc2b363aa3af7dcfc1b91b4572c8",
-      "size_bytes": 60060
-    },
-    {
-      "id": "LERJ",
-      "repo_path": "L/LE/LECM/LECM_R1/BILBAO_TMA/misc_drawings.json",
-      "sha256": "6b8efd3bf46c3afc2f4953728d70645207b8dc2b363aa3af7dcfc1b91b4572c8",
-      "size_bytes": 60060
-    },
-    {
-      "id": "LERS",
-      "repo_path": "L/LE/LECB/LECB_W/BARCELONA_TMA/misc_drawings.json",
-      "sha256": "d994d7788c3b3f0843064883b790f5abdb4a0aa559f67d36641a958f69cd9e8e",
-      "size_bytes": 16267
-    },
-    {
-      "id": "LESO",
-      "repo_path": "L/LE/LECM/LECM_R1/BILBAO_TMA/misc_drawings.json",
-      "sha256": "6b8efd3bf46c3afc2f4953728d70645207b8dc2b363aa3af7dcfc1b91b4572c8",
-      "size_bytes": 60060
-    },
-    {
-      "id": "LEST",
-      "repo_path": "L/LE/LECM/LECM_R1/GALICIA_TMA/misc_drawings.json",
-      "sha256": "217b9b30f760def87ec9218d90a4130ad8614737826226e5729c1a787bf4a377",
-      "size_bytes": 56048
-    },
-    {
-      "id": "LESU",
-      "repo_path": "L/LE/LECB/LECB_W/BARCELONA_TMA/misc_drawings.json",
-      "sha256": "d994d7788c3b3f0843064883b790f5abdb4a0aa559f67d36641a958f69cd9e8e",
-      "size_bytes": 16267
-    },
-    {
-      "id": "LEVC",
-      "repo_path": "L/LE/LECB/LECB_W/VALENCIA_TMA/misc_drawings.json",
-      "sha256": "45b253dfc68a5edf361b9ad75d136e8e13a8d1691bd210a512d569dd85019c8b",
-      "size_bytes": 8074
-    },
-    {
-      "id": "LEVT",
-      "repo_path": "L/LE/LECM/LECM_R1/BILBAO_TMA/misc_drawings.json",
-      "sha256": "6b8efd3bf46c3afc2f4953728d70645207b8dc2b363aa3af7dcfc1b91b4572c8",
-      "size_bytes": 60060
-    },
-    {
-      "id": "LEVX",
-      "repo_path": "L/LE/LECM/LECM_R1/GALICIA_TMA/misc_drawings.json",
-      "sha256": "217b9b30f760def87ec9218d90a4130ad8614737826226e5729c1a787bf4a377",
-      "size_bytes": 56048
-    },
-    {
-      "id": "LEXJ",
-      "repo_path": "L/LE/LECM/LECM_R1/BILBAO_TMA/misc_drawings.json",
-      "sha256": "6b8efd3bf46c3afc2f4953728d70645207b8dc2b363aa3af7dcfc1b91b4572c8",
-      "size_bytes": 60060
-    },
-    {
-      "id": "LEZL",
-      "repo_path": "L/LE/LECM/LECS/SEVILLA_TMA/misc_drawings.json",
-      "sha256": "67b45b90f2f7452a3f3ce4ddf87bb1da74f9cf6f3ca189ae418363b43ebd3eee",
-      "size_bytes": 3376
+      "sha256": "9d2b3f962137221749ec51c41783e4b996256ea60367a5fe86e3bc076ae03e1b",
+      "size_bytes": 4526
     },
     {
       "id": "LOWG",
@@ -407,11 +257,11 @@
       "size_bytes": 21639
     }
   ],
-  "entry_count": 67,
-  "generated_at": "2026-10-11T07:09:52Z",
-  "published_at": "2026-10-11T07:09:52Z",
+  "entry_count": 42,
+  "generated_at": "2026-10-11T19:39:15Z",
+  "published_at": "2026-10-11T19:39:15Z",
   "release_tag": "daily-2026-10-11",
   "repo": "lainoa-software/voiceatc-simulator-community",
-  "sha256": "7e30c9250bea97ba56dcd4e2bbf6224f3defdf854739fa6b6a9a5fa598772a13",
-  "size_bytes": 352625
+  "sha256": "a36d844ee49066b993114f636d36918eed7ce8dd07102aa91ed067b682b95f6e",
+  "size_bytes": 321513
 }

@@ -1,10 +1,10 @@
 {
   "airac": "2610",
   "asset_name": "routes-2610.tsv",
-  "commit_sha": "ce33a0cb629618e3694b97efb31d3c2b217bd54f",
+  "commit_sha": "5d8861970404bec17387f0b29d4f229295d42552",
   "compatibility_fallback": false,
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-11/routes-2610.tsv",
-  "published_at": "2026-10-11T07:09:52Z",
+  "published_at": "2026-10-11T19:39:15Z",
   "release_tag": "daily-2026-10-11",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "rich_routes_tsv": {

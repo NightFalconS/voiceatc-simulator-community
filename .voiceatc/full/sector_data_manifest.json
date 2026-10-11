@@ -1,6 +1,6 @@
 {
   "asset_name": "sector-data-2610-full.zip",
-  "commit_sha": "ce33a0cb629618e3694b97efb31d3c2b217bd54f",
+  "commit_sha": "5d8861970404bec17387f0b29d4f229295d42552",
   "dataset": "sector_data",
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-11/sector-data-2610-full.zip",
   "entries": [
@@ -507,26 +507,6 @@
     {
       "files": {
         "configs": {
-          "repo_path": "L/LE/LECM/LECM_R1/ASTURIAS_TMA/sector_configs.json",
-          "sha256": "aa9d7f38eb91a958d332ef4a0538caabdd1647fe0bb315fb9b8f8d2a03a7d661",
-          "size_bytes": 190
-        },
-        "definitions": {
-          "repo_path": "L/LE/LECM/LECM_R1/ASTURIAS_TMA/sector_definitions.json",
-          "sha256": "0a11b5ffb1290ac12bc39592f5e96511e49ce415030cd0907cd6e041761aa24d",
-          "size_bytes": 8547
-        },
-        "influence": {
-          "repo_path": "L/LE/LECM/LECM_R1/ASTURIAS_TMA/sector_influence.json",
-          "sha256": "5dc4e2ba2c46460018c1da06604b9f47ebd946ad63152576911f7a90066db735",
-          "size_bytes": 102
-        }
-      },
-      "id": "L/LE/LECM/LECM_R1/ASTURIAS_TMA"
-    },
-    {
-      "files": {
-        "configs": {
           "repo_path": "L/LE/LECM/LECM_R1/BILBAO_TMA/sector_configs.json",
           "sha256": "6ee55086c5cd393dc9e8a60da5e2ae1775dd8de2bc02ca64dd649c54383a8bb2",
           "size_bytes": 230
@@ -583,26 +563,6 @@
         }
       },
       "id": "L/LE/LECM/LECM_R2/MADRID_TMA"
-    },
-    {
-      "files": {
-        "configs": {
-          "repo_path": "L/LE/LECM/LECM_R2/ZARAGOZA_TMA/sector_configs.json",
-          "sha256": "d795c1415c5f14fb5b26f1cf11e53768de337c2f9e62d763cb88a9544855659c",
-          "size_bytes": 190
-        },
-        "definitions": {
-          "repo_path": "L/LE/LECM/LECM_R2/ZARAGOZA_TMA/sector_definitions.json",
-          "sha256": "135f44a6dfa6bf4371b0117aa74236877c6858d7328e156bc8ba5facfb536e01",
-          "size_bytes": 3163
-        },
-        "influence": {
-          "repo_path": "L/LE/LECM/LECM_R2/ZARAGOZA_TMA/sector_influence.json",
-          "sha256": "f080ad9755d1897ed484283cf7741b02a4e12694c75e1b64e56bc864dc0db772",
-          "size_bytes": 110
-        }
-      },
-      "id": "L/LE/LECM/LECM_R2/ZARAGOZA_TMA"
     },
     {
       "files": {
@@ -1065,11 +1025,11 @@
       "id": "V/VT/VTBB/Bangkok_TMA"
     }
   ],
-  "entry_count": 53,
-  "generated_at": "2026-10-11T07:09:52Z",
-  "published_at": "2026-10-11T07:09:52Z",
+  "entry_count": 51,
+  "generated_at": "2026-10-11T19:39:15Z",
+  "published_at": "2026-10-11T19:39:15Z",
   "release_tag": "daily-2026-10-11",
   "repo": "lainoa-software/voiceatc-simulator-community",
-  "sha256": "efad6f47b1e2f991b12dece26cf177973fe24ee6b81edf11736d831b6af18403",
-  "size_bytes": 143944
+  "sha256": "2df68332517640dfddaf405993ec8dcbbdd078b6b92beb7f4dc1cab499c6da19",
+  "size_bytes": 141224
 }
