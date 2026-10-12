@@ -1,6 +1,6 @@
 {
   "asset_name": "sector-data-2610.zip",
-  "bundle_count": 51,
+  "bundle_count": 54,
   "bundles": {
     "E/ED/EDGG/EDDF_TMA": {
       "files": {
@@ -933,6 +933,63 @@
         }
       }
     },
+    "R/RK/RKRR/GIMHAE_TMA": {
+      "files": {
+        "configs": {
+          "repo_path": "R/RK/RKRR/GIMHAE_TMA/sector_configs.json",
+          "sha256": "f62db19bdf0c7b658274fd510d337ac6a5a9f12f72ca7d5a5e0c50614aeaebaf",
+          "size_bytes": 191
+        },
+        "definitions": {
+          "repo_path": "R/RK/RKRR/GIMHAE_TMA/sector_definitions.json",
+          "sha256": "f0f5ef8a364b42af99b4dd1d94376b01d4e8a5c843a291f2cf64e434fc1f259b",
+          "size_bytes": 486
+        },
+        "influence": {
+          "repo_path": "R/RK/RKRR/GIMHAE_TMA/sector_influence.json",
+          "sha256": "aab751699ccee6ba389a91f24b0ef9d654b435e4684b9889f793f31428b41225",
+          "size_bytes": 103
+        }
+      }
+    },
+    "R/RK/RKRR/INCHEON_TMA": {
+      "files": {
+        "configs": {
+          "repo_path": "R/RK/RKRR/INCHEON_TMA/sector_configs.json",
+          "sha256": "5c81f7bae9203f6e64bda5b59c04d5ff51563b8bbd4b8ec29e9e61e07673b27f",
+          "size_bytes": 283
+        },
+        "definitions": {
+          "repo_path": "R/RK/RKRR/INCHEON_TMA/sector_definitions.json",
+          "sha256": "f1b6cda3456d863b471e53b517f73e330cb874539115d8d98ceee8c5d5d1cabc",
+          "size_bytes": 4205
+        },
+        "influence": {
+          "repo_path": "R/RK/RKRR/INCHEON_TMA/sector_influence.json",
+          "sha256": "fddcbed4373896892de8a4acd40e3b18d3118a0f4ac5fcd0933f79918cf63130",
+          "size_bytes": 174
+        }
+      }
+    },
+    "R/RK/RKRR/JEJU_TMA": {
+      "files": {
+        "configs": {
+          "repo_path": "R/RK/RKRR/JEJU_TMA/sector_configs.json",
+          "sha256": "d7167a38ad919fb64ad1e3a5496f7dacca2ee698902fb5c0deeb0414cedb154e",
+          "size_bytes": 191
+        },
+        "definitions": {
+          "repo_path": "R/RK/RKRR/JEJU_TMA/sector_definitions.json",
+          "sha256": "46d814ab4e7b3a6861a5be631e469674997ed6422ab681003e1e5113d5721d2d",
+          "size_bytes": 426
+        },
+        "influence": {
+          "repo_path": "R/RK/RKRR/JEJU_TMA/sector_influence.json",
+          "sha256": "82d703cae360e8e543dfbcaea6d3cd480b26986c9d4a50bc50f9fe101020760e",
+          "size_bytes": 103
+        }
+      }
+    },
     "V/VA/VABF/MUMBAI_TMA": {
       "files": {
         "configs": {
@@ -972,12 +1029,12 @@
       }
     }
   },
-  "commit_sha": "5d8861970404bec17387f0b29d4f229295d42552",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-11/sector-data-2610.zip",
-  "published_at": "2026-10-11T19:39:15Z",
-  "release_tag": "daily-2026-10-11",
+  "commit_sha": "37bf006ded2cb551d3901a69cf9c848335842fa3",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-12/sector-data-2610.zip",
+  "published_at": "2026-10-12T07:19:31Z",
+  "release_tag": "daily-2026-10-12",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "2df68332517640dfddaf405993ec8dcbbdd078b6b92beb7f4dc1cab499c6da19",
-  "size_bytes": 141224
+  "sha256": "8f1d4ae1a48d40fce63ef068f3165f8c7fa71002b44d28f6609da15cda09372b",
+  "size_bytes": 144165
 }
