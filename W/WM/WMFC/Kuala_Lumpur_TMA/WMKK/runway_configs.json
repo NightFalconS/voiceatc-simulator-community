@@ -1,0 +1,16 @@
+{
+  "airport": "WMKK",
+  "runway_configs": [
+    {
+      "id": "32_OPS",
+      "name": "32 Ops",
+      "arr": "33 32R",
+      "dep": "33 32L"
+    },
+    {
+      "id": "14_OPS",
+      "name": "14 Ops",
+      "arr": "14L 15",
+      "dep": "14R 15"
+    }
+  ]
