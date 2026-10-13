@@ -1,0 +1,23 @@
+{
+  "airport": "WMKK",
+  "schema_version": 1,
+  "airac_min": 2503,
+  "defaults": { "spawn_enabled": true, "init_climb": 5000 },
+  "runways": { "init_climb": 6000 }
+  "stars": {
+    "GUPT3J": { "spawn_enabled": false },
+    "KAKA3J": { "spawn_enabled": false },
+    "NIRE3J": { "spawn_enabled": false },
+    "PUGE3J": { "spawn_enabled": false },
+    "PULI3J": { "spawn_enabled": false },
+    "SALA3J": { "spawn_enabled": false },
+    "SARO3J": { "spawn_enabled": false },
+    "GUPT3K": { "spawn_enabled": false },
+    "KAKA3K": { "spawn_enabled": false },
+    "NIRE3K": { "spawn_enabled": false },
+    "PUGE3K": { "spawn_enabled": false },
+    "PULI3K": { "spawn_enabled": false },
+    "SALA3K": { "spawn_enabled": false },
+    "SARO3K": { "spawn_enabled": false },
+  }
+}
