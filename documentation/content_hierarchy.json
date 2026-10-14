@@ -23,7 +23,7 @@
     "T": ["TJ"],
     "U": ["UM"],
     "V": ["VA", "VH", "VT"],
-    "W": ["WS","WM"]
+    "W": ["WS", "WM"]
   },
   "release_compatibility": {
     "color_profile_aliases": {

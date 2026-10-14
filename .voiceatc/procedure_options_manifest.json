@@ -130,6 +130,11 @@
       "sha256": "f67a351342e13cb109ee1cdef894265325f5e60086494f0878c9be7237cf188e",
       "size_bytes": 129
     },
+    "WMKK": {
+      "repo_path": "W/WM/WMFC/Kuala_Lumpur_TMA/WMKK/procedure_options.json",
+      "sha256": "d57c1820e5a3fe4027a57e25aaaf8f7db9dc5c580bf03372fa788ca9073f16f7",
+      "size_bytes": 1185
+    },
     "WSSS": {
       "repo_path": "W/WS/WSJC/Singapore_TMA/WSSS/procedure_options.json",
       "sha256": "db318558406286f9ca03729a5db00443d1f41eda3e4d3f6af9dcdeb0101892df",
