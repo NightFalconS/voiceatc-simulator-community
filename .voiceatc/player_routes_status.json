@@ -471,6 +471,18 @@
           "status": "ok"
         }
       },
+      "LSZH_VHHH": {
+        "43847ec9": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        },
+        "d17a3ca0": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "LTAI_UMKK": {
         "059ce609": {
           "checked_airac": "2610",
@@ -4441,7 +4453,7 @@
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-10-14T06:07:12Z",
+  "generated_at": "2026-10-14T09:30:57Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
