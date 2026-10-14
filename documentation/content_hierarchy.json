@@ -119,7 +119,7 @@
     "VHHK": { "authority": "navigraph_2607", "kind": "fir" },
     "VTBB": { "authority": "navigraph_2607", "kind": "fir" },
     "WSJC": { "authority": "navigraph_2607", "kind": "fir" },
-    "WMKK": { "authority": "navigraph_2607", "kind": "fir" }
+    "WMFC": { "authority": "navigraph_2607", "kind": "fir" }
   },
   "terminal_scopes": {
     "E/EB/EBBU/BRUSSELS_TMA": ["EBBR"],
