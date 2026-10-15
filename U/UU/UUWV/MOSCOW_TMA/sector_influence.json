@@ -3,6 +3,10 @@
     {
       "sector_id": "MSK_APP",
       "airports": ["UUEE"]
+    },
+    {
+      "sector_id": "UUEE_APP",
+      "airports": ["UUEE"]
     }
   ]
 }
