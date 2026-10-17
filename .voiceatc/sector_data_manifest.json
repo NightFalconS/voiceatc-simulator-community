@@ -1,6 +1,6 @@
 {
   "asset_name": "sector-data-2610.zip",
-  "bundle_count": 54,
+  "bundle_count": 55,
   "bundles": {
     "E/ED/EDGG/EDDF_TMA": {
       "files": {
@@ -990,6 +990,25 @@
         }
       }
     },
+    "U/UU/UUWV/MOSCOW_TMA": {
+      "files": {
+        "configs": {
+          "repo_path": "U/UU/UUWV/MOSCOW_TMA/sector_configs.json",
+          "sha256": "b5a0e7d57fb6c651c0ba413a3936733502380add34477ace82a3e30100a5c27e",
+          "size_bytes": 278
+        },
+        "definitions": {
+          "repo_path": "U/UU/UUWV/MOSCOW_TMA/sector_definitions.json",
+          "sha256": "e678e1bf3292f49441c9bca20b0bc2da441f1416b4d2e1eae8c00ad208858793",
+          "size_bytes": 1418
+        },
+        "influence": {
+          "repo_path": "U/UU/UUWV/MOSCOW_TMA/sector_influence.json",
+          "sha256": "0933b08c1339a63f46ef73e4265fd07c1c84cded364981d085793ef356e81242",
+          "size_bytes": 173
+        }
+      }
+    },
     "V/VA/VABF/MUMBAI_TMA": {
       "files": {
         "configs": {
@@ -1029,12 +1048,12 @@
       }
     }
   },
-  "commit_sha": "17db6b22a22c2ac3a3a141576027915835becdb4",
+  "commit_sha": "ce6ebba8929bc4ae2c1dd07e1b63787268311902",
   "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-17/sector-data-2610.zip",
-  "published_at": "2026-10-17T05:34:11Z",
+  "published_at": "2026-10-17T12:15:45Z",
   "release_tag": "daily-2026-10-17",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "8f1d4ae1a48d40fce63ef068f3165f8c7fa71002b44d28f6609da15cda09372b",
-  "size_bytes": 144165
+  "sha256": "133b1fa4aaa9fb4b214acd409bc43c2906773715e6376881db917c6fdab55e0a",
+  "size_bytes": 145205
 }

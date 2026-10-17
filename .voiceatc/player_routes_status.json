@@ -450,6 +450,13 @@
           "status": "ok"
         }
       },
+      "LLBG_LLER": {
+        "de7153d9": {
+          "checked_airac": "2610",
+          "reasons": [],
+          "status": "ok"
+        }
+      },
       "LOWW_RKSI": {
         "86c726e5": {
           "checked_airac": "2610",
@@ -4453,7 +4460,7 @@
     "deep_validation": false,
     "pairs": {}
   },
-  "generated_at": "2026-10-17T05:34:11Z",
+  "generated_at": "2026-10-17T12:15:45Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 1
 }
