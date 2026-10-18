@@ -1,8 +1,8 @@
 {
   "asset_name": "misc-drawings-2610-full.zip",
-  "commit_sha": "ce6ebba8929bc4ae2c1dd07e1b63787268311902",
+  "commit_sha": "61e34a21bf7d4690f1bca385902bf7a793582972",
   "dataset": "misc_drawings",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-17/misc-drawings-2610-full.zip",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-18/misc-drawings-2610-full.zip",
   "entries": [
     {
       "id": "EDDC",
@@ -258,9 +258,9 @@
     }
   ],
   "entry_count": 42,
-  "generated_at": "2026-10-17T12:15:45Z",
-  "published_at": "2026-10-17T12:15:45Z",
-  "release_tag": "daily-2026-10-17",
+  "generated_at": "2026-10-18T05:51:57Z",
+  "published_at": "2026-10-18T05:51:57Z",
+  "release_tag": "daily-2026-10-18",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "sha256": "a36d844ee49066b993114f636d36918eed7ce8dd07102aa91ed067b682b95f6e",
   "size_bytes": 321513
