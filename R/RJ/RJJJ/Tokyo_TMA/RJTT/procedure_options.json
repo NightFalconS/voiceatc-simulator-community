@@ -5,5 +5,17 @@
   "defaults": {
     "spawn_enabled": true,
     "init_climb": 20000
+  },
+  "sids": { },
+  "stars": {
+    "AKSEV": { "spawn_enabled": false },
+    "AROSV": { "spawn_enabled": false },
+    "MESSV": { "spawn_enabled": false },
+    "XACV": { "spawn_enabled": false },
+    "AKSEN": { "spawn_enabled": false },
+    "AROSN": { "spawn_enabled": false },
+    "MESSN": { "spawn_enabled": false },
+    "XACN": { "spawn_enabled": false }
   }
+    
 }
