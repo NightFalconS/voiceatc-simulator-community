@@ -6,7 +6,12 @@
     "spawn_enabled": true,
     "init_climb": 20000
   },
-  "sids": { },
+  "sids": {
+    "ROVE3A": { "init_climb": 17000 },
+    "ROVE4B": { "init_climb": 17000 },
+    "ROVE4C": { "init_climb": 17000 },
+    "VAMOS4": { "init_climb": 23000 }
+  },
   "stars": {
     "AKSEV": { "spawn_enabled": false },
     "AROSV": { "spawn_enabled": false },
@@ -16,6 +21,5 @@
     "AROSN": { "spawn_enabled": false },
     "MESSN": { "spawn_enabled": false },
     "XACN": { "spawn_enabled": false }
-  }
-    
+  }    
 }
