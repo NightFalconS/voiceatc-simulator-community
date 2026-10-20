@@ -1,0 +1,17 @@
+{
+  "airport": "VHHH",
+  "runway_configs": [
+    {
+      "id": "MAIN_07",
+      "name": "Main 07",
+      "arr": "07L 07R",
+      "dep": "07C 07R"
+    },
+    {
+      "id": "25_CONFIG",
+      "name": "25 Config",
+      "arr": "25R 25L",
+      "dep": "25C 25L"
+    }
+  ]
+}
