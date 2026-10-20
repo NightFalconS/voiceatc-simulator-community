@@ -20,6 +20,16 @@
     "AKSELN": { "spawn_enabled": false },
     "AROSAN": { "spawn_enabled": false },
     "MESSEN": { "spawn_enabled": false },
-    "XACN": { "spawn_enabled": false }
-  }    
+    "XACN": { "spawn_enabled": false },
+    "AKSE2B": { "spawn_enabled": false },
+    "AROS2B": { "spawn_enabled": false },
+    "MESS2B": { "spawn_enabled": false },
+    "XAC2B": { "spawn_enabled": false },
+    "AKSE2N": { "spawn_enabled": false },
+    "AROS2N": { "spawn_enabled": false },
+    "MESS2N": { "spawn_enabled": false },
+    "XAC2N": { "spawn_enabled": false },
+	"SULP1D": { "spawn_enabled": false },
+	"SULP1S": { "spawn_enabled": false }
+  }
 }
