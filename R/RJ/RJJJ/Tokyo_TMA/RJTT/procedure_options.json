@@ -13,13 +13,13 @@
     "VAMOS4": { "init_climb": 23000 }
   },
   "stars": {
-    "AKSEV": { "spawn_enabled": false },
-    "AROSV": { "spawn_enabled": false },
-    "MESSV": { "spawn_enabled": false },
+    "AKSELV": { "spawn_enabled": false },
+    "AROSAV": { "spawn_enabled": false },
+    "MESSEV": { "spawn_enabled": false },
     "XACV": { "spawn_enabled": false },
-    "AKSEN": { "spawn_enabled": false },
-    "AROSN": { "spawn_enabled": false },
-    "MESSN": { "spawn_enabled": false },
+    "AKSELN": { "spawn_enabled": false },
+    "AROSAN": { "spawn_enabled": false },
+    "MESSEN": { "spawn_enabled": false },
     "XACN": { "spawn_enabled": false }
   }    
 }
