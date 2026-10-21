@@ -319,9 +319,7 @@
             },
             "SPESA.D": {
               "spawn_enabled": true,
-              "join_from": [
-                "MAMBU"
-              ]
+              "join_from": ["MAMBU"]
             }
           }
         }

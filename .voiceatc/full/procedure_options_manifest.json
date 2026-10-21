@@ -2,8 +2,8 @@
   "airports": {
     "EDDF": {
       "repo_path": "E/ED/EDGG/EDDF_TMA/EDDF/procedure_options.json",
-      "sha256": "0638cb100f4ee74498b18076d84009549a6f028f12a655c754262f1534093a4d",
-      "size_bytes": 6708
+      "sha256": "426c749d67778340da7e5dc36f2addab59f6a1c7e48129826430050df236a18f",
+      "size_bytes": 6822
     },
     "EDDH": {
       "repo_path": "E/ED/EDWW/HAMBURG_TMA/EDDH/procedure_options.json",
