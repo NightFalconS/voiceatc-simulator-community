@@ -2,8 +2,8 @@
   "airports": {
     "EDDF": {
       "repo_path": "E/ED/EDGG/EDDF_TMA/EDDF/procedure_options.json",
-      "sha256": "743a5879e3ada01e2cb71bda0f80733bb529f3ac63531638a2d218d0abc3158c",
-      "size_bytes": 1578
+      "sha256": "0638cb100f4ee74498b18076d84009549a6f028f12a655c754262f1534093a4d",
+      "size_bytes": 6708
     },
     "EDDH": {
       "repo_path": "E/ED/EDWW/HAMBURG_TMA/EDDH/procedure_options.json",
@@ -153,6 +153,6 @@
   },
   "published_at": "2026-10-21T06:00:56Z",
   "repo": "lainoa-software/voiceatc-simulator-community",
-  "requires": ["community.airac_overrides"],
+  "requires": ["community.airac_overrides", "community.procedure_route_keys"],
   "schema_version": 1
 }

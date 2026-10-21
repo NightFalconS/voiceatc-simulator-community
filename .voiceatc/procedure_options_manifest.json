@@ -1,9 +1,9 @@
 {
   "airports": {
     "EDDF": {
-      "repo_path": "E/ED/EDGG/EDDF_TMA/EDDF/procedure_options.json",
-      "sha256": "743a5879e3ada01e2cb71bda0f80733bb529f3ac63531638a2d218d0abc3158c",
-      "size_bytes": 1578
+      "repo_path": ".voiceatc/defaults/E/ED/EDGG/EDDF_TMA/EDDF/procedure_options.json",
+      "sha256": "21663f8a0132ead64838cc569528f1bafd23c5d0c213264c73f93168a707549b",
+      "size_bytes": 2034
     },
     "EDDH": {
       "repo_path": "E/ED/EDWW/HAMBURG_TMA/EDDH/procedure_options.json",
