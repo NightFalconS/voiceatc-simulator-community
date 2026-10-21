@@ -1,8 +1,8 @@
 {
   "asset_name": "runway-configs-2610-full.zip",
-  "commit_sha": "8059a3ad5f037d93796f4f1e3a318ccc5dcd3ff4",
+  "commit_sha": "e9cad09e7275cfe670737e850fc7771973ac1a9e",
   "dataset": "runway_configs",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-21/runway-configs-2610-full.zip",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-21-b/runway-configs-2610-full.zip",
   "entries": [
     {
       "id": "EBBR",
@@ -769,7 +769,7 @@
     {
       "id": "LEZG",
       "repo_path": "L/LE/LECM/LECM_R2/ZARAGOZA_TMA/LEZG/runway_configs.json",
-      "sha256": "4d5507c5b33f6f3f04fa26dfa20606ebfa52723e5c1b8d8b77402a364fb91c16",
+      "sha256": "db2a4c3e373d27c6668f56e783c0eaa13b54ba65e4574856d71a3a4479254955",
       "size_bytes": 258
     },
     {
@@ -807,6 +807,12 @@
       "repo_path": "L/LI/LIRR/ROME_TMA/LIRF/runway_configs.json",
       "sha256": "13c2b6be172e44dbbe088b59dd20ebc09ee46307a7b606a8ecfd0895721f3e99",
       "size_bytes": 266
+    },
+    {
+      "id": "LLBG",
+      "repo_path": "L/LL/LLLL/TEL_AVIV_TMA/LLBG/runway_configs.json",
+      "sha256": "57443ceb881dd3a30005be18c19b074cbfce2b2b91f200ae97222d1aa37e6b47",
+      "size_bytes": 554
     },
     {
       "id": "LOWG",
@@ -1073,11 +1079,11 @@
       "size_bytes": 266
     }
   ],
-  "entry_count": 178,
-  "generated_at": "2026-10-21T06:00:32Z",
-  "published_at": "2026-10-21T06:00:32Z",
-  "release_tag": "daily-2026-10-21",
+  "entry_count": 179,
+  "generated_at": "2026-10-21T17:11:01Z",
+  "published_at": "2026-10-21T17:11:01Z",
+  "release_tag": "daily-2026-10-21-b",
   "repo": "lainoa-software/voiceatc-simulator-community",
-  "sha256": "d3d5c077153219c263b5fe7ffa47025f79791c37f4a1a28d4c433ab61a72b315",
-  "size_bytes": 55111
+  "sha256": "aca253b130ecbc78db63133262d716e0945310be0fc75c8d7d336bf26d1e79ef",
+  "size_bytes": 55486
 }
