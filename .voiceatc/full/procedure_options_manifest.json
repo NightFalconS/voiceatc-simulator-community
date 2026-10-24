@@ -1,5 +1,10 @@
 {
   "airports": {
+    "EDDB": {
+      "repo_path": "E/ED/EDWW/BERLIN_TMA/EDDB/procedure_options.json",
+      "sha256": "e11ec37d72194d65fc68666b01f5e446e9255513915c1b5ba85ee969403f4fc2",
+      "size_bytes": 689
+    },
     "EDDF": {
       "repo_path": "E/ED/EDGG/EDDF_TMA/EDDF/procedure_options.json",
       "sha256": "426c749d67778340da7e5dc36f2addab59f6a1c7e48129826430050df236a18f",
@@ -19,6 +24,21 @@
       "repo_path": "E/ED/EDGG/EDDS_TMA/EDDS/procedure_options.json",
       "sha256": "d2c1cd570c31c4198fe063914fa78cec79c68cd5cba1e0d00c79dcd155507802",
       "size_bytes": 1748
+    },
+    "EDDV": {
+      "repo_path": "E/ED/EDWW/HANNOVER_TMA/EDDV/procedure_options.json",
+      "sha256": "f0c1e69567b982348a44ea8247a58647fa90075e27e43ba2d4b1080473ad3819",
+      "size_bytes": 361
+    },
+    "EDDW": {
+      "repo_path": "E/ED/EDWW/BREMEN_TMA/EDDW/procedure_options.json",
+      "sha256": "f836f8b6743462855544b0773ddf7af063a8ccd52c0c9d38a141017d46b2299c",
+      "size_bytes": 318
+    },
+    "EDVE": {
+      "repo_path": "E/ED/EDWW/HANNOVER_TMA/EDVE/procedure_options.json",
+      "sha256": "41667d0ccc4ad84350859352a58aef8a9265c1bfb1abb91c1a1df9073bf78143",
+      "size_bytes": 275
     },
     "EKAH": {
       "repo_path": "E/EK/EKDK/AARHUS_TMA/EKAH/procedure_options.json",

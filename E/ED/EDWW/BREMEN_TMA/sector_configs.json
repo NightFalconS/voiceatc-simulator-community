@@ -2,7 +2,7 @@
   "sector_configs": [
     {
       "sector_config_id": "1",
-      "runway_configs": ["08","26"],
+      "runway_configs": ["08", "26"],
       "sectors": [
         {
           "sector_ids": ["FRI"],
