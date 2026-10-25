@@ -1,6 +1,6 @@
 {
   "asset_name": "sector-data-2610.zip",
-  "bundle_count": 55,
+  "bundle_count": 58,
   "bundles": {
     "E/ED/EDGG/EDDF_TMA": {
       "files": {
@@ -78,6 +78,44 @@
         }
       }
     },
+    "E/ED/EDWW/BERLIN_TMA": {
+      "files": {
+        "configs": {
+          "repo_path": "E/ED/EDWW/BERLIN_TMA/sector_configs.json",
+          "sha256": "0863a5af4debbabcd2f464ce6fe82a86dc0427d0ef4bcf01f7e7df2f6275f98b",
+          "size_bytes": 3626
+        },
+        "definitions": {
+          "repo_path": "E/ED/EDWW/BERLIN_TMA/sector_definitions.json",
+          "sha256": "668a4a2fcfd32ec68a755379c0cf1fb9a82494a6e7a6efa230498de184431e2d",
+          "size_bytes": 8128
+        },
+        "influence": {
+          "repo_path": "E/ED/EDWW/BERLIN_TMA/sector_influence.json",
+          "sha256": "2d372b3313aaca4c5be48d98d20d11dbe5de94ed22bc4b53c36391bf28157320",
+          "size_bytes": 1419
+        }
+      }
+    },
+    "E/ED/EDWW/BREMEN_TMA": {
+      "files": {
+        "configs": {
+          "repo_path": "E/ED/EDWW/BREMEN_TMA/sector_configs.json",
+          "sha256": "ea37ac14a4079eb81c1118ae425592cf6abe1ae3dcebaa01fc91aee655ba2444",
+          "size_bytes": 224
+        },
+        "definitions": {
+          "repo_path": "E/ED/EDWW/BREMEN_TMA/sector_definitions.json",
+          "sha256": "a8b803bed19b3632ece314bd2d1701046667365442e6e8a1764afc20903d6c6e",
+          "size_bytes": 1300
+        },
+        "influence": {
+          "repo_path": "E/ED/EDWW/BREMEN_TMA/sector_influence.json",
+          "sha256": "69b5ad2253f7bba1ea3a53220e737e903026649ed51f1ad9ce3afb8a9c1827c0",
+          "size_bytes": 98
+        }
+      }
+    },
     "E/ED/EDWW/HAMBURG_TMA": {
       "files": {
         "configs": {
@@ -94,6 +132,25 @@
           "repo_path": "E/ED/EDWW/HAMBURG_TMA/sector_influence.json",
           "sha256": "c330d29ec7e660c2e24f8738b855c9125227f352483ded50a5e2257f00d45a5d",
           "size_bytes": 114
+        }
+      }
+    },
+    "E/ED/EDWW/HANNOVER_TMA": {
+      "files": {
+        "configs": {
+          "repo_path": "E/ED/EDWW/HANNOVER_TMA/sector_configs.json",
+          "sha256": "45c24960fc4b405bee9d38b2e646e83c0827e4fecf48540bce04e68fd3526bee",
+          "size_bytes": 236
+        },
+        "definitions": {
+          "repo_path": "E/ED/EDWW/HANNOVER_TMA/sector_definitions.json",
+          "sha256": "94551f5487846388be4708713f43f0ab0311b1049936602e7bb73bf738f09e53",
+          "size_bytes": 1298
+        },
+        "influence": {
+          "repo_path": "E/ED/EDWW/HANNOVER_TMA/sector_influence.json",
+          "sha256": "d48268f6a070b8e37c61ef061d88d4ebbaf11fdd4dc39197a6f912a70dd9bf0d",
+          "size_bytes": 106
         }
       }
     },
@@ -1048,12 +1105,12 @@
       }
     }
   },
-  "commit_sha": "6e231d793757c41ee002547dc5ca3d7eb56ef0cc",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-20/sector-data-2610.zip",
-  "published_at": "2026-10-20T05:59:19Z",
-  "release_tag": "daily-2026-10-20",
+  "commit_sha": "7be0f989427a1b570e7a2a45058cc9a7e9df4818",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-25/sector-data-2610.zip",
+  "published_at": "2026-10-25T06:04:18Z",
+  "release_tag": "daily-2026-10-25",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "133b1fa4aaa9fb4b214acd409bc43c2906773715e6376881db917c6fdab55e0a",
-  "size_bytes": 145205
+  "sha256": "f3f981d3fb4a576ac6ee734591a2403a3d2b2102fce52b2f626afb5a57c355c6",
+  "size_bytes": 148962
 }
