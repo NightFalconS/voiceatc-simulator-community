@@ -48,13 +48,13 @@
     },
     "EDDV": {
       "repo_path": "E/ED/EDWW/HANNOVER_TMA/EDDV/runway_configs.json",
-      "sha256": "091797c50134ecae3f4aee9b047b7ebe7c03a34a1827af687790641c689ea2d7",
-      "size_bytes": 232
+      "sha256": "082fe9f2d81117851030c5278f3a38bb66846c7b5bb6e2340df7a50900507623",
+      "size_bytes": 248
     },
     "EDDW": {
       "repo_path": "E/ED/EDWW/BREMEN_TMA/EDDW/runway_configs.json",
-      "sha256": "26b21a25c42de37b1ec6754ac0812559c484e4fd6429f40d0262bd65fe7960bc",
-      "size_bytes": 226
+      "sha256": "ccebebed1f73158abeddf7e79bd6dc6ad3e7202e8dc7d2d473e05555c326e0ee",
+      "size_bytes": 228
     },
     "EDFH": {
       "repo_path": "E/ED/EDGG/EDDF_TMA/EDFH/runway_configs.json",
@@ -78,8 +78,8 @@
     },
     "EDVE": {
       "repo_path": "E/ED/EDWW/HANNOVER_TMA/EDVE/runway_configs.json",
-      "sha256": "854ad5af0981499d6e94dca8c970625e682f294a8c407e56fa70011acfc6db1e",
-      "size_bytes": 226
+      "sha256": "0b46cc986926f28935a520d492ed2d03365ac170ebd32d08fda32c84a0ef82c8",
+      "size_bytes": 228
     },
     "EDXW": {
       "repo_path": "E/ED/EDWW/SYLT_TMA/EDXW/runway_configs.json",
@@ -898,12 +898,12 @@
     }
   },
   "asset_name": "runway-configs-2610.zip",
-  "commit_sha": "d74dc8de8dd0262e761622b25c3f577c6c15e0ee",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-24/runway-configs-2610.zip",
-  "published_at": "2026-10-24T05:48:28Z",
-  "release_tag": "daily-2026-10-24",
+  "commit_sha": "7be0f989427a1b570e7a2a45058cc9a7e9df4818",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-25/runway-configs-2610.zip",
+  "published_at": "2026-10-25T06:04:18Z",
+  "release_tag": "daily-2026-10-25",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "aca253b130ecbc78db63133262d716e0945310be0fc75c8d7d336bf26d1e79ef",
-  "size_bytes": 55486
+  "sha256": "5e1906a16554e07668c7d0b3fdf0a6fdd1d5be8e207927a15798dfdfdf4c4236",
+  "size_bytes": 55496
 }

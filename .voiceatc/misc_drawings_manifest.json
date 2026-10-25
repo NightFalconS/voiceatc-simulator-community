@@ -1,6 +1,11 @@
 {
-  "airport_count": 27,
+  "airport_count": 31,
   "airports": {
+    "EDDB": {
+      "repo_path": "E/ED/EDWW/BERLIN_TMA/misc_drawings.json",
+      "sha256": "374b7516791bbafdf9a86b8ee8bcbd4dbf5d57e542dde8c215f556486957ed70",
+      "size_bytes": 5483
+    },
     "EDDC": {
       "repo_path": "E/ED/EDMM/EDDC_TMA/misc_drawings.json",
       "sha256": "bb02484b3242322accbdd8ada513d3560e7adace8c904deb2ee16e7dfee462ce",
@@ -26,6 +31,16 @@
       "sha256": "f6fee453097975b537abb21318a8f56b9a9b318de80cca68b07545db899d33b8",
       "size_bytes": 2166
     },
+    "EDDV": {
+      "repo_path": "E/ED/EDWW/HANNOVER_TMA/misc_drawings.json",
+      "sha256": "f295961b180ff1bca6cb7c77b9fd08d737b120c80fe1e59a4da99bc3795c1792",
+      "size_bytes": 5503
+    },
+    "EDDW": {
+      "repo_path": "E/ED/EDWW/BREMEN_TMA/misc_drawings.json",
+      "sha256": "e269cb3606a02a7dba3d0ae7b5fccdbbb2b20d2928a2e9179aefd887cebb343f",
+      "size_bytes": 5482
+    },
     "EDHI": {
       "repo_path": "E/ED/EDWW/HAMBURG_TMA/misc_drawings.json",
       "sha256": "37a467ebef88af731ff0ed7ab17a14c881b119d0cc5564344352a226d74ab17b",
@@ -35,6 +50,11 @@
       "repo_path": "E/ED/EDWW/HAMBURG_TMA/misc_drawings.json",
       "sha256": "37a467ebef88af731ff0ed7ab17a14c881b119d0cc5564344352a226d74ab17b",
       "size_bytes": 994
+    },
+    "EDVE": {
+      "repo_path": "E/ED/EDWW/HANNOVER_TMA/misc_drawings.json",
+      "sha256": "f295961b180ff1bca6cb7c77b9fd08d737b120c80fe1e59a4da99bc3795c1792",
+      "size_bytes": 5503
     },
     "EFHK": {
       "repo_path": "E/EF/EFIN/EFIN_S/HELSINKI_TMA/misc_drawings.json",
@@ -138,12 +158,12 @@
     }
   },
   "asset_name": "misc-drawings-2610.zip",
-  "commit_sha": "d74dc8de8dd0262e761622b25c3f577c6c15e0ee",
-  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-24/misc-drawings-2610.zip",
-  "published_at": "2026-10-24T05:48:28Z",
-  "release_tag": "daily-2026-10-24",
+  "commit_sha": "7be0f989427a1b570e7a2a45058cc9a7e9df4818",
+  "download_url": "https://github.com/lainoa-software/voiceatc-simulator-community/releases/download/daily-2026-10-25/misc-drawings-2610.zip",
+  "published_at": "2026-10-25T06:04:18Z",
+  "release_tag": "daily-2026-10-25",
   "repo": "lainoa-software/voiceatc-simulator-community",
   "schema_version": 2,
-  "sha256": "088a2822a7abba1d64379e61feefc9b57908ba8ae3dcc9c7fb266d4dcbaf0b25",
-  "size_bytes": 191238
+  "sha256": "383e1f78d4d97f8ad9ecadaa5502144f650309fd9548628ac2b3a77781fc00fd",
+  "size_bytes": 194736
 }
