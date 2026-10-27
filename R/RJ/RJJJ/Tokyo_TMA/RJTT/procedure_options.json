@@ -29,7 +29,7 @@
     "AROS2N": { "spawn_enabled": false },
     "MESS2N": { "spawn_enabled": false },
     "XAC2N": { "spawn_enabled": false },
-	"SULP1D": { "spawn_enabled": false },
-	"SULP1S": { "spawn_enabled": false }
+    "SULP1D": { "spawn_enabled": false },
+    "SULP1S": { "spawn_enabled": false }
   }
 }

@@ -142,8 +142,8 @@
     },
     "RJTT": {
       "repo_path": "R/RJ/RJJJ/Tokyo_TMA/RJTT/procedure_options.json",
-      "sha256": "e73f2feb33fb423d411fe81db818deab1e67fb1ee24340beb2b041adcf5cc624",
-      "size_bytes": 140
+      "sha256": "636acdf3af4d32f348a2e2a341d7f1b7572cc45b4ba459d99765a8994c70c784",
+      "size_bytes": 1079
     },
     "VABB": {
       "repo_path": "V/VA/VABF/MUMBAI_TMA/VABB/procedure_options.json",
