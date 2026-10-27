@@ -7,8 +7,8 @@
     },
     "EDDF": {
       "repo_path": ".voiceatc/defaults/E/ED/EDGG/EDDF_TMA/EDDF/procedure_options.json",
-      "sha256": "21663f8a0132ead64838cc569528f1bafd23c5d0c213264c73f93168a707549b",
-      "size_bytes": 2034
+      "sha256": "f843dcbe2a54717464e75820c229cc69c96235d05345dec5da5ee95a6f7ee2e2",
+      "size_bytes": 3604
     },
     "EDDH": {
       "repo_path": "E/ED/EDWW/HAMBURG_TMA/EDDH/procedure_options.json",
